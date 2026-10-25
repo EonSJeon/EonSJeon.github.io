@@ -1,6 +1,6 @@
 # CV and Resume
 
-정리일: 2026-10-24. 이 폴더는 웹사이트 저장소와 분리한 로컬 전용 Git 저장소이며 remote가 없습니다.
+정리일: 2026-10-24. 이 폴더는 `EonSJeon.github.io` 전체 저장소에서 관리합니다. 기존 별도 저장소의 18개 커밋을 경로를 붙여 순서대로 옮겼으므로 웹사이트 저장소의 History에서 확인할 수 있습니다.
 
 요청한 명칭에 따라 상세 이력서는 `Resume-Full`, 한 페이지 지원서는 `CV-1Page-용도`로 통일했습니다. 날짜는 파일명 대신 Git 이력과 아래 표에서 관리합니다. 같은 버전의 DOCX와 PDF는 동일한 기본 파일명을 사용합니다.
 
@@ -43,42 +43,44 @@
 
 | 원래 파일명 | 커밋 | 저장 경로 |
 | --- | --- | --- |
-| `Resume 1pg 230423 - Sangeon Jeon.pdf` | `115c7ce2` | `Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
-| `Resume.pdf` | `0c63d419` | `Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
-| `Resume 1pg 230802 - Sangeon Jeon.pdf` | `2d204c9a` | `Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
-| `Resume 1pg 240105 - Sangeon Jeon.pdf` | `d42c9eae` | `Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
-| `CV 240610 - Sangeon Jeon.pdf` | `0e64d9bf` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 240610 - Sangeon Jeon.docx` | `0e64d9bf` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 240803 - Sangeon Jeon.pdf` | `f9331465` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 240803 - Sangeon Jeon.docx` | `f9331465` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 250103 - Sangeon Jeon.pdf` | `6f23a1ff` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 250403 - UPCP.pdf` | `9ca24190` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 250103 - Sangeon Jeon.docx` | `9ca24190` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 250403 - UPCP (1).docx` | `9ca24190` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 250403 - UPCP.docx` | `9ca24190` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 250403 - Sangeon Jeon.pdf` | `068ca9a4` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 250908 - UPCP.docx` | `2b3b369b` | `Sangeon-Jeon-Resume-Full.docx` |
-| `전 - 2025 - Resume 250908.pdf` | `c687e8e0` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `CV 250908.docx` | `c687e8e0` | `Sangeon-Jeon-Resume-Full.docx` |
-| `CV 250908.pdf` | `dd903bf0` | `Sangeon-Jeon-Resume-Full.pdf` |
-| `Resume Telecomm (1).pdf` | `1528ce7b` | `Sangeon-Jeon-CV-1Page-Telecom.pdf` |
-| `Resume ML.pdf` | `264271b4` | `Sangeon-Jeon-CV-1Page-ML.pdf` |
-| `Resume ML.docx` | `264271b4` | `Sangeon-Jeon-CV-1Page-ML.docx` |
-| `Resume SW.pdf` | `5179d1c2` | `Sangeon-Jeon-CV-1Page-Software.pdf` |
-| `Resume SW.docx` | `5179d1c2` | `Sangeon-Jeon-CV-1Page-Software.docx` |
-| `Resume Telecomm.pdf` | `e0424576` | `Sangeon-Jeon-CV-1Page-Telecom.pdf` |
-| `Resume Telecomm.docx` | `e0424576` | `Sangeon-Jeon-CV-1Page-Telecom.docx` |
-| `CV 260411 industrial.docx.pdf` | `e23c4f50` | `Sangeon-Jeon-CV-1Page-Industrial.pdf` |
+| `Resume 1pg 230423 - Sangeon Jeon.pdf` | `69874423` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
+| `Resume.pdf` | `ac61b8c6` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
+| `Resume 1pg 230802 - Sangeon Jeon.pdf` | `b53b7733` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
+| `Resume 1pg 240105 - Sangeon Jeon.pdf` | `41fd00c9` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` |
+| `CV 240610 - Sangeon Jeon.pdf` | `77ba3b23` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 240610 - Sangeon Jeon.docx` | `77ba3b23` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 240803 - Sangeon Jeon.pdf` | `31debaf8` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 240803 - Sangeon Jeon.docx` | `31debaf8` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 250103 - Sangeon Jeon.pdf` | `50f4c8b8` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 250403 - UPCP.pdf` | `b0539210` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 250103 - Sangeon Jeon.docx` | `b0539210` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 250403 - UPCP (1).docx` | `b0539210` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 250403 - UPCP.docx` | `b0539210` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 250403 - Sangeon Jeon.pdf` | `1c0ee0c2` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 250908 - UPCP.docx` | `f12daf6b` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `전 - 2025 - Resume 250908.pdf` | `163f5d28` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `CV 250908.docx` | `163f5d28` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx` |
+| `CV 250908.pdf` | `afd511d9` | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` |
+| `Resume Telecomm (1).pdf` | `576687d9` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Telecom.pdf` |
+| `Resume ML.pdf` | `d4685aff` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-ML.pdf` |
+| `Resume ML.docx` | `d4685aff` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-ML.docx` |
+| `Resume SW.pdf` | `d5fa8b7b` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Software.pdf` |
+| `Resume SW.docx` | `d5fa8b7b` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Software.docx` |
+| `Resume Telecomm.pdf` | `83060ea1` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Telecom.pdf` |
+| `Resume Telecomm.docx` | `83060ea1` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Telecom.docx` |
+| `CV 260411 industrial.docx.pdf` | `2aa8afb2` | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Industrial.pdf` |
 
 ## 이력 확인과 복원
 
-이 폴더에서 다음 명령을 실행합니다.
+웹사이트 저장소 루트에서 다음 명령을 실행합니다.
 
 ```sh
 git log --reverse --oneline
-git log --follow --oneline -- Sangeon-Jeon-Resume-Full.pdf
-git show <commit>:Sangeon-Jeon-Resume-Full.pdf > /private/tmp/previous-resume.pdf
-git show <commit>:Sangeon-Jeon-Resume-Full.docx > /private/tmp/previous-resume.docx
+git log --follow --oneline -- reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf
+git show <commit>:reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf > /private/tmp/previous-resume.pdf
+git show <commit>:reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.docx > /private/tmp/previous-resume.docx
 ```
 
 복원할 때는 표의 커밋과 경로를 사용합니다. 쌍이 없는 버전에는 해당 형식만 존재합니다. 한 쌍을 새 버전으로 갱신할 때는 두 파일을 함께 확인하고 같은 커밋에 추가합니다.
+
+상위 `.gitignore`는 `reference-private/CV-Resume/`만 추적 예외로 허용합니다. 다른 비공개 자료는 계속 제외됩니다. 이 저장소를 push하면 CV/Resume의 과거 버전도 함께 원격에 올라갑니다.
