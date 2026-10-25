@@ -1,0 +1,588 @@
+{
+  "organized_on": "2026-10-24",
+  "repository_scope": "local_only_no_remote",
+  "original_file_count": 26,
+  "import_commit_count": 17,
+  "pairing_method": "NFKC normalization followed by lowercase alphanumeric body comparison; no filename-only pairing",
+  "chronology_policy": "PDF CreationDate for exported versions; DOCX modified time for an unmatched intermediate; filename fallback only when no internal creation date exists. Commit dates are not backdated.",
+  "current_files": {
+    "Sangeon-Jeon-Resume-Full.pdf": "CV 250908.pdf",
+    "Sangeon-Jeon-Resume-Full.docx": "CV 250908.docx",
+    "Sangeon-Jeon-CV-1Page-Industrial.pdf": "CV 260411 industrial.docx.pdf",
+    "Sangeon-Jeon-CV-1Page-ML.pdf": "Resume ML.pdf",
+    "Sangeon-Jeon-CV-1Page-ML.docx": "Resume ML.docx",
+    "Sangeon-Jeon-CV-1Page-Software.pdf": "Resume SW.pdf",
+    "Sangeon-Jeon-CV-1Page-Software.docx": "Resume SW.docx",
+    "Sangeon-Jeon-CV-1Page-Telecom.pdf": "Resume Telecomm.pdf",
+    "Sangeon-Jeon-CV-1Page-Telecom.docx": "Resume Telecomm.docx",
+    "Sangeon-Jeon-CV-1Page-Neuroscience.pdf": "Resume 1pg 240105 - Sangeon Jeon.pdf"
+  },
+  "original_sources": [
+    {
+      "original_name": "Resume 1pg 230423 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "409d037063d19b8fc57a943fc9bd5ed7911de1f7cb7e28525d3b92e4d1ba9c6a",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Neuroscience.pdf",
+      "commit": "115c7ce2e2d76c33aaccc20d567c22fc20831830",
+      "chronology_date": "2023-03-10T16:01:11-05:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20230310160111-05'00'",
+      "docx_modified_date": null,
+      "filename_date": "2023-04-23",
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "Resume.pdf",
+      "format": "pdf",
+      "sha256": "ba4d78ccb7165c5fa62d052c82ce911db0c01f75f1d7b69b99e007104e47ccc9",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Neuroscience.pdf",
+      "commit": "0c63d41951ce0e47331978ea7f8606a17cbdac53",
+      "chronology_date": "2023-04-18T21:16:17-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20230418211617-04'00'",
+      "docx_modified_date": null,
+      "filename_date": null,
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "Resume 1pg 230802 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "0efb24e4a9394b5282446aade54d6ca32a95c31b74ea1c518b9ebba517fa44a9",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Neuroscience.pdf",
+      "commit": "2d204c9a90b6e33a11b494ebd7d23e7ed91e9672",
+      "chronology_date": "2024-01-10T00:48:54-05:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20240110004854-05'00'",
+      "docx_modified_date": null,
+      "filename_date": "2023-08-02",
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "Resume 1pg 240105 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "01b55b16695ec270b09f7179b9a673eb148fe7cae2a7c8ccec3150d6f3e1461d",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Neuroscience.pdf",
+      "commit": "d42c9eae067268a1c33c3920f23243fdfa84046f",
+      "chronology_date": "2024-01-10T00:48:54-05:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20240110004854-05'00'",
+      "docx_modified_date": null,
+      "filename_date": "2024-01-05",
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "CV 240610 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "cea9614603c2b49273a884d26ba01ae37905fb06ecbd38a3816361be72de0f5c",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "0e64d9bfe0c48ee8df0896e5df8056fda496b665",
+      "chronology_date": "2024-05-30T15:19:45+09:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20240530151945+09'00'",
+      "docx_modified_date": null,
+      "filename_date": "2024-06-10",
+      "pages": 2,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 240610 - Sangeon Jeon.docx",
+      "format": "docx",
+      "sha256": "762cd9ca733636ccb2e5ded485df7dfc8fd03a376c99202edfc617f97d3e47c5",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "0e64d9bfe0c48ee8df0896e5df8056fda496b665",
+      "chronology_date": "2024-05-30T15:19:45+09:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2024-05-30T06:19:00Z",
+      "filename_date": null,
+      "pages": "2",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 240803 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "de1e8f3ae5f53a6436fca21dd1e7a240b863eceee7427361f449dd3a7646e0b6",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "f93314656ffaffa1569561bef6d4c48e2e9d3804",
+      "chronology_date": "2024-08-02T17:46:24+09:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20240802174624+09'00'",
+      "docx_modified_date": null,
+      "filename_date": "2024-08-03",
+      "pages": 2,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 240803 - Sangeon Jeon.docx",
+      "format": "docx",
+      "sha256": "2a6377f6f23e086776b486ea226fae73248b696f745503d1f3ce0c220d5e5b7c",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "f93314656ffaffa1569561bef6d4c48e2e9d3804",
+      "chronology_date": "2024-08-02T17:46:24+09:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2024-08-02T08:45:00Z",
+      "filename_date": null,
+      "pages": "1",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250103 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "d8f68d63de1d89d4254ab7d83f847d0d7ff0bef6b39884f336b97ff1cad2f246",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "6f23a1ffccabca9b97c40dd76ebb25406d58b57c",
+      "chronology_date": "2025-01-03T21:04:23-05:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250103210423-05'00'",
+      "docx_modified_date": null,
+      "filename_date": "2025-01-03",
+      "pages": 2,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "CV 250403 - UPCP.pdf",
+      "format": "pdf",
+      "sha256": "6c199c51a798b51399fa7256f67b5fede859e844bfbefe8c03e58695903db096",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "9ca2419062cf5d61caf6ad91e9d645e257a42333",
+      "chronology_date": "2025-04-03T15:57:38-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250403155738-04'00'",
+      "docx_modified_date": null,
+      "filename_date": "2025-04-03",
+      "pages": 3,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250103 - Sangeon Jeon.docx",
+      "format": "docx",
+      "sha256": "bf2a9457e5bb42037ecb2d75bcf68b37dfb9df694281df3d5bdc865f1f092b46",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "9ca2419062cf5d61caf6ad91e9d645e257a42333",
+      "chronology_date": "2025-04-03T15:57:38-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-04-03T19:47:00Z",
+      "filename_date": null,
+      "pages": "3",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250403 - UPCP (1).docx",
+      "format": "docx",
+      "sha256": "bf2a9457e5bb42037ecb2d75bcf68b37dfb9df694281df3d5bdc865f1f092b46",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "9ca2419062cf5d61caf6ad91e9d645e257a42333",
+      "chronology_date": "2025-04-03T15:57:38-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-04-03T19:47:00Z",
+      "filename_date": null,
+      "pages": "3",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250403 - UPCP.docx",
+      "format": "docx",
+      "sha256": "bf2a9457e5bb42037ecb2d75bcf68b37dfb9df694281df3d5bdc865f1f092b46",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "9ca2419062cf5d61caf6ad91e9d645e257a42333",
+      "chronology_date": "2025-04-03T15:57:38-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-04-03T19:47:00Z",
+      "filename_date": null,
+      "pages": "3",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250403 - Sangeon Jeon.pdf",
+      "format": "pdf",
+      "sha256": "9fcbb514affff947b94c291d58e91f142b893e4f8ae804811c55497ee947ddf9",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "068ca9a4fa9c71696ba8c6d5be00b3abbc2e15e7",
+      "chronology_date": "2025-04-03T15:57:38-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250403155738-04'00'",
+      "docx_modified_date": null,
+      "filename_date": "2025-04-03",
+      "pages": 3,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250908 - UPCP.docx",
+      "format": "docx",
+      "sha256": "0d527dfc7eeba188ff98b30db4773f0873cf1df8127b46f9eb350f4a12ec92e4",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "2b3b369b527fbdcc5825de9c17e2e36940f50784",
+      "chronology_date": "2025-09-08T14:44:00Z",
+      "chronology_basis": "docx_modified_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-09-08T14:44:00Z",
+      "filename_date": null,
+      "pages": "3",
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "전 - 2025 - Resume 250908.pdf",
+      "format": "pdf",
+      "sha256": "99b3d066b9a8992ac3064f39087474286f35903afa5c2691992adc5d5e5db2f4",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "c687e8e01a8a9c6c7c3c66f8d37c1b3b05309e03",
+      "chronology_date": "2025-09-08T22:34:19-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250908223419-04'00'",
+      "docx_modified_date": null,
+      "filename_date": "2025-09-08",
+      "pages": 3,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250908.docx",
+      "format": "docx",
+      "sha256": "776ad0de236303babdf8a3f9462c09b4dfdb905d03bfa7ca0252fe34733a8383",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.docx",
+      "commit": "c687e8e01a8a9c6c7c3c66f8d37c1b3b05309e03",
+      "chronology_date": "2025-09-08T22:34:19-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-09-09T02:33:00Z",
+      "filename_date": null,
+      "pages": "3",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 250908.pdf",
+      "format": "pdf",
+      "sha256": "d3ab0b802440dee4fce07de58f6f3f9aa4a01074ada780510eb5f91885505e0d",
+      "canonical_path": "Sangeon-Jeon-Resume-Full.pdf",
+      "commit": "dd903bf0db565820308e3e762b887cced7e6211f",
+      "chronology_date": "2025-09-08T22:34:19-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250908223419-04'00'",
+      "docx_modified_date": null,
+      "filename_date": "2025-09-08",
+      "pages": 3,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume Telecomm (1).pdf",
+      "format": "pdf",
+      "sha256": "11e44f117d747889fd06d96a195728e13a600f74489feb185506b61c67701c3a",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Telecom.pdf",
+      "commit": "1528ce7b7fe525003d301cb8c258ce8016d0c4bf",
+      "chronology_date": "2025-09-08T23:11:23-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250908231123-04'00'",
+      "docx_modified_date": null,
+      "filename_date": null,
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    },
+    {
+      "original_name": "Resume ML.pdf",
+      "format": "pdf",
+      "sha256": "f5bc69282b3f8b6a55b397ac4d9a428173ad6e9d54bf6fe9d16a4b58a1dc81c0",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-ML.pdf",
+      "commit": "264271b4d7c0b1c28c8a51d0bcd9728c4aac90e6",
+      "chronology_date": "2025-09-09T13:10:13-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250909131013-04'00'",
+      "docx_modified_date": null,
+      "filename_date": null,
+      "pages": 1,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume ML.docx",
+      "format": "docx",
+      "sha256": "a1d6ebebe2786a8bcb338c80288967228ff0c628e31a420a70ce434004ada5ea",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-ML.docx",
+      "commit": "264271b4d7c0b1c28c8a51d0bcd9728c4aac90e6",
+      "chronology_date": "2025-09-09T13:10:13-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-09-09T17:08:00Z",
+      "filename_date": null,
+      "pages": "1",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume SW.pdf",
+      "format": "pdf",
+      "sha256": "7e67adced6f87b8ae158617cbcca9c1f6df152554a55bad29ab0f99353dbafd2",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Software.pdf",
+      "commit": "5179d1c2fa2691aed30a120c3c8e387c35a2d289",
+      "chronology_date": "2025-09-09T13:10:46-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250909131046-04'00'",
+      "docx_modified_date": null,
+      "filename_date": null,
+      "pages": 1,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume SW.docx",
+      "format": "docx",
+      "sha256": "2cde252f7da60f9b52e10cd06c6554d1a2904f139b0bbc6d9a5b32048f770c09",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Software.docx",
+      "commit": "5179d1c2fa2691aed30a120c3c8e387c35a2d289",
+      "chronology_date": "2025-09-09T13:10:46-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-09-09T17:06:00Z",
+      "filename_date": null,
+      "pages": "1",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume Telecomm.pdf",
+      "format": "pdf",
+      "sha256": "f4442f75b2a5ea828a51b4b11f53d6652e1cfce930be3141df4fe0b493d21e2e",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Telecom.pdf",
+      "commit": "e042457682eeee71d15506588710ba64c66673d4",
+      "chronology_date": "2025-09-09T13:11:17-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": "D:20250909131117-04'00'",
+      "docx_modified_date": null,
+      "filename_date": null,
+      "pages": 1,
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "Resume Telecomm.docx",
+      "format": "docx",
+      "sha256": "a3ba4d626dc95f62f05a481942dfcdd70b870775cf0d0bcad5569c3a20b7c59c",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Telecom.docx",
+      "commit": "e042457682eeee71d15506588710ba64c66673d4",
+      "chronology_date": "2025-09-09T13:11:17-04:00",
+      "chronology_basis": "pdf_creation_date",
+      "pdf_creation_date": null,
+      "docx_modified_date": "2025-09-09T17:06:00Z",
+      "filename_date": null,
+      "pages": "1",
+      "pairing": "complete_normalized_body_text_match"
+    },
+    {
+      "original_name": "CV 260411 industrial.docx.pdf",
+      "format": "pdf",
+      "sha256": "082c1bbafa3ee961dff1ac36ed352004a711e2cbf9c22ad50859cb8d4a412752",
+      "canonical_path": "Sangeon-Jeon-CV-1Page-Industrial.pdf",
+      "commit": "e23c4f50b5e933e1652bceb4eb0380a960bf24a2",
+      "chronology_date": "2026-04-11",
+      "chronology_basis": "filename_date_unverified",
+      "pdf_creation_date": null,
+      "docx_modified_date": null,
+      "filename_date": "2026-04-11",
+      "pages": 1,
+      "pairing": "no_matching_counterpart"
+    }
+  ],
+  "imports": [
+    {
+      "index": 1,
+      "commit": "115c7ce2e2d76c33aaccc20d567c22fc20831830",
+      "date": "2023-03-10T16:01:11-05:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "neuroscience",
+      "formats": "PDF only",
+      "sources": [
+        "Resume 1pg 230423 - Sangeon Jeon.pdf"
+      ]
+    },
+    {
+      "index": 2,
+      "commit": "0c63d41951ce0e47331978ea7f8606a17cbdac53",
+      "date": "2023-04-18T21:16:17-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "neuroscience",
+      "formats": "PDF only",
+      "sources": [
+        "Resume.pdf"
+      ]
+    },
+    {
+      "index": 3,
+      "commit": "2d204c9a90b6e33a11b494ebd7d23e7ed91e9672",
+      "date": "2024-01-10T00:48:54-05:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "neuroscience",
+      "formats": "PDF only",
+      "sources": [
+        "Resume 1pg 230802 - Sangeon Jeon.pdf"
+      ]
+    },
+    {
+      "index": 4,
+      "commit": "d42c9eae067268a1c33c3920f23243fdfa84046f",
+      "date": "2024-01-10T00:48:54-05:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "neuroscience",
+      "formats": "PDF only",
+      "sources": [
+        "Resume 1pg 240105 - Sangeon Jeon.pdf"
+      ]
+    },
+    {
+      "index": 5,
+      "commit": "0e64d9bfe0c48ee8df0896e5df8056fda496b665",
+      "date": "2024-05-30T15:19:45+09:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "CV 240610 - Sangeon Jeon.pdf",
+        "CV 240610 - Sangeon Jeon.docx"
+      ]
+    },
+    {
+      "index": 6,
+      "commit": "f93314656ffaffa1569561bef6d4c48e2e9d3804",
+      "date": "2024-08-02T17:46:24+09:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "CV 240803 - Sangeon Jeon.pdf",
+        "CV 240803 - Sangeon Jeon.docx"
+      ]
+    },
+    {
+      "index": 7,
+      "commit": "6f23a1ffccabca9b97c40dd76ebb25406d58b57c",
+      "date": "2025-01-03T21:04:23-05:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF only",
+      "sources": [
+        "CV 250103 - Sangeon Jeon.pdf"
+      ]
+    },
+    {
+      "index": 8,
+      "commit": "9ca2419062cf5d61caf6ad91e9d645e257a42333",
+      "date": "2025-04-03T15:57:38-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "CV 250403 - UPCP.pdf",
+        "CV 250103 - Sangeon Jeon.docx",
+        "CV 250403 - UPCP (1).docx",
+        "CV 250403 - UPCP.docx"
+      ]
+    },
+    {
+      "index": 9,
+      "commit": "068ca9a4fa9c71696ba8c6d5be00b3abbc2e15e7",
+      "date": "2025-04-03T15:57:38-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "CV 250403 - Sangeon Jeon.pdf",
+        "CV 250103 - Sangeon Jeon.docx",
+        "CV 250403 - UPCP (1).docx",
+        "CV 250403 - UPCP.docx"
+      ]
+    },
+    {
+      "index": 10,
+      "commit": "2b3b369b527fbdcc5825de9c17e2e36940f50784",
+      "date": "2025-09-08T14:44:00Z",
+      "date_basis": "docx_modified_date",
+      "purpose": "full",
+      "formats": "DOCX only",
+      "sources": [
+        "CV 250908 - UPCP.docx"
+      ]
+    },
+    {
+      "index": 11,
+      "commit": "c687e8e01a8a9c6c7c3c66f8d37c1b3b05309e03",
+      "date": "2025-09-08T22:34:19-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "전 - 2025 - Resume 250908.pdf",
+        "CV 250908.docx"
+      ]
+    },
+    {
+      "index": 12,
+      "commit": "dd903bf0db565820308e3e762b887cced7e6211f",
+      "date": "2025-09-08T22:34:19-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "full",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "CV 250908.pdf",
+        "CV 250908.docx"
+      ]
+    },
+    {
+      "index": 13,
+      "commit": "1528ce7b7fe525003d301cb8c258ce8016d0c4bf",
+      "date": "2025-09-08T23:11:23-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "telecom",
+      "formats": "PDF only",
+      "sources": [
+        "Resume Telecomm (1).pdf"
+      ]
+    },
+    {
+      "index": 14,
+      "commit": "264271b4d7c0b1c28c8a51d0bcd9728c4aac90e6",
+      "date": "2025-09-09T13:10:13-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "ml",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "Resume ML.pdf",
+        "Resume ML.docx"
+      ]
+    },
+    {
+      "index": 15,
+      "commit": "5179d1c2fa2691aed30a120c3c8e387c35a2d289",
+      "date": "2025-09-09T13:10:46-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "software",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "Resume SW.pdf",
+        "Resume SW.docx"
+      ]
+    },
+    {
+      "index": 16,
+      "commit": "e042457682eeee71d15506588710ba64c66673d4",
+      "date": "2025-09-09T13:11:17-04:00",
+      "date_basis": "pdf_creation_date",
+      "purpose": "telecom",
+      "formats": "PDF + DOCX",
+      "sources": [
+        "Resume Telecomm.pdf",
+        "Resume Telecomm.docx"
+      ]
+    },
+    {
+      "index": 17,
+      "commit": "e23c4f50b5e933e1652bceb4eb0380a960bf24a2",
+      "date": "2026-04-11",
+      "date_basis": "filename_date_unverified",
+      "purpose": "industrial",
+      "formats": "PDF only",
+      "sources": [
+        "CV 260411 industrial.docx.pdf"
+      ]
+    }
+  ]
+}
