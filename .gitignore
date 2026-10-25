@@ -1,0 +1,5 @@
+# Private reference materials are managed locally, outside website history.
+/reference-private/
+
+# macOS metadata
+.DS_Store
