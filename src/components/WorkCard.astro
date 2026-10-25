@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+import { hrefForEntry, type PublicEntry } from '../lib/content';
+interface Props { entry: PublicEntry; compact?: boolean; }
+const { entry, compact = false } = Astro.props;
+const d = entry.data;
+---
+<article class:list={['work-card', { compact }, `work-card-${entry.collection}`]}>
+  <div class="card-meta"><span>{d.categoryLabel}</span>{d.period && <span>{d.period}</span>}</div>
+  <h3><a href={hrefForEntry(entry)}>{d.title}<Icon name="arrow-up-right" size={22} /></a></h3>
+  <p>{d.summary}</p>
+  {!compact && <ul class="tags" aria-label="Topics">{d.tags.slice(0, 4).map((tag) => <li>{tag}</li>)}</ul>}
+  <div class="card-bottom"><span class:list={['status', { 'status-review': entry.collection === 'research' }]}>{d.status}</span></div>
+</article>

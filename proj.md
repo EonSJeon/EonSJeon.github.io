@@ -1,247 +1,260 @@
-# Personal Academic Website, Project Portfolio, Coursework, Blog, and Proposals
+# Personal Academic Website Implementation Brief
 
-## 1. Objective
-Build a minimal, polished personal website hosted on GitHub Pages. The site should function as:
+Updated: 2026-10-25. Repository: `EonSJeon/EonSJeon.github.io`.
 
-1. An **academic profile** for research, publications, and CV.
-2. A **personal and technical blog** for essays, explanations, and research notes.
-3. A **curated independent project portfolio** for work actually built or investigated outside assigned coursework (including hackathons and independent engineering projects).
-4. A **dedicated Coursework Projects section** for course-based prototypes, laboratories, and senior/capstone design work.
-5. A **public proposal collection** for selected ideas worth sharing, discussing, or developing.
+## 1. Objective and next task
 
-These five areas should share a consistent design but remain clearly distinguished. The site should feel like a personal home on the web, not a generic academic template or an indiscriminate dump of notes.
+Build a minimal, polished personal academic website on GitHub Pages. Research and academic identity lead the site, followed by independent engineering work, a dedicated Coursework section, writing, and selected proposals.
 
-## 2. Source Materials and Editorial Boundaries
-Before proposing content, inspect these local references **if present**:
+The initial scope is **two research projects, one independent makerathon project, and four coursework entries**. Blog and Proposals remain part of the site, but no individual notebook entry has been selected for publication in this brief.
 
-- `reference-private/CV.pdf`
-- `reference-private/personal-info.md`
-- `reference-private/research.md`
-- `reference-private/아이디어(1).docx` (or a similarly named copy of the supplied ideas document)
-- `reference-private/Venus_Flytrap_Senior_Design_Website_Reference.md` (approved facts for the course-based capstone; placement updated to Coursework)
-- `reference-private/KAIST_EE305_Coursework_Website_Reference.md` (consolidated KAIST course-laboratory reference)
+The owner has requested implementation, and the Astro website now exists in this repository with the selected seven entries, 17 generated HTML pages, and a working local preview. Treat this document as the continuing implementation brief. Extend the existing site instead of restarting a planning-only phase or scaffolding a replacement. Public release follows the owner's publication instructions and the content boundaries below.
 
-Treat all reference documents as **private, unreviewed source material**, even when they contain seemingly publishable text. They are not website assets.
+Implement in this existing repository. Preserve the CV/Resume history already integrated into it. Do not create another repository or move the build to a hosted website-builder service.
 
-The ideas document is a heterogeneous notebook: it contains possible software/research projects, technical questions, essays, creative writing, social commentary, personal reflections, and rough or AI-assisted analysis. **Do not assume every entry is a project proposal or should be published.** Preserve the author's intended meaning; do not turn questions into established facts.
+## 2. Sources and authority
 
-- Do not invent biographical facts, affiliations, papers, results, GitHub repositories, prototypes, citations, dates, or collaborators.
-- Clearly distinguish verified accomplishments from plans, hypotheses, and speculative proposals.
-- Flag uncertain technical claims and cited prior work for verification; do not claim originality or novelty without checking relevant prior art.
-- Do not silently convert personal reflections, interpersonal details, private stories, controversial drafts, or third-party information into public posts.
-- Do not copy copyrighted passages or substantial third-party writing from the notes into published content.
-- If a reference is missing or difficult to parse, report it; do not substitute fabricated information.
-- **Every piece of public-facing personal content requires explicit owner approval.**
+Read the relevant references before writing each entry. These are local editorial inputs, not files to copy wholesale into website content.
 
-## 3. Technology and Deployment
-- Astro with static site generation (SSG), using TypeScript where useful.
-- Markdown/MDX with Astro Content Collections for writing and proposal pages.
-- Minimal dependencies; no CMS, database, or backend unless a strong need is demonstrated.
-- GitHub Pages hosting for the `EonSJeon/EonSJeon.github.io` repository, with GitHub Actions deployment.
-- Responsive design, semantic HTML, keyboard navigation, accessible contrast, and fast loading.
-- Light/dark themes, with a working system-preference default and a manual toggle.
-- SEO metadata, sitemap, canonical URLs, and social sharing metadata where practical.
-- Do not add complex animations, tracking, analytics, comments, or third-party embeds by default.
+| Material | Local source | Use |
+| --- | --- | --- |
+| OCDM research | `reference-private/icassp_2027_ocdm_research_project_summary.md` | High-level research description and disclosure limits |
+| TI-ADC / OFDM research | `reference-private/tiadc_ofdm_project_website_reference.md` | Project summary, period, manuscript status, collaborator order and supplied links |
+| When to Eat | `reference-private/KAIST_Makerathon_When_to_Eat_Website_Summary.md` | Independent project, Grand Prize, implementation, team and repository |
+| Venus Flytrap | `reference-private/Venus_Flytrap_Senior_Design_Website_Reference.md` | ECE 4723 capstone, final digital system, demonstrated outcomes and contribution |
+| RoBACHtic Symphony | `reference-private/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` | ECE 3011 Junior Design, mechanical contribution, limitations and supplied links |
+| Electronics Design Lab | `reference-private/KAIST_EE305_Coursework_Website_Reference.md` | One consolidated EE305 entry with selected internal highlights |
+| Robotic Tic-Tac-Toe | `reference-private/EE405_Coursework_Website_Reference.md` | One EE405 implementation entry, supporting labs and unknown metadata |
+| CV/Resume documents | `reference-private/CV-Resume/` | Biography and dated document downloads; see Section 7 |
+| Version provenance | `reference-private/CV-Resume/README.md` and `source-inventory.json` | Source dates, pairing decisions and original recovery |
+| Portrait candidate | `reference-private/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
+| Ideas notebook | `reference-private/아이디어.docx` | Private material for future writing/proposals; not a publication queue |
 
-## 4. Site Information Architecture
-Primary navigation:
+`reference-private/CV.pdf`, `personal-info.md`, and `research.md` are not currently present. Do not depend on these obsolete paths or invent substitutes.
 
-- **Home** (`/`): short introduction, selected research, publications, independent projects, a discreet Coursework Projects preview, featured proposals, and recent writing.
-- **About / Research** (`/about` or `/research`): biography, interests, approach, and carefully selected background.
-- **Publications** (`/publications`): published/submitted work, accurately labeled; links to permitted PDFs, preprints, code, and venues.
-- **Projects** (`/projects`): independent engineering, research-adjacent implementations, makerathons, and other non-course projects with clear evidence of progress.
-- **Coursework Projects** (`/coursework`): **separate, clearly labeled section** for academic course-based work, including ECE 4723 Senior Design (Venus flytrap) and KAIST EE305 laboratory work.
-- **Proposals** (`/proposals`): public, explicitly approved ideas, ordered by editorial priority.
-- **Blog / Writing** (`/blog`): technical notes, tutorials, research reflections, and optionally personal essays.
-- **CV** (`/cv` or an approved PDF link): publish only a redacted/approved public version.
-- **Contact**: only owner-approved contact links or addresses.
+Resolve conflicts in this order: the owner's latest explicit instructions; project-specific curated references and their disclosure limits; the newer industrial CV for current biography; older CVs for historical context. A broad CV claim does not override a project's narrower public-description limits.
 
-Avoid an oversized navigation bar: combine About/Research or CV/Contact when useful. But keep **Coursework Projects** accessible as its own named section and URL, rather than treating it as a filter under Projects or publishing it under Research. A responsive or grouped navigation is fine; Proposals must also remain visible.
+`story.md` is a temporary instruction pad, not a reference article or permanent specification. Read its saved contents when the owner requests it, apply the instructions, and reconcile the durable requirements into the relevant sections of **this file**. The owner may erase or replace `story.md` at any time; site content, builds, and future maintenance must not depend on it. Keep it Git-ignored and out of deployment output. Do not clear or rewrite it on the owner's behalf unless asked.
 
-## 5. Visual Design
-- Minimal, editorial, typography-led, professional but personal.
-- Restrained colors, generous whitespace, excellent reading experience, and consistent spacing.
-- Accessible layout on desktop, tablet, and mobile.
-- Strong hierarchy for publication lists, proposal cards, long-form posts, independent project pages, and a compact coursework index.
-- Discreet labels distinguishing **Published Work**, **Independent Project**, **Coursework**, **Senior Design**, **In Progress**, **Proposal**, and **Essay**.
-- No decorative dashboards, meaningless statistics, inflated claims, excessive gradients, or unnecessary animation.
-- Use placeholders for missing photos/assets instead of generating or inventing identities and achievements.
+Examples requiring this rule:
 
-## 6. Blog / Writing
-- Index at `/blog`, with article pages at stable, human-readable URLs.
-- Author posts in Markdown/MDX, supporting math (LaTeX via KaTeX or equivalent), code highlighting, figures, tables, citations, footnotes, and an optional table of contents.
-- Tags and lightweight categories such as `Research Notes`, `Engineering`, `Explanations`, `Essays`, and `Personal`, subject to owner approval.
-- Dates, optional revision history, reading time, RSS, and simple discoverability.
-- Korean and English content should both render correctly. Do not automatically translate the author's prose or imply translations were author-written.
-- Separate personal writing from research publications; drafts should not be mistaken for peer-reviewed results.
-- **A draft flag only hides a page from the built site; it does not make a file private in a public Git repository.** Sensitive drafts must stay outside tracked files.
+- Use the TI-ADC reference's September 2024–October 2026 project period and manuscript-in-preparation status rather than an older CV's dates or technical claims.
+- Use When to Eat's documented Grand Prize amount of ₩2,500,000 if an amount is shown. Do not reuse the older CV's approximate dollar amount.
+- For When to Eat, credit the confirmed team-leader role. Specific software or hardware ownership is unconfirmed in the curated reference even though older CVs make broader claims.
+- Use the final Venus Flytrap architecture and demonstrated outcomes without importing numerical performance claims from historical CVs.
 
-## 7. Independent Projects, Coursework Projects, and Proposals
-These categories describe different contexts and maturity levels; do not conflate them.
+Never invent dates, affiliations, author contributions, publications, repositories, metrics, media, or collaborator URLs. Supplied profile and repository links may be used as supplied; verify a destination before adding new claims based on its contents.
 
-### Projects (`/projects`)
-For independent or non-course work with an actual artifact, implementation, study, demo, or reproducible result. Award-winning Makerathon prototypes belong here, **not** under Coursework solely because students built them. Each entry may include title, concise summary, actual status, technologies, author contributions, verified evidence, screenshots, repository/demo links, and related publications/posts. Never claim a prototype, benchmark, result, or open-source release exists unless supported by the materials.
+## 3. Initial content inventory
 
-### Coursework Projects (`/coursework`)
-For instructor-supervised course assignments, substantial laboratory exercises, and senior/capstone design projects. Use a **dedicated index and route**, distinguish completed demos from simulations, and make the course-based context obvious. A project completed for credit can be highly technical, but must not be represented as independent research or a peer-reviewed publication.
+### Research
 
-**Initial entries (separate cards on the Coursework Projects index):**
+Create a distinct research collection, index, and detail pages. Research projects and publication records are different entities; cross-link them when an actual manuscript record exists.
 
-1. **Venus Flytrap Bioelectrical Signal Recording and Playback** — Georgia Tech ECE 4723 Senior Design, 2024. Use the accompanying `Venus_Flytrap_Senior_Design_Website_Reference.md`. Display the verified **Seeeduino–MATLAB final implementation**, success in both bioelectrical recording and electrically induced trap closure, and **Sangeon Jeon's complete digital-system design/programming contribution**. The discarded Raspberry Pi/Python prototype is not part of the final tech stack. Place this entry first by default.
-2. **Electronics Design Laboratory** — KAIST EE305, Fall 2022. Use `KAIST_EE305_Coursework_Website_Reference.md`. Present **one consolidated EE305 card/detail page**, with the MATLAB PCM/QPSK/convolutional coding/Viterbi work (Experiments 7–8) and breadboard ALU calculator (Experiments 4–5) as internal highlights. Additional experiments may appear as concise supporting material; do not generate numerous equally prominent project cards for one course.
+| Order | Title | Route | Status |
+| --- | --- | --- | --- |
+| 10 | Wide-Range Carrier Frequency Offset Estimation for OCDM | `/research/ocdm-cfo-estimation` | Under review — submitted to ICASSP 2027 |
+| 20 | Joint Channel and TI-ADC Mismatch Estimation for OFDM | `/research/tiadc-ofdm-estimation` | Research project completed; manuscript in preparation, not submitted |
 
-**Coursework page design and editorial rules:**
-- Make `/coursework` a first-class named section, linked from the site navigation or an unambiguous grouped navigation entry. On the Home page, a small `Selected Coursework` preview is optional; it must never displace the principal research/publication content.
-- For each coursework entry show the **institution, course code, course title if confirmed, year/term if confirmed, assignment type, status, team/individual contribution only when verified, and concise technical keywords**.
-- Use `Senior Design / Capstone` and `Laboratory Coursework` as clear sublabels. Do not imply that a laboratory exercise is a published paper, independent invention, or awarded project.
-- Prefer two strong coursework entries over a long list of minor assignments. Inside a multi-experiment course detail page, elevate the best-supported highlights and summarize introductory labs briefly.
-- Show working demo photos, team-generated figures, measured results, or code links only after verifying ownership, permissions, and public suitability; never publish instructor handouts, solutions, raw source archives, private IDs, or other students' personal information.
-- An author's contribution statement must follow the source: **full digital-system ownership is verified for Venus Flytrap**, whereas EE305 reports establish team participation but not a reliable individual task breakdown.
-- Keep Coursework separate from the `/projects`, `/research`, `/publications`, and `/proposals` collections and sorting. Optional contextual cross-links are fine.
+**OCDM:** Explain wide-range CFO estimation for OCDM using a single pilot block in multipath channels at the level of the supplied summary. Display Xiaoli Ma as a collaborator. Research period and individual contribution are unspecified; do not infer them from another project's dates or a general CV entry. Do not disclose pilot construction, waveform-parameter design, ambiguity conditions, acquisition-range formulas, derivations, detailed estimator procedures, or numerical results. Do not promote the submission to an accepted or published paper.
 
-### Proposals (`/proposals`)
-For forward-looking research questions, software concepts, product concepts, and experiments worth inviting discussion about. A proposal is not a completed project or a validated research contribution.
+**TI-ADC / OFDM:** Use the supplied short summary on the index and restrained expanded description on the detail page. Show September 2024–October 2026 as a research period, not a publication date. Preserve the supplied author order: Sangeon Jeon, Jiwon Sung, Xiaoli Ma, Jinseok Choi, with the three supplied collaborator links. The title is descriptive, not a confirmed paper title. Do not add a venue, paper link, DOI, numerical speedup, detailed algorithm, or individual contribution statement.
 
-Each approved proposal should have a dedicated page with:
-1. **Title and one-sentence thesis**
-2. **Problem / observation / motivation**
-3. **Proposed approach** (clearly tentative)
-4. **Who might benefit / why it matters**
-5. **Relevant existing work** (only when verified; otherwise `Prior-art review pending`)
-6. **Feasibility and major technical obstacles**
-7. **Smallest useful prototype or experiment**
-8. **Milestones / potential next steps**
-9. **Open questions, limitations, and risks**
-10. **Status, last substantive update, and optional collaboration/contact links**
+Keep research prominent on Home. Do not label coursework or the makerathon as research to fill this section.
 
-Use short, readable proposals; longer technical proposals may include equations, diagrams, references, or appendices. Do not pad sparse ideas with fabricated details. Mark unresolved fields as open questions.
+### Independent Projects
 
-## 8. Curation and Publication Priority
-The ideas document is a *candidate pool*, not a publication queue. First build a **private editorial inventory** of extracted entries, preserving the original Korean title or wording and traceable source location where possible. Classify each item as:
+Create one initial entry: **When to Eat — RFID Food Storage Reminder**, at `/projects/when-to-eat`.
 
-- `proposal-candidate`: actionable research/software/product concept.
-- `blog-candidate`: explanatory writing, philosophical question, personal essay, or reflection.
-- `project-existing`: an independently evidenced non-course implementation (not merely an idea).
-- `coursework-existing`: a documented course assignment, lab, capstone, or senior design project (route to Coursework, not independent Projects).
-- `not-for-publication`: private, overly personal, unfinished, sensitive, copyrighted, or unclear material.
-- `needs-clarification`: insufficient information to classify reliably.
+- Display `2024 KAIST Makerathon`, `Summer 2024`, `Grand Prize (1st Place)`, and the confirmed team-leader role.
+- Describe a completed team prototype using detachable RFID tokens, a token station, and a Windows desktop reminder interface.
+- Use the supported stack: ATID ATD100, UHF RFID, C#, XAML, Windows UWP, and USB VCP integration through the manufacturer's SDK. The specific ATD100N variant is unconfirmed.
+- Link the supplied project repository. Display the four team members and only the supplied professional-profile links; do not invent a profile for Yujin Park.
+- Keep suggested sound alerts, phone widgets, and other future concepts separate from implemented features.
+- Describe elapsed-time reminders. Do not claim direct spoilage sensing, food-safety guarantees, measured waste reduction, or user-study results.
 
-For proposal candidates, recommend—not finalize—a priority using a transparent rubric:
+### Coursework
 
-| Criterion | Weight |
-| --- | ---: |
-| Clarity and importance of the problem | 25% |
-| Feasibility of an initial experiment/prototype | 20% |
-| Fit with the author's research and technical interests | 20% |
-| Potential originality, subject to prior-art review | 15% |
-| Value to readers / potential collaborators | 10% |
-| Readiness and suitability for public release | 10% |
+Keep `/coursework` as a named section with its own collection and index, separate from Research and independent Projects. Create these **four** entries, each with a stable detail route:
 
-Score conservatively; document the reasoning, missing evidence, dependencies, and reasons to withhold publication. Rankings are editorial suggestions, not statements of proven novelty or expected impact. **The owner sets the final featured order.**
+| Order | Entry | Route | Type and evidence |
+| --- | --- | --- | --- |
+| 10 | Venus Flytrap Bioelectrical Signal Recording and Playback | `/coursework/venus-flytrap-bioelectrical-playback` | Georgia Tech ECE 4723; Senior Design / Capstone; 2024; successfully demonstrated |
+| 20 | RoBACHtic Symphony — Educational Robotic Violin Kit | `/coursework/ece3011-robachtic-symphony` | Georgia Tech ECE 3011 Design Fundamentals; Junior Design; 2023; completed prototype with limitations |
+| 30 | Electronics Design Laboratory | `/coursework/ee305-electronics-design-lab` | KAIST EE305 Introduction to Electronics Design Lab; laboratory coursework; Fall 2022; completed |
+| 40 | Robotic Tic-Tac-Toe with a Four-Degree-of-Freedom Manipulator | `/coursework/ee405-robotic-tic-tac-toe` | EE405; laboratory coursework / course final project; 2024; implementation available, final demonstration unverified |
 
-Possible entries to inspect first (examples found in the ideas notebook; **NOT approved for publication or a final ranking**):
-- Chart/image-to-CSV data extraction and visual verification.
-- Proof-assistant-connected dynamic geometry software (Coq / AlphaGeometry).
-- Shaded pedestrian route planning in hot weather.
-- A reading interface for novels with character, relationship, place, and timeline aids.
-- Phonetic/linguistic input assistance and East Asian-language learning tools.
-- Historically layered visualization of places or cultural artifacts.
-- Multisensory reading interfaces for accessibility research.
+These are initial display priorities, editable through content data. Keep Venus Flytrap above EE305 unless the owner changes the order. A compact Home preview may feature Venus Flytrap and EE305 without duplicating all four detail pages on Home.
 
-Do not add all examples automatically. Review feasibility, prior work, alignment, and publication sensitivity with the owner.
+**Venus Flytrap:** Emphasize successful signal recording and electrically triggered closure. Credit Sangeon Jeon with the complete digital-system design and programming: Seeeduino firmware, MATLAB software, MATLAB App Designer interface, serial communication, recording, and playback. The final stack is Seeeduino, C++/Arduino-style firmware, MATLAB, and direct USB/serial to a laptop. Do not list the abandoned Raspberry Pi/Python approach, ADS1115, or MCP4725 as final components. Exact board model, analog-system ownership, and numerical performance are unconfirmed. Use the five supplied collaborator links without assigning additional roles.
 
-On the public Proposals index:
-- Show an **owner-selected Featured** group first (preferably 3–5 proposals).
-- Follow with a compact **Other Proposals** collection, if any.
-- Support topic filters or tags only if the number of approved proposals justifies them.
-- Provide simple statuses such as `Concept`, `Investigating`, `Seeking collaborators`, or `Archived`; never auto-claim active development.
-- Sort by explicit `displayOrder`/`priority`, then by the stated editorial rule; not by autogenerated model scores alone.
-- Cross-link a proposal to a Project or Blog post only when there is a real associated artifact.
+**RoBACHtic Symphony:** Emphasize mechanical design and fabrication using SolidWorks, 3D printing, laser cutting, and integration testing. Attribute overall system development to the team. The final demonstration combined robotic bow/string-position movement with electronically generated micro:bit tones; do not claim acoustic violin performance, recorded violin-sample playback, complete articulation controls, or validated classroom outcomes. The report submission date, December 14, 2023, is not an exact project-completion date. Use the owner-confirmed collaborator names/links and supplied repositories. Do not attribute another author's first-person software-lead statement to Jeon.
 
-## 9. Content Model and Publication Gate
-Use structured content schemas with validation.
+The owner supplied and selected two PNGs in `src/content/coursework/ece3011-robachtic-symphony/`: front views of the final build and the labeled CAD/build comparison. Display both with meaningful alt text and captions. Embed the supplied demonstration, `https://youtu.be/gud--ybyr-s`, directly on the page using a responsive, click-to-play YouTube privacy-enhanced player and a normal YouTube fallback link. Link the original team's final design-document/lesson-plan/BOM package. The temporary project `README.md` has been incorporated into `ece3011-robachtic-symphony.md` and removed as instructed; retain the root repository README. Describe the lesson plan's fifth-grade Music/Computer Science curriculum alignment as a design goal, not a measured educational result.
 
-Suggested proposal frontmatter:
+**EE305:** Publish one course entry. Feature the MATLAB PCM/QPSK/convolutional-coding/Viterbi simulation and breadboard ALU calculator as its two primary internal highlights. Summarize the ATmega128A stopwatch, analog audio filtering, and foundational labs more briefly. Distinguish simulated communication from physical hardware experiments. Do not present the specific four-state decoder as general-purpose, the calculator as a CPU, or group participation as sole authorship. Collaborator names/spellings and public reuse of report figures still need confirmation.
 
-```yaml
-title: "Example proposal"
-summary: "One-sentence description"
-status: "concept"                # concept | investigating | collaborators | archived
-priority: 2                     # owner-controlled order; lower is higher priority
-featured: false
-approvedForPublication: false   # MUST explicitly be set to true
-publishedAt: null
-tags: []
-relatedProjects: []
-relatedPosts: []
+**EE405:** Center the page on the C++ robotic tic-tac-toe implementation with DYNAMIXEL control, stored joint configurations, and Jacobian-based adjustment. Briefly summarize supporting embedded-control, communication, and motor-control labs within the same page. Institution, official course title, term, collaborators, individual contribution, and final hardware demonstration are unspecified: omit those optional fields. Do not infer KAIST solely from the course number, describe the rule-based opponent as machine learning, or claim force-controlled contact, measured accuracy, or a verified final demo.
+
+## 4. Publications, writing, and proposals
+
+**Publications:** Provide a publication page capable of separating Published/Accepted work from Under Review manuscripts. OCDM can appear in an explicitly labeled Under Review subsection with a link to its research page. The TI-ADC manuscript remains in preparation on its research page. Do not fabricate bibliographic fields, dates, acceptance, DOI, or paper links to fill a publication card.
+
+The older full resume and newer industrial CV contain disease-modeling manuscript entries with different dated statuses. Do not automatically turn these into current peer-reviewed publication records or additional research pages. Include them only after their current titles, authorship, venue/status, public links, and suitable summary are confirmed. Missing publication records must not block the rest of the build.
+
+**Blog / Writing:** Implement `/blog` and article routes with Markdown/MDX, math, code highlighting, citations/footnotes, tags, dates, reading time, and RSS for released posts. Support Korean and English author-written content. Do not translate or generate personal essays from notebook fragments without an instruction. No initial posts are selected here.
+
+**Proposals:** Implement `/proposals` and detail routes. Preserve an owner-selected featured order and statuses such as `Concept`, `Investigating`, `Seeking collaborators`, or `Archived`. No initial proposal titles are selected here. Do not carry the old brief's example ideas into published cards or repeat a full notebook-ranking exercise as a prerequisite for building the site.
+
+For a future selected proposal, use a concise problem, tentative approach, potential users, relevant prior work, smallest useful experiment, next steps, and open questions. Label unverified novelty and feasibility honestly. A proposal is not a completed project.
+
+For Blog and Proposals with no released entries, use a short, deliberate empty state without fake cards, counts, dates, or sample personal text. Keep the sections reachable; omit their empty previews from Home. Add filters and search only when real content volume warrants them.
+
+## 5. Information architecture and Home
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Academic introduction, selected research, selected independent work, restrained coursework preview, and released writing/proposals when available |
+| `/about` | Short biography, education, research interests, and selected experience |
+| `/research` and `/research/[slug]` | The two initial research entries and later verified research projects |
+| `/publications` | Accurate bibliographic records with clear publication-status groupings |
+| `/projects` and `/projects/[slug]` | Independent engineering work, initially When to Eat |
+| `/coursework` and `/coursework/[slug]` | The four course-based entries |
+| `/blog` and `/blog/[slug]` | Released writing |
+| `/proposals` and `/proposals/[slug]` | Selected forward-looking proposals |
+| `/cv` | Clearly dated CV/Resume document choices |
+
+Navigation should stay compact. Use a grouped menu where necessary; Research, Coursework, and Proposals must remain clearly named and reachable. Contact can be a small About/footer section rather than another top-level route.
+
+Home should open with Sangeon Jeon's name, a concise academic identity, research interests, and these **five icon links visible in the introductory screen**, with accessible text labels:
+
+| Profile | Destination |
+| --- | --- |
+| Email | `mailto:sjeon84@gatech.edu`; display `sjeon84@gatech.edu` |
+| GitHub | `https://github.com/EonSJeon`; display `github.com/EonSJeon` |
+| Google Scholar | `https://scholar.google.com/citations?user=vwwPFNMAAAAJ` |
+| ORCID | `https://orcid.org/0009-0001-5883-0774` |
+| LinkedIn | `https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/` |
+
+Keep these destinations in the shared profile configuration. Use the school email for all website contact links; do not copy the older Gmail address from a CV. Home's **Get in touch** must navigate to `/about/#contact`, where the address is readable, a mail link is available, and a Copy email button confirms success or selects the address for manual copying if clipboard access is unavailable. Contact must remain usable without a configured desktop mail handler. No contact-form backend is required.
+
+Follow the introduction with the two research entries, one independent-project feature, then selected coursework. Avoid a full CV pasted into Home, an oversized hero, redundant cards across sections, and empty publication statistics.
+
+## 6. Design and implementation stack
+
+- Use Astro static generation, TypeScript where useful, and Markdown/MDX content collections. Select supported APIs and compatible dependencies from official documentation at implementation time; this brief does not pin an unverified framework version.
+- Host on GitHub Pages for the user-site root `https://eonsjeon.github.io/`, with GitHub Actions for deployment. Do not add a repository-name base path for this user-site repository.
+- Use a clean **white background**, readable typography, comfortable text widths, clear hierarchy, generous spacing, neutral text/borders, and a limited accent color. The header uses the owner's plain name; do not invent an initials mark, brand logo, or custom logo favicon.
+- Provide responsive desktop/mobile navigation, accessible semantic HTML, visible keyboard focus, meaningful link text, and sufficient contrast.
+- Keep the site consistently light, including when the device prefers dark mode. The owner's white-background instruction supersedes the earlier light/dark-toggle requirement.
+- Keep browser JavaScript small. No CMS, database, backend, analytics, comments, complex animation, or external embeds by default.
+- Provide metadata, canonical URLs, sitemap, a useful 404 page, and social-sharing metadata where actual assets exist.
+- Keep public copy focused on the person and work. Do not expose source-file names, editorial instructions, approval flags, or implementation details in rendered pages.
+- Review the existing portrait's suitability and use it as the initial portrait candidate. If it is unsuitable or its use is unresolved, use a clean text-led layout without a broken image box or generated identity.
+- Add project photos, waveforms, screenshots, and diagrams only with project-specific evidence and reuse clearance; do not fabricate experimental data or demo images. RoBACHtic's two owner-supplied images and embedded video are explicitly selected above. Other videos remain external links unless selected for embedding. Embed players must be responsive, keyboard accessible, titled, lazy-loaded, and free of autoplay, with a fallback source link.
+
+## 7. Biography and CV/Resume handling
+
+The documents are intentionally named using the owner's convention: `Resume-Full` for the comprehensive document and `CV-1Page-*` for targeted one-page versions. Preserve those names and their Git history.
+
+| Document | Current source | Source version |
+| --- | --- | --- |
+| Full resume | `reference-private/CV-Resume/Sangeon-Jeon-Resume-Full.pdf` and `.docx` | 2025-09-08; three-page PDF |
+| Industrial/general one-page CV | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Industrial.pdf` | Filename dated 2026-04-11; internal creation date unavailable |
+| ML one-page CV | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-ML.pdf` and `.docx` | 2025-09-09 |
+| Software one-page CV | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Software.pdf` and `.docx` | 2025-09-09 |
+| Telecom one-page CV | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Telecom.pdf` and `.docx` | 2025-09-09 |
+| Neuroscience one-page CV | `reference-private/CV-Resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` | Filename dated 2024-01-05; PDF exported 2024-01-10 |
+
+The newer industrial CV supports this biography baseline: Georgia Tech ECE Ph.D. study beginning January 2026 with Xiaoli Ma; Georgia Tech ECE M.S. in 2025 and B.S. in 2023–2024; KAIST Electrical Engineering B.S. in 2018–February 2025. Do not describe the owner as still awaiting the M.S. solely because older documents use expected-graduation wording. Recheck time-sensitive current-role wording before public release.
+
+The owner explicitly confirmed the GPAs for the website: **KAIST 3.95/4.3** and **all Georgia Tech education entries 4.00/4.0**. Show these on About alongside the corresponding degrees. These values override older CV GPA values for the website; do not rewrite the dated source documents.
+
+Use the industrial one-page PDF as the most recent available document candidate and the full resume as a separately dated comprehensive document. Do not call the 2025 full resume current as of 2026, silently merge incompatible claims, or rewrite source documents as part of the website build. Targeted older CVs need not all be prominent site downloads; the CV page should offer a clear primary choice and dates, with additional versions only where useful.
+
+Repository tracking and website presentation are separate decisions. **PDF and DOCX files are both intentionally committed to the main website repository**, including recoverable old versions. Do not ignore, untrack, delete, or move DOCX files to a separate repository. For a future document revision, review matching DOCX/PDF together and commit the matching pair when both exist.
+
+Publish website downloads only through an explicit asset list under `public/`, using reviewed copies and metadata. Git tracking alone does not select a document as a site download. DOCX website-download buttons are optional and should follow the owner's preference; retaining DOCX in Git is required. Do not automatically expose addresses or phone numbers from the documents on Home or About. Use only selected public contact details and links.
+
+## 8. Content model and release boundaries
+
+Use distinct collections for `research`, `publications`, `projects`, `coursework`, `blog`, and `proposals`, plus one profile/site configuration. Keep slugs, navigation, display order, and featured selections in maintainable data.
+
+Give **every content entry its own folder**, with its Markdown/MDX and selected local images together: `src/content/<collection>/<slug>/<slug>.md` (or `.mdx`). `index.md`/`index.mdx` in the same folder is also supported. All seven initial entries use this structure. Folder wrapping must preserve the public URL `/<collection>/<slug>/` without repeating the slug. Reference images relatively from the article, such as `./prototype.png`; Astro emits referenced images as website assets. Do not treat `README.md` or files under `raw/` as content entries. Temporary sources are not published article bodies; integrate only the selected facts and remove a source when the owner requests its removal.
+
+Shared fields as applicable: `title`, `summary`, `slug`, `status`, `period`, `tags`, `displayOrder`, `featured`, `links`, `collaborators`, and `approvedForPublication`. Status should have collection-specific values rather than treating a course prototype like a paper submission. Research dates, submission dates, publication dates, and report dates must remain separate.
+
+- Research: topics, public-safe description, optional contribution, and optional related manuscript identifier.
+- Publications: publication status, ordered authors, verified title, optional venue/year/DOI/public links, and related research identifier.
+- Projects: context/event, implementation status, supported stack, optional verified contribution/award, and evidence links.
+- Coursework: optional institution/course title, `courseCode`, year/term, type (`senior-design`, `junior-design`, `laboratory`, or `course-final-project`), implementation/demonstration status, optional contribution/collaborators, and internal highlights. Unknown EE405 fields must be valid omissions.
+- Blog: language, release date, draft state, tags, optional revision date, and author-written body.
+- Proposals: tentative status, owner-controlled priority, optional milestones/related work, and unresolved questions.
+
+Default release approval to false for new entries. The owner's website-build request selects the conservative public-safe copy for the seven initial entries, which are explicitly marked approved in their content files. This does not authorize unrestricted notebook extraction, unpublished research disclosure, or deployment. Respect explicit publication approval already given in the session rather than asking for it again.
+
+An `approvedForPublication: false` flag does not make a tracked file private. Keep unapproved full text and private editorial notes in ignored references. Populate tracked content only within the owner's approved public scope. If selected copy still needs review, make it available through an explicit local review mode backed by ignored content; do not upload that review copy to the public repository or enable review mode in deployment. A deployable build must exclude every unapproved entry from detail routes, index cards, search data, RSS, sitemap, metadata, and copied assets, not merely hide its navigation link.
+
+If only a collaborator, image, link, or optional field is unresolved, omit that part and continue with the supported page. If an entire entry is not approved for release, exclude it from the release build while completing the rest of the implementation. Keep remaining review items private and summarize them to the owner; do not fill public pages with internal review labels.
+
+## 9. Repository and asset boundaries
+
+The repository already contains and has pushed the curated CV/Resume history. The name `reference-private` does **not** mean that everything beneath it is private. Existing root ignore rules intentionally allow only the CV/Resume subtree:
+
+```gitignore
+/reference-private/*
+!/reference-private/CV-Resume/
+/story.md
+.DS_Store
 ```
 
-**Default deny:** Unapproved proposals and blog drafts must never be included in the public build. Implement and test this filtering. Even approved=false files in a public repository are still publicly readable as source: keep all unapproved full-text drafts and candidate inventories only in `reference-private/`, which is Git-ignored. Move only approved, public-safe content to tracked website content files. Do not place private text in comments, build output, preview assets, Git history, or logs.
+Preserve this exception. Other reference summaries, the portrait source, the ideas notebook, raw coursework material, and private editorial inventories remain ignored unless the owner changes their scope. Do not force-add the rest of `reference-private/` or automatically copy it into build output.
 
-**Coursework content model:** Maintain a distinct `coursework` Astro Content Collection with fields such as `title`, `summary`, `institution`, `courseCode`, `courseTitle`, `period`, `type` (`senior-design` or `laboratory`), `status`, `technologies`, `contribution` (optional), `collaborators` (optional, approved only), `highlights` (optional), `displayOrder`, and `approvedForPublication`. Do not reuse proposal-status or publication-venue fields to describe coursework. Both initial coursework entries need stable slugs and an explicitly controlled display order.
-
-For all collections, maintain stable slugs and avoid broken links. Use a simple workflow to add/reorder proposals without editing layout components. Separate editorial priority from research/project status.
-
-## 10. Local File Organization and Privacy
-Proposed layout (adjust based on actual Astro conventions):
+Suggested implementation layout:
 
 ```text
-EonSJeon.github.io/
-  proj.md
-  AGENTS.md                         # optional permanent instructions
-  .gitignore
-  reference-private/                # NEVER tracked or deployed
-    CV.pdf
-    personal-info.md
-    research.md
-    아이디어(1).docx
-    idea-inventory.md               # private extraction/classification
-    publication-review.md           # private shortlist, scores, approval notes
-    Venus_Flytrap_Senior_Design_Website_Reference.md  # coursework reference
-    KAIST_EE305_Coursework_Website_Reference.md        # coursework reference
-    EE305_original_archive.zip        # optional private course archive; NEVER publish
-  public/                            # approved public assets only
-  src/
-    content/
-      blog/                          # approved public posts only
-      proposals/                     # approved public proposals only
-      projects/                      # independent projects
-      coursework/                    # approved course-based work; own schema
-      publications/
-    pages/
-    components/
-    layouts/
-  .github/workflows/
+proj.md
+story.md                       # ignored, replaceable owner instructions
+reference-private/
+  CV-Resume/                   # tracked source documents and history in this repository
+  *.md                         # ignored editorial inputs outside CV-Resume
+  profile_photo.jpeg           # ignored portrait source
+  아이디어.docx                 # ignored notebook
+public/
+  documents/                   # explicitly selected website download copies
+  images/                      # reviewed website image copies
+src/
+  content/
+    research/
+      ocdm-cfo-estimation/
+        ocdm-cfo-estimation.md
+    publications/
+    projects/
+    coursework/
+      ece3011-robachtic-symphony/
+        ece3011-robachtic-symphony.md
+        *.png                  # selected, colocated project images
+    blog/
+    proposals/
+  components/
+  layouts/
+  pages/
+  styles/
+.github/workflows/             # deployment workflow within authorized release scope
 ```
 
-Add `reference-private/` to `.gitignore` **before** placing source files there. Never force-add ignored files. Check staged file names and diffs before every commit. Do not store passwords, private addresses, phone numbers, unpublished results, confidential collaborator information, or the complete raw ideas document in the repository. Publishing a CV requires an explicit review of the public PDF and its metadata.
+Do not mirror instructor handouts, raw solutions, student IDs, private contact details, collaborator information outside the supplied public scope, full reports, or notebook archives into the site. Existing public repositories can be linked where supplied; their media and reports are not automatically approved for republication.
 
-## 11. Implementation Quality
-- Modular Astro components and validated content collections.
-- Maintainable, easy-to-edit data; no hardcoded publication, proposal, or coursework lists in layout components.
-- Ensure `/coursework` and its detail pages build successfully and that course type, term, and verified individual contributions render accurately.
-- Fast static pages, sensible image optimization, accessible focus states, meaningful alt text.
-- Handle missing links/metadata without empty buttons or fabricated placeholders.
-- Correct sitemap and URL behavior on the GitHub Pages user-site root.
-- Automated build plus checks for content schema, approved-content filters, and internal links where feasible.
-- A README explaining how to preview, update, rank, approve, and publish a proposal, coursework entry, or blog post.
+## 10. Implementation workflow and completion criteria
 
-## 12. Collaboration and Execution Workflow
-**Phase A — Inspect and plan (do not implement yet):**
-1. Inspect repository, `proj.md`, CV, and available private references, **including the Venus Flytrap and KAIST EE305 coursework reference files**.
-2. Produce a proposed information architecture and a lightweight visual design direction.
-3. Create a private, reviewable classification of ideas; propose a SHORT preliminary shortlist with reasoning and uncertainty. Do not publish any of it.
-4. Show which facts from CV/research/coursework references could appear publicly and flag unclear or sensitive items. Propose `/coursework` with two initial entries, and clearly distinguish course assignments from independent Projects.
-5. Ask for approval of the design, content selections, and publication scope.
+For continued implementation and maintenance:
 
-**Phase B — Implement only after approval:**
-6. Build the Astro site, distinct `projects` and `coursework` collections/pages, and the proposal/blog system.
-7. Populate only approved content and explicit placeholders; implement default-deny publication controls for independent projects, coursework, blog posts, and proposals.
-8. Run build, automated checks, and a local preview; verify privacy exclusions and basic mobile accessibility.
-9. Present results and unresolved decisions for owner review.
+1. Inspect repository status and this brief, then read the selected source summaries. Preserve unrelated work and existing CV/Resume commits. Do not make another planning-only response a prerequisite.
+2. Maintain the existing Astro project, shared layout/design, profile configuration, content schemas, routes, and selected seven entries within the authorized review/release scope.
+3. Implement Blog and Proposals with real empty states, document selection on `/cv`, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
+4. Start a local preview and inspect Home, a research detail, When to Eat, all coursework types, CV, and mobile navigation. Resolve layout and route problems before reporting completion.
+5. Run the production build, applicable type/schema checks, and focused checks that unapproved content and assets are absent from every release surface. Check stable routes after folder moves, local images/links, document targets, mobile navigation, contact navigation/copy behavior, the inline video, white-background rendering, and root-path hosting. Test behavior that can fail; avoid tests that merely restate static copy.
+6. Expand the root README with setup, preview/build commands, adding/editing entries, publication states, changing display order, maintaining DOCX/PDF pairs, asset selection, and the GitHub Pages release procedure.
+7. Report what is implemented, validation results, and the few unresolved content/asset choices. Commit, push, configure Pages, or deploy when explicitly authorized for that stage; honor authorization already given and do not ask twice.
 
-**Phase C — Publish only after explicit approval:**
-10. Inspect `git status`, staged changes, generated assets, and public-facing text for privacy leaks.
-11. Only with permission, commit and push; configure GitHub Actions/Pages and verify the deployment.
-
-Never commit, push, deploy, or publish without explicit approval. Avoid unnecessary changes outside this repository. Prioritize accuracy, privacy, editorial quality, and long-term maintainability over generating many pages quickly.
+The build is ready for review when the selected sections work end to end, the seven entries retain their correct categories/statuses, the two empty editorial sections are intentional, document links are clear and dated, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.

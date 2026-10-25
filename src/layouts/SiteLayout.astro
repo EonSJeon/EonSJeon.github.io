@@ -1,0 +1,71 @@
+---
+import { site } from '../data/site';
+import Icon from '../components/Icon.astro';
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+interface Props { title?: string; description?: string; lang?: string; noindex?: boolean; article?: boolean; }
+const { title, description = site.description, lang = 'en', noindex = false, article = false } = Astro.props;
+const fullTitle = title ? `${title} — ${site.name}` : site.title;
+const canonical = new URL(Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname, Astro.site);
+const current = Astro.url.pathname;
+const active = (path: string) => current.startsWith(path);
+const primary = [{ label: 'Research', href: '/research/' }, { label: 'Projects', href: '/projects/' }, { label: 'Coursework', href: '/coursework/' }];
+const more = [{ label: 'About', href: '/about/' }, { label: 'Publications', href: '/publications/' }, { label: 'Writing', href: '/blog/' }, { label: 'Proposals', href: '/proposals/' }];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Sangeon Jeon — Writing" href="/rss.xml" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary" />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="site-brand" href="/" aria-label="Sangeon Jeon, home">Sangeon Jeon</a>
+        <nav id="site-navigation" class="site-navigation" aria-label="Main navigation">
+          {primary.map((item) => <a class:list={{ active: active(item.href) }} aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}
+          <details class="more-nav">
+            <summary class:list={{ active: more.some((item) => active(item.href)) }}>More<Icon name="chevron-down" size={14} /></summary>
+            <div class="more-menu">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
+          </details>
+          <div class="mobile-extra-links">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
+          <a class:list={['nav-cv', { active: active('/cv/') }]} aria-current={active('/cv/') ? 'page' : undefined} href="/cv/">CV<Icon name="arrow-up-right" size={15} /></a>
+        </nav>
+        <div class="header-controls">
+          <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="container"><slot /></main>
+    <footer class="site-footer container">
+      <div><a class="footer-name" href="/">Sangeon Jeon</a><p>© {new Date().getFullYear()} · Atlanta, Georgia</p></div>
+      <nav aria-label="Footer navigation"><a href="/about/">About</a><a href={`mailto:${site.email}`}>Email<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href="/rss.xml">RSS</a></nav>
+    </footer>
+    <script>
+      const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const closeNavigation = () => { menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', 'Open navigation'); document.querySelector('#site-navigation')?.classList.remove('is-open'); };
+      menuButton?.addEventListener('click', () => {
+        const open = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        document.querySelector('#site-navigation')?.classList.toggle('is-open', open);
+      });
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeNavigation(); document.querySelectorAll<HTMLDetailsElement>('.more-nav').forEach((details) => details.open = false); } });
+      document.addEventListener('click', (event) => { if (event.target instanceof Element && !event.target.closest('.more-nav')) document.querySelectorAll<HTMLDetailsElement>('.more-nav').forEach((details) => details.open = false); });
+    </script>
+  </body>
+</html>

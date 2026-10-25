@@ -2,5 +2,16 @@
 /reference-private/*
 !/reference-private/CV-Resume/
 
+# Temporary owner instructions; durable decisions belong in proj.md.
+/story.md
+
 # macOS metadata
 .DS_Store
+
+# Site dependencies, generated output, and local settings
+node_modules/
+.astro/
+dist/
+.env
+.env.*
+!.env.example

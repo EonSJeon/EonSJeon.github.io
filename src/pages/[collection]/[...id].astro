@@ -1,0 +1,40 @@
+---
+import { render } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/Icon.astro';
+import TokenDiagram from '../../components/TokenDiagram.astro';
+import ProjectVideo from '../../components/ProjectVideo.astro';
+import { sections } from '../../data/site';
+import { PUBLIC_COLLECTIONS, getPublicEntries, type PublicEntry } from '../../lib/content';
+interface Props { entry: PublicEntry; }
+export async function getStaticPaths() {
+  const groups = await Promise.all(PUBLIC_COLLECTIONS.map((collection) => getPublicEntries(collection)));
+  return groups.flat().map((entry) => ({ params: { collection: entry.collection, id: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const section = sections[entry.collection];
+const editorial = entry.collection === 'blog' || entry.collection === 'proposals';
+const words = entry.body?.split(/\s+/).length ?? 0;
+const minutes = Math.max(1, Math.ceil(words / 220));
+---
+<SiteLayout title={d.title} description={d.summary} lang={d.language} article={editorial}>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${entry.collection}/`}>{section.label}</a></nav>
+  <header class="article-header"><p class="eyebrow">{d.categoryLabel}</p><h1>{d.title}</h1><p class="article-summary">{d.summary}</p><div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && <span>{d.courseCode}</span>}{editorial && <span>{minutes} min read</span>}{d.pubDate && <time datetime={d.pubDate.toISOString()}>{d.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>}</div></header>
+  <div class="article-layout">
+    <article class="prose">
+      {d.video && <ProjectVideo {...d.video} />}
+      {entry.id === 'when-to-eat' && <TokenDiagram />}
+      {entry.id === 'venus-flytrap-bioelectrical-playback' && <div class="flow-diagram" role="img" aria-label="Signal recording from a Venus flytrap through Seeeduino to MATLAB, followed by electrical playback and trap closure"><span>Plant signal</span><b aria-hidden="true">→</b><span>Seeeduino</span><b aria-hidden="true">↔</b><span>MATLAB</span><b aria-hidden="true">→</b><span>Electrical playback</span></div>}
+      <Content />
+    </article>
+    <aside class="article-sidebar" aria-label="Project details">
+      {d.contribution && <section class="sidebar-section"><h2>My contribution</h2><p>{d.contribution}</p></section>}
+      {d.collaborators.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' ? 'Collaborators' : 'Team'}</h2><ul>{d.collaborators.map((person) => <li>{person.url ? <a href={person.url}>{person.name}<Icon name="arrow-up-right" size={12} /></a> : person.name}{person.role && <small>{person.role}</small>}</li>)}</ul></section>}
+      {d.tags.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' ? 'Topics' : 'Technologies & topics'}</h2><ul class="tags">{d.tags.map((tag) => <li>{tag}</li>)}</ul></section>}
+      {d.links.length > 0 && <section class="sidebar-section"><h2>Links</h2><ul>{d.links.map((link) => <li><a href={link.url}>{link.label}<Icon name="arrow-up-right" size={12} /></a></li>)}</ul></section>}
+    </aside>
+  </div>
+  <div class="back-link"><a class="text-link" href={`/${entry.collection}/`}><Icon name="arrow-right" size={17} />Back to {section.label.toLowerCase()}</a></div>
+</SiteLayout>

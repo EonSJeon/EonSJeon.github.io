@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const profiles = [
+  { icon: 'mail', label: site.email, href: `mailto:${site.email}` },
+  { icon: 'github', label: 'github.com/EonSJeon', href: site.github },
+  { icon: 'scholar', label: 'Google Scholar', href: site.scholar },
+  { icon: 'orcid', label: 'ORCID', href: site.orcid },
+  { icon: 'linkedin', label: 'LinkedIn', href: site.linkedin },
+];
+---
+<ul class="profile-links" aria-label="Contact and academic profiles">
+  {profiles.map((profile) => <li><a href={profile.href}><Icon name={profile.icon} size={19} /><span>{profile.label}</span></a></li>)}
+</ul>

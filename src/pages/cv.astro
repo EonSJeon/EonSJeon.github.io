@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+---
+<SiteLayout title="CV & Resume" description="Download Sangeon Jeon's one-page CV and comprehensive resume, with document version dates.">
+  <PageHeader title="CV & resume" eyebrow="Background & experience" description="A concise overview and a longer record of my education, research, and engineering experience. Each document is labeled with its version date." />
+  <div class="document-grid">
+    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">Concise overview</p><h2>One-page CV</h2><p>The most recent available overview of my education, research, selected engineering work, and skills.</p><a class="button button-primary" href="/documents/sangeon-jeon-cv-industrial-2026-04.pdf" download>Download CV<Icon name="download" size={16} /></a><div class="document-meta"><span>April 2026</span><span>1 page</span><span>PDF · 123 KB</span></div></article>
+    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">Comprehensive record</p><h2>Full resume</h2><p>A more detailed record of research, projects, teaching, and coursework, reflecting the September 2025 version.</p><a class="button" href="/documents/sangeon-jeon-resume-full-2025-09.pdf" download>Download resume<Icon name="download" size={16} /></a><div class="document-meta"><span>September 2025</span><span>3 pages</span><span>PDF · 221 KB</span></div></article>
+  </div>
+  <p class="page-note">For current research descriptions and manuscript status, see <a href="/research/">Research</a> and <a href="/publications/">Publications</a>.</p>
+</SiteLayout>

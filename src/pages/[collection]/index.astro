@@ -1,0 +1,31 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import Icon from '../../components/Icon.astro';
+import { sections } from '../../data/site';
+import { PUBLIC_COLLECTIONS, getPublicEntries, hrefForEntry, type PublicCollection, type PublicEntry } from '../../lib/content';
+interface Props { collection: PublicCollection; entries: PublicEntry[]; }
+export async function getStaticPaths() {
+  return Promise.all(PUBLIC_COLLECTIONS.map(async (collection) => ({ params: { collection }, props: { collection, entries: await getPublicEntries(collection) } })));
+}
+const { collection, entries } = Astro.props;
+const copy = sections[collection];
+const editorial = collection === 'blog' || collection === 'proposals';
+const published = entries.filter((entry) => /^(published|accepted)(?:\s|$|[·—:-])/i.test(entry.data.status));
+const submitted = entries.filter((entry) => entry.data.status.toLowerCase().includes('under review'));
+const otherManuscripts = entries.filter((entry) => !published.includes(entry) && !submitted.includes(entry));
+const linkedResearch = new Set(submitted.map((entry) => entry.data.relatedResearch).filter(Boolean));
+const underReview = collection === 'publications' ? (await getPublicEntries('research')).filter((entry) => entry.data.status.startsWith('Under review') && !linkedResearch.has(entry.id)) : [];
+---
+<SiteLayout title={copy.label} description={copy.description}>
+  <PageHeader title={copy.label} eyebrow={copy.eyebrow} description={copy.description} />
+  {collection === 'publications' ? <>
+    {published.length > 0 && <section aria-label="Published and accepted work"><h2 class="publication-heading">Published & accepted</h2>{published.map((entry) => <article class="publication-entry"><h2><a href={hrefForEntry(entry)}>{entry.data.title}</a></h2>{entry.data.authors && <p>{entry.data.authors.join(', ')}</p>}<p>{entry.data.venue}</p><span class="status">{entry.data.status}</span></article>)}</section>}
+    {(underReview.length > 0 || submitted.length > 0) && <section aria-label="Manuscripts under review"><h2 class="publication-heading">Under review</h2>{[...submitted, ...underReview].map((entry) => <article class="publication-entry"><h2><a href={hrefForEntry(entry)}>{entry.data.title}</a></h2><p>{entry.data.summary}</p><p><span class="status status-review">{entry.data.status}</span></p><a class="text-link" href={hrefForEntry(entry)}>Research overview<Icon name="arrow-right" size={16} /></a></article>)}</section>}
+    {otherManuscripts.length > 0 && <section class="page-section" aria-label="Other manuscripts"><h2 class="publication-heading">Other manuscripts</h2>{otherManuscripts.map((entry) => <article class="publication-entry"><h2><a href={hrefForEntry(entry)}>{entry.data.title}</a></h2><p>{entry.data.summary}</p><span class="status">{entry.data.status}</span></article>)}</section>}
+    <p class="page-note">Research projects with manuscripts in preparation are listed on the <a href="/research/">Research page</a>.</p>
+  </> : editorial ? <>
+    {entries.length > 0 ? <div class="editorial-list">{entries.map((entry) => <article class="editorial-entry">{entry.data.pubDate && <time datetime={entry.data.pubDate.toISOString()}>{entry.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>}<h2><a href={hrefForEntry(entry)}>{entry.data.title}</a></h2><p>{entry.data.summary}</p><a class="text-link" href={hrefForEntry(entry)}>Read more<Icon name="arrow-right" size={16} /></a></article>)}</div> : <div class="empty-state"><span class="empty-symbol"><Icon name={collection === 'blog' ? 'book' : 'arrow-up-right'} size={21} /></span><h2>{collection === 'blog' ? 'Notes are on the way.' : 'A place for the next question.'}</h2><p>{collection === 'blog' ? 'I’ll share technical notes and longer reflections here as they take shape.' : 'Selected project ideas and research questions will appear here as they are ready to share.'}</p><a class="text-link" href="/research/">Explore my current research<Icon name="arrow-right" size={16} /></a></div>}
+  </> : <div class="work-grid">{entries.map((entry) => <WorkCard entry={entry} />)}</div>}
+</SiteLayout>
