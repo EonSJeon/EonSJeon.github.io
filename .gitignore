@@ -1,5 +1,6 @@
-# Private reference materials are managed locally, outside website history.
-/reference-private/
+# Track the requested CV/Resume history while excluding other private references.
+/reference-private/*
+!/reference-private/CV-Resume/
 
 # macOS metadata
 .DS_Store
