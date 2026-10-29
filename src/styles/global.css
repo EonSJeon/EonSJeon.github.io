@@ -207,6 +207,8 @@ p { margin-bottom: 1.15em; }
 .publication-entry p { font-size: 13px; color: var(--muted); margin-bottom: 11px; }
 .publication-entry .status { font-size: 11px; }
 .editorial-list { max-width: 800px; }
+.proposal-intro { max-width: 800px; margin: 0 0 28px; font-size: 14px; color: var(--muted); }
+.editorial-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 11px; }
 .editorial-entry { padding: 25px 0; border-top: 1px solid var(--line); }
 .editorial-entry h2 { font-size: 27px; margin: 9px 0 13px; }
 .editorial-entry h2 a { color: var(--text); text-decoration: none; }

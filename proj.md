@@ -6,9 +6,9 @@ Updated: 2026-10-29. Repository: `EonSJeon/EonSJeon.github.io`.
 
 Build a minimal, polished personal academic website on GitHub Pages. Research and academic identity lead the site, followed by independent engineering work, a dedicated Coursework section, writing, and selected proposals.
 
-The initial scope is **two research projects, one independent makerathon project, and four coursework entries**. Blog and Proposals remain part of the site, but no individual notebook entry has been selected for publication in this brief.
+The initial portfolio contains **two research projects, one independent makerathon project, and four coursework entries**. The owner subsequently selected five notebook ideas for Proposals through the October 29 request described below. Blog remains empty.
 
-The owner has requested implementation, and the Astro website now exists in this repository with the selected seven entries, 17 generated HTML pages, and a working local preview. Treat this document as the continuing implementation brief. Extend the existing site instead of restarting a planning-only phase or scaffolding a replacement. Public release follows the owner's publication instructions and the content boundaries below.
+The owner has requested implementation, and the Astro website now exists in this repository with the original seven entries, five proposal concepts, and a working local preview. Treat this document as the continuing implementation brief. Extend the existing site instead of restarting a planning-only phase or scaffolding a replacement. Public release follows the owner's publication instructions and the content boundaries below.
 
 Implement in this existing repository. Preserve the CV/Resume history already integrated into it. Do not create another repository or move the build to a hosted website-builder service.
 
@@ -28,7 +28,7 @@ Read the relevant references before writing each entry. These are local editoria
 | CV/Resume documents | `reference-private/CV-Resume/` | Biography and dated document downloads; see Section 7 |
 | Version provenance | `reference-private/CV-Resume/README.md` and `source-inventory.json` | Source dates, pairing decisions and original recovery |
 | Portrait candidate | `reference-private/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
-| Ideas notebook | `reference-private/아이디어.docx` | Private material for future writing/proposals; not a publication queue |
+| Ideas notebook | `reference-private/아이디어.docx` | Source for the five specifically selected proposal concepts; the remaining notebook stays private |
 
 `reference-private/CV.pdf`, `personal-info.md`, and `research.md` are not currently present. Do not depend on these obsolete paths or invent substitutes.
 
@@ -104,13 +104,7 @@ The owner's October 28 ECE3011 update adds local report, photo, README, and vide
 
 The older full resume and newer industrial CV contain disease-modeling manuscript entries with different dated statuses. Do not automatically turn these into current peer-reviewed publication records or additional research pages. Include them only after their current titles, authorship, venue/status, public links, and suitable summary are confirmed. Missing publication records must not block the rest of the build.
 
-**Blog / Writing:** Implement `/blog` and article routes with Markdown/MDX, math, code highlighting, citations/footnotes, tags, dates, reading time, and RSS for released posts. Support Korean and English author-written content. Do not translate or generate personal essays from notebook fragments without an instruction. No initial posts are selected here.
-
-**Proposals:** Implement `/proposals` and detail routes. Preserve an owner-selected featured order and statuses such as `Concept`, `Investigating`, `Seeking collaborators`, or `Archived`. No initial proposal titles are selected here. Do not carry the old brief's example ideas into published cards or repeat a full notebook-ranking exercise as a prerequisite for building the site.
-
-For a future selected proposal, use a concise problem, tentative approach, potential users, relevant prior work, smallest useful experiment, next steps, and open questions. Label unverified novelty and feasibility honestly. A proposal is not a completed project.
-
-For Blog and Proposals with no released entries, use a short, deliberate empty state without fake cards, counts, dates, or sample personal text. Keep the sections reachable; omit their empty previews from Home. Add filters and search only when real content volume warrants them.
+**Blog / Ideas — individual review required:** Keep unpublished writing in ignored `reference-private/writing-review/`. Do not commit notebook-derived articles until the owner explicitly approves each finished article. Earlier bulk selections do not authorize publication. Preserve the empty collection indexes and per-language release controls.
 
 ## 5. Information architecture and Home
 
@@ -197,7 +191,7 @@ Shared fields as applicable: `title`, `summary`, `slug`, `status`, `period`, `ta
 - Blog: language, release date, draft state, tags, optional revision date, and author-written body.
 - Proposals: tentative status, owner-controlled priority, optional milestones/related work, and unresolved questions.
 
-Default release approval to false for new entries. The owner's website-build request selects the conservative public-safe copy for the seven initial entries, which are explicitly marked approved in their content files. This does not authorize unrestricted notebook extraction, unpublished research disclosure, or deployment. Respect explicit publication approval already given in the session rather than asking for it again.
+Default release approval to false for new entries. The owner's website-build request selects the conservative public-safe copy for the seven initial entries, and the October 29 instruction selects the five curated proposals above. These entries are explicitly marked approved in their content files so they appear in the local production preview. This does not authorize additional notebook extraction, unpublished research disclosure, push, or deployment. Respect explicit content approval already given in the session rather than asking for it again.
 
 An `approvedForPublication: false` flag does not make a tracked file private. Keep unapproved full text and private editorial notes in ignored references. Populate tracked content only within the owner's approved public scope. If selected copy still needs review, make it available through an explicit local review mode backed by ignored content; do not upload that review copy to the public repository or enable review mode in deployment. A deployable build must exclude every unapproved entry from detail routes, index cards, search data, RSS, sitemap, metadata, and copied assets, not merely hide its navigation link.
 
@@ -256,11 +250,11 @@ Do not mirror instructor handouts, raw solutions, student IDs, private contact d
 For continued implementation and maintenance:
 
 1. Inspect repository status and this brief, then read the selected source summaries. Preserve unrelated work and existing CV/Resume commits. Do not make another planning-only response a prerequisite.
-2. Maintain the existing Astro project, shared layout/design, profile configuration, content schemas, routes, and selected seven entries within the authorized review/release scope.
-3. Implement Blog and Proposals with real empty states, document selection on `/cv`, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
+2. Maintain the existing Astro project, shared layout/design, profile configuration, content schemas, routes, seven portfolio entries, and five selected proposal concepts within the authorized review/release scope.
+3. Maintain Blog's empty state, the populated Proposals section, document selection on `/cv`, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
 4. Start a local preview and inspect Home, a research detail, When to Eat, all coursework types, CV, and mobile navigation. Resolve layout and route problems before reporting completion.
 5. Run the production build, applicable type/schema checks, and focused checks that unapproved content and assets are absent from every release surface. Check stable routes after folder moves, local images/links, document targets, mobile navigation, contact navigation/copy behavior, the inline video, white-background rendering, and root-path hosting. Test behavior that can fail; avoid tests that merely restate static copy.
 6. Expand the root README with setup, preview/build commands, adding/editing entries, publication states, changing display order, maintaining DOCX/PDF pairs, asset selection, and the GitHub Pages release procedure.
 7. Report what is implemented, validation results, and the few unresolved content/asset choices. The owner's October 28 instruction authorizes periodic local commits of completed work. Commit useful, validated increments as work proceeds. Do not push, configure Pages, or publish yet; the owner plans to publish after the site is complete and will authorize that stage separately.
 
-The build is ready for review when the selected sections work end to end, the seven entries retain their correct categories/statuses, the two empty editorial sections are intentional, document links are clear and dated, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.
+The build is ready for review when the selected sections work end to end, the seven portfolio entries retain their correct categories/statuses, the five proposals are clearly concepts, Blog's empty state is intentional, document links are clear and dated, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.

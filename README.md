@@ -31,7 +31,7 @@ Content lives in six distinct collections under `src/content/`:
 - `blog/`: released English or Korean writing.
 - `proposals/`: selected, clearly tentative future work.
 
-The initial portfolio contains two research projects, When to Eat, and four coursework entries. Blog and Proposals intentionally start without sample posts. Research projects are not automatically published papers.
+The portfolio contains two research projects, When to Eat, four coursework entries, and five selected proposal concepts. Proposals have their own summaries, first experiments, and related-work links, with the first three previewed on Home. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
 
 Give each entry a folder containing its Markdown/MDX and selected media. For example, `src/content/projects/when-to-eat/when-to-eat.md` becomes `/projects/when-to-eat/`; `when-to-eat/index.md` also resolves to that same URL. Folder wrapping never adds a repeated slug to the URL.
 

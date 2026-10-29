@@ -43,8 +43,8 @@ const project = projects.find((entry) => entry.data.featured);
     <div class="work-grid">{selectedCoursework.map((entry) => <WorkCard entry={entry} compact />)}</div>
   </section>
   {(writing.length > 0 || proposals.length > 0) && <section class="home-section" aria-label="Recent writing and ideas">
-    <SectionHeading title="Writing & ideas" />
-    <div class="editorial-list">{[...writing, ...proposals].slice(0, 3).map((entry) => <article class="editorial-entry"><p class="eyebrow">{entry.data.categoryLabel}</p><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><p>{entry.data.summary}</p></article>)}</div>
+    <SectionHeading title={writing.length > 0 ? 'Writing & ideas' : 'Ideas to explore'} href={writing.length === 0 ? '/proposals/' : undefined} linkText="All proposals" />
+    <div class="editorial-list">{[...writing, ...proposals].slice(0, 3).map((entry) => <article class="editorial-entry"><p class="eyebrow">{entry.data.categoryLabel}{entry.collection === 'proposals' && ` · ${entry.data.status}`}</p><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><p>{entry.data.summary}</p></article>)}</div>
   </section>}
   <div class="home-contact"><p>Interested in my research or engineering work?</p><a class="text-link" href="/about/#contact">Get in touch<Icon name="arrow-right" size={16} /></a></div>
 </SiteLayout>
