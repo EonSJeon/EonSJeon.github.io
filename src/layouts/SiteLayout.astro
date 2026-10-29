@@ -55,7 +55,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
             <div class="more-menu">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
           </details>
           <div class="mobile-extra-links">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
-          <a class:list={['nav-cv', { active: active(cv) }]} aria-current={active(cv) ? 'page' : undefined} href={cv}>{lang === 'ko' ? '이력서' : 'CV'}<Icon name="arrow-up-right" size={15} /></a>
+          <a class:list={['nav-cv', { active: active(cv) }]} aria-current={active(cv) ? 'page' : undefined} href={cv}>CV<Icon name="arrow-up-right" size={15} /></a>
         </nav>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>

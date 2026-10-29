@@ -1,12 +1,12 @@
 ---
 title: "RoBACHtic Symphony — 교육용 로봇 바이올린 키트"
 summary: "피아노 건반 입력을 바이올린 활의 움직임과 전자음으로 연결하는 교육용 로봇입니다. 4인 Junior Design 프로젝트에서 기계 설계와 제작을 주도했습니다."
-categoryLabel: "주니어 설계"
-status: "교과 프로젝트 시제품 완성"
+categoryLabel: "Junior Design"
+status: "수업 프로젝트 시제품 완성"
 period: "2023년"
-institution: "조지아공과대학교"
+institution: "Georgia Institute of Technology"
 courseCode: "ECE 3011"
-courseTitle: "설계 기초"
+courseTitle: "Design Fundamentals"
 type: "junior-design"
 language: ko
 translationKey: "ece3011-robachtic-symphony"
@@ -41,7 +41,7 @@ links:
 
 ## 음악과 코드를 물리적으로 연결하기
 
-RoBACHtic Symphony는 2023년 조지아공과대학교 ECE 3011 — Design Fundamentals 수업에서 4인 팀으로 개발한 프로젝트입니다. 초등학교 5학년 STEAM 활동을 위한 교육용 키트를 구상하고, 음표와 바이올린 활의 움직임 사이의 관계를 물리적 모형으로 보여주고자 했습니다.
+RoBACHtic Symphony는 2023년 Georgia Institute of Technology ECE 3011 — Design Fundamentals 수업에서 4인 팀으로 개발한 프로젝트입니다. 초등학교 5학년 STEAM 활동을 위한 교육용 키트를 구상하고, 음표와 바이올린 활의 움직임 사이의 관계를 물리적 모형으로 보여주고자 했습니다.
 
 팀은 피아노형 건반, BBC micro:bit, 서보 구동 장치, 축소 바이올린 모형을 결합했습니다. 저는 SolidWorks 모델부터 조립된 하드웨어까지 기계 설계와 제작을 주도했습니다.
 

@@ -6,7 +6,7 @@ status: "교과 실험 완료"
 period: "2022년 가을학기"
 institution: "KAIST"
 courseCode: "EE305"
-courseTitle: "전자설계 및 실험 입문"
+courseTitle: "Introduction to Electronics Design Lab"
 type: "laboratory"
 language: ko
 translationKey: "ee305-electronics-design-lab"

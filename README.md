@@ -64,6 +64,8 @@ Use the same `translationKey` in the English translation when adding it. Existin
 
 Shared interface/profile translations live in `src/lib/i18n.ts`; Home/About/CV text lives in `src/components/pages/`. Keep factual status, dates, links, and contribution limits aligned when revising translations.
 
+Korean pages retain selected professional labels and proper names in English: CV, CV & Resume, Georgia Institute of Technology / Georgia Tech, and Atlanta, Georgia. Use `코스웍` for the compact menu and `수업 프로젝트` in Korean descriptions; avoid translating every label mechanically.
+
 The site self-hosts Pretendard Variable v1.3.9 under `public/fonts/`; preserve its accompanying OFL license. Korean headings use the same family with heavier weights. No external font service is required at runtime.
 
 ## Local development handoff

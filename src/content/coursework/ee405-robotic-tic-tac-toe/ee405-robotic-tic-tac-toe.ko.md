@@ -1,7 +1,7 @@
 ---
 title: "4자유도 로봇 팔을 이용한 틱택토"
 summary: "EE405의 C++ 구현으로 틱택토 게임 논리, 저장된 관절 자세, DYNAMIXEL 로봇 팔 제어를 연결했습니다."
-categoryLabel: "교과 기말 프로젝트"
+categoryLabel: "수업 기말 프로젝트"
 status: "교과 구현 코드"
 period: "2024년"
 courseCode: "EE405"

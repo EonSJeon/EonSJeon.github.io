@@ -1,12 +1,12 @@
 ---
 title: "파리지옥 생체전기 신호 기록과 재생"
 summary: "Seeeduino–MATLAB 시스템으로 파리지옥의 전기적 반응을 기록하고 자극 신호로 재생해 포충엽이 닫히는 동작을 성공적으로 유도했습니다."
-categoryLabel: "졸업설계 · 캡스톤"
+categoryLabel: "Senior Design / Capstone"
 status: "완료 · 시연 성공"
 period: "2024년"
-institution: "조지아공과대학교"
+institution: "Georgia Institute of Technology"
 courseCode: "ECE 4723"
-courseTitle: "학제 간 캡스톤 설계"
+courseTitle: "Interdisciplinary Capstone Design"
 type: "senior-design"
 language: ko
 translationKey: "venus-flytrap-bioelectrical-playback"
