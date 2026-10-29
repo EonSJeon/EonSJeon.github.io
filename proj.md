@@ -1,6 +1,6 @@
 # Personal Academic Website Implementation Brief
 
-Updated: 2026-10-28. Repository: `EonSJeon/EonSJeon.github.io`.
+Updated: 2026-10-29. Repository: `EonSJeon/EonSJeon.github.io`.
 
 ## 1. Objective and next task
 
@@ -171,6 +171,8 @@ The documents are intentionally named using the owner's convention: `Resume-Full
 The newer industrial CV supports this biography baseline: Georgia Tech ECE Ph.D. study beginning January 2026 with Xiaoli Ma; Georgia Tech ECE M.S. in 2025 and B.S. in 2023–2024; KAIST Electrical Engineering B.S. in 2018–February 2025. Do not describe the owner as still awaiting the M.S. solely because older documents use expected-graduation wording. Recheck time-sensitive current-role wording before public release.
 
 The owner explicitly confirmed the GPAs for the website: **KAIST 3.95/4.3** and **all Georgia Tech education entries 4.00/4.0**. Show these on About alongside the corresponding degrees. These values override older CV GPA values for the website; do not rewrite the dated source documents.
+
+The owner confirmed on October 29 that **Jinseok Choi (최진석)** was their advisor at KAIST. Show `Advisor: Jinseok Choi` with the KAIST education entry on About.
 
 Use the industrial one-page PDF as the most recent available document candidate and the full resume as a separately dated comprehensive document. Do not call the 2025 full resume current as of 2026, silently merge incompatible claims, or rewrite source documents as part of the website build. Targeted older CVs need not all be prominent site downloads; the CV page should offer a clear primary choice and dates, with additional versions only where useful.
 

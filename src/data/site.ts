@@ -46,5 +46,5 @@ export const education = [
   { degree: 'Ph.D. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2026–present', note: 'Advisor: Xiaoli Ma', gpa: '4.00 / 4.0' },
   { degree: 'M.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2025', gpa: '4.00 / 4.0' },
   { degree: 'B.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2023–2024', gpa: '4.00 / 4.0' },
-  { degree: 'B.S. in Electrical Engineering', institution: 'KAIST', period: '2018–2025', gpa: '3.95 / 4.3' },
+  { degree: 'B.S. in Electrical Engineering', institution: 'KAIST', period: '2018–2025', note: 'Advisor: Jinseok Choi', gpa: '3.95 / 4.3' },
 ];
