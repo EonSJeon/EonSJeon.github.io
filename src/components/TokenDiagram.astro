@@ -1,10 +1,11 @@
 ---
-interface Props { compact?: boolean; }
-const { compact = false } = Astro.props;
+import type { Locale } from '../lib/i18n';
+interface Props { compact?: boolean; lang?: Locale; }
+const { compact = false, lang = 'en' } = Astro.props;
 ---
 <div class:list={['token-illustration', { 'token-illustration-compact': compact }]}>
   <svg viewBox="0 0 460 260" fill="none" role="img" aria-labelledby="token-title">
-    <title id="token-title">Conceptual illustration of RFID food tokens communicating with a desktop reminder</title>
+    <title id="token-title">{lang === 'ko' ? 'RFID 식품 토큰과 데스크톱 알림 장치의 통신을 나타낸 개념도' : 'Conceptual illustration of RFID food tokens communicating with a desktop reminder'}</title>
     <defs><pattern id="dot-grid" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="currentColor" opacity=".14" /></pattern></defs>
     <path fill="url(#dot-grid)" d="M0 0h460v260H0z" />
     <g stroke="currentColor" stroke-width="1.5">
@@ -20,6 +21,6 @@ const { compact = false } = Astro.props;
       <rect x="267" y="104" width="24" height="23" rx="4"/><path d="M303 108h65m-65 10h40" opacity=".55"/>
       <rect x="267" y="139" width="24" height="23" rx="4"/><path d="M303 143h50m-50 10h65" opacity=".55"/>
     </g>
-    <g fill="currentColor" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.2"><text x="76" y="229">RFID TOKEN</text><text x="274" y="229">STORAGE REMINDER</text></g>
+    <g fill="currentColor" font-family="ui-monospace, monospace" font-size="10" letter-spacing="1.2"><text x="76" y="229">{lang === 'ko' ? 'RFID 토큰' : 'RFID TOKEN'}</text><text x="274" y="229">{lang === 'ko' ? '식품 보관 알림' : 'STORAGE REMINDER'}</text></g>
   </svg>
 </div>

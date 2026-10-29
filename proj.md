@@ -8,7 +8,7 @@ Build a minimal, polished personal academic website on GitHub Pages. Research an
 
 The initial portfolio contains **two research projects, one independent makerathon project, and four coursework entries**. The owner subsequently selected five notebook ideas for Proposals through the October 29 request described below. Blog remains empty.
 
-The owner has requested implementation, and the Astro website now exists in this repository with the original seven entries, five proposal concepts, and a working local preview. Treat this document as the continuing implementation brief. Extend the existing site instead of restarting a planning-only phase or scaffolding a replacement. Public release follows the owner's publication instructions and the content boundaries below.
+Maintain the existing Astro implementation with the original seven portfolio entries and five selected proposal concepts. Treat this document as the durable implementation brief. Development progress, remaining tasks, validation records, preview commands, and execution-environment details belong in the ignored English handoff at `development-status.md`. Public release follows the owner's publication instructions and the content boundaries below.
 
 Implement in this existing repository. Preserve the CV/Resume history already integrated into it. Do not create another repository or move the build to a hosted website-builder service.
 
@@ -142,6 +142,10 @@ Follow the introduction with the two research entries, one independent-project f
 - Host on GitHub Pages for the user-site root `https://eonsjeon.github.io/`, with GitHub Actions for deployment. Do not add a repository-name base path for this user-site repository.
 - Use a clean **white background**, readable typography, comfortable text widths, clear hierarchy, generous spacing, neutral text/borders, and a limited accent color. The header uses the owner's plain name; do not invent an initials mark, brand logo, or custom logo favicon.
 - Provide responsive desktop/mobile navigation, accessible semantic HTML, visible keyboard focus, meaningful link text, and sufficient contrast.
+- Provide full Korean and English versions. Preserve existing English URLs, and use `/ko/` for Korean pages, including Home, About, CV, 404, all indexes and twelve selected article translations. Keep a visible `한국어` / `English` selector in the header on desktop and mobile, with the current language marked. Switch to the same article when its approved translation exists; otherwise link to the target-language collection index and advertise no nonexistent translation in hreflang metadata.
+- The owner works directly in Korean. Keep editable `<slug>.ko.md` beside each English `<slug>.md`, paired by `translationKey`. Filter routes, lists, Home previews, and RSS by language and release flags. Korean-only authoring must work without an English placeholder. Localize document language, canonical/alternate URLs, metadata, UI, captions, and contact feedback. Do not turn the notes or unapproved translations into public entries automatically.
+- Display the owner's exact Hanja name **全商彥** alongside 전상언 and Sangeon Jeon on both Home versions.
+- Use the officially distributed Pretendard Variable font for polished Korean typography, with readable body text and stronger heading weights. Self-host the unchanged WOFF2 and its OFL license under `public/fonts/`; avoid a runtime dependency on an external font service.
 - Keep the site consistently light, including when the device prefers dark mode. The owner's white-background instruction supersedes the earlier light/dark-toggle requirement.
 - Keep browser JavaScript small. No CMS, database, backend, analytics, comments, complex animation, or external embeds by default.
 - Provide metadata, canonical URLs, sitemap, a useful 404 page, and social-sharing metadata where actual assets exist.
@@ -250,6 +254,7 @@ Do not mirror instructor handouts, raw solutions, student IDs, private contact d
 For continued implementation and maintenance:
 
 1. Inspect repository status and this brief, then read the selected source summaries. Preserve unrelated work and existing CV/Resume commits. Do not make another planning-only response a prerequisite.
+   Read and maintain `development-status.md`, the Git-ignored **English** development handoff. Keep enough detail for a new LLM to resume immediately: current objective, completed/pending work, exact live preview URLs, how to start or find the server, a working Node path/commands when the shell lacks node/npm, tests and results, and local commit hashes. Update progress there rather than adding running status reports to this tracked brief. Keep it out of Git and deployment output.
 2. Maintain the existing Astro project, shared layout/design, profile configuration, content schemas, routes, seven portfolio entries, and five selected proposal concepts within the authorized review/release scope.
 3. Maintain Blog's empty state, the populated Proposals section, document selection on `/cv`, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
 4. Start a local preview and inspect Home, a research detail, When to Eat, all coursework types, CV, and mobile navigation. Resolve layout and route problems before reporting completion.

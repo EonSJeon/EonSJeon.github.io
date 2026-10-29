@@ -1,14 +1,15 @@
 ---
 import Icon from './Icon.astro';
 import { hrefForEntry, type PublicEntry } from '../lib/content';
-interface Props { entry: PublicEntry; compact?: boolean; }
-const { entry, compact = false } = Astro.props;
+import type { Locale } from '../lib/i18n';
+interface Props { entry: PublicEntry; compact?: boolean; lang?: Locale; }
+const { entry, compact = false, lang = entry.data.language } = Astro.props;
 const d = entry.data;
 ---
 <article class:list={['work-card', { compact }, `work-card-${entry.collection}`]}>
   <div class="card-meta"><span>{d.categoryLabel}</span>{d.period && <span>{d.period}</span>}</div>
   <h3><a href={hrefForEntry(entry)}>{d.title}<Icon name="arrow-up-right" size={22} /></a></h3>
   <p>{d.summary}</p>
-  {!compact && <ul class="tags" aria-label="Topics">{d.tags.slice(0, 4).map((tag) => <li>{tag}</li>)}</ul>}
+  {!compact && <ul class="tags" aria-label={lang === 'ko' ? '주제' : 'Topics'}>{d.tags.slice(0, 4).map((tag) => <li>{tag}</li>)}</ul>}
   <div class="card-bottom"><span class:list={['status', { 'status-review': entry.collection === 'research' }]}>{d.status}</span></div>
 </article>

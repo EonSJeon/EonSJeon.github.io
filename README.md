@@ -33,6 +33,45 @@ Content lives in six distinct collections under `src/content/`:
 
 The portfolio contains two research projects, When to Eat, four coursework entries, and five selected proposal concepts. Proposals have their own summaries, first experiments, and related-work links, with the first three previewed on Home. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
 
+## Korean and English authoring
+
+Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all twelve selected articles have Korean versions.
+
+Edit the Korean Markdown directly, beside its English counterpart:
+
+```text
+src/content/proposals/example-article/
+  example-article.md       # English
+  example-article.ko.md    # Korean editing source
+```
+
+For a new Korean article, create `src/content/<collection>/<slug>/<slug>.ko.md` with translated metadata and body. For example:
+
+```yaml
+---
+title: 새 아이디어
+summary: 문제와 가능한 접근 방법을 간단히 설명합니다.
+categoryLabel: 프로젝트 구상
+status: 구상 단계
+language: ko
+translationKey: my-new-idea
+priority: 60
+approvedForPublication: true
+---
+```
+
+Use the same `translationKey` in the English translation when adding it. Existing English entries use their folder slug by default. Each language has its own approval/draft flags; only released translations appear in its lists, routes, and RSS. A Korean-only article is supported, and its English language choice goes to the English collection index until a released translation exists. Editing Korean does not silently rewrite the English text. Use `/ko/rss.xml` for Korean writing and `/rss.xml` for English writing.
+
+Shared interface/profile translations live in `src/lib/i18n.ts`; Home/About/CV text lives in `src/components/pages/`. Keep factual status, dates, links, and contribution limits aligned when revising translations.
+
+The site self-hosts Pretendard Variable v1.3.9 under `public/fonts/`; preserve its accompanying OFL license. Korean headings use the same family with heavier weights. No external font service is required at runtime.
+
+## Local development handoff
+
+Maintain **`development-status.md` in English** as a Git-ignored handoff for the next LLM. Record the current task, completed work, pending steps, exact preview URLs and start commands, runtime quirks, validation results, and local commit hashes. Update it after meaningful work and before ending a task. Do not force-add this file or copy it into `public/`. `proj.md` holds durable requirements; this local file holds development progress.
+
+`AGENTS.md` directs future agents to read and maintain that handoff before working, including how to locate the running preview.
+
 Give each entry a folder containing its Markdown/MDX and selected media. For example, `src/content/projects/when-to-eat/when-to-eat.md` becomes `/projects/when-to-eat/`; `when-to-eat/index.md` also resolves to that same URL. Folder wrapping never adds a repeated slug to the URL.
 
 Reference colocated images with a relative Markdown path, such as `![Description](./prototype.png)`. Astro processes referenced images into build assets. `README.md` and everything in `raw/` are excluded from the collection loader; keep private raw material in ignored references instead of tracked content folders.

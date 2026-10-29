@@ -1,0 +1,9 @@
+---
+import CollectionPage from '../../../components/pages/CollectionPage.astro';
+import { PUBLIC_COLLECTIONS, getPublicEntries } from '../../../lib/content';
+export async function getStaticPaths() {
+  return Promise.all(PUBLIC_COLLECTIONS.map(async (collection) => ({ params: { collection }, props: { collection, entries: await getPublicEntries(collection, 'ko') } })));
+}
+const { collection, entries } = Astro.props;
+---
+<CollectionPage collection={collection} entries={entries} lang="ko" />

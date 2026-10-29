@@ -1,0 +1,10 @@
+---
+import EntryPage from '../../../components/pages/EntryPage.astro';
+import { PUBLIC_COLLECTIONS, getPublicEntries, slugForEntry } from '../../../lib/content';
+export async function getStaticPaths() {
+  const groups = await Promise.all(PUBLIC_COLLECTIONS.map((collection) => getPublicEntries(collection, 'ko')));
+  return groups.flat().map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<EntryPage entry={entry} />

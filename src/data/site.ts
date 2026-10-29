@@ -1,6 +1,7 @@
 export const site = {
   name: 'Sangeon Jeon',
   koreanName: '전상언',
+  hanjaName: '全商彥',
   title: 'Sangeon Jeon — Wireless Communications & Signal Processing',
   description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, synchronization, and statistical signal estimation.',
   role: 'Ph.D. student, Electrical & Computer Engineering',

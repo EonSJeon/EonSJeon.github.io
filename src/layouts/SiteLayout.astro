@@ -1,16 +1,24 @@
 ---
-import { site } from '../data/site';
+import { getSiteCopy, getSectionsCopy, localizePath, type Locale, type LanguageLinks } from '../lib/i18n';
 import Icon from '../components/Icon.astro';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
-interface Props { title?: string; description?: string; lang?: string; noindex?: boolean; article?: boolean; }
-const { title, description = site.description, lang = 'en', noindex = false, article = false } = Astro.props;
+interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
+const { title, lang = 'en', noindex = false, article = false, languageLinks, languageFallback = '/' } = Astro.props;
+const site = getSiteCopy(lang);
+const sections = getSectionsCopy(lang);
+const description = Astro.props.description ?? site.description;
 const fullTitle = title ? `${title} — ${site.name}` : site.title;
-const canonical = new URL(Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname, Astro.site);
+const canonical = new URL(localizePath(Astro.url.pathname, lang), Astro.site);
 const current = Astro.url.pathname;
 const active = (path: string) => current.startsWith(path);
-const primary = [{ label: 'Research', href: '/research/' }, { label: 'Projects', href: '/projects/' }, { label: 'Coursework', href: '/coursework/' }];
-const more = [{ label: 'About', href: '/about/' }, { label: 'Publications', href: '/publications/' }, { label: 'Writing', href: '/blog/' }, { label: 'Proposals', href: '/proposals/' }];
+const primary = (['research', 'projects', 'coursework'] as const).map((key) => ({ label: sections[key].label, href: localizePath(`/${key}/`, lang) }));
+const more = [{ label: lang === 'ko' ? '소개' : 'About', href: '/about/' }, ...(['publications', 'blog', 'proposals'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` }))].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
+const home = localizePath('/', lang);
+const cv = localizePath('/cv/', lang);
+const available = languageLinks ?? { en: localizePath(current, 'en'), ko: localizePath(current, 'ko') };
+const menuOpen = lang === 'ko' ? '메뉴 열기' : 'Open navigation';
+const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -20,48 +28,55 @@ const more = [{ label: 'About', href: '/about/' }, { label: 'Publications', href
     <meta name="color-scheme" content="light" />
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
+    <link rel="preload" href="/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="application/rss+xml" title="Sangeon Jeon — Writing" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={lang === 'ko' ? '전상언 — 글' : 'Sangeon Jeon — Writing'} href={localizePath('/rss.xml', lang)} />
+    {Object.entries(available).map(([locale, path]) => <link rel="alternate" hreflang={locale} href={new URL(path!, Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(available.en ?? available.ko ?? home, Astro.site)} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
     <meta name="twitter:card" content="summary" />
     <title>{fullTitle}</title>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to content</a>
+    <a href="#main-content" class="skip-link">{lang === 'ko' ? '본문으로 바로가기' : 'Skip to content'}</a>
     <header class="site-header">
       <div class="header-inner container">
-        <a class="site-brand" href="/" aria-label="Sangeon Jeon, home">Sangeon Jeon</a>
-        <nav id="site-navigation" class="site-navigation" aria-label="Main navigation">
+        <a class="site-brand" href={home} aria-label={lang === 'ko' ? '전상언 홈' : 'Sangeon Jeon, home'}>{site.name}</a>
+        <nav id="site-navigation" class="site-navigation" aria-label={lang === 'ko' ? '주 메뉴' : 'Main navigation'}>
           {primary.map((item) => <a class:list={{ active: active(item.href) }} aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}
           <details class="more-nav">
-            <summary class:list={{ active: more.some((item) => active(item.href)) }}>More<Icon name="chevron-down" size={14} /></summary>
+            <summary class:list={{ active: more.some((item) => active(item.href)) }}>{lang === 'ko' ? '더 보기' : 'More'}<Icon name="chevron-down" size={14} /></summary>
             <div class="more-menu">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
           </details>
           <div class="mobile-extra-links">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
-          <a class:list={['nav-cv', { active: active('/cv/') }]} aria-current={active('/cv/') ? 'page' : undefined} href="/cv/">CV<Icon name="arrow-up-right" size={15} /></a>
+          <a class:list={['nav-cv', { active: active(cv) }]} aria-current={active(cv) ? 'page' : undefined} href={cv}>{lang === 'ko' ? '이력서' : 'CV'}<Icon name="arrow-up-right" size={15} /></a>
         </nav>
         <div class="header-controls">
-          <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
+          <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
+            {(['ko', 'en'] as const).map((locale) => <a data-language={locale} lang={locale} href={available[locale] ?? localizePath(languageFallback, locale)} aria-current={lang === locale ? 'page' : undefined} title={available[locale] ? undefined : (locale === 'en' ? 'English translation pending; view the English collection' : '한국어 번역 준비 중 — 한국어 목록 보기')}>{locale === 'ko' ? '한국어' : 'English'}</a>)}
+          </nav>
+          <button class="icon-button menu-toggle" type="button" aria-label={menuOpen} data-menu-open={menuOpen} data-menu-close={menuClose} aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
         </div>
       </div>
     </header>
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
-      <div><a class="footer-name" href="/">Sangeon Jeon</a><p>© {new Date().getFullYear()} · Atlanta, Georgia</p></div>
-      <nav aria-label="Footer navigation"><a href="/about/">About</a><a href={`mailto:${site.email}`}>Email<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href="/rss.xml">RSS</a></nav>
+      <div><a class="footer-name" href={home}>{site.name}</a><p>© {new Date().getFullYear()} · {site.location}</p></div>
+      <nav aria-label={lang === 'ko' ? '하단 메뉴' : 'Footer navigation'}><a href={localizePath('/about/', lang)}>{lang === 'ko' ? '소개' : 'About'}</a><a href={`mailto:${site.email}`}>{lang === 'ko' ? '이메일' : 'Email'}<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href={localizePath('/rss.xml', lang)}>RSS</a></nav>
     </footer>
     <script>
       const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
-      const closeNavigation = () => { menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', 'Open navigation'); document.querySelector('#site-navigation')?.classList.remove('is-open'); };
+      const closeNavigation = () => { menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', menuButton.dataset.menuOpen ?? 'Open navigation'); document.querySelector('#site-navigation')?.classList.remove('is-open'); };
       menuButton?.addEventListener('click', () => {
         const open = menuButton.getAttribute('aria-expanded') !== 'true';
         menuButton.setAttribute('aria-expanded', String(open));
-        menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        menuButton.setAttribute('aria-label', (open ? menuButton.dataset.menuClose : menuButton.dataset.menuOpen) ?? 'Open navigation');
         document.querySelector('#site-navigation')?.classList.toggle('is-open', open);
       });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeNavigation(); document.querySelectorAll<HTMLDetailsElement>('.more-nav').forEach((details) => details.open = false); } });

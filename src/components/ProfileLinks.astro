@@ -1,6 +1,9 @@
 ---
 import Icon from './Icon.astro';
-import { site } from '../data/site';
+import { type Locale, getSiteCopy } from '../lib/i18n';
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const site = getSiteCopy(lang);
 const profiles = [
   { icon: 'mail', label: site.email, href: `mailto:${site.email}` },
   { icon: 'github', label: 'github.com/EonSJeon', href: site.github },
@@ -9,6 +12,6 @@ const profiles = [
   { icon: 'linkedin', label: 'LinkedIn', href: site.linkedin },
 ];
 ---
-<ul class="profile-links" aria-label="Contact and academic profiles">
+<ul class="profile-links" aria-label={lang === 'ko' ? '연락처와 학술 프로필' : 'Contact and academic profiles'}>
   {profiles.map((profile) => <li><a href={profile.href}><Icon name={profile.icon} size={19} /><span>{profile.label}</span></a></li>)}
 </ul>

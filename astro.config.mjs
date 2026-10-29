@@ -9,6 +9,7 @@ export default defineConfig({
   site: 'https://eonsjeon.github.io',
   output: 'static',
   trailingSlash: 'always',
+  i18n: { defaultLocale: 'en', locales: ['en', 'ko'], routing: { prefixDefaultLocale: false } },
   integrations: [mdx(), sitemap()],
   markdown: {
     processor: unified({ remarkPlugins: [remarkMath], rehypePlugins: [rehypeKatex] }),

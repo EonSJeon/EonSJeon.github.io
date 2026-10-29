@@ -5,6 +5,9 @@
 # Temporary owner instructions; durable decisions belong in proj.md.
 /story.md
 
+# Local development progress; never part of the public repository or site.
+/development-status.md
+
 # macOS metadata
 .DS_Store
 

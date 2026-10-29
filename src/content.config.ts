@@ -39,6 +39,7 @@ const common = z.object({
   pubDate: z.coerce.date().optional(),
   updatedDate: z.coerce.date().optional(),
   language: z.enum(['en', 'ko']).default('en'),
+  translationKey: z.string().regex(/^[a-z0-9]+(?:[a-z0-9/-]*[a-z0-9])?$/).optional(),
   authors: z.array(z.string()).optional(),
   venue: z.string().optional(),
   doi: z.string().optional(),
@@ -53,9 +54,12 @@ const loaderFor = (collection: string) => glob({
   generateId: ({ entry }) => {
     const parts = entry.slice(collection.length + 1).replace(/\.(md|mdx)$/i, '').split('/');
     const filename = parts.at(-1);
+    const languageSuffix = filename?.match(/\.(en|ko)$/)?.[0] ?? '';
+    const stem = languageSuffix ? filename!.slice(0, -languageSuffix.length) : filename;
     // Colocated media must not change an entry's existing public address.
-    if (parts.length > 1 && (filename === 'index' || filename === parts.at(-2))) parts.pop();
-    return parts.join('/');
+    if (parts.length > 1 && (stem === 'index' || stem === parts.at(-2))) parts.pop();
+    else if (languageSuffix) parts[parts.length - 1] = stem!;
+    return parts.join('/') + languageSuffix;
   },
 });
 
