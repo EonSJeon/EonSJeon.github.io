@@ -31,7 +31,11 @@ const common = z.object({
   contribution: z.string().optional(),
   collaborators: z.array(collaborator).default([]),
   links: z.array(link).default([]),
-  video: z.object({ youtubeId: z.string().regex(/^[\w-]{11}$/), title: z.string().min(1) }).optional(),
+  video: z.object({
+    youtubeId: z.string().regex(/^[\w-]{11}$/),
+    title: z.string().min(1),
+    caption: z.string().min(1).optional(),
+  }).optional(),
   pubDate: z.coerce.date().optional(),
   updatedDate: z.coerce.date().optional(),
   language: z.enum(['en', 'ko']).default('en'),

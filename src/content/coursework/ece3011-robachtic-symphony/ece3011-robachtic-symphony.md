@@ -1,6 +1,6 @@
 ---
 title: "RoBACHtic Symphony — Educational Robotic Violin Kit"
-summary: "A piano-style keyboard controls a robotic violin-bowing mechanism and electronic note tones. Mechanical design and fabrication for a team-built educational demonstrator."
+summary: "An educational robot that connects piano-keyboard input to violin bow movement and electronic note tones. I led mechanical design and fabrication for this four-person Junior Design project."
 categoryLabel: "Junior Design"
 status: "Completed coursework prototype"
 period: "2023"
@@ -16,6 +16,7 @@ contribution: "Led mechanical design and fabrication, including SolidWorks model
 video:
   youtubeId: "gud--ybyr-s"
   title: "RoBACHtic Symphony — educational robotic violin demonstration"
+  caption: "The team's prototype in action: keyboard input controls the bowing mechanism while the micro:bit speaker produces electronic note tones."
 collaborators:
   - name: "Victoriano Alfaro"
     role: "Electrical design"
@@ -38,28 +39,44 @@ links:
 
 ## A physical connection between music and code
 
-RoBACHtic Symphony was developed by a four-person team for Georgia Tech's ECE 3011 Junior Design course. The project explored an educational kit for fifth-grade STEAM activities, connecting keyboard input to violin-string selection, bow movement, and electronically generated note tones.
+RoBACHtic Symphony was developed by a four-person team for Georgia Tech's ECE 3011 — Design Fundamentals course in 2023. The project explored an educational kit for fifth-grade STEAM activities, making the connection between musical notes and violin bow movement visible through a physical model.
 
-The team combined a piano-style keyboard, microcontroller control, servo-driven mechanisms, and a scaled violin model. The final demonstration used the micro:bit's speaker for note output while the robotic arm moved between string positions.
+The team combined a piano-style keyboard, a BBC micro:bit, servo-driven mechanisms, and a scaled violin model. My role was to lead mechanical design and fabrication, from SolidWorks models to the assembled hardware.
+
+<figure>
 
 ![Front views of the completed RoBACHtic Symphony prototype, showing the keyboard, wooden frame, violin model, and bow mechanism.](./Front_View_of_RoBachtic_Symphony_Final_Build_pic1.png)
 
-*Front views of the team's completed prototype.*
+<figcaption>Two front views of the completed prototype, showing the piano-style keyboard, violin model, geared bow mechanism, and laser-cut enclosure.</figcaption>
+</figure>
+
+## From a key press to bow movement
+
+The keyboard supplies note input to the controller, which coordinates two outputs: the robotic arm's position relative to the violin strings and an electronic note from the micro:bit's built-in speaker. Octave buttons change the available note range.
+
+In the final demonstration, the team exercised all 12 piano keys in two octave ranges and showed the arm moving to the string position mapped to the selected note. The mechanism also demonstrated basic up/down bow movement. The sound came from the micro:bit speaker; acoustic violin performance was not established.
 
 ## Mechanical design and fabrication
 
-I led the mechanical portion of the project: creating and updating SolidWorks models, building mechanical components, fabricating laser-cut wooden parts, and revising the design through motion checks and subsystem integration testing.
+I created and updated the SolidWorks models, built the mechanical components, and fabricated the laser-cut wooden parts. The assembly brought together the shoulder and elbow mechanisms, a servo-driven linear bow, and housings for the keyboard and main electronics.
 
-![Labeled SolidWorks model and assembled RoBACHtic Symphony prototype, identifying the keyboard and bowing mechanism.](./Alt_View_of_RoBachtic_Symphony_Final_Build_pics.png)
+The mechanical work required repeated fit and motion checks as the subsystems came together. The team checked that the 3D-printed and laser-cut parts fit the electrical components and verified the alignment of the frame's mounting holes before assembly. I revised the mechanical design in response to testing and integration feedback.
 
-*The mechanical layout, from CAD to the assembled demonstrator.*
+<figure>
+
+![Labeled SolidWorks model above the assembled prototype, identifying the shoulder, elbow, and bow-movement servos, linear bow, keyboard, and electronics housings.](./Alt_View_of_RoBachtic_Symphony_Final_Build_pics.png)
+
+<figcaption>From SolidWorks to the physical build: the labeled views locate the three actuation mechanisms, linear bow, keyboard, and electronics housings.</figcaption>
+</figure>
 
 ## An educational kit and lesson plan
 
-The four-person team brought together electrical, computer, and mechanical design work. Alongside the prototype, we prepared a design document, bill of materials, lesson plan, and project notebook. The lesson plan was designed around Georgia's fifth-grade Music and Computer Science Standards of Excellence, connecting musical notes and bow positions to programmable physical actions.
+Alongside the prototype, the team prepared a design document, bill of materials, lesson plan, and project notebook. The lesson plan was designed around Georgia's fifth-grade Music and Computer Science Standards of Excellence, connecting musical notes and bow positions to programmable physical actions.
+
+The proposed activities moved from reading sheet music and discussing digital sound to kit assembly, guided practice, and composing a short melody for peer review. These were planned classroom activities; learning gains were not evaluated in the project.
 
 The [final document package](https://github.com/BellLabsEra/RoBACHtic-Symphony/blob/main/ECE3011%20Team%20C2%20Final%20Document%20Package.pdf) includes the design document, lesson plan, and bill of materials.
 
 ## Demonstrated scope
 
-The final report documents keyboard-controlled string positioning, basic up/down bow movement, and electronic note output with octave selection. Advanced articulation controls, full LED indication, and external audio amplification remained incomplete. The result was an educational demonstrator; acoustic violin performance and classroom learning gains were not established by the available evidence.
+The completed prototype demonstrated keyboard-controlled string positioning, basic bow movement, and electronic note output with octave selection. Staccato and legato controls, full string-indicator LED operation, and external audio amplification remained incomplete. The result was a working educational demonstrator with a supporting lesson plan.

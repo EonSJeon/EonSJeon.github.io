@@ -1,6 +1,6 @@
 # Personal Academic Website Implementation Brief
 
-Updated: 2026-10-25. Repository: `EonSJeon/EonSJeon.github.io`.
+Updated: 2026-10-28. Repository: `EonSJeon/EonSJeon.github.io`.
 
 ## 1. Objective and next task
 
@@ -22,7 +22,7 @@ Read the relevant references before writing each entry. These are local editoria
 | TI-ADC / OFDM research | `reference-private/tiadc_ofdm_project_website_reference.md` | Project summary, period, manuscript status, collaborator order and supplied links |
 | When to Eat | `reference-private/KAIST_Makerathon_When_to_Eat_Website_Summary.md` | Independent project, Grand Prize, implementation, team and repository |
 | Venus Flytrap | `reference-private/Venus_Flytrap_Senior_Design_Website_Reference.md` | ECE 4723 capstone, final digital system, demonstrated outcomes and contribution |
-| RoBACHtic Symphony | `reference-private/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` | ECE 3011 Junior Design, mechanical contribution, limitations and supplied links |
+| RoBACHtic Symphony | `reference-private/ECE3011/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` and the final document package in that folder | ECE 3011 Junior Design, mechanical contribution, limitations, demonstration and lesson-plan details |
 | Electronics Design Lab | `reference-private/KAIST_EE305_Coursework_Website_Reference.md` | One consolidated EE305 entry with selected internal highlights |
 | Robotic Tic-Tac-Toe | `reference-private/EE405_Coursework_Website_Reference.md` | One EE405 implementation entry, supporting labs and unknown metadata |
 | CV/Resume documents | `reference-private/CV-Resume/` | Biography and dated document downloads; see Section 7 |
@@ -91,6 +91,8 @@ These are initial display priorities, editable through content data. Keep Venus 
 **RoBACHtic Symphony:** Emphasize mechanical design and fabrication using SolidWorks, 3D printing, laser cutting, and integration testing. Attribute overall system development to the team. The final demonstration combined robotic bow/string-position movement with electronically generated micro:bit tones; do not claim acoustic violin performance, recorded violin-sample playback, complete articulation controls, or validated classroom outcomes. The report submission date, December 14, 2023, is not an exact project-completion date. Use the owner-confirmed collaborator names/links and supplied repositories. Do not attribute another author's first-person software-lead statement to Jeon.
 
 The owner supplied and selected two PNGs in `src/content/coursework/ece3011-robachtic-symphony/`: front views of the final build and the labeled CAD/build comparison. Display both with meaningful alt text and captions. Embed the supplied demonstration, `https://youtu.be/gud--ybyr-s`, directly on the page using a responsive, click-to-play YouTube privacy-enhanced player and a normal YouTube fallback link. Link the original team's final design-document/lesson-plan/BOM package. The temporary project `README.md` has been incorporated into `ece3011-robachtic-symphony.md` and removed as instructed; retain the root repository README. Describe the lesson plan's fifth-grade Music/Computer Science curriculum alignment as a design goal, not a measured educational result.
+
+The owner's October 28 ECE3011 update adds local report, photo, README, and video references under `reference-private/ECE3011/`. Supplement the article with the report's final demonstration (12 keys in two octave ranges), mechanical fit and mounting-hole checks, labeled actuation mechanisms, and proposed lesson activities. Present photos and the video with semantic figure captions. Keep the two distinct existing visuals; the additional front-view PNG is near-duplicate imagery. Continue using the selected YouTube embed rather than copying the 250 MB source video into the site. Keep the raw report and original README as local references; the report's contribution section remains authoritative over the README's first-person software attribution.
 
 **EE305:** Publish one course entry. Feature the MATLAB PCM/QPSK/convolutional-coding/Viterbi simulation and breadboard ALU calculator as its two primary internal highlights. Summarize the ATmega128A stopwatch, analog audio filtering, and foundational labs more briefly. Distinguish simulated communication from physical hardware experiments. Do not present the specific four-state decoder as general-purpose, the calculator as a CPU, or group participation as sole authorship. Collaborator names/spellings and public reuse of report figures still need confirmation.
 
@@ -255,6 +257,6 @@ For continued implementation and maintenance:
 4. Start a local preview and inspect Home, a research detail, When to Eat, all coursework types, CV, and mobile navigation. Resolve layout and route problems before reporting completion.
 5. Run the production build, applicable type/schema checks, and focused checks that unapproved content and assets are absent from every release surface. Check stable routes after folder moves, local images/links, document targets, mobile navigation, contact navigation/copy behavior, the inline video, white-background rendering, and root-path hosting. Test behavior that can fail; avoid tests that merely restate static copy.
 6. Expand the root README with setup, preview/build commands, adding/editing entries, publication states, changing display order, maintaining DOCX/PDF pairs, asset selection, and the GitHub Pages release procedure.
-7. Report what is implemented, validation results, and the few unresolved content/asset choices. Commit, push, configure Pages, or deploy when explicitly authorized for that stage; honor authorization already given and do not ask twice.
+7. Report what is implemented, validation results, and the few unresolved content/asset choices. The owner's October 28 instruction authorizes periodic local commits of completed work. Commit useful, validated increments as work proceeds. Do not push, configure Pages, or publish yet; the owner plans to publish after the site is complete and will authorize that stage separately.
 
 The build is ready for review when the selected sections work end to end, the seven entries retain their correct categories/statuses, the two empty editorial sections are intentional, document links are clear and dated, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.

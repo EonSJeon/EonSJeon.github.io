@@ -89,9 +89,10 @@ Keep only reviewed shared/download assets under `public/` and reviewed entry-spe
 video:
   youtubeId: "gud--ybyr-s"
   title: "A descriptive title for the demonstration"
+  caption: "Optional context describing what the demonstration shows."
 ```
 
-The schema validates the video ID. The shared player is lazy-loaded and does not autoplay. External video links remain the default when embedding has not been selected.
+The schema validates the video ID. The shared player is lazy-loaded and does not autoplay. Its optional caption appears below the player alongside a YouTube fallback link. Use `<figure>` and `<figcaption>` around Markdown images (with blank lines around the Markdown image) for a caption that stays grouped with the photo. External video links remain the default when embedding has not been selected.
 
 ## GitHub Pages release
 
