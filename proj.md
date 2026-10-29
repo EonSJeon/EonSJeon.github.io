@@ -174,6 +174,8 @@ The owner explicitly confirmed the GPAs for the website: **KAIST 3.95/4.3** and 
 
 The owner confirmed on October 29 that **Jinseok Choi (최진석)** was their advisor at KAIST. Show `Advisor: Jinseok Choi` with the KAIST education entry on About.
 
+The owner also confirmed that **Xiaoli Ma** was their Georgia Tech M.S. advisor. Show `Advisor: Xiaoli Ma` with the M.S. education entry as well as the existing Ph.D. entry on About.
+
 Use the industrial one-page PDF as the most recent available document candidate and the full resume as a separately dated comprehensive document. Do not call the 2025 full resume current as of 2026, silently merge incompatible claims, or rewrite source documents as part of the website build. Targeted older CVs need not all be prominent site downloads; the CV page should offer a clear primary choice and dates, with additional versions only where useful.
 
 Repository tracking and website presentation are separate decisions. **PDF and DOCX files are both intentionally committed to the main website repository**, including recoverable old versions. Do not ignore, untrack, delete, or move DOCX files to a separate repository. For a future document revision, review matching DOCX/PDF together and commit the matching pair when both exist.
