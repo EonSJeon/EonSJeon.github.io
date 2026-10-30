@@ -21,6 +21,8 @@ authors:
   - "Glenn F. Pierce"
 coFirstAuthors: ["Yi Deun Jeong", "Sangeon Jeon", "Yejun Son", "Soeun Kim"]
 collaborators:
+  - name: "Glenn F. Pierce"
+    url: "https://genetherapy.isth.org/glenn-f-pierce-md-phd"
   - name: "Yi Deun Jeong"
     url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
   - name: "Dong Keon Yon"
@@ -28,10 +30,14 @@ collaborators:
     url: "http://cdh.khu.ac.kr/%EB%B6%80%EC%84%BC%ED%84%B0%EC%9E%A5-%EC%86%8C%EA%B0%9C"
   - name: "Center for Digital Health, Kyung Hee University"
     url: "http://cdh.khu.ac.kr/"
+  - name: "World Federation of Hemophilia (WFH)"
+    url: "https://wfh.org/"
 tags: ["Bayesian modeling", "Hemophilia", "Population health", "PyMC", "Scenario analysis"]
 ---
 
 ## Connecting disease burden and treatment resources
+
+This project is a collaboration with the [Center for Digital Health at Kyung Hee University](http://cdh.khu.ac.kr/) and the [World Federation of Hemophilia (WFH)](https://wfh.org/).
 
 Understanding hemophilia at a population level involves several related questions: how many people may be affected, how treatment products are procured, and how estimated requirements compare with available resources. This project brings those questions into a connected statistical modeling workflow for hemophilia A and B.
 
