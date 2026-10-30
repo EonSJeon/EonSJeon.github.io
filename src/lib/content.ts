@@ -28,7 +28,7 @@ export async function getPublicEntries<C extends PublicCollection>(collection: C
     slugs.add(slug);
   }
   return entries.sort((a, b) => {
-    if (collection === 'blog') {
+    if (collection === 'blog' || collection === 'publications') {
       const byDate = (b.data.pubDate?.getTime() ?? 0) - (a.data.pubDate?.getTime() ?? 0);
       if (byDate) return byDate;
     }

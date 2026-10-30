@@ -98,7 +98,7 @@ export const collections = {
   }),
   publications: defineCollection({
     loader: loaderFor('publications'),
-    schema: common,
+    schema: (context) => common(context).extend({ coFirstAuthors: z.array(z.string()).default([]) }),
   }),
   projects: defineCollection({
     loader: loaderFor('projects'),

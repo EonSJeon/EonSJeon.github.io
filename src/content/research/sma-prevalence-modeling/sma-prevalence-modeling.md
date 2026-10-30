@@ -2,11 +2,21 @@
 title: "Bayesian Meta-analysis of SMA Prevalence"
 summary: "A collaborative study organizing spinal muscular atrophy prevalence evidence into newborn, child, and all-age estimates at country, regional, and global levels."
 categoryLabel: "Meta Analysis"
-status: "Research project"
+status: "Published"
+relatedManuscript: "sma-global-prevalence"
+links:
+  - label: "Paper (DOI)"
+    url: "https://doi.org/10.1016/j.pediatrneurol.2026.04.005"
 researchArea: "meta-analysis"
 displayOrder: 50
 featured: false
 approvedForPublication: true
+contribution: "Co-first author"
+collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian modeling", "Spinal muscular atrophy", "Evidence synthesis", "Population weighting", "PyMC"]
 ---
 

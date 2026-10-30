@@ -2,11 +2,21 @@
 title: "Bayesian Meta-analysis of OCD Prevalence"
 summary: "A hierarchical synthesis of obsessive-compulsive disorder prevalence evidence across prevalence periods, diagnostic definitions, broad age groups, and geographic levels."
 categoryLabel: "Meta Analysis"
-status: "Research project"
+status: "Published"
+relatedManuscript: "ocd-related-disorders-prevalence"
+links:
+  - label: "Paper (DOI)"
+    url: "https://doi.org/10.1176/appi.ajp.20250944"
 researchArea: "meta-analysis"
 displayOrder: 40
 featured: false
 approvedForPublication: true
+contribution: "Co-first author"
+collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian meta-analysis", "OCD", "Hierarchical models", "PyMC", "ArviZ"]
 ---
 

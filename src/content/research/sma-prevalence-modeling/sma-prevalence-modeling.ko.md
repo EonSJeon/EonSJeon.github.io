@@ -2,13 +2,23 @@
 title: "척수성 근위축증 유병률의 Bayesian 메타분석"
 summary: "척수성 근위축증 유병률 문헌을 신생아·소아·전체 연령으로 구분하고, 국가·지역·전 세계 수준의 추정으로 연결하는 공동 연구입니다."
 categoryLabel: "Meta Analysis"
-status: "연구 프로젝트"
+status: "게재 완료"
+relatedManuscript: "sma-global-prevalence"
+links:
+  - label: "논문 (DOI)"
+    url: "https://doi.org/10.1016/j.pediatrneurol.2026.04.005"
 researchArea: "meta-analysis"
 language: ko
 translationKey: "sma-prevalence-modeling"
 displayOrder: 50
 featured: false
 approvedForPublication: true
+contribution: "공동 제1저자"
+collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian 모델링", "척수성 근위축증", "문헌 종합", "인구 가중", "PyMC"]
 ---
 

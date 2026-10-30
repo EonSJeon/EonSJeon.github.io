@@ -8,7 +8,7 @@ Build a minimal, polished personal academic website on GitHub Pages. Research an
 
 The initial portfolio contains **six research projects, one independent makerathon project, and four coursework entries**. The owner subsequently selected five notebook ideas for Proposals through the October 29 request described below. Blog remains empty.
 
-Maintain the existing Astro implementation with the eleven portfolio entries and five selected proposal concepts. Treat this document as the durable implementation brief. Development progress, remaining tasks, validation records, preview commands, and execution-environment details belong in the ignored English handoff at `development-status.md`. Public release follows the owner's publication instructions and the content boundaries below.
+Maintain the existing Astro implementation with the eleven portfolio entries, three confirmed journal publication records, and five selected proposal concepts. Treat this document as the durable implementation brief. Development progress, remaining tasks, validation records, preview commands, and execution-environment details belong in the ignored English handoff at `development-status.md`. Public release follows the owner's publication instructions and the content boundaries below.
 
 Implement in this existing repository. Preserve the CV/Resume history already integrated into it. Do not create another repository or move the build to a hosted website-builder service.
 
@@ -64,7 +64,7 @@ Create a distinct research collection, index, and detail pages. Research project
 Keep research prominent on Home. Do not label coursework or the makerathon as research to fill this section.
 
 
-**Meta Analysis:** Group the four new disease-modeling entries (HEM, OCD, SMA, AMD) under **Meta Analysis / 메타분석**, the owner-confirmed field name. Do not label the field or SMA project as Literature-Based. Use the prepared guides for restrained bilingual research questions and computational approaches. Omit unconfirmed dates, affiliations, authorship, personal contributions, publication metadata and numerical medical results. Only the selected OCD posterior-predictive diagnostic is shown, clearly as a model check; do not use the problematic HEM/AMD result charts or invent absent SMA figures. Keep OCD distinct from the OCDM communications waveform. The communications research remains first on Home and Research.
+**Meta Analysis:** Group the four disease-modeling entries (HEM, OCD, SMA, AMD) under **Meta Analysis / 메타분석**, the owner-confirmed field name. Do not label the field or SMA project as Literature-Based. Use the prepared guides for restrained bilingual research questions and computational approaches. OCD, SMA, and AMD now have owner-confirmed published papers and co-first authorship; link their research pages to the publication records below. HEM remains a research project without a confirmed publication record. Omit other unconfirmed dates, affiliations, personal contributions and numerical medical results. Only the selected OCD posterior-predictive diagnostic is shown, clearly as a model check; do not use the problematic HEM/AMD result charts or invent absent SMA figures. Keep OCD distinct from the OCDM communications waveform. The owner's latest instruction removes the Meta Analysis section from Home; retain it on Research and Publications. Add Bayesian inference to Home and About research interests in both languages.
 
 **Engineering media:** Use selected real prototype/device/interface photos from the prepared Engineering_Projects collection for When to Eat, Venus Flytrap and RoBACHtic. Keep content and covers colocated, use typed optimized Astro image metadata, meaningful bilingual captions, responsive cards and galleries, and a lightweight article contents navigation. Preserve pixels/orientation and remove unneeded camera metadata in selected web copies. No fabricated prototypes, measured performance, classroom validation or unsupported ownership.
 
@@ -108,7 +108,15 @@ The owner's October 28 ECE3011 update adds local report, photo, README, and vide
 
 **Publications:** Provide a publication page capable of separating Published/Accepted work from Under Review manuscripts. OCDM can appear in an explicitly labeled Under Review subsection with a link to its research page. The TI-ADC manuscript is now also shown Under Review, submitted to ICC 2027, as explicitly confirmed by the owner. Retain its descriptive title without fabricating a formal bibliographic record. Do not fabricate bibliographic fields, dates, acceptance, DOI, or paper links to fill a publication card.
 
-The older full resume and newer industrial CV contain disease-modeling manuscript entries with different dated statuses. Do not automatically turn these into current peer-reviewed publication records or additional research pages. Include them only after their current titles, authorship, venue/status, public links, and suitable summary are confirmed. Missing publication records must not block the rest of the build.
+On October 29 the owner supplied the published titles, complete ordered author lists, journal names, publication dates and public links for three Meta Analysis papers. Register these as Published in both languages, preserving the official English titles and author order. Show the owner's name prominently with a co-first-author mark and legend on all three. The owner confirms their co-first authorship across these three papers; do not infer other authors' equal-contribution marks. Link Yi Deun Jeong to `https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en` and credit the collaboration with [Center for Digital Health, Kyung Hee University](http://cdh.khu.ac.kr/). Keep these links on the corresponding Research pages as well.
+
+| Publication route | Journal | DOI | Owner-supplied date |
+| --- | --- | --- | --- |
+| `/publications/amd-global-burden/` | Ophthalmology Retina | `10.1016/j.oret.2026.09.019` | 2026-09-19 |
+| `/publications/ocd-related-disorders-prevalence/` | American Journal of Psychiatry | `10.1176/appi.ajp.20250944` | 2026-07-08 |
+| `/publications/sma-global-prevalence/` | Pediatric Neurology | `10.1016/j.pediatrneurol.2026.04.005` | 2026-04-20 (online) |
+
+Display journal/year and DOI, order published records newest first, and cross-link each record with its corresponding Research entry. Keep Published separate from the ICASSP/ICC Under Review manuscripts. Publication status alone does not establish a particular retained code revision's complete agreement with the published analysis. Do not rewrite the dated CV/Resume source documents or infer an additional HEM publication from older manuscript entries.
 
 **Blog / Ideas — individual review required:** Keep unpublished writing in ignored `reference-private/writing-review/`. Do not commit notebook-derived articles until the owner explicitly approves each finished article. Earlier bulk selections do not authorize publication. Preserve the empty collection indexes and per-language release controls.
 
@@ -116,17 +124,17 @@ The older full resume and newer industrial CV contain disease-modeling manuscrip
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Academic introduction, selected research, selected independent work, restrained coursework preview, and released writing/proposals when available |
+| `/` | Academic introduction, selected communications research, selected independent work, restrained coursework preview, and released writing when available; no Meta Analysis or Ideas preview |
 | `/about` | Short biography, education, research interests, and selected experience |
 | `/research` and `/research/[slug]` | The two initial research entries and later verified research projects |
 | `/publications` | Accurate bibliographic records with clear publication-status groupings |
 | `/projects` and `/projects/[slug]` | Independent engineering work, initially When to Eat |
 | `/coursework` and `/coursework/[slug]` | The four course-based entries |
 | `/blog` and `/blog/[slug]` | Released writing |
-| `/proposals` and `/proposals/[slug]` | Selected forward-looking proposals |
+| `/proposals` and `/proposals/[slug]` | Ideas; retain these existing URLs |
 | `/cv` | Clearly dated CV/Resume document choices |
 
-Navigation should stay compact. Use a grouped menu where necessary; Research, Coursework, and Proposals must remain clearly named and reachable. Contact can be a small About/footer section rather than another top-level route.
+Navigation should stay compact. Use a grouped menu where necessary; Research, Coursework, and Ideas must remain clearly named and reachable. Contact can be a small About/footer section rather than another top-level route.
 
 Home should open with Sangeon Jeon's name, a concise academic identity, research interests, and these **five icon links visible in the introductory screen**, with accessible text labels:
 
@@ -148,7 +156,7 @@ Follow the introduction with the two research entries, one independent-project f
 - Host on GitHub Pages for the user-site root `https://eonsjeon.github.io/`, with GitHub Actions for deployment. Do not add a repository-name base path for this user-site repository.
 - Use a clean **white background**, readable typography, comfortable text widths, clear hierarchy, generous spacing, neutral text/borders, and a limited accent color. The header uses the owner's plain name; do not invent an initials mark, brand logo, or custom logo favicon.
 - Provide responsive desktop/mobile navigation, accessible semantic HTML, visible keyboard focus, meaningful link text, and sufficient contrast.
-- Provide full Korean and English versions. Preserve existing English URLs, and use `/ko/` for Korean pages, including Home, About, CV, 404, all indexes and sixteen selected article translations. Keep a visible `한국어` / `English` selector in the header on desktop and mobile, with the current language marked. Switch to the same article when its approved translation exists; otherwise link to the target-language collection index and advertise no nonexistent translation in hreflang metadata.
+- Provide full Korean and English versions. Preserve existing English URLs, and use `/ko/` for Korean pages, including Home, About, CV, 404, all indexes and nineteen selected article translations. Keep a visible `한국어` / `English` selector in the header on desktop and mobile, with the current language marked. Switch to the same article when its approved translation exists; otherwise link to the target-language collection index and advertise no nonexistent translation in hreflang metadata.
 - The owner works directly in Korean. Keep editable `<slug>.ko.md` beside each English `<slug>.md`, paired by `translationKey`. Filter routes, lists, Home previews, and RSS by language and release flags. Korean-only authoring must work without an English placeholder. Localize document language, canonical/alternate URLs, metadata, UI, captions, and contact feedback. Do not turn the notes or unapproved translations into public entries automatically.
 - Display the owner's exact Hanja name **全商彥** alongside 전상언 and Sangeon Jeon on both Home versions.
 - Keep Korean prose natural without translating every proper name or interface label. The owner prefers **CV** in navigation, **CV & Resume** for the document page, **코스웍** as the compact coursework menu label, and **수업 프로젝트** in descriptive text. Retain **Georgia Institute of Technology / Georgia Tech**, **Electrical & Computer Engineering** in institutional labels, and **Atlanta, Georgia** in English on Korean pages.

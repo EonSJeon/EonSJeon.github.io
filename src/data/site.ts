@@ -13,7 +13,7 @@ export const site = {
   orcid: 'https://orcid.org/0009-0001-5883-0774',
   linkedin: 'https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/',
   advisor: { name: 'Xiaoli Ma', url: 'https://xma-ultra-signals.github.io/' },
-  interests: ['Wireless communications', 'Synchronization', 'Statistical signal estimation'],
+  interests: ['Wireless communications', 'Synchronization', 'Statistical signal estimation', 'Bayesian inference'],
 };
 
 export const sections = {
@@ -31,14 +31,14 @@ export const sections = {
   },
   publications: {
     label: 'Publications', eyebrow: 'Manuscripts & publications',
-    description: 'Manuscripts with their current submission status. Research in progress is described separately on the Research page.',
+    description: 'Published journal articles and manuscripts under review, with links to the papers and related research.',
   },
   blog: {
     label: 'Writing', eyebrow: 'Notes & observations',
     description: 'A space for technical notes, engineering explanations, and longer reflections.',
   },
   proposals: {
-    label: 'Proposals', eyebrow: 'Questions worth exploring',
+    label: 'Ideas', eyebrow: 'Questions worth exploring',
     description: 'Research questions and project ideas, with tentative approaches and open questions.',
   },
 } as const;

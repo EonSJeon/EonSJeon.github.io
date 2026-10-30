@@ -2,13 +2,23 @@
 title: "강박장애 유병률의 Bayesian 메타분석"
 summary: "강박장애 유병률 자료를 유병 기간, 진단 기준, 연령군과 지리적 계층의 차이를 반영해 종합하는 통계 모델링 연구입니다."
 categoryLabel: "Meta Analysis"
-status: "연구 프로젝트"
+status: "게재 완료"
+relatedManuscript: "ocd-related-disorders-prevalence"
+links:
+  - label: "논문 (DOI)"
+    url: "https://doi.org/10.1176/appi.ajp.20250944"
 researchArea: "meta-analysis"
 language: ko
 translationKey: "ocd-prevalence-meta-analysis"
 displayOrder: 40
 featured: false
 approvedForPublication: true
+contribution: "공동 제1저자"
+collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian 메타분석", "OCD", "계층모형", "PyMC", "ArviZ"]
 ---
 

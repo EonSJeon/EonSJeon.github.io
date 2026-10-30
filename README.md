@@ -29,13 +29,13 @@ Content lives in six distinct collections under `src/content/`:
 - `projects/`: independent engineering work and makerathon prototypes.
 - `coursework/`: course-based projects, including Senior Design, Junior Design, and laboratory work.
 - `blog/`: released English or Korean writing.
-- `proposals/`: selected, clearly tentative future work.
+- `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), When to Eat, four coursework entries, and five selected proposal concepts. Proposals have their own summaries, first experiments, and related-work links, with the first three previewed on Home. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and five selected ideas. Publications separates published articles from the two communications manuscripts under review. Home features communications research; Meta Analysis remains on Research and Publications, and Ideas is accessible through navigation without a Home preview. Ideas have their own summaries, first experiments, and related-work links. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
 
 ## Korean and English authoring
 
-Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all sixteen selected articles have Korean versions.
+Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all nineteen selected articles have Korean versions.
 
 Edit the Korean Markdown directly, beside its English counterpart:
 
@@ -94,7 +94,9 @@ collaborators: []
 ---
 ```
 
-Use lower `displayOrder` values to show an entry earlier. Blog posts sort newest first by `pubDate`; proposals use `priority` when provided, falling back to `displayOrder`. `featured` controls selections in components that feature entries. Keep unknown optional metadata omitted, especially unverified affiliations, contributions, exact dates, or final demonstration claims. Coursework entries require `courseCode`; use the schema's course type and optional institution/title fields.
+Use lower `displayOrder` values to show an entry earlier. Blog posts and publications sort newest first by `pubDate`; Ideas uses `priority` when provided, falling back to `displayOrder`. `featured` controls selections in components that feature entries. Keep unknown optional metadata omitted, especially unverified affiliations, contributions, exact dates, or final demonstration claims. Coursework entries require `courseCode`; use the schema's course type and optional institution/title fields.
+
+Publication records preserve ordered `authors`, `venue`, `pubDate`, and verified `doi`. `coFirstAuthors` lists only confirmed equal contributors by their exact author names and produces a † mark and legend. Add supplied author profile links through matching names in `collaborators`; organizations in that list appear as collaboration credits. Pair a publication's `relatedResearch` with the research entry's `relatedManuscript` slug to enable links between released pages in the same language.
 
 The profile, education history/GPAs, and collection descriptions are in `src/data/site.ts`. Home displays icon links for school email, GitHub, Google Scholar, ORCID, and LinkedIn. Keep public contact choices there rather than scraping them from older CV documents. **Get in touch** opens About's contact section, which includes a readable email address, a mail link, and clipboard copying. The design uses a consistent white background and a plain-text name in the header.
 

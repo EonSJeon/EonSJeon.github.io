@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { Image } from 'astro:assets';
-import { hrefForEntry, type PublicEntry } from '../lib/content';
+import { hrefForEntry, isUnderReview, type PublicEntry } from '../lib/content';
 import type { Locale } from '../lib/i18n';
 interface Props { entry: PublicEntry; compact?: boolean; lang?: Locale; }
 const { entry, compact = false, lang = entry.data.language } = Astro.props;
@@ -14,6 +14,6 @@ const d = entry.data;
   <h3><a href={hrefForEntry(entry)}>{d.title}<Icon name="arrow-up-right" size={22} /></a></h3>
   <p>{d.summary}</p>
   {!compact && <ul class="tags" aria-label={lang === 'ko' ? '주제' : 'Topics'}>{d.tags.slice(0, 4).map((tag) => <li>{tag}</li>)}</ul>}
-  <div class="card-bottom"><span class:list={['status', { 'status-review': entry.collection === 'research' }]}>{d.status}</span></div>
+  <div class="card-bottom"><span class:list={['status', { 'status-review': isUnderReview(entry) }]}>{d.status}</span></div>
   </div>
 </article>

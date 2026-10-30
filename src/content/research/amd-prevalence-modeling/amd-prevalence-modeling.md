@@ -2,11 +2,21 @@
 title: "Stage-Specific Modeling of Age-Related Macular Degeneration"
 summary: "Statistical modeling of age-related macular degeneration prevalence and disease burden across disease stages, age, sex, geography, and ancestry-specific age curves."
 categoryLabel: "Meta Analysis"
-status: "Research project"
+status: "Published"
+relatedManuscript: "amd-global-burden"
+links:
+  - label: "Paper (DOI)"
+    url: "https://doi.org/10.1016/j.oret.2026.09.019"
 researchArea: "meta-analysis"
 displayOrder: 60
 featured: false
 approvedForPublication: true
+contribution: "Co-first author"
+collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian modeling", "Age-related macular degeneration", "Age curves", "Population health", "PyMC"]
 ---
 

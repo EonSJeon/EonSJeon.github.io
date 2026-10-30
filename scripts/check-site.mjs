@@ -21,6 +21,9 @@ const englishRoutes = [
   '/coursework/electronics-design-lab/',
   '/research/hemophilia-resource-modeling/', '/research/ocd-prevalence-meta-analysis/',
   '/research/sma-prevalence-modeling/', '/research/amd-prevalence-modeling/',
+  '/publications/ocd-related-disorders-prevalence/',
+  '/publications/sma-global-prevalence/',
+  '/publications/amd-global-burden/',
   '/coursework/ee405-robotic-tic-tac-toe/',
 ];
 const requiredRoutes = [...englishRoutes, ...englishRoutes.map((route) => `/ko${route}`), '/ko/404/'];
