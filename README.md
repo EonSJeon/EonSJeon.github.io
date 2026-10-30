@@ -31,7 +31,7 @@ Content lives in six distinct collections under `src/content/`:
 - `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, 41 selected ideas and 16 Blog posts. Publications separates published articles from the two communications manuscripts under review. Home features communications research and recent Blog posts; Meta Analysis remains on Research and Publications, and Ideas is accessible through navigation without a Home preview. Ideas distinguish proposed approaches and first experiments from completed work. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, 41 selected ideas and 16 Blog posts. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Ideas distinguish proposed approaches and first experiments from completed work. Research projects are not automatically published papers.
 
 The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is About, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
 

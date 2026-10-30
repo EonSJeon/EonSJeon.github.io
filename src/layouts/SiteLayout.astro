@@ -53,7 +53,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
         <a class="site-brand" href={home} aria-label={lang === 'ko' ? '전상언 홈' : 'Sangeon Jeon, home'}>{site.name}</a>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
-            {(['ko', 'en'] as const).map((locale) => <a data-language={locale} lang={locale} aria-label={locale === 'ko' ? '한국어' : 'English'} href={available[locale] ?? localizePath(languageFallback, locale)} aria-current={lang === locale ? 'page' : undefined} title={available[locale] ? undefined : (locale === 'en' ? 'English translation pending; view the English collection' : '한국어 번역 준비 중 — 한국어 목록 보기')}>{locale === 'ko' ? '한' : 'En'}</a>)}
+            {(['en', 'ko'] as const).map((locale) => <a data-language={locale} lang={locale} aria-label={locale === 'ko' ? '한국어' : 'English'} href={available[locale] ?? localizePath(languageFallback, locale)} aria-current={lang === locale ? 'page' : undefined} title={available[locale] ? undefined : (locale === 'en' ? 'English translation pending; view the English collection' : '한국어 번역 준비 중 — 한국어 목록 보기')}>{locale === 'ko' ? '한' : 'En'}</a>)}
           </nav>
           <button class="icon-button menu-toggle" type="button" aria-label={menuOpen} data-menu-open={menuOpen} data-menu-close={menuClose} aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
         </div>
