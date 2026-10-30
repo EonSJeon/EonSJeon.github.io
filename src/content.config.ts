@@ -43,6 +43,7 @@ const common = ({ image }: SchemaContext) => z.object({
   language: z.enum(['en', 'ko']).default('en'),
   translationKey: z.string().regex(/^[a-z0-9]+(?:[a-z0-9/-]*[a-z0-9])?$/).optional(),
   authors: z.array(z.string()).optional(),
+  coFirstAuthors: z.array(z.string()).default([]),
   venue: z.string().optional(),
   doi: z.string().optional(),
   relatedResearch: z.string().optional(),
@@ -98,7 +99,7 @@ export const collections = {
   }),
   publications: defineCollection({
     loader: loaderFor('publications'),
-    schema: (context) => common(context).extend({ coFirstAuthors: z.array(z.string()).default([]) }),
+    schema: common,
   }),
   projects: defineCollection({
     loader: loaderFor('projects'),

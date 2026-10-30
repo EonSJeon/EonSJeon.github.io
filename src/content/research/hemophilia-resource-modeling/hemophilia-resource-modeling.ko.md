@@ -9,7 +9,22 @@ translationKey: "hemophilia-resource-modeling"
 displayOrder: 30
 featured: false
 approvedForPublication: true
+contribution: "공동 제1저자"
+authors:
+  - "Yi Deun Jeong"
+  - "Sangeon Jeon"
+  - "Yejun Son"
+  - "Soeun Kim"
+  - "Ellia Tootoonchian"
+  - "Donna Coffin"
+  - "Taehwan Park"
+  - "Dong Keon Yon"
+  - "Jeffrey Stonebraker"
+  - "Glenn F. Pierce"
+coFirstAuthors: ["Yi Deun Jeong", "Sangeon Jeon", "Yejun Son", "Soeun Kim"]
 collaborators:
+  - name: "Yi Deun Jeong"
+    url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
   - name: "Dong Keon Yon"
     role: "Project Manager"
     url: "http://cdh.khu.ac.kr/%EB%B6%80%EC%84%BC%ED%84%B0%EC%9E%A5-%EC%86%8C%EA%B0%9C"

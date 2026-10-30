@@ -25,8 +25,9 @@ const relatedResearch = entry.collection === 'publications' && d.relatedResearch
   ? (await getPublicEntries('research', lang)).find((research) => slugForEntry(research) === d.relatedResearch) : undefined;
 const relatedPublication = entry.collection === 'research' && entry.data.relatedManuscript
   ? (await getPublicEntries('publications', lang)).find((paper) => slugForEntry(paper) === entry.data.relatedManuscript) : undefined;
-const collaborators = relatedPublication?.data.authors
-  ? d.collaborators.filter((person) => !relatedPublication.data.authors?.includes(person.name) || person.role) : d.collaborators;
+const researchAuthors = entry.collection === 'research' ? relatedPublication?.data.authors ?? d.authors : undefined;
+const collaborators = researchAuthors
+  ? d.collaborators.filter((person) => !researchAuthors.includes(person.name) || person.role) : d.collaborators;
 ---
 <SiteLayout title={d.title} description={d.summary} lang={lang} article={editorial} languageLinks={languageLinks} languageFallback={collectionPath}>
   <nav class="breadcrumbs" aria-label={ko ? '현재 위치' : 'Breadcrumb'}><a href={localizePath('/', lang)}>{ko ? '홈' : 'Home'}</a><span aria-hidden="true">/</span><a href={localizePath(collectionPath, lang)}>{section.label}</a></nav>
@@ -43,7 +44,7 @@ const collaborators = relatedPublication?.data.authors
       <Content />
     </article>
     <aside class="article-sidebar" aria-label={ko ? '세부정보' : 'Project details'}>
-      {relatedPublication?.data.authors && <section class="sidebar-section research-authors"><h2>{ko ? '공동저자' : 'Authors'}</h2><PublicationAuthors authors={relatedPublication.data.authors} profiles={[...d.collaborators, ...relatedPublication.data.collaborators]} coFirstAuthors={relatedPublication.data.coFirstAuthors} lang={lang} /></section>}
+      {researchAuthors && <section class="sidebar-section research-authors"><h2>{ko ? '공동저자' : 'Authors'}</h2><PublicationAuthors authors={researchAuthors} profiles={[...d.collaborators, ...(relatedPublication?.data.collaborators ?? [])]} coFirstAuthors={relatedPublication?.data.coFirstAuthors ?? d.coFirstAuthors} lang={lang} /></section>}
       {relatedPublication && <section class="sidebar-section"><h2>{ko ? '출판 논문' : 'Publication'}</h2><p><a href={hrefForEntry(relatedPublication)}>{relatedPublication.data.title}</a></p><p>{relatedPublication.data.venue} · {relatedPublication.data.pubDate?.getUTCFullYear()}</p></section>}
       {relatedResearch && <section class="sidebar-section"><h2>{ko ? '관련 연구' : 'Related research'}</h2><p><a href={hrefForEntry(relatedResearch)}>{relatedResearch.data.title}</a></p></section>}
       {d.contribution && <section class="sidebar-section"><h2>{ko ? '담당 역할' : 'My contribution'}</h2><p>{d.contribution}</p></section>}
