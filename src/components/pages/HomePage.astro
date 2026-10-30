@@ -5,6 +5,7 @@ import SectionHeading from '../SectionHeading.astro';
 import WorkCard from '../WorkCard.astro';
 import TokenDiagram from '../TokenDiagram.astro';
 import ProfileLinks from '../ProfileLinks.astro';
+import { Image } from 'astro:assets';
 import { type Locale, localizePath, getSiteCopy } from '../../lib/i18n';
 import { getPublicEntries, hrefForEntry } from '../../lib/content';
 interface Props { lang?: Locale; }
@@ -15,6 +16,7 @@ const [research, projects, coursework, writing, proposals] = await Promise.all([
   getPublicEntries('research', lang), getPublicEntries('projects', lang), getPublicEntries('coursework', lang), getPublicEntries('blog', lang), getPublicEntries('proposals', lang),
 ]);
 const selectedResearch = research.filter((entry) => entry.data.featured).slice(0, 2);
+const metaResearch = research.filter((entry) => entry.data.researchArea === 'meta-analysis');
 const selectedCoursework = coursework.filter((entry) => entry.data.featured).slice(0, 2);
 const project = projects.find((entry) => entry.data.featured);
 const c = ko ? {
@@ -58,10 +60,15 @@ const c = ko ? {
     <SectionHeading title={c.research} label={c.researchLabel} href={localizePath('/research/', lang)} linkText={c.allResearch} id="research-heading" />
     <div class="work-grid">{selectedResearch.map((entry) => <WorkCard entry={entry} lang={lang} />)}</div>
   </section>
+  {metaResearch.length > 0 && <section class="home-section modeling-section" aria-labelledby="modeling-heading">
+    <SectionHeading title="Meta Analysis" label={ko ? '데이터를 연결하는 또 다른 연구' : 'A broader view of modeling'} href={localizePath('/research/#meta-analysis', lang)} linkText={ko ? '연구 살펴보기' : 'Explore this work'} id="modeling-heading" />
+    <p class="modeling-intro">{ko ? '질환별 유병률 자료를 종합하고 연령, 지역, 인구 구조와 치료 자원의 관계를 다룬 연구입니다.' : 'Research combining prevalence evidence with age, geographic structure, population information, and treatment-resource questions.'}</p>
+    <div class="modeling-list">{metaResearch.map((entry) => <a href={hrefForEntry(entry)}><span>{entry.data.title}</span><Icon name="arrow-up-right" size={18} /></a>)}</div>
+  </section>}
   {project && <section class="home-section" aria-label={c.independent}>
     <SectionHeading title={c.outside} label={c.independent} href={localizePath('/projects/', lang)} linkText={c.allProjects} />
     <article class="project-feature">
-      <TokenDiagram compact lang={lang} />
+      {project.data.cover ? <div class="feature-image"><Image src={project.data.cover.src} alt={project.data.cover.alt} width={1000} widths={[480, 720, 1000]} sizes="(max-width: 740px) calc(100vw - 40px), 480px" format="webp" loading="lazy" /></div> : <TokenDiagram compact lang={lang} />}
       <div class="feature-copy"><p class="eyebrow">{c.award}</p><h3>When to Eat</h3><p class="feature-subtitle">{c.projectSubtitle}</p><p class="feature-description">{c.projectDescription}</p><a class="text-link" href={hrefForEntry(project)}>{c.explore}<Icon name="arrow-right" size={17} /></a></div>
     </article>
   </section>}

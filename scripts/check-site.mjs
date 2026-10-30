@@ -10,17 +10,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
 const collections = ['research', 'publications', 'projects', 'coursework', 'blog', 'proposals'];
-const approvedDownloads = new Set([
-  'documents/sangeon-jeon-cv-industrial-2026-04.pdf',
-  'documents/sangeon-jeon-resume-full-2025-09.pdf',
-]);
+const documentDownloads = JSON.parse(await readFile(path.join(root, 'src/documents/downloads.json'), 'utf8'));
+const approvedDownloads = new Set(documentDownloads.map((document) => `documents/${document.filename}`));
 const englishRoutes = [
   '/', '/about/', '/research/', '/publications/', '/projects/', '/coursework/', '/blog/', '/proposals/', '/cv/',
   '/research/ocdm-cfo-estimation/', '/research/tiadc-ofdm-estimation/',
   '/projects/when-to-eat/',
   '/coursework/venus-flytrap-bioelectrical-playback/',
   '/coursework/ece3011-robachtic-symphony/',
-  '/coursework/ee305-electronics-design-lab/',
+  '/coursework/electronics-design-lab/',
+  '/research/hemophilia-resource-modeling/', '/research/ocd-prevalence-meta-analysis/',
+  '/research/sma-prevalence-modeling/', '/research/amd-prevalence-modeling/',
   '/coursework/ee405-robotic-tic-tac-toe/',
 ];
 const requiredRoutes = [...englishRoutes, ...englishRoutes.map((route) => `/ko${route}`), '/ko/404/'];
@@ -89,6 +89,11 @@ async function validateOutput({ absentMarker } = {}) {
     assert(decodeAttribute(await readFile(path.join(output, home), 'utf8')).includes('全商彥'), `Missing owner-supplied Hanja name in ${home}`);
   }
   for (const document of approvedDownloads) assert(existsSync(path.join(output, document)), `Missing selected download: ${document}`);
+  for (const document of documentDownloads) {
+    const source = await readFile(path.join(root, 'src/documents', document.source));
+    const built = await readFile(path.join(output, 'documents', document.filename));
+    assert(source.equals(built), `Download differs from its canonical source: ${document.filename}`);
+  }
 
   for (const file of files) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
@@ -108,6 +113,7 @@ async function validateOutput({ absentMarker } = {}) {
   for (const [file, html] of htmlCache) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
     const documentPath = '/' + relative.replace(/index\.html$/, '');
+    assert(!/EE305/i.test(html), `Hidden course number exposed in ${relative}`);
     const base = new URL(documentPath, origin);
     const language = documentPath.startsWith('/ko/') ? 'ko' : 'en';
     const otherLanguage = language === 'ko' ? 'en' : 'ko';
@@ -189,9 +195,11 @@ async function testPublicationGate() {
         assert(!existsSync(folder), 'Fixture folder already exists.');
         fixtures.push(folder);
         await mkdir(folder);
+        const imageName = `${token}-cover.png`;
+        await writeFile(path.join(folder, imageName), Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jT1sAAAAASUVORK5CYII=', 'base64'));
         for (const language of ['en', 'ko']) {
           const filename = `${slug}${language === 'ko' ? '.ko' : ''}.md`;
-          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\napprovedForPublication: ${approval}\ndraft: ${draft}\nlanguage: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
+          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\ncover:\n  src: ./${imageName}\n  alt: ${token}\napprovedForPublication: ${approval}\ndraft: ${draft}\nlanguage: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
         }
       }
     }
@@ -244,7 +252,7 @@ async function testPublicationGate() {
     build();
     const report = await validateOutput({ absentMarker: token });
     const builtFiles = await filesIn(output);
-    assert(!builtFiles.some((file) => file.includes(token)), 'Unreleased fixture generated a route.');
+    assert(!builtFiles.some((file) => file.includes(token)), 'Unreleased entry or media leaked into the build output.');
 
     const rendererPath = routeFile(`/ko/blog/${rendererSlug}/`);
     assert(rendererPath, 'Folder-based index.ko.mdx did not generate its stable Korean detail route.');

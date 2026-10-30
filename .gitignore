@@ -1,6 +1,5 @@
-# Track the requested CV/Resume history while excluding other private references.
-/reference-private/*
-!/reference-private/CV-Resume/
+# Private editorial inputs. Site-owned CV/Resume sources live in src/documents/.
+/reference-private/
 
 # Temporary owner instructions; durable decisions belong in proj.md.
 /story.md

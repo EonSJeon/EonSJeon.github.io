@@ -10,4 +10,4 @@ The owner edits Korean content directly in `src/content/<collection>/<slug>/<slu
 
 If `node` or `npm` is unavailable in this agent shell, do not reinstall dependencies unnecessarily. Read the known working Node path and direct Astro commands in `development-status.md`. Check for an existing preview server first. Keep a preview server running when sharing its link.
 
-Keep private raw sources and the local handoff out of Git and deployment output. Follow the existing `reference-private/CV-Resume/` tracking exception; the directory name does not make tracked documents private.
+Keep private raw sources and the local handoff out of Git and deployment output. All of `reference-private/` is ignored. CV/Resume documents are site-owned, tracked sources in `src/documents/cv-resume/`; preserve their DOCX/PDF pairs and history. Only the downloads selected in `src/documents/downloads.json` are emitted by the site.

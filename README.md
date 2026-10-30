@@ -31,11 +31,11 @@ Content lives in six distinct collections under `src/content/`:
 - `blog/`: released English or Korean writing.
 - `proposals/`: selected, clearly tentative future work.
 
-The portfolio contains two research projects, When to Eat, four coursework entries, and five selected proposal concepts. Proposals have their own summaries, first experiments, and related-work links, with the first three previewed on Home. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), When to Eat, four coursework entries, and five selected proposal concepts. Proposals have their own summaries, first experiments, and related-work links, with the first three previewed on Home. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
 
 ## Korean and English authoring
 
-Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all twelve selected articles have Korean versions.
+Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all sixteen selected articles have Korean versions.
 
 Edit the Korean Markdown directly, beside its English counterpart:
 
@@ -100,7 +100,7 @@ The profile, education history/GPAs, and collection descriptions are in `src/dat
 
 `proj.md` is the durable implementation brief. `story.md` is an ignored, temporary instruction pad the owner may replace or erase. When its instructions are applied, update the relevant requirements in `proj.md`; do not make the site or build depend on the instruction pad.
 
-The content schema is in `src/content.config.ts`. Query released entries through `getPublicEntries()` in `src/lib/content.ts` so that indexes, detail routes, feeds, and related links all use the same release predicate: `approvedForPublication: true` and `draft` not true. Approval defaults to false. A file's presence in a collection does not grant publication approval.
+The content schema is in `src/content.config.ts`. Query released entries through `getPublicEntries()` in `src/lib/content.ts` so that indexes, detail routes, feeds, and related links all use the same release predicate: `approvedForPublication: true` and `draft` not true. Approval defaults to false. A file's presence in a collection does not grant publication approval. The content loader also prevents unreleased cover, Markdown, and MDX assets from entering the build graph; preserve this protection alongside the query predicate. The publication-gate check includes unreleased media, not just missing routes.
 
 To verify this behavior against a real build after changing routes, feeds, or collection queries:
 
@@ -112,9 +112,9 @@ This temporarily creates unapproved and draft canaries in all six collections, b
 
 ## Reference material and Git visibility
 
-`reference-private/CV-Resume/` is intentionally **tracked in this repository**, including PDF and DOCX source documents and recoverable historical versions. Other files under `reference-private/` remain Git-ignored. Preserve the exception in the root `.gitignore`.
+All of `reference-private/` is Git-ignored. Site-owned CV/Resume source documents are tracked separately in `src/documents/cv-resume/`, preserving their DOCX/PDF pairs and recoverable history. Do not force-add private reference packages.
 
-The word `private` in the directory name does not make the tracked CV/Resume files private. This is a public repository. Draft flags also do not make tracked source text private: keep unreviewed notebook content, unpublished research details, instructor materials, raw archives, private review notes, and unapproved media outside tracked content.
+The tracked CV/Resume documents and their Git history are part of this public repository. Draft flags also do not make tracked source text private: keep unreviewed notebook content, unpublished research details, instructor materials, raw archives, private review notes, and unapproved media outside tracked content.
 
 Use the curated local references to prepare concise approved website copy, while preserving their disclosure limits and attribution. Do not copy an entire reference directory to `public/` or the deploy artifact.
 
@@ -122,9 +122,9 @@ Use the curated local references to prepare concise approved website copy, while
 
 The tracked document sources keep the owner's convention: `Resume-Full` for the comprehensive resume and `CV-1Page-*` for targeted one-page versions. DOCX files remain in Git alongside matching PDFs when available. When revising an actual document pair, review both formats and commit them together; do not infer a match from filenames alone.
 
-Website downloads are selected separately from source tracking. The website initially offers `public/documents/sangeon-jeon-cv-industrial-2026-04.pdf` and `public/documents/sangeon-jeon-resume-full-2025-09.pdf`, with their version dates shown. Update a selected copy deliberately when its source document changes, and update the CV page's date/label and the download allowlist in `scripts/check-site.mjs` when adding or renaming downloads. Retaining a DOCX source does not create a public website download button. The current full resume is dated September 2025; it must not be presented as newly updated in 2026.
+Website downloads are selected in `src/documents/downloads.json`. The prerendered `/documents/[filename].pdf` route emits only those selected canonical source files, preserving the existing download URLs without duplicate PDF copies in `public/`. Update the manifest and CV page metadata deliberately when choosing a new document. The site checker compares every download byte-for-byte with its selected source. Retaining a DOCX source does not create a public website download button. The current full resume is dated September 2025; it must not be presented as newly updated in 2026.
 
-Keep only reviewed shared/download assets under `public/` and reviewed entry-specific images beside their article. Project repository links can be displayed when supplied, but photos, reports, and videos from those repositories are not automatically cleared for republication. RoBACHtic's two owner-selected PNGs are displayed in its article. Its explicitly selected YouTube demonstration uses a responsive privacy-enhanced embed with a fallback source link. To add a deliberately selected video to another entry, use:
+Keep reviewed shared assets under `public/`, canonical documents under `src/documents/`, and reviewed entry-specific images beside their article. Project repository links can be displayed when supplied, but photos, reports, and videos from those repositories are not automatically cleared for republication. Selected real prototype, interface, assembly, and experiment photos now accompany the engineering articles. Use a `cover` with `src` and localized `alt` in frontmatter for optimized card images. Keep cover images and article figures distinct where possible; retain captions that explain what a photo or diagnostic actually demonstrates. Remove unneeded camera metadata from web copies while preserving image pixels and orientation. Its explicitly selected YouTube demonstration uses a responsive privacy-enhanced embed with a fallback source link. To add a deliberately selected video to another entry, use:
 
 ```yaml
 video:
@@ -134,6 +134,8 @@ video:
 ```
 
 The schema validates the video ID. The shared player is lazy-loaded and does not autoplay. Its optional caption appears below the player alongside a YouTube fallback link. Use `<figure>` and `<figcaption>` around Markdown images (with blank lines around the Markdown image) for a caption that stays grouped with the photo. External video links remain the default when embedding has not been selected.
+
+The electronics laboratory entry is public at `/coursework/electronics-design-lab/` (and `/ko/coursework/electronics-design-lab/`). Its source folder retains the internal course identifier, but `translationKey` sets the clean public slug and `showCourseCode: false` keeps the number out of rendered metadata. Labs 4–5 lead the article; digital communication, embedded control, and analog work remain supporting sections.
 
 ## GitHub Pages release
 

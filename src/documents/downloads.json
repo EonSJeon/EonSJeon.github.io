@@ -1,0 +1,16 @@
+[
+  {
+    "id": "industrial",
+    "filename": "sangeon-jeon-cv-industrial-2026-04.pdf",
+    "source": "cv-resume/Sangeon-Jeon-CV-1Page-Industrial.pdf",
+    "version": "2026-04-11",
+    "pages": 1
+  },
+  {
+    "id": "full",
+    "filename": "sangeon-jeon-resume-full-2025-09.pdf",
+    "source": "cv-resume/Sangeon-Jeon-Resume-Full.pdf",
+    "version": "2025-09-08",
+    "pages": 3
+  }
+]

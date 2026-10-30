@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -13,7 +13,7 @@ const link = z.object({
   url: z.url(),
 });
 
-const common = z.object({
+const common = ({ image }: SchemaContext) => z.object({
   title: z.string().min(1),
   summary: z.string().min(1),
   categoryLabel: z.string().min(1),
@@ -21,6 +21,7 @@ const common = z.object({
   period: z.string().optional(),
   institution: z.string().optional(),
   courseCode: z.string().optional(),
+  showCourseCode: z.boolean().default(true),
   courseTitle: z.string().optional(),
   type: z.enum(['senior-design', 'junior-design', 'laboratory', 'course-final-project']).optional(),
   displayOrder: z.number().int().default(100),
@@ -29,6 +30,7 @@ const common = z.object({
   draft: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
   contribution: z.string().optional(),
+  cover: z.object({ src: image(), alt: z.string().min(1), position: z.string().optional() }).optional(),
   collaborators: z.array(collaborator).default([]),
   links: z.array(link).default([]),
   video: z.object({
@@ -48,7 +50,8 @@ const common = z.object({
 });
 
 // A shared base keeps empty collections valid without placeholder content files.
-const loaderFor = (collection: string) => glob({
+const loaderFor = (collection: string) => {
+  const source = glob({
   base: './src/content',
   pattern: [`${collection}/**/*.{md,mdx}`, `!${collection}/**/[Rr][Ee][Aa][Dd][Mm][Ee].{md,mdx}`, `!${collection}/**/raw/**`],
   generateId: ({ entry }) => {
@@ -61,12 +64,37 @@ const loaderFor = (collection: string) => glob({
     else if (languageSuffix) parts[parts.length - 1] = stem!;
     return parts.join('/') + languageSuffix;
   },
-});
+  });
+  return {
+    ...source,
+    async load(context: Parameters<typeof source.load>[0]) {
+      await source.load({
+        ...context,
+        store: {
+          ...context.store,
+          // Unreleased images must stay outside Astro's asset/module graph as
+          // well as its page queries. Retain metadata for the release predicate.
+          get: <TData extends Record<string, unknown> = Record<string, unknown>>(id: string) => {
+            const entry = context.store.get<TData>(id);
+            return entry && entry.data.approvedForPublication === true && entry.data.draft !== true ? entry : undefined;
+          },
+          set: (entry) => {
+            if (entry.data.approvedForPublication === true && entry.data.draft !== true) return context.store.set(entry);
+            const data = { ...entry.data };
+            delete data.cover;
+            context.store.delete(entry.id);
+            return context.store.set({ id: entry.id, data, filePath: entry.filePath, digest: entry.digest });
+          },
+        },
+      });
+    },
+  };
+};
 
 export const collections = {
   research: defineCollection({
     loader: loaderFor('research'),
-    schema: common.extend({ relatedManuscript: z.string().optional() }),
+    schema: (context) => common(context).extend({ relatedManuscript: z.string().optional(), researchArea: z.enum(['communications', 'meta-analysis']).optional() }),
   }),
   publications: defineCollection({
     loader: loaderFor('publications'),
@@ -74,11 +102,11 @@ export const collections = {
   }),
   projects: defineCollection({
     loader: loaderFor('projects'),
-    schema: common.extend({ award: z.string().optional(), event: z.string().optional() }),
+    schema: (context) => common(context).extend({ award: z.string().optional(), event: z.string().optional() }),
   }),
   coursework: defineCollection({
     loader: loaderFor('coursework'),
-    schema: common.extend({ courseCode: z.string().min(1) }),
+    schema: (context) => common(context).extend({ courseCode: z.string().min(1) }),
   }),
   blog: defineCollection({
     loader: loaderFor('blog'),

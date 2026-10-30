@@ -2,7 +2,8 @@
 title: "OFDM을 위한 채널 및 TI-ADC 불일치 공동 추정"
 summary: "시간 인터리브 ADC 수신기의 무선 채널과 하드웨어 불일치를 함께 추정하는 연구로, 추정의 신뢰성과 계산 효율에 초점을 둡니다."
 categoryLabel: "무선통신"
-status: "연구 완료 · 논문 작성 중"
+status: "심사 중 — ICC 2027 투고"
+researchArea: "communications"
 period: "2024년 9월 – 2026년 10월"
 language: ko
 translationKey: "tiadc-ofdm-estimation"
@@ -28,4 +29,4 @@ collaborators:
 
 ## 연구 상태
 
-연구는 **2024년 9월부터 2026년 10월까지** 수행했으며 완료했습니다. 관련 논문은 작성 중으로, 아직 투고하지 않았습니다.
+연구는 **2024년 9월부터 2026년 10월까지** 수행했습니다. 관련 논문은 **ICC 2027**에 투고했으며, 현재 심사 중입니다.

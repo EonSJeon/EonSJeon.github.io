@@ -24,7 +24,7 @@ export function getSiteCopy(lang: Locale) {
 }
 
 const koreanSections = {
-  research: { label: '연구', eyebrow: '연구 주제와 탐구', description: '처프 기반 파형부터 수신기 하드웨어 비이상성까지, 무선통신 시스템의 동기화와 추정을 연구합니다.' },
+  research: { label: '연구', eyebrow: '연구 주제와 탐구', description: '무선통신의 동기화·수신기 추정과 질환별 유병률 자료의 메타분석을 다룬 연구입니다.' },
   projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '소프트웨어와 하드웨어를 연결하고 일상의 문제를 다루는 독립적인 공학 프로젝트입니다.' },
   coursework: { label: '코스웍', eyebrow: '만들며 배우기', description: '생체전자공학, 메카트로닉스, 디지털 통신, 임베디드 제어 분야의 수업 프로젝트를 소개합니다.' },
   publications: { label: '논문', eyebrow: '논문 및 투고 현황', description: '논문별 투고·심사·게재 현황을 정리합니다. 진행 중인 연구는 연구 페이지에서 소개합니다.' },

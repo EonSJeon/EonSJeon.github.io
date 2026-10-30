@@ -8,7 +8,7 @@ import { slugForEntry, translationLinksForEntry, type PublicEntry } from '../../
 import { localizePath, getSectionsCopy, formatDate } from '../../lib/i18n';
 interface Props { entry: PublicEntry; }
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const d = entry.data;
 const lang = d.language;
 const ko = lang === 'ko';
@@ -24,7 +24,7 @@ const languageLinks = await translationLinksForEntry(entry);
   <nav class="breadcrumbs" aria-label={ko ? '현재 위치' : 'Breadcrumb'}><a href={localizePath('/', lang)}>{ko ? '홈' : 'Home'}</a><span aria-hidden="true">/</span><a href={localizePath(collectionPath, lang)}>{section.label}</a></nav>
   <header class="article-header">
     <p class="eyebrow">{d.categoryLabel}</p><h1>{d.title}</h1><p class="article-summary">{d.summary}</p>
-    <div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && <span>{d.courseCode}</span>}{editorial && <span>{ko ? `읽는 데 약 ${minutes}분` : `${minutes} min read`}</span>}{d.pubDate && <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate, lang)}</time>}</div>
+    <div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode && d.showCourseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && d.showCourseCode && <span>{d.courseCode}</span>}{editorial && <span>{ko ? `읽는 데 약 ${minutes}분` : `${minutes} min read`}</span>}{d.pubDate && <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate, lang)}</time>}</div>
   </header>
   <div class="article-layout">
     <article class="prose">
@@ -35,6 +35,7 @@ const languageLinks = await translationLinksForEntry(entry);
     </article>
     <aside class="article-sidebar" aria-label={ko ? '세부정보' : 'Project details'}>
       {d.contribution && <section class="sidebar-section"><h2>{ko ? '담당 역할' : 'My contribution'}</h2><p>{d.contribution}</p></section>}
+      {headings.filter((heading) => heading.depth === 2).length > 1 && <nav class="sidebar-section article-toc" aria-label={ko ? '본문 목차' : 'On this page'}><h2>{ko ? '이 페이지에서' : 'On this page'}</h2><ul>{headings.filter((heading) => heading.depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
       {d.collaborators.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' ? (ko ? '공동 연구자' : 'Collaborators') : (ko ? '팀' : 'Team')}</h2><ul>{d.collaborators.map((person) => <li>{person.url ? <a href={person.url}>{person.name}<Icon name="arrow-up-right" size={12} /></a> : person.name}{person.role && <small>{person.role}</small>}</li>)}</ul></section>}
       {d.tags.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' ? (ko ? '연구 주제' : 'Topics') : (ko ? '기술 및 주제' : 'Technologies & topics')}</h2><ul class="tags">{d.tags.map((tag) => <li>{tag}</li>)}</ul></section>}
       {d.links.length > 0 && <section class="sidebar-section"><h2>{ko ? '관련 링크' : 'Links'}</h2><ul>{d.links.map((link) => <li><a href={link.url}>{link.label}<Icon name="arrow-up-right" size={12} /></a></li>)}</ul></section>}

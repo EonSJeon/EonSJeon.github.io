@@ -19,7 +19,7 @@ export const site = {
 export const sections = {
   research: {
     label: 'Research', eyebrow: 'Questions & investigations',
-    description: 'Synchronization and estimation for wireless communication systems, from chirp-based waveforms to receiver hardware impairments.',
+    description: 'Research in wireless communications and meta-analysis: synchronization, receiver estimation, and synthesis of disease-prevalence evidence.',
   },
   projects: {
     label: 'Projects', eyebrow: 'Ideas made tangible',

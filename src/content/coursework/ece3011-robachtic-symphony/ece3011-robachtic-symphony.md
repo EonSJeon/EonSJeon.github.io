@@ -11,6 +11,9 @@ type: "junior-design"
 displayOrder: 20
 featured: false
 approvedForPublication: true
+cover:
+  src: "./front-assembly.jpg"
+  alt: "Front assembly of RoBACHtic Symphony, combining its keyboard, violin model, and bow mechanism."
 tags: ["SolidWorks", "3D printing", "Laser cutting", "Mechatronics", "BBC micro:bit"]
 contribution: "Led mechanical design and fabrication, including SolidWorks models, mechanical components, laser-cut wooden parts, and revisions during integration testing."
 video:
@@ -62,12 +65,23 @@ I created and updated the SolidWorks models, built the mechanical components, an
 
 The mechanical work required repeated fit and motion checks as the subsystems came together. The team checked that the 3D-printed and laser-cut parts fit the electrical components and verified the alignment of the frame's mounting holes before assembly. I revised the mechanical design in response to testing and integration feedback.
 
+<div class="project-gallery">
+
 <figure>
 
 ![Labeled SolidWorks model above the assembled prototype, identifying the shoulder, elbow, and bow-movement servos, linear bow, keyboard, and electronics housings.](./Alt_View_of_RoBachtic_Symphony_Final_Build_pics.png)
 
 <figcaption>From SolidWorks to the physical build: the labeled views locate the three actuation mechanisms, linear bow, keyboard, and electronics housings.</figcaption>
 </figure>
+
+<figure>
+
+![Close view inside the wooden enclosure showing the gear drive, vertical shaft, control boards, and wiring.](./mechanism-and-electronics.jpg)
+
+<figcaption>The enclosure brings the gear drive and electronics together, showing why component clearances, mounting positions, and wiring had to be considered during integration.</figcaption>
+</figure>
+
+</div>
 
 ## An educational kit and lesson plan
 

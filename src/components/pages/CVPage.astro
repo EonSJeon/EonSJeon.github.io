@@ -3,9 +3,15 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
 import { type Locale, localizePath } from '../../lib/i18n';
+import { statSync } from 'node:fs';
+import path from 'node:path';
+import downloads from '../../documents/downloads.json';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
+const shortDocument = downloads.find((document) => document.id === 'industrial')!;
+const fullDocument = downloads.find((document) => document.id === 'full')!;
+const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.resolve('src/documents', document.source)).size / 1024);
 const c = ko ? {
   title: 'CV & Resume', description: '전상언의 1쪽 CV와 상세 이력서입니다. 각 문서의 기준 날짜를 함께 표시합니다.',
   eyebrow: '학력과 경험', intro: '학력, 연구, 프로젝트 경험을 담은 요약 문서와 상세 이력서입니다. 각 문서에 버전 기준 날짜를 표시했습니다.',
@@ -25,8 +31,8 @@ const c = ko ? {
 <SiteLayout title={c.title} description={c.description} lang={lang}>
   <PageHeader title={c.title} eyebrow={c.eyebrow} description={c.intro} />
   <div class="document-grid">
-    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.shortLabel}</p><h2>{c.shortTitle}</h2><p>{c.shortDescription}</p><a class="button button-primary" href="/documents/sangeon-jeon-cv-industrial-2026-04.pdf" download>{c.shortDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.shortDate}</span><span>{c.shortPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · 123 KB</span></div></article>
-    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.fullLabel}</p><h2>{c.fullTitle}</h2><p>{c.fullDescription}</p><a class="button" href="/documents/sangeon-jeon-resume-full-2025-09.pdf" download>{c.fullDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.fullDate}</span><span>{c.fullPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · 221 KB</span></div></article>
+    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.shortLabel}</p><h2>{c.shortTitle}</h2><p>{c.shortDescription}</p><a class="button button-primary" href={`/documents/${shortDocument.filename}`} download>{c.shortDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.shortDate}</span><span>{c.shortPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(shortDocument)} KB</span></div></article>
+    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.fullLabel}</p><h2>{c.fullTitle}</h2><p>{c.fullDescription}</p><a class="button" href={`/documents/${fullDocument.filename}`} download>{c.fullDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.fullDate}</span><span>{c.fullPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(fullDocument)} KB</span></div></article>
   </div>
   <p class="page-note">{ko ? <>현재 연구 소개와 논문 진행 상황은 <a href={localizePath('/research/', lang)}>연구</a>와 <a href={localizePath('/publications/', lang)}>논문</a>에서 확인할 수 있습니다.</> : <>For current research descriptions and manuscript status, see <a href={localizePath('/research/', lang)}>Research</a> and <a href={localizePath('/publications/', lang)}>Publications</a>.</>}</p>
 </SiteLayout>

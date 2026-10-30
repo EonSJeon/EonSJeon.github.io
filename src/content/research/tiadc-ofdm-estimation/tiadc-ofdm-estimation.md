@@ -2,7 +2,8 @@
 title: "Joint Channel and TI-ADC Mismatch Estimation for OFDM"
 summary: "Joint estimation of wireless channels and hardware mismatches in time-interleaved ADC receivers, with an emphasis on reliable estimation and computational efficiency."
 categoryLabel: "Wireless communications"
-status: "Completed research · manuscript in preparation"
+status: "Under review — submitted to ICC 2027"
+researchArea: "communications"
 period: "September 2024 – October 2026"
 displayOrder: 20
 featured: true
@@ -26,4 +27,4 @@ This research studies how to estimate these hardware mismatches alongside the wi
 
 ## Research status
 
-The research project was completed over **September 2024–October 2026**. A related manuscript is in preparation and has not yet been submitted.
+The research project was conducted over **September 2024–October 2026**. The related manuscript has been submitted to **ICC 2027** and is under review.

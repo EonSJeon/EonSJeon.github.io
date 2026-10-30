@@ -2,6 +2,7 @@
 title: "OCDM을 위한 광범위 반송파 주파수 오프셋 추정"
 summary: "처프 기반 다중반송파 시스템의 모델 기반 동기화 연구. 다중경로 채널에서 단일 파일럿 블록을 이용한 광범위 주파수 오프셋 추정을 다룹니다."
 categoryLabel: "무선통신"
+researchArea: "communications"
 status: "심사 중 — ICASSP 2027 투고"
 language: ko
 translationKey: "ocdm-cfo-estimation"

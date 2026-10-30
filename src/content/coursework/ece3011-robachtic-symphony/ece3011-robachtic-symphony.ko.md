@@ -13,6 +13,9 @@ translationKey: "ece3011-robachtic-symphony"
 displayOrder: 20
 featured: false
 approvedForPublication: true
+cover:
+  src: "./front-assembly.jpg"
+  alt: "피아노형 건반, 바이올린 모형과 활 구동부를 결합한 RoBACHtic Symphony의 정면."
 tags: ["SolidWorks", "3D 프린팅", "레이저 커팅", "메카트로닉스", "BBC micro:bit"]
 contribution: "SolidWorks 모델링, 기계 부품과 레이저 커팅 목재 부품 제작, 통합 시험에 따른 설계 수정을 포함한 기계 설계·제작을 주도했습니다."
 video:
@@ -64,12 +67,23 @@ RoBACHtic Symphony는 2023년 Georgia Institute of Technology ECE 3011 — Desig
 
 각 하위 시스템을 통합하는 과정에서 부품의 맞춤과 움직임을 반복해서 확인했습니다. 팀은 3D 프린팅·레이저 커팅 부품이 전기 부품과 맞는지 확인하고, 조립 전 프레임의 장착 구멍 정렬을 점검했습니다. 저는 시험과 통합 과정에서 받은 피드백을 기계 설계에 반영했습니다.
 
+<div class="project-gallery">
+
 <figure>
 
 ![어깨·팔꿈치·활 이동 서보, 직선형 활, 건반, 전자회로 하우징을 표시한 SolidWorks 모델과 그 아래의 조립 시제품.](./Alt_View_of_RoBachtic_Symphony_Final_Build_pics.png)
 
 <figcaption>SolidWorks 설계와 실물 제작의 비교입니다. 세 구동 장치, 직선형 활, 건반, 전자회로 하우징의 위치를 표시했습니다.</figcaption>
 </figure>
+
+<figure>
+
+![목재 외함 내부의 기어와 수직 축, 제어 보드 및 배선을 가까이서 보여 주는 사진.](./mechanism-and-electronics.jpg)
+
+<figcaption>기어 구동부와 전자회로가 만나는 외함 내부입니다. 부품의 공간 배치와 장착 위치, 배선을 함께 고려해야 했던 통합 과정을 보여 줍니다.</figcaption>
+</figure>
+
+</div>
 
 ## 교육용 키트와 수업 계획
 
