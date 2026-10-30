@@ -16,7 +16,8 @@ collaborators:
     url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
   - name: "Center for Digital Health, Kyung Hee University"
     url: "http://cdh.khu.ac.kr/"
-coFirstAuthors: ["Sangeon Jeon"]
+coFirstAuthors: ["Yi Deun Jeong","Yejun Son","Sangeon Jeon"]
+equalContributionAuthors: ["Yi Deun Jeong", "Yejun Son", "Sangeon Jeon", "Jiseung Kang", "Dong Keon Yon"]
 authors:
   - "Yi Deun Jeong"
   - "Yejun Son"

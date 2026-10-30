@@ -44,6 +44,7 @@ const common = ({ image }: SchemaContext) => z.object({
   translationKey: z.string().regex(/^[a-z0-9]+(?:[a-z0-9/-]*[a-z0-9])?$/).optional(),
   authors: z.array(z.string()).optional(),
   coFirstAuthors: z.array(z.string()).default([]),
+  equalContributionAuthors: z.array(z.string()).default([]),
   venue: z.string().optional(),
   doi: z.string().optional(),
   relatedResearch: z.string().optional(),
