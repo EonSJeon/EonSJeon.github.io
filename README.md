@@ -28,14 +28,16 @@ Content lives in six distinct collections under `src/content/`:
 - `publications/`: verified bibliographic records with accurate publication statuses.
 - `projects/`: independent engineering work and makerathon prototypes.
 - `coursework/`: course-based projects, including Senior Design, Junior Design, and laboratory work.
-- `blog/`: released English or Korean writing.
+- `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and five selected ideas. Publications separates published articles from the two communications manuscripts under review. Home features communications research; Meta Analysis remains on Research and Publications, and Ideas is accessible through navigation without a Home preview. Ideas have their own summaries, first experiments, and related-work links. Blog remains empty until the owner selects a post. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, 41 selected ideas and 16 Blog posts. Publications separates published articles from the two communications manuscripts under review. Home features communications research and recent Blog posts; Meta Analysis remains on Research and Publications, and Ideas is accessible through navigation without a Home preview. Ideas distinguish proposed approaches and first experiments from completed work. Research projects are not automatically published papers.
+
+The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is About, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
 
 ## Korean and English authoring
 
-Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all nineteen selected articles have Korean versions.
+Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all selected articles have Korean versions.
 
 Edit the Korean Markdown directly, beside its English counterpart:
 
