@@ -34,7 +34,7 @@ export const sections = {
     description: 'Published journal articles and manuscripts under review, with links to the papers and related research.',
   },
   blog: {
-    label: 'Writing', eyebrow: 'Notes & observations',
+    label: 'Blog', eyebrow: 'Notes & observations',
     description: 'A space for technical notes, engineering explanations, and longer reflections.',
   },
   proposals: {

@@ -31,7 +31,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <link rel="preload" href="/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="application/rss+xml" title={lang === 'ko' ? '전상언 — 글' : 'Sangeon Jeon — Writing'} href={localizePath('/rss.xml', lang)} />
+    <link rel="alternate" type="application/rss+xml" title={lang === 'ko' ? '전상언 — 블로그' : 'Sangeon Jeon — Blog'} href={localizePath('/rss.xml', lang)} />
     {Object.entries(available).map(([locale, path]) => <link rel="alternate" hreflang={locale} href={new URL(path!, Astro.site)} />)}
     <link rel="alternate" hreflang="x-default" href={new URL(available.en ?? available.ko ?? home, Astro.site)} />
     <meta property="og:title" content={fullTitle} />

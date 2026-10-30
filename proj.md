@@ -139,7 +139,7 @@ Display journal/year and DOI, order published records newest first, and cross-li
 | `/proposals` and `/proposals/[slug]` | Ideas; retain these existing URLs |
 | `/cv` | Clearly dated CV/Resume document choices |
 
-Navigation should stay compact. Use a grouped menu where necessary; Research, Coursework, and Ideas must remain clearly named and reachable. Contact can be a small About/footer section rather than another top-level route.
+Navigation should stay compact. Use a grouped menu where necessary; Research, Coursework, and Ideas must remain clearly named and reachable. Label the writing section **Blog** in English and **블로그** in Korean, including navigation, collection headings, Home previews, and RSS titles; retain `/blog/` URLs. Contact can be a small About/footer section rather than another top-level route.
 
 Home should open with Sangeon Jeon's name, a concise academic identity, research interests, and these **five icon links visible in the introductory screen**, with accessible text labels:
 

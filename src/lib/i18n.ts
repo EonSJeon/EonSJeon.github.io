@@ -28,7 +28,7 @@ const koreanSections = {
   projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '소프트웨어와 하드웨어를 연결하고 일상의 문제를 다루는 독립적인 공학 프로젝트입니다.' },
   coursework: { label: '코스웍', eyebrow: '만들며 배우기', description: '생체전자공학, 메카트로닉스, 디지털 통신, 임베디드 제어 분야의 수업 프로젝트를 소개합니다.' },
   publications: { label: '논문', eyebrow: '논문 및 투고 현황', description: '출판된 학술지 논문과 심사 중인 원고를 정리하고, 원문과 관련 연구를 연결합니다.' },
-  blog: { label: '글', eyebrow: '기록과 생각', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
+  blog: { label: '블로그', eyebrow: '기록과 생각', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
   proposals: { label: '아이디어', eyebrow: '탐구할 만한 질문', description: '앞으로 탐구하고 싶은 연구 질문과 프로젝트 아이디어, 가능한 접근 방법과 남은 과제를 정리합니다.' },
 };
 
