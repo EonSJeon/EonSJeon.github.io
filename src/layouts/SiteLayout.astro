@@ -12,10 +12,13 @@ const fullTitle = title ? `${title} — ${site.name}` : site.title;
 const canonical = new URL(localizePath(Astro.url.pathname, lang), Astro.site);
 const current = Astro.url.pathname;
 const active = (path: string) => current.startsWith(path);
-const primary = (['research', 'projects', 'coursework'] as const).map((key) => ({ label: sections[key].label, href: localizePath(`/${key}/`, lang) }));
-const more = [{ label: lang === 'ko' ? '소개' : 'About', href: '/about/' }, ...(['publications', 'blog', 'proposals'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` }))].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
 const home = localizePath('/', lang);
 const cv = localizePath('/cv/', lang);
+const navigation = [
+  { label: lang === 'ko' ? '소개' : 'About', href: '/about/' },
+  ...(['research', 'publications', 'projects', 'coursework', 'proposals', 'blog'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` })),
+  { label: 'CV', href: '/cv/' },
+].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
 const available = languageLinks ?? { en: localizePath(current, 'en'), ko: localizePath(current, 'ko') };
 const menuOpen = lang === 'ko' ? '메뉴 열기' : 'Open navigation';
 const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
@@ -48,21 +51,15 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <header class="site-header">
       <div class="header-inner container">
         <a class="site-brand" href={home} aria-label={lang === 'ko' ? '전상언 홈' : 'Sangeon Jeon, home'}>{site.name}</a>
-        <nav id="site-navigation" class="site-navigation" aria-label={lang === 'ko' ? '주 메뉴' : 'Main navigation'}>
-          {primary.map((item) => <a class:list={{ active: active(item.href) }} aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}
-          <details class="more-nav">
-            <summary class:list={{ active: more.some((item) => active(item.href)) }}>{lang === 'ko' ? '더 보기' : 'More'}<Icon name="chevron-down" size={14} /></summary>
-            <div class="more-menu">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
-          </details>
-          <div class="mobile-extra-links">{more.map((item) => <a aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}</a>)}</div>
-          <a class:list={['nav-cv', { active: active(cv) }]} aria-current={active(cv) ? 'page' : undefined} href={cv}>CV<Icon name="arrow-up-right" size={15} /></a>
-        </nav>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
             {(['ko', 'en'] as const).map((locale) => <a data-language={locale} lang={locale} href={available[locale] ?? localizePath(languageFallback, locale)} aria-current={lang === locale ? 'page' : undefined} title={available[locale] ? undefined : (locale === 'en' ? 'English translation pending; view the English collection' : '한국어 번역 준비 중 — 한국어 목록 보기')}>{locale === 'ko' ? '한국어' : 'English'}</a>)}
           </nav>
           <button class="icon-button menu-toggle" type="button" aria-label={menuOpen} data-menu-open={menuOpen} data-menu-close={menuClose} aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
         </div>
+        <nav id="site-navigation" class="site-navigation" aria-label={lang === 'ko' ? '주 메뉴' : 'Main navigation'}>
+          {navigation.map((item) => <a class:list={{ active: active(item.href), 'nav-cv': item.href === cv }} aria-current={active(item.href) ? 'page' : undefined} href={item.href}>{item.label}{item.href === cv && <Icon name="arrow-up-right" size={15} />}</a>)}
+        </nav>
       </div>
     </header>
     <main id="main-content" class="container"><slot /></main>
@@ -72,15 +69,24 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     </footer>
     <script>
       const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const navigationPanel = document.querySelector<HTMLElement>('#site-navigation');
+      const header = document.querySelector<HTMLElement>('.site-header');
       const closeNavigation = () => { menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', menuButton.dataset.menuOpen ?? 'Open navigation'); document.querySelector('#site-navigation')?.classList.remove('is-open'); };
-      menuButton?.addEventListener('click', () => {
+      menuButton?.addEventListener('click', (event) => {
         const open = menuButton.getAttribute('aria-expanded') !== 'true';
         menuButton.setAttribute('aria-expanded', String(open));
         menuButton.setAttribute('aria-label', (open ? menuButton.dataset.menuClose : menuButton.dataset.menuOpen) ?? 'Open navigation');
-        document.querySelector('#site-navigation')?.classList.toggle('is-open', open);
+        navigationPanel?.classList.toggle('is-open', open);
+        if (open && event.detail === 0) navigationPanel?.querySelector<HTMLAnchorElement>('a')?.focus();
       });
-      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeNavigation(); document.querySelectorAll<HTMLDetailsElement>('.more-nav').forEach((details) => details.open = false); } });
-      document.addEventListener('click', (event) => { if (event.target instanceof Element && !event.target.closest('.more-nav')) document.querySelectorAll<HTMLDetailsElement>('.more-nav').forEach((details) => details.open = false); });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
+          closeNavigation();
+          menuButton.focus();
+        }
+      });
+      document.addEventListener('click', (event) => { if (event.target instanceof Node && !header?.contains(event.target)) closeNavigation(); });
+      document.addEventListener('focusin', (event) => { if (event.target instanceof Node && !header?.contains(event.target)) closeNavigation(); });
     </script>
   </body>
 </html>
