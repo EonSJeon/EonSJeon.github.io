@@ -29,7 +29,7 @@ Read the relevant references before writing each entry. These are local editoria
 | CV/Resume documents | `src/documents/cv-resume/` | Biography and dated document downloads; see Section 7 |
 | Version provenance | `src/documents/cv-resume/README.md` and `source-inventory.json` | Source dates, pairing decisions and original recovery |
 | Portrait candidate | `reference-private/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
-| Ideas sources and owner selection | `reference-private/아이디어-생각할 거리.md`, `아이디어-연구.md`, `아이디어-연구프로젝트.md`, `아이디어-프로젝트.md`; local `아이디어-선택목록.csv` | Owner replaced DOCX with four Markdown sources; all source material and the 0/1 decision CSV remain private and Git-ignored |
+| Ideas sources and owner selection | `reference-private/아이디어-생각할 거리.md`, `아이디어-연구.md`, `아이디어-연구프로젝트.md`, `아이디어-프로젝트.md`; local `아이디어-선택목록.csv` | Owner replaced DOCX with four Markdown sources; source material and the -1/0/1/2 decision CSV remain private and Git-ignored |
 | Disease-modeling research source collection | `reference-private/Meta_Research_Website_Reference.md` | Owner-requested October 29 local collection from HEM-meta, OCD-meta, SMA-meta, and AMD-meta: bilingual description candidates, original saved figures, evidence and provenance; selected high-level Research descriptions for the current overhaul; no unsupported publication records or numeric medical claims |
 
 `reference-private/CV.pdf`, `personal-info.md`, and `research.md` are not currently present. Do not depend on these obsolete paths or invent substitutes.
