@@ -199,10 +199,14 @@ async function testPublicationGate() {
         fixtures.push(folder);
         await mkdir(folder);
         const imageName = `${token}-cover.png`;
+        const videoName = `${token}-clip.mp4`;
+        const posterName = `${token}-poster.jpg`;
+        await writeFile(path.join(folder, videoName), `${token} unreleased native video`);
+        await writeFile(path.join(folder, posterName), `${token} unreleased video poster`);
         await writeFile(path.join(folder, imageName), Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jT1sAAAAASUVORK5CYII=', 'base64'));
         for (const language of ['en', 'ko']) {
           const filename = `${slug}${language === 'ko' ? '.ko' : ''}.md`;
-          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\ncover:\n  src: ./${imageName}\n  alt: ${token}\napprovedForPublication: ${approval}\ndraft: ${draft}\nlanguage: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
+          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\ncover:\n  src: ./${imageName}\n  alt: ${token}\nclips:\n  - src: ${videoName}\n    poster: ${posterName}\n    title: ${token}\n    caption: ${token}\n    width: 720\n    height: 1280\napprovedForPublication: ${approval}\ndraft: ${draft}\nlanguage: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
         }
       }
     }

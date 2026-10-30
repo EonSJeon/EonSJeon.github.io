@@ -78,6 +78,20 @@ Give each entry a folder containing its Markdown/MDX and selected media. For exa
 
 Reference colocated images with a relative Markdown path, such as `![Description](./prototype.png)`. Astro processes referenced images into build assets. `README.md` and everything in `raw/` are excluded from the collection loader; keep private raw material in ignored references instead of tracked content folders.
 
+The three expanded coursework articles include repository-level technical explanations and selected original media. A primary YouTube walkthrough uses `video`; native demonstrations use `clips` with colocated web MP4s and actual-frame posters:
+
+```yaml
+clips:
+  - src: device-demo.mp4
+    poster: device-demo-poster.jpg
+    title: Device demonstration
+    caption: Describe what this recording actually demonstrates.
+    width: 720
+    height: 1280
+```
+
+Use filename-only paths and the video's actual display dimensions. Each released translation selects its clips separately; `/media/<collection>/<slug>/<filename>` emits only assets selected by at least one released translation and shares identical files between languages. Keep large raw videos in ignored references. Native players use controls, posters and `preload="none"`, with no autoplay. The article's contents navigation includes the native demonstration section. The release gate checks that unreleased native clips and posters stay out of the build.
+
 ```yaml
 ---
 title: Example title

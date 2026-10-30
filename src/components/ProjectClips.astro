@@ -1,0 +1,20 @@
+---
+import type { PublicEntry } from '../lib/content';
+import { clipHref } from '../lib/media';
+interface Props { entry: PublicEntry; }
+const { entry } = Astro.props;
+const ko = entry.data.language === 'ko';
+---
+<section class="project-clips" id="project-videos" aria-labelledby="project-videos-heading">
+  <h2 id="project-videos-heading">{ko ? '실제 장치와 소프트웨어 시연' : 'Hardware & software demonstrations'}</h2>
+  <div class="project-clips-list">
+  {entry.data.clips.map((clip) => <figure class="project-clip">
+    <h3>{clip.title}</h3>
+    <video class:list={['native-video', { portrait: clip.height > clip.width }]} controls playsinline preload="none" width={clip.width} height={clip.height} poster={clip.poster ? clipHref(entry, clip.poster) : undefined} aria-label={clip.title}>
+      <source src={clipHref(entry, clip.src)} type="video/mp4" />
+      <p>{ko ? '브라우저에서 영상을 재생할 수 없습니다.' : 'Your browser cannot play this video.'}</p>
+    </video>
+    <figcaption><p>{clip.caption}</p><a href={clipHref(entry, clip.src)}>{ko ? '영상 파일 열기' : 'Open video file'}</a></figcaption>
+  </figure>)}
+  </div>
+</section>
