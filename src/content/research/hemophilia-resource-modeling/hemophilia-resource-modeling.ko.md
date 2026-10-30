@@ -9,6 +9,12 @@ translationKey: "hemophilia-resource-modeling"
 displayOrder: 30
 featured: false
 approvedForPublication: true
+collaborators:
+  - name: "Dong Keon Yon"
+    role: "Project Manager"
+    url: "http://cdh.khu.ac.kr/%EB%B6%80%EC%84%BC%ED%84%B0%EC%9E%A5-%EC%86%8C%EA%B0%9C"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian 모델링", "혈우병", "인구 건강", "PyMC", "시나리오 분석"]
 ---
 

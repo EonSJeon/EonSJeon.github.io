@@ -245,7 +245,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .publication-citation p { margin: 0 0 11px; }
 .publication-authors strong { color: var(--text); font-weight: 650; }
 .publication-authors sup { font-size: .8em; color: var(--accent); }
-.publication-citation .publication-contribution { font-size: 11px; }
+.publication-citation .publication-contribution, .research-authors .publication-contribution { font-size: 11px; }
 .publication-venue cite { font-style: normal; font-weight: 600; color: var(--text); }
 .publication-doi { overflow-wrap: anywhere; }
 .publication-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 18px; }

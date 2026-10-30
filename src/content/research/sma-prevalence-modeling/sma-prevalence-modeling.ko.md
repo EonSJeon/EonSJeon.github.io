@@ -15,6 +15,9 @@ featured: false
 approvedForPublication: true
 contribution: "공동 제1저자"
 collaborators:
+  - name: "Dong Keon Yon"
+    role: "Project Manager"
+    url: "http://cdh.khu.ac.kr/%EB%B6%80%EC%84%BC%ED%84%B0%EC%9E%A5-%EC%86%8C%EA%B0%9C"
   - name: "Yi Deun Jeong"
     url: "https://scholar.google.com/citations?user=HvDDOvsAAAAJ&hl=en"
   - name: "Center for Digital Health, Kyung Hee University"

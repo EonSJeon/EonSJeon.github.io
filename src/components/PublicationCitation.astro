@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { site } from '../data/site';
+import PublicationAuthors from './PublicationAuthors.astro';
 interface Props { entry: CollectionEntry<'publications'>; }
 const { entry } = Astro.props;
 const d = entry.data;
@@ -8,11 +8,7 @@ const ko = d.language === 'ko';
 const partners = d.collaborators.filter((person) => !d.authors?.includes(person.name));
 ---
 <div class="publication-citation">
-  {d.authors && <p class="publication-authors">{d.authors.map((author, index) => {
-    const profile = d.collaborators.find((person) => person.name === author)?.url;
-    return <>{index > 0 && ', '}{profile ? <a href={profile}>{author}</a> : author === site.name ? <strong>{author}</strong> : author}{d.coFirstAuthors.includes(author) && <sup aria-label={ko ? '공동 제1저자' : 'Co-first author'}>†</sup>}</>;
-  })}</p>}
-  {d.coFirstAuthors.length > 0 && <p class="publication-contribution">† {ko ? '공동 제1저자' : 'Co-first author'}</p>}
+  {d.authors && <PublicationAuthors authors={d.authors} profiles={d.collaborators} coFirstAuthors={d.coFirstAuthors} lang={d.language} />}
   <p class="publication-venue">{d.venue && <cite>{d.venue}</cite>}{d.venue && d.pubDate && ' · '}{d.pubDate && <time datetime={d.pubDate.toISOString().slice(0, 10)}>{d.pubDate.getUTCFullYear()}</time>}</p>
   {partners.length > 0 && <p class="publication-partners">{ko ? '공동 연구: ' : 'In collaboration with '}{partners.map((person, index) => <>{index > 0 && ', '}{person.url ? <a href={person.url}>{person.name}</a> : person.name}</>)}</p>}
   {d.doi && <p class="publication-doi"><a href={`https://doi.org/${d.doi}`}>DOI: {d.doi}</a></p>}

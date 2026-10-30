@@ -7,6 +7,12 @@ researchArea: "meta-analysis"
 displayOrder: 30
 featured: false
 approvedForPublication: true
+collaborators:
+  - name: "Dong Keon Yon"
+    role: "Project Manager"
+    url: "http://cdh.khu.ac.kr/%EB%B6%80%EC%84%BC%ED%84%B0%EC%9E%A5-%EC%86%8C%EA%B0%9C"
+  - name: "Center for Digital Health, Kyung Hee University"
+    url: "http://cdh.khu.ac.kr/"
 tags: ["Bayesian modeling", "Hemophilia", "Population health", "PyMC", "Scenario analysis"]
 ---
 

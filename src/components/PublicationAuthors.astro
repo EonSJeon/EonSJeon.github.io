@@ -1,0 +1,17 @@
+---
+import { site } from '../data/site';
+import type { Locale } from '../lib/i18n';
+interface Props {
+  authors: string[];
+  profiles: { name: string; url?: string }[];
+  coFirstAuthors?: string[];
+  lang?: Locale;
+}
+const { authors, profiles, coFirstAuthors = [], lang = 'en' } = Astro.props;
+const ko = lang === 'ko';
+---
+<p class="publication-authors">{authors.map((author, index) => {
+  const profile = profiles.find((person) => person.name === author)?.url;
+  return <>{index > 0 && ', '}{author === site.name ? <strong>{profile ? <a href={profile}>{author}</a> : author}</strong> : profile ? <a href={profile}>{author}</a> : author}{coFirstAuthors.includes(author) && <sup aria-label={ko ? '공동 제1저자' : 'Co-first author'}>†</sup>}</>;
+})}</p>
+{coFirstAuthors.length > 0 && <p class="publication-contribution">† {ko ? '공동 제1저자' : 'Co-first author'}</p>}
