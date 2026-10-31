@@ -44,8 +44,8 @@ export const sections = {
 } as const;
 
 export const education = [
-  { degree: 'Ph.D. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2026–present', note: 'Advisor: Xiaoli Ma', gpa: '4.00 / 4.0' },
-  { degree: 'M.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2025', note: 'Advisor: Xiaoli Ma', gpa: '4.00 / 4.0' },
-  { degree: 'B.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2023–2024', gpa: '4.00 / 4.0' },
-  { degree: 'B.S. in Electrical Engineering', institution: 'KAIST', period: '2018–2025', note: 'Advisor: Jinseok Choi', gpa: '3.95 / 4.3' },
+  { degree: 'Ph.D. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2026–present', cvPeriod: { en: 'Jan 2026–present', ko: '2026.01–현재' }, note: 'Advisor: Xiaoli Ma', gpa: '4.00 / 4.0' },
+  { degree: 'M.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2025', cvPeriod: { en: 'Jan–Dec 2025', ko: '2025.01–12' }, note: 'Advisor: Xiaoli Ma', gpa: '4.00 / 4.0' },
+  { degree: 'B.S. in Electrical and Computer Engineering', institution: 'Georgia Institute of Technology', period: '2023–2024', cvPeriod: { en: 'Jan 2023–Dec 2024', ko: '2023.01–2024.12' }, gpa: '4.00 / 4.0' },
+  { degree: 'B.S. in Electrical Engineering', institution: 'KAIST', period: '2018–2025', cvPeriod: { en: 'Feb 2018–Feb 2025', ko: '2018.02–2025.02' }, note: 'Advisor: Jinseok Choi', gpa: '3.95 / 4.3' },
 ];

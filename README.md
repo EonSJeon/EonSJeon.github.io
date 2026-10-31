@@ -31,18 +31,22 @@ Content lives in six distinct collections under `src/content/`:
 - `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, 41 selected ideas and 16 Blog posts. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Ideas distinguish proposed approaches and first experiments from completed work. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and a full bilingual HTML CV. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
 
 The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is About, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
+
+Blog and Ideas drafts live only in ignored `reference-private/writing-review/`. Previous CSV selections do not grant publication approval. Commit an article only after the owner explicitly approves that finished text; unapproved full text does not belong in tracked content even with a false release flag.
+
+The CV pages render education, publications, experience, teaching, awards, selected projects and skills directly. Edit bilingual experience copy in `src/data/cv.ts`; education/profile data and approved content collections supply shared facts. Existing dated PDF downloads and all CV/Resume source documents remain unchanged.
 
 ## Korean and English authoring
 
 Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all selected articles have Korean versions.
 
-Edit the Korean Markdown directly, beside its English counterpart:
+For approved public content, edit the Korean Markdown directly beside its English counterpart:
 
 ```text
-src/content/proposals/example-article/
+src/content/research/example-article/
   example-article.md       # English
   example-article.ko.md    # Korean editing source
 ```

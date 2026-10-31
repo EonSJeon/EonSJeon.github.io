@@ -1,38 +1,158 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import PageHeader from '../PageHeader.astro';
 import Icon from '../Icon.astro';
-import { type Locale, localizePath } from '../../lib/i18n';
+import ProfileLinks from '../ProfileLinks.astro';
+import PublicationCitation from '../PublicationCitation.astro';
+import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
+import { getPublicEntries, hrefForEntry, isPublished, isUnderReview } from '../../lib/content';
+import { getCVCopy } from '../../data/cv';
 import { statSync } from 'node:fs';
 import path from 'node:path';
 import downloads from '../../documents/downloads.json';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
+const site = getSiteCopy(lang);
+const education = getEducationCopy(lang);
+const records = getCVCopy(lang);
+const [papers, research, projects, coursework] = await Promise.all([
+  getPublicEntries('publications', lang), getPublicEntries('research', lang),
+  getPublicEntries('projects', lang), getPublicEntries('coursework', lang),
+]);
+const published = papers.filter(isPublished);
+const submitted = research.filter(isUnderReview);
+const engineering = [...projects, ...coursework];
 const shortDocument = downloads.find((document) => document.id === 'industrial')!;
 const fullDocument = downloads.find((document) => document.id === 'full')!;
 const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.resolve('src/documents', document.source)).size / 1024);
 const c = ko ? {
-  title: 'CV & Resume', description: '전상언의 1쪽 CV와 상세 이력서입니다. 각 문서의 기준 날짜를 함께 표시합니다.',
-  eyebrow: '학력과 경험', intro: '학력, 연구, 프로젝트 경험을 담은 요약 문서와 상세 이력서입니다. 각 문서에 버전 기준 날짜를 표시했습니다.',
-  shortLabel: '간략한 소개', shortTitle: 'One-page CV', shortDescription: '학력, 연구, 주요 프로젝트와 기술을 요약한 문서 중 가장 최근 버전입니다.',
-  shortDownload: 'CV 다운로드', shortDate: '2026년 4월', shortPages: '1쪽',
-  fullLabel: '상세 기록', fullTitle: 'Full resume', fullDescription: '연구, 프로젝트, 교육과 수업 이력을 더 자세히 담은 2025년 9월 기준 문서입니다.',
-  fullDownload: 'Resume 다운로드', fullDate: '2025년 9월', fullPages: '3쪽',
+  title: 'CV & Resume', description: '전상언의 학력, 논문, 연구·근무·교육 경험과 수상 이력입니다.',
+  role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
+  publications: '논문', published: '게재 논문', submitted: '심사 중인 연구', research: '연구 경험',
+  employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
+  skills: '기술 및 언어', downloads: 'PDF 다운로드', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
+  downloadIntro: 'PDF는 각 문서에 표시된 날짜 기준의 별도 버전입니다.',
+  shortTitle: 'One-page CV', shortDescription: '학력·연구·프로젝트·기술 요약', shortDownload: 'CV 다운로드', shortDate: '2026년 4월', shortPages: '1쪽',
+  fullTitle: 'Full resume', fullDescription: '연구·프로젝트·교육·수업 이력', fullDownload: 'Resume 다운로드', fullDate: '2025년 9월', fullPages: '3쪽',
 } : {
-  title: 'CV & resume', description: "Download Sangeon Jeon's one-page CV and comprehensive resume, with document version dates.",
-  eyebrow: 'Background & experience', intro: 'A concise overview and a longer record of my education, research, and engineering experience. Each document is labeled with its version date.',
-  shortLabel: 'Concise overview', shortTitle: 'One-page CV', shortDescription: 'The most recent available overview of my education, research, selected engineering work, and skills.',
-  shortDownload: 'Download CV', shortDate: 'April 2026', shortPages: '1 page',
-  fullLabel: 'Comprehensive record', fullTitle: 'Full resume', fullDescription: 'A more detailed record of research, projects, teaching, and coursework, reflecting the September 2025 version.',
-  fullDownload: 'Download resume', fullDate: 'September 2025', fullPages: '3 pages',
+  title: 'CV & Resume', description: 'Sangeon Jeon’s education, publications, research, employment, teaching, awards, and skills.',
+  role: 'Ph.D. student, Electrical & Computer Engineering', education: 'Education', interests: 'Research interests',
+  publications: 'Publications', published: 'Published papers', submitted: 'Research under review', research: 'Research experience',
+  employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', projects: 'Selected engineering',
+  skills: 'Skills & languages', downloads: 'PDF downloads', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
+  downloadIntro: 'The PDFs are separate versions reflecting the dates shown below.',
+  shortTitle: 'One-page CV', shortDescription: 'Education, research, engineering work, and skills', shortDownload: 'Download CV', shortDate: 'April 2026', shortPages: '1 page',
+  fullTitle: 'Full resume', fullDescription: 'Research, projects, teaching, and coursework', fullDownload: 'Download resume', fullDate: 'September 2025', fullPages: '3 pages',
 };
+const sections = [
+  ['education', c.education], ['publications', c.publications], ['research', c.research],
+  ['employment', c.employment], ['teaching', c.teaching], ['awards', c.awards],
+  ['projects', c.projects], ['skills', c.skills], ['downloads', c.downloads],
+];
+const recordSections = [
+  { id: 'employment', label: c.employment, entries: records.employment },
+  { id: 'teaching', label: c.teaching, entries: records.teaching },
+  { id: 'awards', label: c.awards, entries: records.awards },
+];
 ---
 <SiteLayout title={c.title} description={c.description} lang={lang}>
-  <PageHeader title={c.title} eyebrow={c.eyebrow} description={c.intro} />
-  <div class="document-grid">
-    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.shortLabel}</p><h2>{c.shortTitle}</h2><p>{c.shortDescription}</p><a class="button button-primary" href={`/documents/${shortDocument.filename}`} download>{c.shortDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.shortDate}</span><span>{c.shortPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(shortDocument)} KB</span></div></article>
-    <article class="document-card"><div class="document-icon"><Icon name="book" size={30} /></div><p class="eyebrow">{c.fullLabel}</p><h2>{c.fullTitle}</h2><p>{c.fullDescription}</p><a class="button" href={`/documents/${fullDocument.filename}`} download>{c.fullDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.fullDate}</span><span>{c.fullPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(fullDocument)} KB</span></div></article>
+  <header class="cv-heading">
+    <p class="eyebrow">{c.title}</p><h1>{site.name}</h1>
+    <p class="cv-names">{ko ? 'Sangeon Jeon' : site.koreanName} <span lang="zh-Hant">· {site.hanjaName}</span></p>
+    <p class="cv-role">{c.role}<br />Georgia Institute of Technology · Atlanta, Georgia</p>
+    <ProfileLinks lang={lang} />
+  </header>
+  <div class="cv-layout">
+    <nav class="cv-contents" aria-label={c.contents}><ul>{sections.map(([id, label]) => <li><a href={`#cv-${id}`}>{label}</a></li>)}</ul></nav>
+    <div class="cv-body">
+      <section class="cv-section" id="cv-education" aria-labelledby="cv-education-heading">
+        <h2 id="cv-education-heading">{c.education}</h2>
+        {education.map((item) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{item.degree}</h3><span class="cv-period">{item.cvPeriod[lang]}</span></div><p class="cv-organization">{item.institution}</p><p>{c.gpa}: {item.gpa}{item.note && <> · {item.note}</>}</p></article>)}
+        <h3 class="cv-subheading">{c.interests}</h3><ul class="tags">{site.interests.map((interest) => <li>{interest}</li>)}</ul>
+      </section>
+      <section class="cv-section" id="cv-publications" aria-labelledby="cv-publications-heading">
+        <h2 id="cv-publications-heading">{c.publications}</h2><h3 class="cv-subheading">{c.published}</h3>
+        {published.map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}
+        <h3 class="cv-subheading">{c.submitted}</h3>
+        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><p class="cv-organization">{entry.data.status}</p></article>)}
+      </section>
+      <section class="cv-section" id="cv-research" aria-labelledby="cv-research-heading">
+        <h2 id="cv-research-heading">{c.research}</h2>
+        {research.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3>{entry.data.period && <span class="cv-period">{entry.data.period}</span>}</div>{entry.data.contribution && <p class="cv-organization">{entry.data.contribution}</p>}<p>{entry.data.summary}</p></article>)}
+        <h3 class="cv-subheading">{c.earlier}</h3>
+        {records.earlierResearch.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p><p>{entry.description}</p></article>)}
+      </section>
+      {recordSections.map((section) => <section class="cv-section" id={`cv-${section.id}`} aria-labelledby={`cv-${section.id}-heading`}><h2 id={`cv-${section.id}-heading`}>{section.label}</h2>{section.entries.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p>{entry.description && <p>{entry.description}</p>}</article>)}</section>)}
+      <section class="cv-section" id="cv-projects" aria-labelledby="cv-projects-heading">
+        <h2 id="cv-projects-heading">{c.projects}</h2>
+        {engineering.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3>{entry.data.period && <span class="cv-period">{entry.data.period}</span>}</div>{entry.data.contribution && <p class="cv-organization">{entry.data.contribution}</p>}<p>{entry.data.summary}</p></article>)}
+      </section>
+      <section class="cv-section" id="cv-skills" aria-labelledby="cv-skills-heading">
+        <h2 id="cv-skills-heading">{c.skills}</h2><dl class="cv-skills">{records.skills.map((group) => <div><dt>{group.label}</dt><dd><ul>{group.items.map((item) => <li>{item}</li>)}</ul></dd></div>)}</dl>
+      </section>
+      <section class="cv-section" id="cv-downloads" aria-labelledby="cv-downloads-heading">
+        <h2 id="cv-downloads-heading">{c.downloads}</h2><p class="cv-download-intro">{c.downloadIntro}</p>
+        <div class="document-grid">
+          <article class="document-card"><h3>{c.shortTitle}</h3><p>{c.shortDescription}</p><a class="button button-primary" href={`/documents/${shortDocument.filename}`} download>{c.shortDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.shortDate}</span><span>{c.shortPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(shortDocument)} KB</span></div></article>
+          <article class="document-card"><h3>{c.fullTitle}</h3><p>{c.fullDescription}</p><a class="button" href={`/documents/${fullDocument.filename}`} download>{c.fullDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.fullDate}</span><span>{c.fullPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(fullDocument)} KB</span></div></article>
+        </div>
+      </section>
+    </div>
   </div>
-  <p class="page-note">{ko ? <>현재 연구 소개와 논문 진행 상황은 <a href={localizePath('/research/', lang)}>연구</a>와 <a href={localizePath('/publications/', lang)}>논문</a>에서 확인할 수 있습니다.</> : <>For current research descriptions and manuscript status, see <a href={localizePath('/research/', lang)}>Research</a> and <a href={localizePath('/publications/', lang)}>Publications</a>.</>}</p>
 </SiteLayout>
+<style>
+  .cv-heading { padding: 64px 0 42px; border-bottom: 1px solid var(--line); }
+  .cv-heading h1 { margin-bottom: 12px; }
+  .cv-names { font-size: 16px; color: var(--muted); margin-bottom: 20px; }
+  .cv-role { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+  .cv-layout { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 58px; align-items: start; padding-top: 42px; }
+  .cv-contents { position: sticky; top: 28px; }
+  .cv-contents ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 13px; }
+  .cv-contents a { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .cv-contents a:hover { color: var(--accent-strong); text-decoration: underline; }
+  .cv-body { min-width: 0; }
+  .cv-section { margin-bottom: 48px; scroll-margin-top: 28px; }
+  .cv-section h2 { font-size: 27px; padding-bottom: 15px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .cv-entry { margin-bottom: 25px; }
+  .cv-entry-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .cv-entry h3, .document-card h3 { font-size: 17px; line-height: 1.5; letter-spacing: -.012em; margin-bottom: 5px; }
+  .cv-entry h3 a { color: var(--text); text-decoration: none; }
+  .cv-entry h3 a:hover { color: var(--accent-strong); text-decoration: underline; }
+  .cv-entry p { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 4px; }
+  .cv-entry .cv-organization { color: var(--text); font-size: 12px; }
+  .cv-period { flex-shrink: 0; font-size: 11px; color: var(--subtle); white-space: nowrap; }
+  .cv-subheading { font-family: var(--sans); font-size: 12px; font-weight: 600; margin: 28px 0 18px; }
+  .cv-paper { margin-bottom: 28px; }
+  .cv-paper :global(.publication-citation) { font-size: 12px; }
+  .cv-skills { margin: 0; }
+  .cv-skills > div { margin-bottom: 22px; }
+  .cv-skills dt { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .cv-skills dd { margin: 0; }
+  .cv-skills ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 7px 18px; font-size: 13px; color: var(--muted); }
+  .cv-download-intro { font-size: 13px; color: var(--muted); }
+  .cv-section .document-card { padding: 24px; }
+  .cv-section .document-grid { margin-top: 22px; }
+  @media (max-width: 960px) {
+    .cv-layout { grid-template-columns: 130px minmax(0, 1fr); gap: 32px; }
+    .cv-entry-heading { flex-wrap: wrap; gap: 0 14px; }
+    .cv-period { margin-bottom: 5px; }
+    .cv-section .document-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 740px) {
+    .cv-heading { padding: 42px 0 30px; }
+    .cv-layout { display: block; padding-top: 25px; }
+    .cv-contents { position: static; margin-bottom: 32px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .cv-contents ul { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+    .cv-entry-heading { display: block; }
+    .cv-period { display: block; }
+    .cv-section h2 { font-size: 24px; }
+    .cv-entry h3 { font-size: 16px; overflow-wrap: anywhere; }
+    .cv-section { margin-bottom: 38px; }
+  }
+  @media print {
+    .cv-layout { display: block; }
+    .cv-contents, #cv-downloads { display: none; }
+    .cv-heading { padding-top: 0; }
+    .cv-entry { break-inside: avoid; }
+  }
+</style>
