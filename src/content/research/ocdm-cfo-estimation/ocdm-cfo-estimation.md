@@ -1,5 +1,5 @@
 ---
-title: "Wide-Range Carrier Frequency Offset Estimation for OCDM"
+title: "Wide Range Carrier Frequency Offset Estimation for OCDM With a Single Pilot"
 summary: "Model-based synchronization for chirp-based multicarrier systems, studying wide-range frequency offset estimation from a single pilot block in multipath channels."
 categoryLabel: "Wireless communications"
 researchArea: "communications"

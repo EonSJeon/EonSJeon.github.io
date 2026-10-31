@@ -1,5 +1,5 @@
 ---
-title: "Joint Channel and TI-ADC Mismatch Estimation for OFDM"
+title: "Robust and Computationally Efficient Joint Channel and TI-ADC Mismatch Estimation for OFDM"
 summary: "Joint estimation of wireless channels and hardware mismatches in time-interleaved ADC receivers, with an emphasis on reliable estimation and computational efficiency."
 categoryLabel: "Wireless communications"
 status: "Under review — submitted to ICC 2027"
