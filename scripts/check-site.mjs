@@ -5,11 +5,11 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { legacyRedirects, movedProjectSlugs } from '../src/lib/redirects.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
-const legacyHomeRedirects = new Map([['/about/', '/'], ['/ko/about/', '/ko/']]);
 const collections = ['research', 'publications', 'projects', 'coursework', 'blog', 'proposals'];
 const documentDownloads = JSON.parse(await readFile(path.join(root, 'src/documents/downloads.json'), 'utf8'));
 const approvedDownloads = new Set(documentDownloads.map((document) => `documents/${document.filename}`));
@@ -26,6 +26,7 @@ const englishRoutes = [
   '/publications/sma-global-prevalence/',
   '/publications/amd-global-burden/',
   '/coursework/ee405-robotic-tic-tac-toe/',
+  ...movedProjectSlugs.map((slug) => `/projects/${slug}/`),
 ];
 const requiredRoutes = [...englishRoutes, ...englishRoutes.map((route) => `/ko${route}`), '/ko/404/'];
 
@@ -126,14 +127,14 @@ async function validateOutput({ absentMarker } = {}) {
     const canonicals = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => attributesFor(match[0]))
       .filter((attributes) => attributes.rel === 'canonical');
     assert.equal(canonicals.length, 1, `Expected one canonical URL in ${relative}`);
-    const redirectHome = legacyHomeRedirects.get(documentPath);
-    assert.equal(canonicals[0].href, redirectHome ? new URL(redirectHome, origin).href : base.href, `Wrong canonical URL in ${relative}`);
-    if (redirectHome) {
+    const redirectTarget = legacyRedirects[documentPath];
+    assert.equal(canonicals[0].href, redirectTarget ? new URL(redirectTarget, origin).href : base.href, `Wrong canonical URL in ${relative}`);
+    if (redirectTarget) {
       const metadata = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
       assert(metadata.some((attributes) => attributes.name === 'robots' && attributes.content === 'noindex'), `Legacy redirect must be noindex in ${relative}`);
-      assert(metadata.some((attributes) => attributes['http-equiv']?.toLowerCase() === 'refresh' && attributes.content === `0;url=${redirectHome}`), `Wrong legacy refresh destination in ${relative}`);
+      assert(metadata.some((attributes) => attributes['http-equiv']?.toLowerCase() === 'refresh' && attributes.content === `0;url=${redirectTarget}`), `Wrong legacy refresh destination in ${relative}`);
       const anchors = [...html.matchAll(/<a\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
-      assert(anchors.some((attributes) => attributes.href === redirectHome), `Missing legacy home fallback link in ${relative}`);
+      assert(anchors.some((attributes) => attributes.href === redirectTarget), `Missing legacy fallback link in ${relative}`);
     } else {
       assert(new RegExp(`<nav\\b[^>]*aria-label=["']${language === 'ko' ? '언어 선택' : 'Language selection'}["']`, 'i').test(html), `Missing accessible language selection in ${relative}`);
       const currentLink = languageLink(html, language);

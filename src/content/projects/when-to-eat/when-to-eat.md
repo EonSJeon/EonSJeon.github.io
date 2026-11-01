@@ -5,7 +5,7 @@ categoryLabel: "Makerathon & prototypes"
 status: "Completed prototype · Grand Prize"
 period: "Summer 2024"
 institution: "KAIST"
-displayOrder: 10
+displayOrder: 20
 featured: true
 approvedForPublication: true
 video:

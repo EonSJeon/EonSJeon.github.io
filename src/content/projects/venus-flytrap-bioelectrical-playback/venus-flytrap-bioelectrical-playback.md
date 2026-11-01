@@ -8,7 +8,7 @@ institution: "Georgia Institute of Technology"
 courseCode: "ECE 4723"
 courseTitle: "Interdisciplinary Capstone Design"
 type: "senior-design"
-displayOrder: 10
+displayOrder: 30
 featured: true
 approvedForPublication: true
 clips:

@@ -7,7 +7,7 @@ period: "2024년 여름"
 institution: "KAIST"
 language: ko
 translationKey: "when-to-eat"
-displayOrder: 10
+displayOrder: 20
 featured: true
 approvedForPublication: true
 video:

@@ -1,6 +1,6 @@
 # Sangeon Jeon's academic website
 
-A static Astro website for research, independent projects, coursework, publications, and writing. It is configured for the user-site root at **https://eonsjeon.github.io/**.
+A static Astro website for research, engineering projects, coursework, publications, and writing. It is configured for the user-site root at **https://eonsjeon.github.io/**.
 
 ## Local development
 
@@ -26,12 +26,16 @@ Content lives in six distinct collections under `src/content/`:
 
 - `research/`: research project descriptions, including work with manuscripts under review or in preparation.
 - `publications/`: verified bibliographic records with accurate publication statuses.
-- `projects/`: independent engineering work and makerathon prototypes.
-- `coursework/`: course-based projects, including Senior Design, Junior Design, and laboratory work.
+- `projects/`: engineering projects, including When to Eat, Senior Design, Junior Design and Robotic Tic-Tac-Toe. Course context remains in each project's metadata.
+- `coursework/`: courses studied, with study notes and laboratory records. The index is a list board; initially only Electronics Design Laboratory is included.
 - `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and a full bilingual HTML CV. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
+The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, four engineering projects, a laboratory-course detail, and a full bilingual HTML CV. Coursework is a course list board with course, institution and term columns, initially containing only Electronics Design Laboratory. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research and one Engineering projects card grid, ordered newest first; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
+
+Senior Design, Junior Design and Robotic Tic-Tac-Toe now live under `/projects/`. Their former `/coursework/` URLs in both languages preserve query strings and fragments while redirecting to the new pages. Keep the mappings in `src/lib/redirects.ts`; redirects are excluded from sitemap. Source folders retain paired Markdown and selected media together. Keep project `displayOrder` newest first in both languages: Tic-Tac-Toe, When to Eat, Venus Flytrap, then RoBACHtic; Home and CV reuse that order. RoBACHtic Symphony is Fall 2023; Robotic Tic-Tac-Toe is Fall 2024, as confirmed by the owner.
+
+Add future course notes as paired entries in `src/content/coursework/`, after owner selection. The board lists only released entries; do not add other CV subjects automatically. Keep course titles, institution and term in each entry's metadata and do not invent grades, course numbers or semesters. The electronics laboratory's internal course number remains hidden.
 
 Home combines the profile introduction, research interests, engineering narrative and contact information using the existing hero design. Keep the full introduction in one continuous hero paragraph in both languages, before the profile links and research-interest line. Education remains in CV. The former `/about/` and `/ko/about/` routes redirect to their localized Home, preserving query strings and contact fragments.
 

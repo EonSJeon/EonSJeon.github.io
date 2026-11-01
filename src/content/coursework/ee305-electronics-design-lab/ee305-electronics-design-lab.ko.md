@@ -12,7 +12,7 @@ type: "laboratory"
 language: ko
 translationKey: "electronics-design-lab"
 displayOrder: 30
-featured: true
+featured: false
 cover:
   src: "./lab45-calculator-breadboard.png"
   alt: "입력 스위치와 레지스터, ALU의 위치를 표시한 Lab 4–5 계산기 브레드보드."

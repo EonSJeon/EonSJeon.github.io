@@ -1,10 +1,15 @@
 ---
 import EntryPage from '../../components/pages/EntryPage.astro';
+import RedirectPage from '../../components/pages/RedirectPage.astro';
+import { movedProjectSlugs, legacyRedirects } from '../../lib/redirects';
 import { PUBLIC_COLLECTIONS, getPublicEntries, slugForEntry } from '../../lib/content';
 export async function getStaticPaths() {
   const groups = await Promise.all(PUBLIC_COLLECTIONS.map((collection) => getPublicEntries(collection, 'en')));
-  return groups.flat().map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry } }));
+  return [
+    ...groups.flat().map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry, redirectTo: undefined } })),
+    ...movedProjectSlugs.map((slug) => ({ params: { collection: 'coursework', id: slug }, props: { entry: undefined, redirectTo: legacyRedirects[`/coursework/${slug}/`] } })),
+  ];
 }
-const { entry } = Astro.props;
+const { entry, redirectTo } = Astro.props;
 ---
-<EntryPage entry={entry} />
+{entry ? <EntryPage entry={entry} /> : <RedirectPage target={redirectTo!} lang="en" />}

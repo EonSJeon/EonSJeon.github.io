@@ -24,11 +24,11 @@ export const sections = {
   },
   projects: {
     label: 'Projects', eyebrow: 'Ideas made tangible',
-    description: 'Engineering projects connecting software and hardware to address everyday problems.',
+    description: 'Engineering projects connecting software and hardware, from independent prototypes to team design projects.',
   },
   coursework: {
-    label: 'Coursework', eyebrow: 'Learning through making',
-    description: 'Selected course projects completed at KAIST and the Georgia Institute of Technology.',
+    label: 'Coursework', eyebrow: 'Courses & foundations',
+    description: 'Courses I have taken, with study notes and selected laboratory work.',
   },
   publications: {
     label: 'Publications', eyebrow: 'Manuscripts & publications',

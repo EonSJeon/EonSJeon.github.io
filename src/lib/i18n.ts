@@ -31,8 +31,8 @@ export function getSiteCopy(lang: Locale) {
 
 const koreanSections = {
   research: { label: '연구', eyebrow: '연구 주제와 탐구', description: '무선통신의 동기화·수신기 추정과 질환별 유병률 자료의 메타분석을 다룬 연구입니다.' },
-  projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '소프트웨어와 하드웨어를 연결하고 일상의 문제를 다룬 공학 프로젝트입니다.' },
-  coursework: { label: '코스웍', eyebrow: '만들며 배우기', description: 'KAIST와 Georgia Institute of Technology에서 수행한 수업 프로젝트 중 선별했습니다.' },
+  projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '독립 시제품부터 팀 설계 프로젝트까지, 소프트웨어와 하드웨어를 연결한 공학 프로젝트입니다.' },
+  coursework: { label: '코스웍', eyebrow: '수강 과목과 기초', description: '수강한 과목과 학습 내용, 실험 기록을 정리합니다.' },
   publications: { label: '논문', eyebrow: '논문 및 투고 현황', description: '출판된 학술지 논문과 심사 중인 원고를 정리하고, 원문과 관련 연구를 연결합니다.' },
   blog: { label: '블로그', eyebrow: '기록과 생각', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
   proposals: { label: '아이디어', eyebrow: '탐구할 만한 질문', description: '앞으로 탐구하고 싶은 연구 질문과 프로젝트 아이디어, 가능한 접근 방법과 남은 과제를 정리합니다.' },

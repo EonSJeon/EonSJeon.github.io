@@ -1,4 +1,5 @@
 ---
-import HomeRedirect from '../../components/pages/HomeRedirect.astro';
+import RedirectPage from '../../components/pages/RedirectPage.astro';
+import { legacyRedirects } from '../../lib/redirects';
 ---
-<HomeRedirect lang="ko" />
+<RedirectPage target={legacyRedirects['/ko/about/']} lang="ko" />

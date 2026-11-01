@@ -11,7 +11,7 @@ translationKey: "electronics-design-lab"
 courseTitle: "Introduction to Electronics Design Lab"
 type: "laboratory"
 displayOrder: 30
-featured: true
+featured: false
 cover:
   src: "./lab45-calculator-breadboard.png"
   alt: "Lab 4–5 calculator breadboard with the input switches, registers, and ALU labeled."

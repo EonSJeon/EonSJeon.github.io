@@ -3,13 +3,13 @@ title: "4자유도 로봇 팔을 이용한 틱택토"
 summary: "키보드로 선택한 틱택토의 수를 4자유도 로봇 팔이 기울어진 보드에 색깔로 표시합니다. 직접 교시, 게임 논리와 DYNAMIXEL 제어를 하나의 장치로 연결했습니다."
 categoryLabel: "수업 기말 프로젝트"
 status: "하드웨어 시연 기록"
-period: "2024년"
+period: "2024년 가을학기"
 institution: "KAIST"
 courseCode: "EE405"
 type: "course-final-project"
 language: ko
 translationKey: "ee405-robotic-tic-tac-toe"
-displayOrder: 40
+displayOrder: 10
 featured: false
 approvedForPublication: true
 clips:
@@ -41,7 +41,7 @@ links:
 
 이 프로젝트의 과제는 게임에서 선택한 한 수를 실제 장치의 반복 가능한 동작으로 바꾸는 것입니다. 사람이 터미널에서 칸을 선택하면 컴퓨터가 대응하는 수를 고르고, 4자유도 로봇 팔이 두 플레이어의 수를 실제 3×3 보드에 표시합니다. 빨강과 파랑 물감 스테이션을 구분해 사용하며, 말단에 물감을 묻힌 뒤 선택한 칸에 접근하고 눌러 표시한 다음 물러납니다.
 
-KAIST EE405의 이 기말 프로젝트는 C++ 애플리케이션, 보정 데이터, 기하학적 로봇 모델, 액추에이터 통신과 보드의 물리적 배치를 함께 다룹니다. 입력은 키보드로 받습니다. 카메라 영상으로 사람의 수를 인식하는 시스템은 아닙니다.
+2024년 가을학기 KAIST EE405의 이 기말 프로젝트는 C++ 애플리케이션, 보정 데이터, 기하학적 로봇 모델, 액추에이터 통신과 보드의 물리적 배치를 함께 다룹니다. 입력은 키보드로 받습니다. 카메라 영상으로 사람의 수를 인식하는 시스템은 아닙니다.
 
 <figure>
 

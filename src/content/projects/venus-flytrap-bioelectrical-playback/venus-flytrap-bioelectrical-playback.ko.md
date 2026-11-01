@@ -10,7 +10,7 @@ courseTitle: "Interdisciplinary Capstone Design"
 type: "senior-design"
 language: ko
 translationKey: "venus-flytrap-bioelectrical-playback"
-displayOrder: 10
+displayOrder: 30
 featured: true
 approvedForPublication: true
 clips:

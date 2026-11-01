@@ -4,7 +4,7 @@ import Icon from '../Icon.astro';
 import ProfileLinks from '../ProfileLinks.astro';
 import PublicationCitation from '../PublicationCitation.astro';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
-import { getPublicEntries, hrefForEntry, slugForEntry, isPublished, isUnderReview } from '../../lib/content';
+import { getPublicEntries, hrefForEntry, isPublished, isUnderReview } from '../../lib/content';
 import { getCVCopy } from '../../data/cv';
 import { statSync } from 'node:fs';
 import path from 'node:path';
@@ -15,13 +15,13 @@ const ko = lang === 'ko';
 const site = getSiteCopy(lang);
 const education = getEducationCopy(lang);
 const records = getCVCopy(lang);
-const [papers, research, projects, coursework] = await Promise.all([
+const [papers, research, projects] = await Promise.all([
   getPublicEntries('publications', lang), getPublicEntries('research', lang),
-  getPublicEntries('projects', lang), getPublicEntries('coursework', lang),
+  getPublicEntries('projects', lang),
 ]);
 const published = papers.filter(isPublished);
 const submitted = research.filter(isUnderReview);
-const engineering = [...projects, ...coursework].filter((entry) => slugForEntry(entry) !== 'electronics-design-lab');
+const engineering = projects;
 const shortDocument = downloads.find((document) => document.id === 'industrial')!;
 const fullDocument = downloads.find((document) => document.id === 'full')!;
 const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.resolve('src/documents', document.source)).size / 1024);

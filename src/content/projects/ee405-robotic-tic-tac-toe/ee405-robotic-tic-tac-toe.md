@@ -3,11 +3,11 @@ title: "Robotic Tic-Tac-Toe with a Four-Degree-of-Freedom Manipulator"
 summary: "A four-degree-of-freedom robot arm translates keyboard-selected tic-tac-toe moves into colored marks on a tilted board, combining direct teaching, game logic, and DYNAMIXEL control."
 categoryLabel: "Course final project"
 status: "Hardware demonstration documented"
-period: "2024"
+period: "Fall 2024"
 institution: "KAIST"
 courseCode: "EE405"
 type: "course-final-project"
-displayOrder: 40
+displayOrder: 10
 featured: false
 approvedForPublication: true
 clips:
@@ -39,7 +39,7 @@ links:
 
 The task is to turn a discrete game decision into a repeatable physical action. A person chooses a cell in a terminal, the computer chooses its response, and a four-degree-of-freedom arm carries those moves onto a real 3×3 board. Separate red and blue paint stations identify the two players. The arm charges its end effector with paint, approaches the selected cell, makes a mark, and withdraws before the next turn.
 
-This KAIST EE405 final project combines an interactive C++ application with calibration data, geometric robot models, actuator communication, and a deliberately chosen board arrangement. Input is through the keyboard: the game does not infer a player's move from a camera image.
+This KAIST EE405 final project from Fall 2024 combines an interactive C++ application with calibration data, geometric robot models, actuator communication, and a deliberately chosen board arrangement. Input is through the keyboard: the game does not infer a player's move from a camera image.
 
 <figure>
 

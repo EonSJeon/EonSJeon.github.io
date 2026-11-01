@@ -3,13 +3,13 @@ title: "RoBACHtic Symphony — Educational Robotic Violin Kit"
 summary: "An educational robot that connects piano-keyboard input to violin bow movement and electronic note tones. I led mechanical design and fabrication for this four-person Junior Design project."
 categoryLabel: "Junior Design"
 status: "Completed coursework prototype"
-period: "2023"
+period: "Fall 2023"
 institution: "Georgia Institute of Technology"
 courseCode: "ECE 3011"
 courseTitle: "Design Fundamentals"
 type: "junior-design"
-displayOrder: 20
-featured: false
+displayOrder: 40
+featured: true
 approvedForPublication: true
 cover:
   src: "./front-assembly.jpg"
@@ -42,7 +42,7 @@ links:
 
 ## A physical connection between music and code
 
-RoBACHtic Symphony was developed by a four-person team for Georgia Tech's ECE 3011 — Design Fundamentals course in 2023. We explored an educational kit for fifth-grade STEAM activities: a student selects a note on a piano-style keyboard, hears its pitch, and watches a model arm move to the corresponding violin string.
+RoBACHtic Symphony was developed by a four-person team for Georgia Tech's ECE 3011 — Design Fundamentals course in Fall 2023. We explored an educational kit for fifth-grade STEAM activities: a student selects a note on a piano-style keyboard, hears its pitch, and watches a model arm move to the corresponding violin string.
 
 The teaching idea was to make a musical instruction visible as a physical action. The project therefore combined a custom keyboard, embedded control, a scaled violin model, servo-driven mechanisms, and a lesson plan. I led the mechanical design and fabrication, working from SolidWorks models through part production and repeated integration revisions.
 
