@@ -70,7 +70,7 @@ p { margin-bottom: 1.15em; }
 .button:hover { border-color: var(--accent); background: var(--surface-soft); }
 .button-primary { background: var(--accent-strong); border-color: var(--accent-strong); color: var(--bg); }
 .button-primary:hover { background: var(--accent); color: var(--bg); }
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) 270px; grid-template-areas: 'heading heading' 'description portrait' 'profiles portrait'; grid-template-rows: auto auto 1fr; gap: 20px 32px; padding: 75px 0 57px; align-items: start; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 270px; grid-template-areas: 'heading heading' 'description portrait'; gap: 20px 32px; padding: 75px 0 57px; align-items: start; }
 .hero-heading { grid-area: heading; }
 .hero h1 { font-size: clamp(2.9rem, 5vw, 3.75rem); margin-bottom: 14px; }
 .hero-korean { display: inline-block; margin-left: 17px; font-family: var(--sans); font-size: 17px; letter-spacing: .08em; font-weight: 400; vertical-align: middle; color: var(--subtle); }
@@ -86,10 +86,12 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .hero-description p:last-child { margin-bottom: 0; }
 .hero-description a { color: inherit; }
 .hero-advisor { white-space: nowrap; }
-.hero > .profile-links { grid-area: profiles; }
 .profile-links { display: flex; flex-wrap: wrap; gap: 12px 22px; list-style: none; margin: 0; padding: 0; }
 .profile-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; color: var(--muted); font-size: 12px; text-decoration: none; }
 .profile-links a:hover { color: var(--accent); text-decoration: underline; }
+.portrait-contact .profile-links--icons { gap: 6px; margin-top: 14px; }
+.profile-links--icons :is(a, button) { display: inline-flex; align-items: center; justify-content: center; width: 40px; min-height: 40px; padding: 8px; border: 0; border-radius: 4px; background: none; color: var(--muted); text-decoration: none; }
+.profile-links--icons :is(a, button):hover { background: var(--surface-soft); color: var(--accent); text-decoration: none; }
 .hero-cv { font-weight: 600; }
 .copy-status { min-height: 1.65em; margin: 10px 0 14px; font-size: 12px; color: var(--muted); }
 .hero-aside { grid-area: portrait; min-width: 0; }
@@ -134,14 +136,11 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .compact h3 { font-size: 23px; }
 .compact .card-meta { margin-bottom: 13px; }
 .portrait-contact { margin-top: 22px; }
-.contact-value { display: inline-block; max-width: 100%; padding: 0; border: 0; background: none; color: var(--text); font: inherit; line-height: 1.8; text-align: left; text-decoration: none; overflow-wrap: anywhere; cursor: pointer; }
-.contact-value:hover { color: var(--text); text-decoration: none; opacity: .75; }
-.contact-email { min-height: 32px; color: var(--accent); font-size: 16px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; user-select: text; }
-.contact-email:hover { color: var(--accent-strong); text-decoration: underline; opacity: 1; }
-.contact-address { margin: 6px 0 0; font-size: 14px; font-style: normal; }
+.contact-address { margin: 0; font-size: 14px; font-style: normal; }
 .contact-building { display: block; }
 .contact-map { display: block; min-height: 32px; line-height: 1.8; overflow-wrap: anywhere; }
 .portrait-contact .copy-status { margin: 6px 0 0; }
+.copy-status [data-email-fallback] { overflow-wrap: anywhere; user-select: text; }
 .news-board { border-top: 1px solid var(--line); }
 .news-board-head, .news-board li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px; }
 .news-board-head { padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--muted); }
@@ -276,7 +275,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .site-brand { font-size: 13px; }
   .header-controls { margin-left: auto; gap: 8px; }
   .site-navigation { left: -20px; right: -20px; width: auto; max-height: calc(100dvh - 74px); border-inline: 0; border-radius: 0; box-shadow: 0 10px 15px #14251a06; }
-  .hero { padding: 45px 0 35px; grid-template-columns: minmax(0, 1fr) clamp(112px, 32vw, 136px); grid-template-areas: 'heading portrait' 'contact contact' 'description description' 'profiles profiles'; grid-template-rows: none; gap: 22px 18px; }
+  .hero { padding: 45px 0 35px; grid-template-columns: minmax(0, 1fr) clamp(112px, 32vw, 136px); grid-template-areas: 'heading portrait' 'contact contact' 'description description'; grid-template-rows: none; gap: 22px 18px; }
   .hero h1 { font-size: 37px; margin-bottom: 17px; }
   .hero-korean { font-size: 11px; margin-top: 12px; }
   .hero-hanja { font-size: 15px; margin: 8px 0 0; }

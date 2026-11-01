@@ -21,7 +21,7 @@ const c = ko ? {
   kaistBefore: ' KAIST 학부과정의 지도교수는 ', kaistAfterName: '이었습니다.',
   cvBefore: '더 자세한 내용은 ', cvAfter: '를 참고해주세요.',
   interests: '연구 관심 분야',
-  contact: '연락처', copy: '이메일 주소 복사', maps: 'Google Maps에서 주소 보기',
+  contact: '연락처', maps: 'Google Maps에서 주소 보기',
   success: '이메일 주소를 복사했습니다.', fallback: '선택된 이메일 주소를 직접 복사해주세요.',
 } : {
   role: 'Ph.D. student · Atlanta, Georgia',
@@ -33,7 +33,7 @@ const c = ko ? {
   kaistBefore: ' My undergraduate advisor at KAIST was ', kaistAfterName: '.',
   cvBefore: 'For further information, please refer to my ', cvAfter: '.',
   interests: 'Research interests',
-  contact: 'Contact', copy: 'Copy email address', maps: 'View address in Google Maps',
+  contact: 'Contact', maps: 'View address in Google Maps',
   success: 'Email address copied.', fallback: 'Copy the selected email address manually.',
 };
 ---
@@ -51,13 +51,12 @@ const c = ko ? {
     </div>
     <div class="hero-aside">
       <figure class="hero-portrait"><div class="portrait-frame"><img src="/images/sangeon-jeon.jpeg" alt='Sangeon Jeon' width="246" height="246" fetchpriority="high" /></div></figure>
-      <section class="portrait-contact" id="contact" aria-label={c.contact}>
-        <button class="contact-value contact-email" type="button" data-copy-email={site.email} data-copy-success={c.success} data-copy-fallback={c.fallback} aria-label={`${c.copy}: ${site.email}`} title={c.copy}>{site.email}</button>
+      <section class="portrait-contact" id="contact" aria-label={c.contact} data-copy-success={c.success} data-copy-fallback={c.fallback}>
         <address class="contact-address"><span class="contact-building">{site.address}</span><a class="contact-map" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.maps}: ${site.mapAddress}`} title={c.maps}>{site.mapAddress}</a></address>
+        <ProfileLinks lang={lang} iconsOnly copyEmail />
         <p class="copy-status" role="status" aria-live="polite"></p>
       </section>
     </div>
-    <ProfileLinks lang={lang} includeEmail={false} />
   </section>
   <div class="interest-line"><span>{c.interests}</span><ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul></div>
   <section class="home-section" aria-labelledby="news-heading">
@@ -67,12 +66,24 @@ const c = ko ? {
 </SiteLayout>
 <script>
   const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+  const contact = copyButton?.closest<HTMLElement>('.portrait-contact');
   const copyStatus = document.querySelector<HTMLElement>('.copy-status');
   let feedbackTimeout: ReturnType<typeof setTimeout> | undefined;
-  const showCopyFeedback = (message: string) => {
+  const showCopyFeedback = (message: string, email?: string) => {
     if (!copyStatus) return;
     if (feedbackTimeout !== undefined) clearTimeout(feedbackTimeout);
     copyStatus.textContent = message;
+    if (email) {
+      const address = document.createElement('span');
+      address.textContent = email;
+      address.dataset.emailFallback = '';
+      copyStatus.append(' ', address);
+      const range = document.createRange();
+      range.selectNodeContents(address);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+    }
     feedbackTimeout = setTimeout(() => {
       copyStatus.textContent = '';
       feedbackTimeout = undefined;
@@ -83,17 +94,9 @@ const c = ko ? {
     if (!email || !copyStatus) return;
     try {
       await navigator.clipboard.writeText(email);
-      showCopyFeedback(copyButton.dataset.copySuccess ?? '');
+      showCopyFeedback(contact?.dataset.copySuccess ?? '');
     } catch {
-      const address = document.querySelector('.contact-email');
-      if (address) {
-        const range = document.createRange();
-        range.selectNodeContents(address);
-        const selection = window.getSelection();
-        selection?.removeAllRanges();
-        selection?.addRange(range);
-      }
-      showCopyFeedback(copyButton.dataset.copyFallback ?? '');
+      showCopyFeedback(contact?.dataset.copyFallback ?? '', email);
     }
   });
 </script>

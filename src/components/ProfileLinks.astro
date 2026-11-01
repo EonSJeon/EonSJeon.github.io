@@ -1,9 +1,10 @@
 ---
 import Icon from './Icon.astro';
 import { type Locale, getSiteCopy } from '../lib/i18n';
-interface Props { lang?: Locale; includeEmail?: boolean; }
-const { lang = 'en', includeEmail = true } = Astro.props;
+interface Props { lang?: Locale; includeEmail?: boolean; iconsOnly?: boolean; copyEmail?: boolean; }
+const { lang = 'en', includeEmail = true, iconsOnly = false, copyEmail = false } = Astro.props;
 const site = getSiteCopy(lang);
+const copyLabel = lang === 'ko' ? '이메일 주소 복사' : 'Copy email address';
 // 번역 금지: GitHub, Google Scholar, ORCID, LinkedIn 고유명과 이메일/URL 표기는 원문을 유지한다.
 const profiles = [
   ...(includeEmail ? [{ icon: 'mail', label: site.email, href: `mailto:${site.email}` }] : []),
@@ -13,6 +14,9 @@ const profiles = [
   { icon: 'linkedin', label: 'LinkedIn', href: site.linkedin },
 ];
 ---
-<ul class="profile-links" aria-label={includeEmail ? (lang === 'ko' ? '연락처와 학술 프로필' : 'Contact and academic profiles') : (lang === 'ko' ? '학술 프로필' : 'Academic profiles')}>
-  {profiles.map((profile) => <li><a href={profile.href}><Icon name={profile.icon} size={19} /><span>{profile.label}</span></a></li>)}
+<ul class:list={['profile-links', { 'profile-links--icons': iconsOnly }]} aria-label={includeEmail ? (lang === 'ko' ? '연락처와 학술 프로필' : 'Contact and academic profiles') : (lang === 'ko' ? '학술 프로필' : 'Academic profiles')}>
+  {profiles.map((profile) => <li>{profile.icon === 'mail' && copyEmail
+    ? <button type="button" data-copy-email={site.email} aria-label={`${copyLabel}: ${site.email}`} title={`${copyLabel}: ${site.email}`}><Icon name={profile.icon} size={iconsOnly ? 22 : 19} /><span class:list={{ 'sr-only': iconsOnly }}>{profile.label}</span></button>
+    : <a href={profile.href} aria-label={iconsOnly ? profile.label : undefined} title={iconsOnly ? profile.label : undefined}><Icon name={profile.icon} size={iconsOnly ? 22 : 19} /><span class:list={{ 'sr-only': iconsOnly }}>{profile.label}</span></a>
+  }</li>)}
 </ul>
