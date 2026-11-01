@@ -10,7 +10,6 @@ const { title, lang = 'en', noindex = false, article = false, languageLinks, lan
 const site = getSiteCopy(lang);
 // 번역 금지: 상단 브랜드명은 모든 언어에서 Sangeon Jeon. 본문 이름/메타데이터는 별도로 현지화한다.
 const headerName = siteIdentity.name;
-const headerNameParts = headerName.split(' ');
 const sections = getSectionsCopy(lang);
 const description = Astro.props.description ?? site.description;
 const fullTitle = title ? `${title} — ${site.name}` : site.title;
@@ -58,7 +57,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <a href="#main-content" class="skip-link">{lang === 'ko' ? '본문으로 바로가기' : 'Skip to content'}</a>
     <header class="site-header">
       <div class="header-inner container">
-        <a class="site-brand" href={home} lang="en" aria-label={`${headerName}, home`}><img class="site-brand-icon" src="/images/sangeon-jeon-mark.png?v=2" width="65" height="65" alt="" aria-hidden="true" /><span class="site-brand-name">{headerNameParts.map((part, index) => <span>{part}{index < headerNameParts.length - 1 ? ' ' : ''}</span>)}</span></a>
+        <a class="site-brand" href={home} lang="en" aria-label={`${headerName}, home`}><img class="site-brand-icon" src="/images/sangeon-jeon-mark.png?v=2" width="47" height="47" alt="" aria-hidden="true" /><span class="site-brand-name">{headerName}</span></a>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
             {/* 번역 금지: 언어 선택 표시는 En → 한 순서와 축약형을 양쪽 페이지에서 동일하게 유지한다. */}
