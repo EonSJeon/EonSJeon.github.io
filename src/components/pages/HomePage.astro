@@ -13,8 +13,8 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 // Electrical & Computer Engineering, Atlanta, Georgia는 영어를 유지한다. 주변 소개 문장은 번역한다.
 const c = ko ? {
   role: '박사과정 · Atlanta, Georgia',
-  intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
-  introAfterAdvisor: ' 교수님입니다. 현재는 처프 기반 다중반송파 파형의 주파수 오프셋 추정과 OFDM 수신기의 채널·하드웨어 불일치 공동 추정을 다루고 있습니다. 수학적 모델, 소프트웨어, 물리적 하드웨어를 연결하는 시스템을 만드는 일도 즐깁니다. RFID 알림 장치부터 생체전기 신호 기록과 메카트로닉스 시제품까지 다양한 프로젝트를 진행했습니다.',
+  intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 Prof. ',
+  introAfterAdvisor: ' 입니다. 현재는 처프 기반 다중반송파 파형의 주파수 오프셋 추정과 OFDM 수신기의 채널·하드웨어 불일치 공동 추정을 다루고 있습니다. 수학적 모델, 소프트웨어, 물리적 하드웨어를 연결하는 시스템을 만드는 일도 즐깁니다. RFID 알림 장치부터 생체전기 신호 기록과 메카트로닉스 시제품까지 다양한 프로젝트를 진행했습니다.',
   masters: '이전에는 Georgia Institute of Technology에서 Xiaoli Ma 교수님의 지도로 전기컴퓨터공학 석사학위를 취득했습니다(2025).',
   dualBefore: '학부에서는 KAIST–Georgia Tech ', dualLabel: 'Dual B.S. Degree Program(복수학위 프로그램)',
   dualAfter: '을 이수하여 KAIST와 Georgia Institute of Technology에서 각각 학사학위를 취득했습니다.',
@@ -44,7 +44,7 @@ const c = ko ? {
       <p class="hero-role">{c.role}</p>
     </header>
     <div class="hero-description">
-      <p>{c.intro}<a class="hero-advisor" href={site.advisor.url}>{ko ? site.advisor.name : `Prof. ${site.advisor.name}`}</a>{c.introAfterAdvisor}</p>
+      <p>{c.intro}<a class="hero-advisor" href={site.advisor.url}>{ko ? site.advisor.name : `${site.advisor.name}`}</a>{c.introAfterAdvisor}</p>
       <p>{c.masters}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]}>{c.dualLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url}>{ko ? `${site.kaistAdvisor.name} 교수님` : `Prof. ${site.kaistAdvisor.name}`}</a>{c.kaistAfterName}</p>
       {/* 번역 금지: Curriculum Vitae 링크 문구는 고정하고, 앞뒤 안내 문장만 현지화한다. */}
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
