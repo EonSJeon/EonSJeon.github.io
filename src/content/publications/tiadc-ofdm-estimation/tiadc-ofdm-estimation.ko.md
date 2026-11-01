@@ -13,16 +13,16 @@ featured: true
 approvedForPublication: true
 tags: ["OFDM", "TI-ADC", "하드웨어 비이상성", "디지털 신호처리"]
 collaborators:
-  - name: "전상언"
-  - name: "성지원"
+  - name: "Sangeon Jeon"
+  - name: "Jiwon Sung"
     url: "https://sunione.github.io/"
   - name: "Xiaoli Ma"
     url: "https://xma-ultra-signals.github.io/"
-  - name: "최진석"
+  - name: "Jinseok Choi"
     url: "https://sic-x.kaist.ac.kr/"
 authors:
-  - "전상언"
-  - "성지원"
+  - "Sangeon Jeon"
+  - "Jiwon Sung"
   - "Xiaoli Ma"
-  - "최진석"
+  - "Jinseok Choi"
 ---
