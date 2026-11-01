@@ -16,7 +16,7 @@ const c = ko ? {
   masters: '이전에는 Georgia Institute of Technology에서 Xiaoli Ma 교수님의 지도로 전기컴퓨터공학 석사학위를 취득했습니다(2025).',
   dualBefore: '학부에서는 KAIST–Georgia Tech ', dualLabel: 'Dual B.S. Degree Program(복수학위 프로그램)',
   dualAfter: '을 이수하여 KAIST와 Georgia Institute of Technology에서 각각 학사학위를 취득했습니다.',
-  kaistBefore: ' KAIST 학부과정의 지도교수는 ', kaistAfterName: ' 교수님(', kaistAfterLab: ')이었습니다.',
+  kaistBefore: ' KAIST 학부과정의 지도교수는 ', kaistAfterName: '(', kaistAfterLab: ')이었습니다.',
   cvBefore: '더 자세한 내용은 ', cvAfter: '를 참고해주세요.',
   interests: '연구 관심 분야',
   contact: '연락처', copy: '이메일 주소 복사', maps: 'Google Maps에서 주소 보기',
@@ -25,10 +25,10 @@ const c = ko ? {
   role: 'Ph.D. student · Atlanta, Georgia',
   intro: 'I study waveform design and synchronization for wireless communication systems. I am a Ph.D. student at Georgia Tech, advised by ',
   introAfterAdvisor: '. My current work considers frequency-offset estimation for chirp-based multicarrier waveforms and joint channel and hardware-impairment estimation in OFDM receivers. I also enjoy building systems that connect mathematical models, software, and physical hardware. My engineering work has ranged from RFID-based reminders to bioelectrical recording and mechatronic prototypes.',
-  masters: 'Previously, I received my M.S. in Electrical and Computer Engineering from Georgia Tech in 2025, advised by Xiaoli Ma.',
+  masters: 'Previously, I received my M.S. in Electrical and Computer Engineering from Georgia Tech in 2025, advised by Prof. Xiaoli Ma.',
   dualBefore: "I earned my bachelor's degrees from KAIST and Georgia Institute of Technology through the ",
   dualLabel: 'KAIST–Georgia Tech Dual B.S. Degree Program', dualAfter: '.',
-  kaistBefore: ' My undergraduate advisor at KAIST was Prof. ', kaistAfterName: ' (', kaistAfterLab: ').',
+  kaistBefore: ' My undergraduate advisor at KAIST was ', kaistAfterName: ' (', kaistAfterLab: ').',
   cvBefore: 'For further information, please refer to my ', cvAfter: '.',
   interests: 'Research interests',
   contact: 'Contact', copy: 'Copy email address', maps: 'View address in Google Maps',
@@ -42,9 +42,8 @@ const c = ko ? {
       <p class="hero-role">{c.role}</p>
     </header>
     <div class="hero-description">
-      <p>{c.intro}<a class="hero-advisor" href={site.advisor.url}>{site.advisor.name}</a>{c.introAfterAdvisor}</p>
-      <p>{c.masters}</p>
-      <p>{c.dualBefore}<a href={site.dualDegreeProgram[lang]}>{c.dualLabel}</a>{c.dualAfter}{c.kaistBefore}{site.kaistAdvisor.name}{c.kaistAfterName}<a href={site.kaistAdvisor.url}>{site.kaistAdvisor.lab}</a>{c.kaistAfterLab}</p>
+      <p>{c.intro}<a class="hero-advisor" href={site.advisor.url}>{ko ? site.advisor.name : `Prof. ${site.advisor.name}`}</a>{c.introAfterAdvisor}</p>
+      <p>{c.masters}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]}>{c.dualLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url}>{ko ? `${site.kaistAdvisor.name} 교수님` : `Prof. ${site.kaistAdvisor.name}`}</a>{c.kaistAfterName}{site.kaistAdvisor.lab}{c.kaistAfterLab}</p>
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
     </div>
     <div class="hero-aside">
