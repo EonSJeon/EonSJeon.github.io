@@ -33,7 +33,9 @@ Content lives in six distinct collections under `src/content/`:
 
 The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and a full bilingual HTML CV. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
 
-The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is About, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
+Home combines the profile introduction, research interests, engineering narrative and contact information using the existing hero design. Education remains in CV. The former `/about/` and `/ko/about/` routes redirect to their localized Home, preserving query strings and contact fragments.
+
+The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is Home, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
 
 Blog and Ideas drafts live only in ignored `reference-private/writing-review/`. Previous CSV selections do not grant publication approval. Commit an article only after the owner explicitly approves that finished text; unapproved full text does not belong in tracked content even with a false release flag.
 
@@ -41,7 +43,7 @@ The CV pages render education, publications, experience, teaching, awards, selec
 
 ## Korean and English authoring
 
-Treat the owner's manual edits as the source of truth when reconciling translations. `src/data/site.ts` sets the research-interest selection/order; `src/lib/i18n.ts` maps Korean labels from that shared list. Keep related Home/About descriptions aligned, and preserve the CV's manually edited content.
+Treat the owner's manual edits as the source of truth when reconciling translations. `src/data/site.ts` sets the research-interest selection/order; `src/lib/i18n.ts` maps Korean labels from that shared list. Keep both Home versions aligned, and preserve the CV's manually edited content.
 
 Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all selected articles have Korean versions.
 
@@ -70,7 +72,7 @@ approvedForPublication: true
 
 Use the same `translationKey` in the English translation when adding it. Existing English entries use their folder slug by default. Each language has its own approval/draft flags; only released translations appear in its lists, routes, and RSS. A Korean-only article is supported, and its English language choice goes to the English collection index until a released translation exists. Editing Korean does not silently rewrite the English text. Use `/ko/rss.xml` for Korean writing and `/rss.xml` for English writing.
 
-Shared interface/profile translations live in `src/lib/i18n.ts`; Home/About/CV text lives in `src/components/pages/`. Keep factual status, dates, links, and contribution limits aligned when revising translations.
+Shared interface/profile translations live in `src/lib/i18n.ts`; Home/CV text lives in `src/components/pages/`. Keep factual status, dates, links, and contribution limits aligned when revising translations.
 
 Korean pages retain selected professional labels and proper names in English: CV, CV & Resume, Georgia Institute of Technology / Georgia Tech, and Atlanta, Georgia. Use `코스웍` for the compact menu and `수업 프로젝트` in Korean descriptions; avoid translating every label mechanically.
 
@@ -120,7 +122,7 @@ Use lower `displayOrder` values to show an entry earlier. Blog posts and publica
 
 Publication records preserve ordered `authors`, `venue`, `pubDate`, and verified `doi`. `coFirstAuthors` lists only confirmed co-first authors by their exact author names and produces a † mark and legend. `equalContributionAuthors` preserves a broader equal-contribution footnote when needed; names outside `coFirstAuthors` receive ‡ with a separate legend, without assigning an unconfirmed authorship role. Add supplied author profile links through matching names in `collaborators`; organizations in that list appear as collaboration credits. A collaborator's optional `role` supports credits such as Project Manager. Pair a publication's `relatedResearch` with the research entry's `relatedManuscript` slug to enable links between released pages in the same language. Research details reuse that released publication's full ordered author list and equal-contribution marks, so bibliographic names stay in one source per language. Research without a released publication record can hold confirmed `authors` and `coFirstAuthors` directly, as HEM does.
 
-The profile, education history/GPAs, and collection descriptions are in `src/data/site.ts`. Home displays icon links for school email, GitHub, Google Scholar, ORCID, and LinkedIn. Keep public contact choices there rather than scraping them from older CV documents. **Get in touch** opens About's contact section, which includes a readable email address, a mail link, and clipboard copying. The design uses a consistent white background and a plain-text name in the header.
+The profile, contact address, education history/GPAs, and collection descriptions are in `src/data/site.ts`. Home displays icon links for school email, GitHub, Google Scholar, ORCID, and LinkedIn. Keep public contact choices there rather than scraping them from older CV documents. **Get in touch** opens Home's contact section, which includes a readable email address, a mail link, clipboard copying and the owner-supplied address. The design uses a consistent white background and a plain-text name in the header.
 
 `proj.md` is the durable implementation brief. `story.md` is an ignored, temporary instruction pad the owner may replace or erase. When its instructions are applied, update the relevant requirements in `proj.md`; do not make the site or build depend on the instruction pad.
 

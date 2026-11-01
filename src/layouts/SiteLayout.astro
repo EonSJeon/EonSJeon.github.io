@@ -11,11 +11,11 @@ const description = Astro.props.description ?? site.description;
 const fullTitle = title ? `${title} — ${site.name}` : site.title;
 const canonical = new URL(localizePath(Astro.url.pathname, lang), Astro.site);
 const current = Astro.url.pathname;
-const active = (path: string) => current.startsWith(path);
 const home = localizePath('/', lang);
+const active = (path: string) => path === home ? current === home : current.startsWith(path);
 const cv = localizePath('/cv/', lang);
 const navigation = [
-  { label: lang === 'ko' ? '소개' : 'About', href: '/about/' },
+  { label: lang === 'ko' ? '홈' : 'Home', href: '/' },
   ...(['research', 'publications', 'projects', 'coursework', 'proposals', 'blog'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` })),
   { label: 'CV', href: '/cv/' },
 ].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
@@ -65,7 +65,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
       <div><a class="footer-name" href={home}>{site.name}</a><p>© {new Date().getFullYear()} · {site.location}</p></div>
-      <nav aria-label={lang === 'ko' ? '하단 메뉴' : 'Footer navigation'}><a href={localizePath('/about/', lang)}>{lang === 'ko' ? '소개' : 'About'}</a><a href={`mailto:${site.email}`}>{lang === 'ko' ? '이메일' : 'Email'}<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href={localizePath('/rss.xml', lang)}>RSS</a></nav>
+      <nav aria-label={lang === 'ko' ? '하단 메뉴' : 'Footer navigation'}><a href={localizePath('/#contact', lang)}>{lang === 'ko' ? '연락처' : 'Contact'}</a><a href={`mailto:${site.email}`}>{lang === 'ko' ? '이메일' : 'Email'}<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href={localizePath('/rss.xml', lang)}>RSS</a></nav>
     </footer>
     <script>
       const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');

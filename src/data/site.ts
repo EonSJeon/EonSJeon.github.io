@@ -7,6 +7,7 @@ export const site = {
   role: 'Ph.D. student, Electrical & Computer Engineering',
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',
+  address: 'Rm5263, 75 5th St NW, Atlanta, GA 30308',
   email: 'sjeon84@gatech.edu',
   github: 'https://github.com/EonSJeon',
   scholar: 'https://scholar.google.com/citations?user=vwwPFNMAAAAJ',

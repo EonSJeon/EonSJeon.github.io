@@ -78,7 +78,7 @@ Create one initial entry: **When to Eat — RFID Food Storage Reminder**, at `/p
 - Remove the stylized RFID-token/desktop conceptual illustration from the project page and all Home fallbacks. Retain selected real photos and the official video; use a text-only feature layout if a future cover is absent.
 - Describe a completed team prototype using detachable RFID tokens, a token station, and a Windows desktop reminder interface.
 - Use the supported stack: ATID ATD100, UHF RFID, C#, XAML, Windows UWP, and USB VCP integration through the manufacturer's SDK. The specific ATD100N variant is unconfirmed.
-- Link the supplied project repository. Display the four team members and only the supplied professional-profile links; do not invent a profile for Yujin Park.
+- Link the supplied project repository. Display the four team members and only the supplied professional-profile links; do not invent a profile for Yujin Park. Use the owner-confirmed Korean names 김세현 (Sehyeon Kim), 정병영 (Byeongyoung Jeong), 박유진 (Yujin Park), preserving team order and existing English spellings.
 - Keep suggested sound alerts, phone widgets, and other future concepts separate from implemented features.
 - Describe elapsed-time reminders. Do not claim direct spoilage sensing, food-safety guarantees, measured waste reduction, or user-study results.
 
@@ -131,8 +131,8 @@ Display journal/year and DOI, order published records newest first, and cross-li
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Academic introduction, selected communications research, selected independent work, restrained coursework preview; no Meta Analysis, Ideas or Blog preview |
-| `/about` | Short biography, education, research interests, and selected experience |
+| `/` | Unified Home/profile: academic introduction, research and engineering narrative, interests, selected work and contact; no education, About me heading, Meta Analysis, Ideas or Blog preview |
+| `/about` | Legacy redirect to Home, preserving query strings and contact fragments; Korean equivalent redirects to `/ko/` |
 | `/research` and `/research/[slug]` | The two initial research entries and later verified research projects |
 | `/publications` | Accurate bibliographic records with clear publication-status groupings |
 | `/projects` and `/projects/[slug]` | Independent engineering work, initially When to Eat |
@@ -141,9 +141,9 @@ Display journal/year and DOI, order published records newest first, and cross-li
 | `/proposals` and `/proposals/[slug]` | Ideas; retain these existing URLs |
 | `/cv` | Full bilingual HTML CV, with dated PDF downloads retained below |
 
-Navigation uses the **top-right menu button at every viewport width**. Keep all section links and CV inside its initially closed panel; the wide-screen banner should show only the owner's name, visible language selector and menu button. Retain the existing full-width narrow-screen panel, with a compact right-aligned panel on wider screens. Research, Coursework, Ideas and Blog remain clearly named and reachable after opening it. Support keyboard activation, Escape and outside-click dismissal. Label the writing section **Blog** in English and **블로그** in Korean, including navigation, collection headings, and RSS titles; retain `/blog/` URLs. Contact can be a small About/footer section rather than another top-level route.
+Navigation uses the **top-right menu button at every viewport width**. Keep all section links and CV inside its initially closed panel; the wide-screen banner should show only the owner's name, visible language selector and menu button. Retain the existing full-width narrow-screen panel, with a compact right-aligned panel on wider screens. Research, Coursework, Ideas and Blog remain clearly named and reachable after opening it. Support keyboard activation, Escape and outside-click dismissal. Label the writing section **Blog** in English and **블로그** in Korean, including navigation, collection headings, and RSS titles; retain `/blog/` URLs. Contact belongs on Home, reachable directly from the hero and footer.
 
-Use this menu order in both languages: **About → Research → Publications → Projects → Coursework → Ideas → Blog → CV**. Keep the localized labels in Korean and the existing routes.
+After merging Home and About, use this menu order in both languages: **Home → Research → Publications → Projects → Coursework → Ideas → Blog → CV**. The first Korean label is **홈**. Preserve existing section routes and the legacy About redirects.
 
 Home should open with Sangeon Jeon's name, a concise academic identity, research interests, and these **five icon links visible in the introductory screen**, with accessible text labels:
 
@@ -155,9 +155,9 @@ Home should open with Sangeon Jeon's name, a concise academic identity, research
 | ORCID | `https://orcid.org/0009-0001-5883-0774` |
 | LinkedIn | `https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/` |
 
-Keep these destinations in the shared profile configuration. Use the school email for all website contact links; do not copy the older Gmail address from a CV. Home's **Get in touch** must navigate to `/about/#contact`, where the address is readable, a mail link is available, and a Copy email button confirms success or selects the address for manual copying if clipboard access is unavailable. Contact must remain usable without a configured desktop mail handler. No contact-form backend is required.
+Keep these destinations in the shared profile configuration. Use the school email for all website contact links; do not copy the older Gmail address from a CV. Home's **Get in touch** must navigate to its own `#contact` section (`/#contact` or `/ko/#contact`), where the email is readable, a mail link is available, and a Copy email button confirms success or selects the address for manual copying if clipboard access is unavailable. Display the owner-supplied address exactly: **Rm5263, 75 5th St NW, Atlanta, GA 30308**. Contact must remain usable without a configured desktop mail handler. No contact-form backend is required.
 
-Follow the introduction with the two research entries, one independent-project feature, then selected coursework. Avoid a full CV pasted into Home, an oversized hero, redundant cards across sections, and empty publication statistics.
+Keep Home's established name/portrait hero and interest line. Integrate the former About page's communications-research and engineering narrative without repeating the profile or adding an About me heading. Do not add education to Home; the full education record remains in CV. Follow the introduction with the two research entries, one independent-project feature, then selected coursework and contact. Avoid a full CV pasted into Home, an oversized hero, redundant cards across sections, and empty publication statistics.
 
 ## 6. Design and implementation stack
 

@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
+const legacyHomeRedirects = new Map([['/about/', '/'], ['/ko/about/', '/ko/']]);
 const collections = ['research', 'publications', 'projects', 'coursework', 'blog', 'proposals'];
 const documentDownloads = JSON.parse(await readFile(path.join(root, 'src/documents/downloads.json'), 'utf8'));
 const approvedDownloads = new Set(documentDownloads.map((document) => `documents/${document.filename}`));
@@ -125,31 +126,40 @@ async function validateOutput({ absentMarker } = {}) {
     const canonicals = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => attributesFor(match[0]))
       .filter((attributes) => attributes.rel === 'canonical');
     assert.equal(canonicals.length, 1, `Expected one canonical URL in ${relative}`);
-    assert.equal(canonicals[0].href, base.href, `Wrong canonical URL in ${relative}`);
-    assert(new RegExp(`<nav\\b[^>]*aria-label=["']${language === 'ko' ? '언어 선택' : 'Language selection'}["']`, 'i').test(html), `Missing accessible language selection in ${relative}`);
-    const currentLink = languageLink(html, language);
-    const otherLink = languageLink(html, otherLanguage);
-    assert(currentLink && otherLink, `Missing language choices in ${relative}`);
-    assert.equal(currentLink['aria-current'], 'page', `Selected language is not marked in ${relative}`);
-    assert(!otherLink['aria-current'], `Both languages are marked selected in ${relative}`);
-    assert.equal(new URL(currentLink.href, base).pathname, documentPath, `Current language link changes the page in ${relative}`);
-    const counterpart = counterpartPath(documentPath, language);
-    const hasCounterpart = Boolean(routeFile(counterpart));
-    const otherDestination = new URL(otherLink.href, base).pathname;
-    assert.equal(otherDestination, hasCounterpart ? counterpart : sectionIndex(documentPath, otherLanguage), `Language selection does not preserve the page or use its section fallback in ${relative}`);
-    const alternateLinks = alternateLanguages(html);
-    const ownAlternate = alternateLinks.find((link) => link.hreflang === language);
-    assert(ownAlternate && new URL(ownAlternate.href, base).href === base.href, `Missing self-language alternate in ${relative}`);
-    const otherAlternate = alternateLinks.find((link) => link.hreflang === otherLanguage);
-    if (hasCounterpart) {
-      assert(otherAlternate && new URL(otherAlternate.href, base).pathname === counterpart, `Missing translated alternate in ${relative}`);
+    const redirectHome = legacyHomeRedirects.get(documentPath);
+    assert.equal(canonicals[0].href, redirectHome ? new URL(redirectHome, origin).href : base.href, `Wrong canonical URL in ${relative}`);
+    if (redirectHome) {
+      const metadata = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
+      assert(metadata.some((attributes) => attributes.name === 'robots' && attributes.content === 'noindex'), `Legacy redirect must be noindex in ${relative}`);
+      assert(metadata.some((attributes) => attributes['http-equiv']?.toLowerCase() === 'refresh' && attributes.content === `0;url=${redirectHome}`), `Wrong legacy refresh destination in ${relative}`);
+      const anchors = [...html.matchAll(/<a\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
+      assert(anchors.some((attributes) => attributes.href === redirectHome), `Missing legacy home fallback link in ${relative}`);
     } else {
-      assert(!otherAlternate, `Unavailable translation advertised through hreflang in ${relative}`);
-    }
-    for (const alternate of alternateLinks) {
-      const alternateURL = new URL(alternate.href, base);
-      assert.equal(alternateURL.origin, origin, `Unexpected alternate origin in ${relative}`);
-      assert(routeFile(alternateURL.pathname), `Unavailable alternate route in ${relative}: ${alternate.href}`);
+      assert(new RegExp(`<nav\\b[^>]*aria-label=["']${language === 'ko' ? '언어 선택' : 'Language selection'}["']`, 'i').test(html), `Missing accessible language selection in ${relative}`);
+      const currentLink = languageLink(html, language);
+      const otherLink = languageLink(html, otherLanguage);
+      assert(currentLink && otherLink, `Missing language choices in ${relative}`);
+      assert.equal(currentLink['aria-current'], 'page', `Selected language is not marked in ${relative}`);
+      assert(!otherLink['aria-current'], `Both languages are marked selected in ${relative}`);
+      assert.equal(new URL(currentLink.href, base).pathname, documentPath, `Current language link changes the page in ${relative}`);
+      const counterpart = counterpartPath(documentPath, language);
+      const hasCounterpart = Boolean(routeFile(counterpart));
+      const otherDestination = new URL(otherLink.href, base).pathname;
+      assert.equal(otherDestination, hasCounterpart ? counterpart : sectionIndex(documentPath, otherLanguage), `Language selection does not preserve the page or use its section fallback in ${relative}`);
+      const alternateLinks = alternateLanguages(html);
+      const ownAlternate = alternateLinks.find((link) => link.hreflang === language);
+      assert(ownAlternate && new URL(ownAlternate.href, base).href === base.href, `Missing self-language alternate in ${relative}`);
+      const otherAlternate = alternateLinks.find((link) => link.hreflang === otherLanguage);
+      if (hasCounterpart) {
+        assert(otherAlternate && new URL(otherAlternate.href, base).pathname === counterpart, `Missing translated alternate in ${relative}`);
+      } else {
+        assert(!otherAlternate, `Unavailable translation advertised through hreflang in ${relative}`);
+      }
+      for (const alternate of alternateLinks) {
+        const alternateURL = new URL(alternate.href, base);
+        assert.equal(alternateURL.origin, origin, `Unexpected alternate origin in ${relative}`);
+        assert(routeFile(alternateURL.pathname), `Unavailable alternate route in ${relative}: ${alternate.href}`);
+      }
     }
     for (const match of html.matchAll(/\b(?:href|src|poster)\s*=\s*["']([^"']+)["']/gi)) {
       const value = decodeAttribute(match[1]).trim();
