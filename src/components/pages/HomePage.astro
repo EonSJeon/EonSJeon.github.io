@@ -4,27 +4,26 @@ import Icon from '../Icon.astro';
 import SectionHeading from '../SectionHeading.astro';
 import NewsList from '../NewsList.astro';
 import ProfileLinks from '../ProfileLinks.astro';
-import { type Locale, localizePath, getSiteCopy } from '../../lib/i18n';
+import { type Locale, getSiteCopy } from '../../lib/i18n';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 const site = getSiteCopy(lang);
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.mapPlaceName}, ${site.mapAddress}`)}`;
 const c = ko ? {
   eyebrow: 'Georgia Tech · Electrical & Computer Engineering', role: '박사과정 · Atlanta, Georgia',
   intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
   introAfterAdvisor: ' 교수님입니다. 현재는 처프 기반 다중반송파 파형의 주파수 오프셋 추정과 OFDM 수신기의 채널·하드웨어 불일치 공동 추정을 다루고 있습니다. 수학적 모델, 소프트웨어, 물리적 하드웨어를 연결하는 시스템을 만드는 일도 즐깁니다. RFID 알림 장치부터 생체전기 신호 기록과 메카트로닉스 시제품까지 다양한 프로젝트를 진행했습니다.',
   institution: 'Georgia Institute of Technology', interests: '연구 관심 분야',
-  contact: '연락처', contactDescription: '연구나 프로젝트에 관한 문의는 이메일로 보내주세요.', getInTouch: '연락하기', address: '주소',
-  write: '이메일 보내기', copy: '이메일 주소 복사', cv: 'CV 보기',
-  success: '이메일 주소를 복사했습니다.', fallback: '위 이메일 주소를 선택하여 복사해주세요.',
+  contact: '연락처', getInTouch: '연락하기', copy: '이메일 주소 복사', maps: 'Google Maps에서 주소 보기',
+  success: '이메일 주소를 복사했습니다.', fallback: '선택된 이메일 주소를 직접 복사해주세요.',
 } : {
   eyebrow: 'Georgia Tech · Electrical & Computer Engineering', role: 'Ph.D. student · Atlanta, Georgia',
   intro: 'I study waveform design and synchronization for wireless communication systems. I am a Ph.D. student at Georgia Tech, advised by ',
   introAfterAdvisor: '. My current work considers frequency-offset estimation for chirp-based multicarrier waveforms and joint channel and hardware-impairment estimation in OFDM receivers. I also enjoy building systems that connect mathematical models, software, and physical hardware. My engineering work has ranged from RFID-based reminders to bioelectrical recording and mechatronic prototypes.',
   institution: 'Georgia Institute of Technology', interests: 'Research interests',
-  contact: 'Contact', contactDescription: 'For questions about my research or projects, please email me.', getInTouch: 'Get in touch', address: 'Address',
-  write: 'Write an email', copy: 'Copy email', cv: 'View CV',
-  success: 'Email address copied.', fallback: 'Select and copy the email address above.',
+  contact: 'Contact', getInTouch: 'Get in touch', copy: 'Copy email address', maps: 'View address in Google Maps',
+  success: 'Email address copied.', fallback: 'Copy the selected email address manually.',
 };
 ---
 <SiteLayout lang={lang}>
@@ -47,12 +46,10 @@ const c = ko ? {
   <section class="home-contact" id="contact" aria-labelledby="contact-heading">
     <div class="contact-intro">
       <h2 id="contact-heading">{c.contact}</h2>
-      <p>{c.contactDescription}</p>
     </div>
     <div class="contact-details">
-      <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
-      <div class="contact-address"><span>{c.address}</span><address>{site.address}</address></div>
-      <div class="contact-actions"><a class="button" href={`mailto:${site.email}`}><Icon name="mail" size={17} />{c.write}</a><button class="button" type="button" data-copy-email={site.email} data-copy-success={c.success} data-copy-fallback={c.fallback}><Icon name="copy" size={17} />{c.copy}</button><a class="text-link" href={localizePath('/cv/', lang)}>{c.cv}<Icon name="arrow-right" size={16} /></a></div>
+      <button class="contact-value contact-email" type="button" data-copy-email={site.email} data-copy-success={c.success} data-copy-fallback={c.fallback} aria-label={`${c.copy}: ${site.email}`} title={c.copy}>{site.email}</button>
+      <address class="contact-address"><a class="contact-value contact-map" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.maps}: ${site.address}`} title={c.maps}>{site.address}</a></address>
       <p class="copy-status" role="status" aria-live="polite"></p>
     </div>
   </section>

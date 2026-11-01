@@ -89,7 +89,6 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .profile-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; color: var(--muted); font-size: 12px; text-decoration: none; }
 .profile-links a:hover { color: var(--accent); text-decoration: underline; }
 .hero-contact { margin-top: 21px; }
-.contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
 .copy-status { min-height: 1.65em; margin: 10px 0 14px; font-size: 12px; color: var(--muted); }
 .hero-portrait { margin: 0; align-self: center; }
 .portrait-frame { position: relative; padding: 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; }
@@ -134,11 +133,11 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .compact .card-meta { margin-bottom: 13px; }
 .home-contact { display: grid; grid-template-columns: 1fr 2fr; gap: 46px; margin-top: 57px; padding-top: 32px; border-top: 1px solid var(--line); }
 .contact-intro h2 { margin-bottom: 14px; }
-.contact-intro p { max-width: 250px; margin: 0; font-size: 14px; color: var(--muted); }
-.contact-email { font-size: 18px; overflow-wrap: anywhere; }
-.contact-address { margin: 18px 0 23px; }
-.contact-address > span { display: block; margin-bottom: 5px; font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--subtle); }
-.contact-address address { font-size: 14px; font-style: normal; color: var(--muted); }
+.contact-value { display: inline-block; max-width: 100%; padding: 0; border: 0; background: none; color: var(--text); font: inherit; line-height: 1.8; text-align: left; text-decoration: none; overflow-wrap: anywhere; cursor: pointer; }
+.contact-value:hover { color: var(--text); text-decoration: none; opacity: .75; }
+.contact-email { min-height: 36px; font-size: 18px; user-select: text; }
+.contact-address { margin: 9px 0 0; font-size: 15px; font-style: normal; }
+.contact-map { min-height: 32px; }
 .contact-details .copy-status { margin-bottom: 0; }
 .news-board { border-top: 1px solid var(--line); }
 .news-board-head, .news-board li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px; }
@@ -327,7 +326,6 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .news-board p { font-size: 14px; }
   .home-contact { grid-template-columns: 1fr; gap: 24px; margin-top: 38px; padding-top: 27px; }
   .contact-intro h2 { font-size: 27px; margin-bottom: 10px; }
-  .contact-intro p { max-width: none; }
   .page-heading { padding: 42px 0 30px; }
   .page-heading h1 { font-size: 39px; margin-bottom: 17px; }
   .page-intro { font-size: 16px; }
