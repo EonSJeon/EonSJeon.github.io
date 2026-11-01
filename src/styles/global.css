@@ -147,7 +147,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .compact h3 { font-size: 23px; }
 .compact .card-meta { margin-bottom: 13px; }
 .portrait-contact { margin-top: 22px; }
-.contact-address { margin: 0; font-size: 14px; font-style: normal; }
+.contact-address { margin: 0; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 14px; font-style: normal; }
 .contact-building { display: block; }
 .contact-map { display: block; min-height: 32px; line-height: 1.8; overflow-wrap: anywhere; }
 .portrait-contact .copy-status { margin: 6px 0 0; }
