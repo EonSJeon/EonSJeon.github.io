@@ -166,10 +166,8 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .page-intro { max-width: 700px; font-size: 17px; line-height: 1.8; color: var(--muted); margin-bottom: 0; }
 .page-section { margin-top: 40px; }
 .page-note { margin-top: 28px; font-size: 12px; color: var(--muted); }
-.site-footer { margin-top: 89px; padding: 27px 0 34px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.site-footer { margin-top: 89px; padding: 27px 0 34px; border-top: 1px solid var(--line); }
 .footer-copyright { margin: 0; color: var(--subtle); font-size: 12px; line-height: 1.8; }
-.footer-contact { display: flex; flex-wrap: wrap; gap: 6px 24px; color: var(--muted); font-size: 13px; font-style: normal; line-height: 1.8; }
-.footer-contact span { overflow-wrap: anywhere; }
 .breadcrumbs { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted); padding-top: 38px; }
 .breadcrumbs a { text-decoration: none; }
 .article-header { margin-top: 35px; padding-bottom: 31px; border-bottom: 1px solid var(--line); }
@@ -320,9 +318,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .page-heading { padding: 42px 0 30px; }
   .page-heading h1 { font-size: 39px; margin-bottom: 17px; }
   .page-intro { font-size: 16px; }
-  .site-footer { margin-top: 58px; gap: 10px; padding: 24px 0 30px; }
-  .footer-copyright span { display: block; }
-  .footer-contact { flex-direction: column; gap: 4px; }
+  .site-footer { margin-top: 58px; padding: 24px 0 30px; }
   .breadcrumbs { padding-top: 27px; font-size: 11px; }
   .article-header { margin-top: 28px; padding-bottom: 25px; }
   .article-header h1 { font-size: 35px; }

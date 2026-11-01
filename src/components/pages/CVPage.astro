@@ -3,7 +3,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import ProfileLinks from '../ProfileLinks.astro';
 import PublicationCitation from '../PublicationCitation.astro';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
-import { getPublicEntries, hrefForEntry, isPublished, isUnderReview } from '../../lib/content';
+import { getPublicEntries, hrefForEntry } from '../../lib/content';
 import { getCVCopy } from '../../data/cv';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
@@ -15,20 +15,21 @@ const [papers, projects] = await Promise.all([
   getPublicEntries('publications', lang),
   getPublicEntries('projects', lang),
 ]);
-const published = papers.filter(isPublished);
-const submitted = papers.filter(isUnderReview);
-const manuscripts = papers.filter((entry) => !isPublished(entry) && !isUnderReview(entry));
 const engineering = projects;
+const publicationGroups = [
+  { type: 'conference', title: ko ? '[학회]' : '[Conference]' },
+  { type: 'journal', title: ko ? '[저널]' : '[Journal]' },
+];
 const c = ko ? {
   title: 'CV & Resume', description: '전상언의 학력, 출판 및 연구·근무·교육 경험과 수상 이력입니다.',
   role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
-  publications: '출판', published: '출판물', submitted: '심사 중', manuscripts: '원고', research: '연구 경험',
+  publications: '출판', research: '연구 경험',
   employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
   skills: '기술 및 언어', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
 } : {
   title: 'CV & Resume', description: 'Sangeon Jeon’s education, publications, research, employment, teaching, awards, and skills.',
   role: 'Ph.D. student, Electrical & Computer Engineering', education: 'Education', interests: 'Research interests',
-  publications: 'Publications', published: 'Published papers', submitted: 'Under review', manuscripts: 'Manuscripts', research: 'Research experience',
+  publications: 'Publications', research: 'Research experience',
   employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', projects: 'Selected engineering',
   skills: 'Skills & languages', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
 };
@@ -59,11 +60,11 @@ const recordSections = [
         <h3 class="cv-subheading">{c.interests}</h3><ul class="tags">{site.interests.map((interest) => <li>{interest}</li>)}</ul>
       </section>
       <section class="cv-section" id="cv-publications" aria-labelledby="cv-publications-heading">
-        <h2 id="cv-publications-heading">{c.publications}</h2><h3 class="cv-subheading">{c.published}</h3>
-        {published.map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}
-        <h3 class="cv-subheading">{c.submitted}</h3>
-        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}
-        {manuscripts.length > 0 && <><h3 class="cv-subheading">{c.manuscripts}</h3>{manuscripts.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}</>}
+        <h2 id="cv-publications-heading">{c.publications}</h2>
+        {publicationGroups.map((group) => <div class="cv-publication-group">
+          <h3 class="cv-subheading">{group.title}</h3>
+          {papers.filter((entry) => entry.data.publicationType === group.type).map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}
+        </div>)}
         <p class="publication-legend">† {ko ? '공동 제1저자' : 'Co-first author'} · ‡ {ko ? '동등 기여' : 'Equal contribution'}</p>
       </section>
       <section class="cv-section" id="cv-research" aria-labelledby="cv-research-heading">
@@ -104,7 +105,7 @@ const recordSections = [
   .cv-period { flex-shrink: 0; font-size: 11px; color: var(--subtle); white-space: nowrap; }
   .cv-subheading { font-family: var(--sans); font-size: 12px; font-weight: 600; margin: 28px 0 18px; }
   .cv-paper { margin-bottom: 28px; }
-  .cv-paper :global(.publication-citation) { font-size: 12px; }
+  .cv-paper :global(.publication-citation) { font-size: 14px; }
   .cv-skills { margin: 0; }
   .cv-skills > div { margin-bottom: 22px; }
   .cv-skills dt { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
