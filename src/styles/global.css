@@ -83,17 +83,19 @@ html[lang='ko'] h3 { font-weight: 550; }
 html[lang='ko'] .prose { line-height: 1.9; }
 .hero-role { font-size: 14px; color: var(--muted); margin-bottom: 0; }
 .hero-description { grid-area: description; font-size: 18px; line-height: 1.75; letter-spacing: -.01em; margin-bottom: 0; }
-.hero-description a { color: inherit; white-space: nowrap; }
+.hero-description p:last-child { margin-bottom: 0; }
+.hero-description a { color: inherit; }
+.hero-advisor { white-space: nowrap; }
 .hero > .profile-links { grid-area: profiles; }
 .profile-links { display: flex; flex-wrap: wrap; gap: 12px 22px; list-style: none; margin: 0; padding: 0; }
 .profile-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 28px; color: var(--muted); font-size: 12px; text-decoration: none; }
 .profile-links a:hover { color: var(--accent); text-decoration: underline; }
 .hero-cv { grid-area: cv; justify-self: start; font-size: 15px; font-weight: 600; }
 .copy-status { min-height: 1.65em; margin: 10px 0 14px; font-size: 12px; color: var(--muted); }
-.hero-portrait { grid-area: portrait; margin: 0; }
+.hero-aside { grid-area: portrait; min-width: 0; }
+.hero-portrait { margin: 0; }
 .portrait-frame { position: relative; padding: 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; }
 .hero-portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; filter: saturate(.8); }
-.hero-portrait figcaption { margin-top: 17px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; text-align: center; color: var(--subtle); }
 .interest-line { display: flex; align-items: center; gap: 19px; padding: 19px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 11px; color: var(--muted); }
 .interest-line > span { font-weight: 600; text-transform: uppercase; letter-spacing: .09em; font-size: 9px; color: var(--subtle); }
 .interest-line ul { display: flex; gap: 12px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
@@ -131,14 +133,14 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .compact .card-bottom { border: 0; padding-top: 0; }
 .compact h3 { font-size: 23px; }
 .compact .card-meta { margin-bottom: 13px; }
-.home-contact { display: grid; grid-template-columns: 1fr 2fr; gap: 46px; margin-top: 57px; padding-top: 32px; border-top: 1px solid var(--line); }
-.contact-intro h2 { margin-bottom: 14px; }
+.portrait-contact { margin-top: 22px; }
+.portrait-contact h2 { margin-bottom: 8px; font-family: var(--sans); font-size: 18px; font-weight: 600; }
 .contact-value { display: inline-block; max-width: 100%; padding: 0; border: 0; background: none; color: var(--text); font: inherit; line-height: 1.8; text-align: left; text-decoration: none; overflow-wrap: anywhere; cursor: pointer; }
 .contact-value:hover { color: var(--text); text-decoration: none; opacity: .75; }
-.contact-email { min-height: 36px; font-size: 18px; user-select: text; }
-.contact-address { margin: 9px 0 0; font-size: 15px; font-style: normal; }
+.contact-email { min-height: 30px; font-size: 14px; user-select: text; }
+.contact-address { margin: 6px 0 0; font-size: 12px; font-style: normal; }
 .contact-map { min-height: 32px; }
-.contact-details .copy-status { margin-bottom: 0; }
+.portrait-contact .copy-status { margin: 6px 0 0; }
 .news-board { border-top: 1px solid var(--line); }
 .news-board-head, .news-board li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px; }
 .news-board-head { padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--muted); }
@@ -277,14 +279,15 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .site-brand { font-size: 13px; }
   .header-controls { margin-left: auto; gap: 8px; }
   .site-navigation { left: -20px; right: -20px; width: auto; max-height: calc(100dvh - 74px); border-inline: 0; border-radius: 0; box-shadow: 0 10px 15px #14251a06; }
-  .hero { padding: 45px 0 35px; grid-template-columns: minmax(0, 1fr) clamp(112px, 32vw, 136px); grid-template-areas: 'heading portrait' 'description description' 'profiles profiles' 'cv cv'; gap: 22px 18px; }
+  .hero { padding: 45px 0 35px; grid-template-columns: minmax(0, 1fr) clamp(112px, 32vw, 136px); grid-template-areas: 'heading portrait' 'contact contact' 'description description' 'profiles profiles' 'cv cv'; grid-template-rows: none; gap: 22px 18px; }
   .hero h1 { font-size: 37px; margin-bottom: 17px; }
   .hero-korean { font-size: 11px; margin-top: 12px; }
   .hero-hanja { font-size: 15px; margin: 8px 0 0; }
   .hero-role { font-size: 11px; line-height: 1.6; margin-bottom: 0; }
-  .hero-portrait { align-self: center; }
+  .hero-aside { display: contents; }
+  .hero-portrait { grid-area: portrait; align-self: center; }
+  .portrait-contact { grid-area: contact; margin-top: 0; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
   .portrait-frame { padding: 5px; border-radius: 4px; }
-  .hero-portrait figcaption { font-size: 7px; letter-spacing: .04em; margin-top: 12px; }
   .hero-description { font-size: 16px; margin-bottom: 0; }
   .profile-links { gap: 10px 17px; }
   .profile-links a { min-height: 30px; }
@@ -315,8 +318,6 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .news-board li { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
   .news-board time { padding: 0; }
   .news-board p { font-size: 14px; }
-  .home-contact { grid-template-columns: 1fr; gap: 24px; margin-top: 38px; padding-top: 27px; }
-  .contact-intro h2 { font-size: 27px; margin-bottom: 10px; }
   .page-heading { padding: 42px 0 30px; }
   .page-heading h1 { font-size: 39px; margin-bottom: 17px; }
   .page-intro { font-size: 16px; }
