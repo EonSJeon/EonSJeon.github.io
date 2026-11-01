@@ -64,7 +64,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     </header>
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
-      <p class="footer-copyright">{lang === 'ko' ? '© 2026 전상언. Astro로 제작. 최종 수정: ' : '© Copyright 2026 Sangeon Jeon. Built with Astro. Last updated: '}<time datetime="2026-11-01">{lang === 'ko' ? '2026년 11월 1일' : 'November 1, 2026'}</time>.</p>
+      <p class="footer-copyright" lang="en">© Copyright 2026 Sangeon Jeon. Powered by Astro. Last updated: <time datetime="2026-11-01">November 1, 2026</time>.</p>
     </footer>
     <script>
       const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
