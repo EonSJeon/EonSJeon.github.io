@@ -1,5 +1,6 @@
 ---
 import { getSiteCopy, type Locale } from '../../lib/i18n';
+import SiteIcons from '../SiteIcons.astro';
 interface Props { target: string; lang?: Locale; }
 const { target, lang = 'en' } = Astro.props;
 const site = getSiteCopy(lang);
@@ -13,6 +14,7 @@ canonical.hash = '';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
+    <SiteIcons />
     <link rel="canonical" href={canonical} />
     <title>{title} — {site.name}</title>
     <script is:inline define:vars={{ target }}>

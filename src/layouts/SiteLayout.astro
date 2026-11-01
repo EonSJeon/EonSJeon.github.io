@@ -2,6 +2,7 @@
 import { getSiteCopy, getSectionsCopy, localizePath, type Locale, type LanguageLinks } from '../lib/i18n';
 import { site as siteIdentity } from '../data/site';
 import Icon from '../components/Icon.astro';
+import SiteIcons from '../components/SiteIcons.astro';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
@@ -35,6 +36,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <meta name="color-scheme" content="light" />
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
+    <SiteIcons />
     <link rel="preload" href="/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
@@ -54,7 +56,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <a href="#main-content" class="skip-link">{lang === 'ko' ? '본문으로 바로가기' : 'Skip to content'}</a>
     <header class="site-header">
       <div class="header-inner container">
-        <a class="site-brand" href={home} lang="en" aria-label={`${headerName}, home`}>{headerName}</a>
+        <a class="site-brand" href={home} lang="en" aria-label={`${headerName}, home`}><img class="site-brand-icon" src="/images/sangeon-jeon-mark.png" width="36" height="36" alt="" aria-hidden="true" />{headerName}</a>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
             {/* 번역 금지: 언어 선택 표시는 En → 한 순서와 축약형을 양쪽 페이지에서 동일하게 유지한다. */}
