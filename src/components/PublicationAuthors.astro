@@ -7,14 +7,16 @@ interface Props {
   coFirstAuthors?: string[];
   equalContributionAuthors?: string[];
   lang?: Locale;
+  showLegend?: boolean;
+  linkProfiles?: boolean;
 }
-const { authors, profiles, coFirstAuthors = [], equalContributionAuthors = [], lang = 'en' } = Astro.props;
+const { authors, profiles, coFirstAuthors = [], equalContributionAuthors = [], lang = 'en', showLegend = true, linkProfiles = true } = Astro.props;
 const ko = lang === 'ko';
 const otherEqualAuthors = equalContributionAuthors.filter((author) => !coFirstAuthors.includes(author));
 ---
 <p class="publication-authors">{authors.map((author, index) => {
-  const profile = profiles.find((person) => person.name === author)?.url;
-  return <>{index > 0 && ', '}{author === site.name ? <strong>{profile ? <a href={profile}>{author}</a> : author}</strong> : profile ? <a href={profile}>{author}</a> : author}{coFirstAuthors.includes(author) ? <sup aria-label={ko ? '공동 제1저자' : 'Co-first author'}>†</sup> : otherEqualAuthors.includes(author) && <sup aria-label={ko ? '동등 기여' : 'Equal contribution'}>‡</sup>}</>;
+  const profile = linkProfiles ? profiles.find((person) => person.name === author)?.url : undefined;
+  return <>{index > 0 && ', '}{author === site.name || author === site.koreanName ? <strong>{profile ? <a href={profile}>{author}</a> : author}</strong> : profile ? <a href={profile}>{author}</a> : author}{coFirstAuthors.includes(author) ? <sup aria-label={ko ? '공동 제1저자' : 'Co-first author'}>†</sup> : otherEqualAuthors.includes(author) && <sup aria-label={ko ? '동등 기여' : 'Equal contribution'}>‡</sup>}</>;
 })}</p>
-{coFirstAuthors.length > 0 && <p class="publication-contribution">† {ko ? '공동 제1저자' : 'Co-first author'}</p>}
-{otherEqualAuthors.length > 0 && <p class="publication-contribution">‡ {ko ? '동등 기여' : 'Equal contribution'}</p>}
+{showLegend && coFirstAuthors.length > 0 && <p class="publication-contribution">† {ko ? '공동 제1저자' : 'Co-first author'}</p>}
+{showLegend && otherEqualAuthors.length > 0 && <p class="publication-contribution">‡ {ko ? '동등 기여' : 'Equal contribution'}</p>}

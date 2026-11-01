@@ -1,6 +1,7 @@
 ---
 title: "Global Prevalence of Spinal Muscular Atrophy in 204 Countries and Territories, 1960-2024: A Systematic Review and Bayesian Modeling Study"
 summary: "A systematic review and Bayesian synthesis of spinal muscular atrophy prevalence, distinguishing newborns, children, and all-age populations across 204 countries and territories."
+publicationType: "journal"
 categoryLabel: "Journal article"
 status: "Published"
 language: en
@@ -32,12 +33,8 @@ authors:
   - "Dong Keon Yon"
 venue: "Pediatric Neurology"
 doi: "10.1016/j.pediatrneurol.2026.04.005"
-relatedResearch: "sma-prevalence-modeling"
-tags: ["Meta Analysis","Bayesian inference","Spinal muscular atrophy","Systematic review"]
+tags: ["Meta Analysis","Bayesian statistics","Spinal muscular atrophy","Systematic review"]
 links:
   - label: "Publisher article"
     url: "https://www.sciencedirect.com/science/article/pii/S0887899426001207"
 ---
-
-The paper brings together published SMA prevalence studies to estimate country, regional, and global patterns for distinct population groups. It also examines associations with sociodemographic conditions and access to healthcare.
-

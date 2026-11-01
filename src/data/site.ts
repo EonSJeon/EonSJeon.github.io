@@ -3,7 +3,7 @@ export const site = {
   koreanName: '전상언',
   hanjaName: '全商彥',
   title: 'Sangeon Jeon — Wireless Communications & Signal Processing',
-  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, and Bayesian inference.',
+  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, and Bayesian statistics.',
   role: 'Ph.D. student, Electrical & Computer Engineering',
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',
@@ -14,14 +14,10 @@ export const site = {
   orcid: 'https://orcid.org/0009-0001-5883-0774',
   linkedin: 'https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/',
   advisor: { name: 'Xiaoli Ma', url: 'https://xma-ultra-signals.github.io/' },
-  interests: ['Wireless communications', 'Waveform design', 'Synchronization', 'Bayesian inference'],
+  interests: ['Wireless communications', 'Waveform design', 'Synchronization', 'Bayesian statistics'],
 };
 
 export const sections = {
-  research: {
-    label: 'Research', eyebrow: 'Questions & investigations',
-    description: 'Research in wireless communications and meta-analysis: synchronization, receiver estimation, and synthesis of disease-prevalence evidence.',
-  },
   projects: {
     label: 'Projects', eyebrow: 'Ideas made tangible',
     description: 'Engineering projects connecting software and hardware, from independent prototypes to team design projects.',
@@ -32,7 +28,7 @@ export const sections = {
   },
   publications: {
     label: 'Publications', eyebrow: 'Manuscripts & publications',
-    description: 'Published journal articles and manuscripts under review, with links to the papers and related research.',
+    description: 'Journal and conference papers, with review status shown for submitted manuscripts.',
   },
   blog: {
     label: 'Blog', eyebrow: 'Notes & observations',

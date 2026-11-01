@@ -15,12 +15,13 @@ const ko = lang === 'ko';
 const site = getSiteCopy(lang);
 const education = getEducationCopy(lang);
 const records = getCVCopy(lang);
-const [papers, research, projects] = await Promise.all([
-  getPublicEntries('publications', lang), getPublicEntries('research', lang),
+const [papers, projects] = await Promise.all([
+  getPublicEntries('publications', lang),
   getPublicEntries('projects', lang),
 ]);
 const published = papers.filter(isPublished);
-const submitted = research.filter(isUnderReview);
+const submitted = papers.filter(isUnderReview);
+const manuscripts = papers.filter((entry) => !isPublished(entry) && !isUnderReview(entry));
 const engineering = projects;
 const shortDocument = downloads.find((document) => document.id === 'industrial')!;
 const fullDocument = downloads.find((document) => document.id === 'full')!;
@@ -28,7 +29,7 @@ const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.reso
 const c = ko ? {
   title: 'CV & Resume', description: '전상언의 학력, 논문, 연구·근무·교육 경험과 수상 이력입니다.',
   role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
-  publications: '논문', published: '게재 논문', submitted: '심사 중인 연구', research: '연구 경험',
+  publications: '논문', published: '게재 논문', submitted: '심사 중', manuscripts: '원고', research: '연구 경험',
   employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
   skills: '기술 및 언어', downloads: 'PDF 다운로드', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
   downloadIntro: 'PDF는 각 문서에 표시된 날짜 기준의 별도 버전입니다.',
@@ -37,7 +38,7 @@ const c = ko ? {
 } : {
   title: 'CV & Resume', description: 'Sangeon Jeon’s education, publications, research, employment, teaching, awards, and skills.',
   role: 'Ph.D. student, Electrical & Computer Engineering', education: 'Education', interests: 'Research interests',
-  publications: 'Publications', published: 'Published papers', submitted: 'Research under review', research: 'Research experience',
+  publications: 'Publications', published: 'Published papers', submitted: 'Under review', manuscripts: 'Manuscripts', research: 'Research experience',
   employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', projects: 'Selected engineering',
   skills: 'Skills & languages', downloads: 'PDF downloads', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
   downloadIntro: 'The PDFs are separate versions reflecting the dates shown below.',
@@ -74,12 +75,12 @@ const recordSections = [
         <h2 id="cv-publications-heading">{c.publications}</h2><h3 class="cv-subheading">{c.published}</h3>
         {published.map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}
         <h3 class="cv-subheading">{c.submitted}</h3>
-        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><p class="cv-organization">{entry.data.status}</p></article>)}
+        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}
+        {manuscripts.length > 0 && <><h3 class="cv-subheading">{c.manuscripts}</h3>{manuscripts.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}</>}
+        <p class="publication-legend">† {ko ? '공동 제1저자' : 'Co-first author'} · ‡ {ko ? '동등 기여' : 'Equal contribution'}</p>
       </section>
       <section class="cv-section" id="cv-research" aria-labelledby="cv-research-heading">
         <h2 id="cv-research-heading">{c.research}</h2>
-        {research.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3>{entry.data.period && <span class="cv-period">{entry.data.period}</span>}</div>{entry.data.contribution && <p class="cv-organization">{entry.data.contribution}</p>}<p>{entry.data.summary}</p></article>)}
-        <h3 class="cv-subheading">{c.earlier}</h3>
         {records.earlierResearch.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p><p>{entry.description}</p></article>)}
       </section>
       {recordSections.map((section) => <section class="cv-section" id={`cv-${section.id}`} aria-labelledby={`cv-${section.id}-heading`}><h2 id={`cv-${section.id}-heading`}>{section.label}</h2>{section.entries.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p>{entry.description && <p>{entry.description}</p>}</article>)}</section>)}

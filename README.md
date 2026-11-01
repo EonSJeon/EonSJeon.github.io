@@ -1,6 +1,6 @@
 # Sangeon Jeon's academic website
 
-A static Astro website for research, engineering projects, coursework, publications, and writing. It is configured for the user-site root at **https://eonsjeon.github.io/**.
+A static Astro website for an academic profile, papers, engineering projects, coursework, and writing. It is configured for the user-site root at **https://eonsjeon.github.io/**.
 
 ## Local development
 
@@ -22,24 +22,27 @@ npm run preview
 
 ## Content and display order
 
-Content lives in six distinct collections under `src/content/`:
+Content lives in five distinct collections under `src/content/`:
 
-- `research/`: research project descriptions, including work with manuscripts under review or in preparation.
-- `publications/`: verified bibliographic records with accurate publication statuses.
+- `publications/`: metadata-only paper records, grouped as Conference then Journal. No individual paper-description pages are generated.
 - `projects/`: engineering projects, including When to Eat, Senior Design, Junior Design and Robotic Tic-Tac-Toe. Course context remains in each project's metadata.
 - `coursework/`: courses studied, with study notes and laboratory records. The index is a list board; initially only Electronics Design Laboratory is included.
 - `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
-The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, four engineering projects, a laboratory-course detail, and a full bilingual HTML CV. Coursework is a course list board with course, institution and term columns, initially containing only Electronics Design Laboratory. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research and one Engineering projects card grid, ordered newest first; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
+The site contains six paper records (three published journal articles, two conference submissions under review, and a hemophilia manuscript), four engineering projects, one laboratory-course detail, and a full bilingual HTML CV. Publications uses compact title / authors / venue-year citations under **[Conference]** then **[Journal]**; DOI links are on titles and submission status is brief. Preserve full ordered authors, the owner's bold name and co-first marks. Author names on Publications are plain text; retain only the title DOI links. Supplied profile URLs remain stored for CV/provenance. Do not add abstracts, collaboration paragraphs or independent paper pages.
 
-Senior Design, Junior Design and Robotic Tic-Tac-Toe now live under `/projects/`. Their former `/coursework/` URLs in both languages preserve query strings and fragments while redirecting to the new pages. Keep the mappings in `src/lib/redirects.ts`; redirects are excluded from sitemap. Source folders retain paired Markdown and selected media together. Keep project `displayOrder` newest first in both languages: Tic-Tac-Toe, When to Eat, Venus Flytrap, then RoBACHtic; Home and CV reuse that order. RoBACHtic Symphony is Fall 2023; Robotic Tic-Tac-Toe is Fall 2024, as confirmed by the owner.
+Home retains the continuous profile hero, larger portrait and interests, followed by a **News list board** and contact. It has no Selected research or Engineering projects preview. Edit dated EN/KO news in `src/data/news.ts`; use only confirmed event dates, allowing month precision instead of inventing a day. Per the owner's latest instruction, News currently contains **only the January 2026 Ph.D. start**, with no paper-publication announcements. Add other news only when requested.
+
+Research was retired entirely. Its narratives and model-diagnostic image are archived only in ignored `reference-private/research-page-retirement/2026-10-31/`. All paper facts now live in Publications. Old Research indexes/details and the three former publication-detail URLs redirect to the list or its corresponding paper anchor, with canonical list URLs and no sitemap entry. New paper records do not generate individual pages. Blog and Ideas remain empty pending individual article approval. Coursework remains a one-course list board.
+
+Senior Design, Junior Design and Robotic Tic-Tac-Toe now live under `/projects/`. Their former `/coursework/` URLs in both languages preserve query strings and fragments while redirecting to the new pages. Keep the mappings in `src/lib/redirects.ts`; redirects are excluded from sitemap. Source folders retain paired Markdown and selected media together. Keep project `displayOrder` newest first in both languages: Tic-Tac-Toe, When to Eat, Venus Flytrap, then RoBACHtic; Projects and CV reuse that order. RoBACHtic Symphony is Fall 2023; Robotic Tic-Tac-Toe is Fall 2024, as confirmed by the owner.
 
 Add future course notes as paired entries in `src/content/coursework/`, after owner selection. The board lists only released entries; do not add other CV subjects automatically. Keep course titles, institution and term in each entry's metadata and do not invent grades, course numbers or semesters. The electronics laboratory's internal course number remains hidden.
 
 Home combines the profile introduction, research interests, engineering narrative and contact information using the existing hero design. Keep the full introduction in one continuous hero paragraph in both languages, before the profile links and research-interest line. Education remains in CV. The former `/about/` and `/ko/about/` routes redirect to their localized Home, preserving query strings and contact fragments.
 
-The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is Home, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
+The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is Home, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
 
 Blog and Ideas drafts live only in ignored `reference-private/writing-review/`. Previous CSV selections do not grant publication approval. Commit an article only after the owner explicitly approves that finished text; unapproved full text does not belong in tracked content even with a false release flag.
 
@@ -124,7 +127,7 @@ collaborators: []
 
 Use lower `displayOrder` values to show an entry earlier. Blog posts and publications sort newest first by `pubDate`; Ideas uses `priority` when provided, falling back to `displayOrder`. `featured` controls selections in components that feature entries. Keep unknown optional metadata omitted, especially unverified affiliations, contributions, exact dates, or final demonstration claims. Coursework entries require `courseCode`; use the schema's course type and optional institution/title fields.
 
-Publication records preserve ordered `authors`, `venue`, `pubDate`, and verified `doi`. `coFirstAuthors` lists only confirmed co-first authors by their exact author names and produces a † mark and legend. `equalContributionAuthors` preserves a broader equal-contribution footnote when needed; names outside `coFirstAuthors` receive ‡ with a separate legend, without assigning an unconfirmed authorship role. Add supplied author profile links through matching names in `collaborators`; organizations in that list appear as collaboration credits. A collaborator's optional `role` supports credits such as Project Manager. Pair a publication's `relatedResearch` with the research entry's `relatedManuscript` slug to enable links between released pages in the same language. Research details reuse that released publication's full ordered author list and equal-contribution marks, so bibliographic names stay in one source per language. Research without a released publication record can hold confirmed `authors` and `coFirstAuthors` directly, as HEM does.
+Publication records preserve ordered `authors`, `publicationType` (`conference` or `journal`), verified `title`, optional `venue`, `pubDate` and `doi`. Keep English paper titles in both languages. `coFirstAuthors` produces †; other confirmed `equalContributionAuthors` receive ‡, with one compact shared legend. Author profiles match names in `collaborators`, but are not linked on the Publications list per owner preference; CV may retain those links. Organization/Project Manager metadata remains stored for provenance but is not expanded into the compact list. HEM uses the owner-confirmed title **Global disparities and unmet treatment needs in hemophilia toward 2030**; until its venue/status is supplied, show only Manuscript / 원고, without a publication date or acceptance claim. Communications titles and ICASSP 2027/ICC 2027 under-review status remain exact. Bibliographic links from CV use `/publications/#<slug>` (or `/ko/publications/#<slug>`).
 
 The profile, contact address, education history/GPAs, and collection descriptions are in `src/data/site.ts`. Home displays icon links for school email, GitHub, Google Scholar, ORCID, and LinkedIn. Keep public contact choices there rather than scraping them from older CV documents. **Get in touch** opens Home's contact section, which includes a readable email address, a mail link, clipboard copying and the owner-supplied address. The design uses a consistent white background and a plain-text name in the header.
 
@@ -138,7 +141,7 @@ To verify this behavior against a real build after changing routes, feeds, or co
 node scripts/check-site.mjs --test-publication-gate
 ```
 
-This temporarily creates unapproved and draft canaries in all six collections, builds the site, verifies their absence from routes and text/metadata output, checks an approved folder-based MDX entry and excluded raw sources, removes the fixtures, and rebuilds clean output.
+This temporarily creates unapproved and draft canaries in all five collections, builds the site, verifies their absence from routes and text/metadata output, checks an approved folder-based MDX entry and excluded raw sources, removes the fixtures, and rebuilds clean output.
 
 ## Reference material and Git visibility
 

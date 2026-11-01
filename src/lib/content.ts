@@ -2,7 +2,6 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { localizePath, type Locale, type LanguageLinks } from './i18n';
 
 export const PUBLIC_COLLECTIONS = [
-  'research',
   'publications',
   'projects',
   'coursework',
@@ -44,6 +43,7 @@ export function slugForEntry(entry: Pick<PublicEntry, 'id' | 'data'>): string {
 
 export function hrefForEntry(entry: Pick<PublicEntry, 'collection' | 'id' | 'data'>): string {
   const slug = slugForEntry(entry).split('/').map(encodeURIComponent).join('/');
+  if (entry.collection === 'publications') return localizePath(`/publications/#${slug}`, entry.data.language);
   return localizePath(`/${entry.collection}/${slug}/`, entry.data.language);
 }
 

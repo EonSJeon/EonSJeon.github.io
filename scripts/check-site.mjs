@@ -10,7 +10,7 @@ import { legacyRedirects, movedProjectSlugs } from '../src/lib/redirects.ts';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
-const collections = ['research', 'publications', 'projects', 'coursework', 'blog', 'proposals'];
+const collections = ['publications', 'projects', 'coursework', 'blog', 'proposals'];
 const documentDownloads = JSON.parse(await readFile(path.join(root, 'src/documents/downloads.json'), 'utf8'));
 const approvedDownloads = new Set(documentDownloads.map((document) => `documents/${document.filename}`));
 const englishRoutes = [
@@ -128,7 +128,9 @@ async function validateOutput({ absentMarker } = {}) {
       .filter((attributes) => attributes.rel === 'canonical');
     assert.equal(canonicals.length, 1, `Expected one canonical URL in ${relative}`);
     const redirectTarget = legacyRedirects[documentPath];
-    assert.equal(canonicals[0].href, redirectTarget ? new URL(redirectTarget, origin).href : base.href, `Wrong canonical URL in ${relative}`);
+    const expectedCanonical = new URL(redirectTarget ?? documentPath, origin);
+    expectedCanonical.hash = '';
+    assert.equal(canonicals[0].href, expectedCanonical.href, `Wrong canonical URL in ${relative}`);
     if (redirectTarget) {
       const metadata = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
       assert(metadata.some((attributes) => attributes.name === 'robots' && attributes.content === 'noindex'), `Legacy redirect must be noindex in ${relative}`);
@@ -299,7 +301,7 @@ async function testPublicationGate() {
     const sitemapBodies = await Promise.all(sitemaps.map((file) => readFile(file, 'utf8')));
     assert(sitemapBodies.some((body) => body.includes(rendererSlug)), 'Approved post is absent from the sitemap.');
     console.log('Approved Korean folder-based MDX passed: stable locale URL, excluded README/raw sources, Korean document language, evaluated expression, KaTeX, highlighted code, footnotes, Korean index/RSS, sitemap, and unpublished-translation fallback.');
-    console.log(`Publication gate passed: unapproved and draft translations stayed absent across both languages and all six collections (${report.pages} pages).`);
+    console.log(`Publication gate passed: unapproved and draft translations stayed absent across both languages and all ${collections.length} collections (${report.pages} pages).`);
   } finally {
     for (const fixture of fixtures) await rm(fixture, { recursive: true, force: true });
     build();

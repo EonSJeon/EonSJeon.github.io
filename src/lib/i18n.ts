@@ -8,6 +8,7 @@ const koreanInterests: Record<string, string> = {
   'Wireless communications': '무선통신',
   'Waveform design': '파형 설계',
   'Synchronization': '동기화',
+  'Bayesian statistics': '베이지안 통계',
 };
 
 export function localizePath(path: string, lang: Locale): string {
@@ -23,17 +24,16 @@ export function getSiteCopy(lang: Locale) {
   return {
     ...site, name: site.koreanName,
     title: '전상언 — 무선통신 및 신호처리',
-    description: 'Georgia Institute of Technology 전기·컴퓨터공학 박사과정 전상언입니다. 무선통신, 파형 설계, 동기화와 Bayesian inference를 연구합니다.',
+    description: 'Georgia Institute of Technology 전기·컴퓨터공학 박사과정 전상언입니다. 무선통신, 파형 설계, 동기화와 베이지안 통계를 연구합니다.',
     role: '전기·컴퓨터공학 박사과정', institution: 'Georgia Institute of Technology', location: 'Atlanta, Georgia',
     interests: site.interests.map((interest) => koreanInterests[interest] ?? interest),
   };
 }
 
 const koreanSections = {
-  research: { label: '연구', eyebrow: '연구 주제와 탐구', description: '무선통신의 동기화·수신기 추정과 질환별 유병률 자료의 메타분석을 다룬 연구입니다.' },
   projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '독립 시제품부터 팀 설계 프로젝트까지, 소프트웨어와 하드웨어를 연결한 공학 프로젝트입니다.' },
   coursework: { label: '코스웍', eyebrow: '수강 과목과 기초', description: '수강한 과목과 학습 내용, 실험 기록을 정리합니다.' },
-  publications: { label: '논문', eyebrow: '논문 및 투고 현황', description: '출판된 학술지 논문과 심사 중인 원고를 정리하고, 원문과 관련 연구를 연결합니다.' },
+  publications: { label: '논문', eyebrow: '논문 및 투고 현황', description: '학술지와 학술대회 논문을 정리하고, 투고한 원고의 심사 상태를 표시합니다.' },
   blog: { label: '블로그', eyebrow: '기록과 생각', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
   proposals: { label: '아이디어', eyebrow: '탐구할 만한 질문', description: '앞으로 탐구하고 싶은 연구 질문과 프로젝트 아이디어, 가능한 접근 방법과 남은 과제를 정리합니다.' },
 };

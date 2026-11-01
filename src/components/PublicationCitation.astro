@@ -1,15 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import PublicationAuthors from './PublicationAuthors.astro';
-interface Props { entry: CollectionEntry<'publications'>; }
-const { entry } = Astro.props;
+import { isPublished, isUnderReview } from '../lib/content';
+interface Props { entry: CollectionEntry<'publications'>; linkAuthors?: boolean; }
+const { entry, linkAuthors = true } = Astro.props;
 const d = entry.data;
 const ko = d.language === 'ko';
-const partners = d.collaborators.filter((person) => !d.authors?.includes(person.name));
+const status = isUnderReview(entry) ? (ko ? '심사 중' : 'Under review') : !isPublished(entry) ? d.status : undefined;
 ---
 <div class="publication-citation">
-  {d.authors && <PublicationAuthors authors={d.authors} profiles={d.collaborators} coFirstAuthors={d.coFirstAuthors} equalContributionAuthors={d.equalContributionAuthors} lang={d.language} />}
-  <p class="publication-venue">{d.venue && <cite>{d.venue}</cite>}{d.venue && d.pubDate && ' · '}{d.pubDate && <time datetime={d.pubDate.toISOString().slice(0, 10)}>{d.pubDate.getUTCFullYear()}</time>}</p>
-  {partners.length > 0 && <p class="publication-partners">{ko ? '공동 연구: ' : 'In collaboration with '}{partners.map((person, index) => <>{index > 0 && ', '}{person.url ? <a href={person.url}>{person.name}</a> : person.name}</>)}</p>}
-  {d.doi && <p class="publication-doi"><a href={`https://doi.org/${d.doi}`}>DOI: {d.doi}</a></p>}
+  {d.authors && <PublicationAuthors authors={d.authors} profiles={d.collaborators} coFirstAuthors={d.coFirstAuthors} equalContributionAuthors={d.equalContributionAuthors} lang={d.language} showLegend={false} linkProfiles={linkAuthors} />}
+  {(d.venue || d.pubDate || status) && <p class="publication-venue">{d.venue && <cite>{d.venue}</cite>}{d.venue && d.pubDate && ', '}{d.pubDate && <time datetime={d.pubDate.toISOString().slice(0, 10)}>{d.pubDate.getUTCFullYear()}</time>}{status && <>{(d.venue || d.pubDate) && ' · '}<span class="publication-status">{status}</span></>}</p>}
 </div>

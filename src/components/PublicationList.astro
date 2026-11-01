@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PublicationCitation from './PublicationCitation.astro';
+import { slugForEntry } from '../lib/content';
+import type { Locale } from '../lib/i18n';
+interface Props { entries: CollectionEntry<'publications'>[]; lang: Locale; }
+const { entries, lang } = Astro.props;
+const groups = [
+  { type: 'conference', title: '[Conference]', label: lang === 'ko' ? '학술대회 논문' : 'Conference papers' },
+  { type: 'journal', title: '[Journal]', label: lang === 'ko' ? '학술지 논문' : 'Journal papers' },
+];
+---
+<div class="publication-list">
+  {groups.map((group) => <section class="publication-group" id={group.type} aria-label={group.label}>
+    <h2 class="publication-heading">{group.title}</h2>
+    {entries.filter((entry) => entry.data.publicationType === group.type).map((entry) => <article class="publication-entry" id={slugForEntry(entry)}>
+      <h3>{entry.data.doi ? <a href={`https://doi.org/${entry.data.doi}`}>{entry.data.title}</a> : entry.data.title}</h3>
+      <PublicationCitation entry={entry} linkAuthors={false} />
+    </article>)}
+  </section>)}
+  <p class="publication-legend">† {lang === 'ko' ? '공동 제1저자' : 'Co-first author'} · ‡ {lang === 'ko' ? '동등 기여' : 'Equal contribution'}</p>
+</div>

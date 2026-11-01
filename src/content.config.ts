@@ -55,8 +55,8 @@ const common = ({ image }: SchemaContext) => z.object({
   coFirstAuthors: z.array(z.string()).default([]),
   equalContributionAuthors: z.array(z.string()).default([]),
   venue: z.string().optional(),
+  publicationType: z.enum(['journal', 'conference']).optional(),
   doi: z.string().optional(),
-  relatedResearch: z.string().optional(),
   priority: z.number().int().optional(),
 });
 
@@ -103,13 +103,9 @@ const loaderFor = (collection: string) => {
 };
 
 export const collections = {
-  research: defineCollection({
-    loader: loaderFor('research'),
-    schema: (context) => common(context).extend({ relatedManuscript: z.string().optional(), researchArea: z.enum(['communications', 'meta-analysis']).optional() }),
-  }),
   publications: defineCollection({
     loader: loaderFor('publications'),
-    schema: common,
+    schema: (context) => common(context).extend({ publicationType: z.enum(['journal', 'conference']).default('journal') }),
   }),
   projects: defineCollection({
     loader: loaderFor('projects'),

@@ -4,6 +4,8 @@ interface Props { target: string; lang?: Locale; }
 const { target, lang = 'en' } = Astro.props;
 const site = getSiteCopy(lang);
 const title = lang === 'ko' ? '페이지로 이동' : 'Continue to the page';
+const canonical = new URL(target, Astro.site);
+canonical.hash = '';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -11,10 +13,13 @@ const title = lang === 'ko' ? '페이지로 이동' : 'Continue to the page';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <link rel="canonical" href={canonical} />
     <title>{title} — {site.name}</title>
     <script is:inline define:vars={{ target }}>
-      window.location.replace(target + window.location.search + window.location.hash);
+      const destination = new URL(target, window.location.origin);
+      destination.search = window.location.search;
+      if (!destination.hash) destination.hash = window.location.hash;
+      window.location.replace(destination.href);
     </script>
     <meta http-equiv="refresh" content={`0;url=${target}`} />
   </head>

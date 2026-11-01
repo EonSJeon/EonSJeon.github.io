@@ -4,9 +4,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../Icon.astro';
 import ProjectVideo from '../ProjectVideo.astro';
 import ProjectClips from '../ProjectClips.astro';
-import PublicationCitation from '../PublicationCitation.astro';
-import PublicationAuthors from '../PublicationAuthors.astro';
-import { getPublicEntries, hrefForEntry, slugForEntry, translationLinksForEntry, type PublicEntry } from '../../lib/content';
+import { slugForEntry, translationLinksForEntry, type PublicEntry } from '../../lib/content';
 import { localizePath, getSectionsCopy, formatDate } from '../../lib/i18n';
 interface Props { entry: PublicEntry; }
 const { entry } = Astro.props;
@@ -21,13 +19,7 @@ const editorial = entry.collection === 'blog' || entry.collection === 'proposals
 const words = entry.body?.split(/\s+/).length ?? 0;
 const minutes = Math.max(1, Math.ceil(words / (ko ? 130 : 220)));
 const languageLinks = await translationLinksForEntry(entry);
-const relatedResearch = entry.collection === 'publications' && d.relatedResearch
-  ? (await getPublicEntries('research', lang)).find((research) => slugForEntry(research) === d.relatedResearch) : undefined;
-const relatedPublication = entry.collection === 'research' && entry.data.relatedManuscript
-  ? (await getPublicEntries('publications', lang)).find((paper) => slugForEntry(paper) === entry.data.relatedManuscript) : undefined;
-const researchAuthors = entry.collection === 'research' ? relatedPublication?.data.authors ?? d.authors : undefined;
-const collaborators = researchAuthors
-  ? d.collaborators.filter((person) => !researchAuthors.includes(person.name) || person.role) : d.collaborators;
+const collaborators = d.collaborators;
 const contents = headings.filter((heading) => heading.depth === 2).map(({ slug, text }) => ({ slug, text }));
 if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실제 장치와 소프트웨어 시연' : 'Hardware & software demonstrations' });
 ---
@@ -36,7 +28,6 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
   <header class="article-header">
     <p class="eyebrow">{d.categoryLabel}</p><h1>{d.title}</h1><p class="article-summary">{d.summary}</p>
     <div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode && d.showCourseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && d.showCourseCode && <span>{d.courseCode}</span>}{editorial && <span>{ko ? `읽는 데 약 ${minutes}분` : `${minutes} min read`}</span>}{d.pubDate && entry.collection !== 'publications' && <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate, lang)}</time>}</div>
-    {entry.collection === 'publications' && <PublicationCitation entry={entry} />}
   </header>
   <div class="article-layout">
     <article class="prose">
@@ -46,13 +37,10 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
       {d.clips.length > 0 && <ProjectClips entry={entry} />}
     </article>
     <aside class="article-sidebar" aria-label={ko ? '세부정보' : 'Project details'}>
-      {researchAuthors && <section class="sidebar-section research-authors"><h2>{ko ? '공동저자' : 'Authors'}</h2><PublicationAuthors authors={researchAuthors} profiles={[...d.collaborators, ...(relatedPublication?.data.collaborators ?? [])]} coFirstAuthors={relatedPublication?.data.coFirstAuthors ?? d.coFirstAuthors} equalContributionAuthors={relatedPublication?.data.equalContributionAuthors ?? d.equalContributionAuthors} lang={lang} /></section>}
-      {relatedPublication && <section class="sidebar-section"><h2>{ko ? '출판 논문' : 'Publication'}</h2><p><a href={hrefForEntry(relatedPublication)}>{relatedPublication.data.title}</a></p><p>{relatedPublication.data.venue} · {relatedPublication.data.pubDate?.getUTCFullYear()}</p></section>}
-      {relatedResearch && <section class="sidebar-section"><h2>{ko ? '관련 연구' : 'Related research'}</h2><p><a href={hrefForEntry(relatedResearch)}>{relatedResearch.data.title}</a></p></section>}
       {d.contribution && <section class="sidebar-section"><h2>{ko ? '담당 역할' : 'My contribution'}</h2><p>{d.contribution}</p></section>}
       {contents.length > 1 && <nav class="sidebar-section article-toc" aria-label={ko ? '본문 목차' : 'On this page'}><h2>{ko ? '이 페이지에서' : 'On this page'}</h2><ul>{contents.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
-      {collaborators.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' || entry.collection === 'publications' ? (ko ? '공동 연구' : 'Collaborators') : (ko ? '팀' : 'Team')}</h2><ul>{collaborators.map((person) => <li>{person.url ? <a href={person.url}>{person.name}<Icon name="arrow-up-right" size={12} /></a> : person.name}{person.role && <small>{person.role}</small>}</li>)}</ul></section>}
-      {d.tags.length > 0 && <section class="sidebar-section"><h2>{entry.collection === 'research' ? (ko ? '연구 주제' : 'Topics') : (ko ? '기술 및 주제' : 'Technologies & topics')}</h2><ul class="tags">{d.tags.map((tag) => <li>{tag}</li>)}</ul></section>}
+      {collaborators.length > 0 && <section class="sidebar-section"><h2>{ko ? '팀' : 'Team'}</h2><ul>{collaborators.map((person) => <li>{person.url ? <a href={person.url}>{person.name}<Icon name="arrow-up-right" size={12} /></a> : person.name}{person.role && <small>{person.role}</small>}</li>)}</ul></section>}
+      {d.tags.length > 0 && <section class="sidebar-section"><h2>{ko ? '기술 및 주제' : 'Technologies & topics'}</h2><ul class="tags">{d.tags.map((tag) => <li>{tag}</li>)}</ul></section>}
       {d.links.length > 0 && <section class="sidebar-section"><h2>{ko ? '관련 링크' : 'Links'}</h2><ul>{d.links.map((link) => <li><a href={link.url}>{link.label}<Icon name="arrow-up-right" size={12} /></a></li>)}</ul></section>}
     </aside>
   </div>

@@ -1,13 +1,15 @@
 ---
 import EntryPage from '../../components/pages/EntryPage.astro';
 import RedirectPage from '../../components/pages/RedirectPage.astro';
-import { movedProjectSlugs, legacyRedirects } from '../../lib/redirects';
-import { PUBLIC_COLLECTIONS, getPublicEntries, slugForEntry } from '../../lib/content';
+import { movedProjectSlugs, legacyPublicationSlugs, retiredResearchPapers, legacyRedirects } from '../../lib/redirects';
+import { PUBLIC_COLLECTIONS, getPublicEntries, slugForEntry, hrefForEntry } from '../../lib/content';
 export async function getStaticPaths() {
   const groups = await Promise.all(PUBLIC_COLLECTIONS.map((collection) => getPublicEntries(collection, 'en')));
   return [
-    ...groups.flat().map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry, redirectTo: undefined } })),
+    ...groups.flat().filter((entry) => entry.collection !== 'publications').map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry, redirectTo: undefined } })),
+    ...groups.flat().filter((entry) => entry.collection === 'publications' && legacyPublicationSlugs.includes(slugForEntry(entry))).map((entry) => ({ params: { collection: entry.collection, id: slugForEntry(entry) }, props: { entry: undefined, redirectTo: hrefForEntry(entry) } })),
     ...movedProjectSlugs.map((slug) => ({ params: { collection: 'coursework', id: slug }, props: { entry: undefined, redirectTo: legacyRedirects[`/coursework/${slug}/`] } })),
+    ...Object.entries(retiredResearchPapers).filter(([, paper]) => groups.flat().some((entry) => entry.collection === 'publications' && slugForEntry(entry) === paper)).map(([slug]) => ({ params: { collection: 'research', id: slug }, props: { entry: undefined, redirectTo: legacyRedirects[`/research/${slug}/`] } })),
   ];
 }
 const { entry, redirectTo } = Astro.props;

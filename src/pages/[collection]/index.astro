@@ -1,9 +1,14 @@
 ---
 import CollectionPage from '../../components/pages/CollectionPage.astro';
+import RedirectPage from '../../components/pages/RedirectPage.astro';
+import { legacyRedirects } from '../../lib/redirects';
 import { PUBLIC_COLLECTIONS, getPublicEntries } from '../../lib/content';
 export async function getStaticPaths() {
-  return Promise.all(PUBLIC_COLLECTIONS.map(async (collection) => ({ params: { collection }, props: { collection, entries: await getPublicEntries(collection, 'en') } })));
+  return [
+    ...await Promise.all(PUBLIC_COLLECTIONS.map(async (collection) => ({ params: { collection }, props: { collection, entries: await getPublicEntries(collection, 'en'), redirectTo: undefined } }))),
+    { params: { collection: 'research' }, props: { collection: undefined, entries: [], redirectTo: legacyRedirects['/research/'] } },
+  ];
 }
-const { collection, entries } = Astro.props;
+const { collection, entries, redirectTo } = Astro.props;
 ---
-<CollectionPage collection={collection} entries={entries} lang="en" />
+{collection ? <CollectionPage collection={collection} entries={entries} lang="en" /> : <RedirectPage target={redirectTo!} lang="en" />}

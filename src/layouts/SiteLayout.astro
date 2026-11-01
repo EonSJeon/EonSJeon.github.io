@@ -16,7 +16,7 @@ const active = (path: string) => path === home ? current === home : current.star
 const cv = localizePath('/cv/', lang);
 const navigation = [
   { label: lang === 'ko' ? '홈' : 'Home', href: '/' },
-  ...(['research', 'publications', 'projects', 'coursework', 'proposals', 'blog'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` })),
+  ...(['publications', 'projects', 'coursework', 'proposals', 'blog'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` })),
   { label: 'CV', href: '/cv/' },
 ].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
 const available = languageLinks ?? { en: localizePath(current, 'en'), ko: localizePath(current, 'ko') };

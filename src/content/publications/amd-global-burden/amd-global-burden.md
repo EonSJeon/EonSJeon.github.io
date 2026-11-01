@@ -1,6 +1,7 @@
 ---
-title: "Global burden of age-related macular degeneration, with forecast up to 2050: a modelling study"
+title: "Global Burden of Age-Related Macular Degeneration, with Forecast up to 2050: A Modeling Study"
 summary: "A modeling study of global age-related macular degeneration burden using harmonized disease-stage definitions, with projections through 2050."
+publicationType: "journal"
 categoryLabel: "Journal article"
 status: "Published"
 language: en
@@ -30,12 +31,8 @@ authors:
   - "Dong Keon Yon"
 venue: "Ophthalmology Retina"
 doi: "10.1016/j.oret.2026.09.019"
-relatedResearch: "amd-prevalence-modeling"
 tags: ["Meta Analysis","Age-related macular degeneration","Evidence synthesis","Disease burden"]
 links:
   - label: "Publisher article"
     url: "https://www.sciencedirect.com/science/article/pii/S2468653026004914"
 ---
-
-The paper harmonizes prevalence evidence using the Beckman classification to distinguish early and intermediate AMD, geographic atrophy, and neovascular AMD. It examines global, regional, and national disease burden and extends the analysis to future projections and scenarios.
-

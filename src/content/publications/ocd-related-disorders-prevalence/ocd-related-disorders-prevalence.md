@@ -1,6 +1,7 @@
 ---
 title: "Global Prevalence of Obsessive-Compulsive and Related Disorders: A Systematic Review and Modeling Study"
 summary: "A systematic review of obsessive-compulsive and related disorders, with Bayesian modeling of lifetime OCD prevalence at global, regional, and national levels."
+publicationType: "journal"
 categoryLabel: "Journal article"
 status: "Published"
 language: en
@@ -33,12 +34,8 @@ authors:
   - "Marco Solmi"
 venue: "American Journal of Psychiatry"
 doi: "10.1176/appi.ajp.20250944"
-relatedResearch: "ocd-prevalence-meta-analysis"
-tags: ["Meta Analysis","Bayesian inference","OCD","Systematic review"]
+tags: ["Meta Analysis","Bayesian statistics","OCD","Systematic review"]
 links:
   - label: "Publisher article"
     url: "https://psychiatryonline.org/doi/10.1176/appi.ajp.20250944"
 ---
-
-The study synthesizes general-population evidence on obsessive-compulsive disorder and related disorders, including hoarding disorder, excoriation disorder, body dysmorphic disorder, and trichotillomania. Bayesian hierarchical modeling connects the OCD prevalence evidence across geographic levels.
-
