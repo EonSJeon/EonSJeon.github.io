@@ -7,7 +7,7 @@ export const site = {
   role: 'Ph.D. student, Electrical & Computer Engineering',
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',
-  address: 'Rm 5263, 75 5th St NW, Atlanta, GA 30308',
+  address: 'Rm 5263, Centergy One',
   mapAddress: '75 5th St NW, Atlanta, GA 30308',
   mapPlaceName: 'Centergy One',
   email: 'sjeon84@gatech.edu',
