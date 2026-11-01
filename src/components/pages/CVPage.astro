@@ -73,10 +73,10 @@ const recordSections = [
       </section>
       <section class="cv-section" id="cv-publications" aria-labelledby="cv-publications-heading">
         <h2 id="cv-publications-heading">{c.publications}</h2><h3 class="cv-subheading">{c.published}</h3>
-        {published.map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}
+        {published.map((entry) => <article class="cv-entry cv-paper"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}
         <h3 class="cv-subheading">{c.submitted}</h3>
-        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}
-        {manuscripts.length > 0 && <><h3 class="cv-subheading">{c.manuscripts}</h3>{manuscripts.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} /></article>)}</>}
+        {submitted.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}
+        {manuscripts.length > 0 && <><h3 class="cv-subheading">{c.manuscripts}</h3>{manuscripts.map((entry) => <article class="cv-entry"><h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3><PublicationCitation entry={entry} linkAuthors={false} /></article>)}</>}
         <p class="publication-legend">† {ko ? '공동 제1저자' : 'Co-first author'} · ‡ {ko ? '동등 기여' : 'Equal contribution'}</p>
       </section>
       <section class="cv-section" id="cv-research" aria-labelledby="cv-research-heading">
