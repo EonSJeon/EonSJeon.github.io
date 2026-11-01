@@ -21,23 +21,23 @@ export const site = {
 
 export const sections = {
   projects: {
-    label: 'Projects', eyebrow: 'Ideas made tangible',
+    label: 'Projects',
     description: 'Engineering projects connecting software and hardware, from independent prototypes to team design projects.',
   },
   coursework: {
-    label: 'Coursework', eyebrow: 'Courses & foundations',
+    label: 'Coursework',
     description: 'Courses I have taken, with study notes and selected laboratory work.',
   },
   publications: {
-    label: 'Publications', eyebrow: 'Manuscripts & publications',
+    label: 'Publications',
     description: 'Journal and conference papers, with review status shown for submitted manuscripts.',
   },
   blog: {
-    label: 'Blog', eyebrow: 'Notes & observations',
+    label: 'Blog',
     description: 'A space for technical notes, engineering explanations, and longer reflections.',
   },
   proposals: {
-    label: 'Ideas', eyebrow: 'Questions worth exploring',
+    label: 'Ideas',
     description: 'Research questions and project ideas, with tentative approaches and open questions.',
   },
 } as const;

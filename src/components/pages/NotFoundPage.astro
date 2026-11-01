@@ -7,4 +7,4 @@ interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 ---
-<SiteLayout title={ko ? '페이지를 찾을 수 없습니다' : 'Page not found'} lang={lang} noindex><PageHeader title={ko ? '페이지를 찾을 수 없습니다.' : 'This page isn’t here.'} eyebrow={ko ? '404 · 페이지 없음' : '404 · Page not found'} description={ko ? '주소가 변경되었거나 더 이상 제공되지 않는 페이지일 수 있습니다.' : 'The link may have changed, or the page may no longer be available.'} /><a class="button button-primary" href={localizePath('/', lang)}>{ko ? '홈으로 돌아가기' : 'Back to home'}<Icon name="arrow-right" size={17} /></a></SiteLayout>
+<SiteLayout title={ko ? '페이지를 찾을 수 없습니다' : 'Page not found'} lang={lang} noindex><PageHeader title={ko ? '페이지를 찾을 수 없습니다.' : 'This page isn’t here.'} description={ko ? '주소가 변경되었거나 더 이상 제공되지 않는 페이지일 수 있습니다.' : 'The link may have changed, or the page may no longer be available.'} /><a class="button button-primary" href={localizePath('/', lang)}>{ko ? '홈으로 돌아가기' : 'Back to home'}<Icon name="arrow-right" size={17} /></a></SiteLayout>

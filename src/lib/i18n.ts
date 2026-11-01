@@ -31,11 +31,11 @@ export function getSiteCopy(lang: Locale) {
 }
 
 const koreanSections = {
-  projects: { label: '프로젝트', eyebrow: '아이디어의 구현', description: '독립 시제품부터 팀 설계 프로젝트까지, 소프트웨어와 하드웨어를 연결한 공학 프로젝트입니다.' },
-  coursework: { label: '코스웍', eyebrow: '수강 과목과 기초', description: '수강한 과목과 학습 내용, 실험 기록을 정리합니다.' },
-  publications: { label: '출판', eyebrow: '출판 및 투고 현황', description: '학회·저널의 출판물과 투고 원고를 정리합니다.' },
-  blog: { label: '블로그', eyebrow: '기록과 생각', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
-  proposals: { label: '아이디어', eyebrow: '탐구할 만한 질문', description: '앞으로 탐구하고 싶은 연구 질문과 프로젝트 아이디어, 가능한 접근 방법과 남은 과제를 정리합니다.' },
+  projects: { label: '프로젝트', description: '독립 시제품부터 팀 설계 프로젝트까지, 소프트웨어와 하드웨어를 연결한 공학 프로젝트입니다.' },
+  coursework: { label: '코스웍', description: '수강한 과목과 학습 내용, 실험 기록을 정리합니다.' },
+  publications: { label: '출판', description: '학회·저널의 출판물과 투고 원고를 정리합니다.' },
+  blog: { label: '블로그', description: '기술 노트, 공학적 설명, 긴 생각을 기록하는 공간입니다.' },
+  proposals: { label: '아이디어', description: '앞으로 탐구하고 싶은 연구 질문과 프로젝트 아이디어, 가능한 접근 방법과 남은 과제를 정리합니다.' },
 };
 
 export function getSectionsCopy(lang: Locale) {
