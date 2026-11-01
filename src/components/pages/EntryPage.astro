@@ -2,7 +2,6 @@
 import { render } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../Icon.astro';
-import TokenDiagram from '../TokenDiagram.astro';
 import ProjectVideo from '../ProjectVideo.astro';
 import ProjectClips from '../ProjectClips.astro';
 import PublicationCitation from '../PublicationCitation.astro';
@@ -42,7 +41,6 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
   <div class="article-layout">
     <article class="prose">
       {d.video && <ProjectVideo {...d.video} lang={lang} />}
-      {slug === 'when-to-eat' && <TokenDiagram lang={lang} />}
       {slug === 'venus-flytrap-bioelectrical-playback' && <div class="flow-diagram" role="img" aria-label={ko ? '파리지옥의 신호를 Seeeduino를 거쳐 MATLAB에 기록하고, 전기 신호를 재생하여 포획엽을 닫는 흐름' : 'Signal recording from a Venus flytrap through Seeeduino to MATLAB, followed by electrical playback and trap closure'}><span>{ko ? '식물 신호' : 'Plant signal'}</span><b aria-hidden="true">→</b><span>Seeeduino</span><b aria-hidden="true">↔</b><span>MATLAB</span><b aria-hidden="true">→</b><span>{ko ? '전기 신호 재생' : 'Electrical playback'}</span></div>}
       <Content />
       {d.clips.length > 0 && <ProjectClips entry={entry} />}

@@ -41,6 +41,8 @@ The CV pages render education, publications, experience, teaching, awards, selec
 
 ## Korean and English authoring
 
+Treat the owner's manual edits as the source of truth when reconciling translations. `src/data/site.ts` sets the research-interest selection/order; `src/lib/i18n.ts` maps Korean labels from that shared list. Keep related Home/About descriptions aligned, and preserve the CV's manually edited content.
+
 Start the Korean preview at **http://127.0.0.1:4321/ko/** (or the port printed by Astro). English keeps the original root URLs. The language choices at the top of every page link to the corresponding page in the other language. Navigation, contact controls, metadata, collection pages, captions, diagrams, and all selected articles have Korean versions.
 
 For approved public content, edit the Korean Markdown directly beside its English counterpart:
@@ -146,16 +148,15 @@ The tracked document sources keep the owner's convention: `Resume-Full` for the 
 
 Website downloads are selected in `src/documents/downloads.json`. The prerendered `/documents/[filename].pdf` route emits only those selected canonical source files, preserving the existing download URLs without duplicate PDF copies in `public/`. Update the manifest and CV page metadata deliberately when choosing a new document. The site checker compares every download byte-for-byte with its selected source. Retaining a DOCX source does not create a public website download button. The current full resume is dated September 2025; it must not be presented as newly updated in 2026.
 
-Keep reviewed shared assets under `public/`, canonical documents under `src/documents/`, and reviewed entry-specific images beside their article. Project repository links can be displayed when supplied, but photos, reports, and videos from those repositories are not automatically cleared for republication. Selected real prototype, interface, assembly, and experiment photos now accompany the engineering articles. Use a `cover` with `src` and localized `alt` in frontmatter for optimized card images. Keep cover images and article figures distinct where possible; retain captions that explain what a photo or diagnostic actually demonstrates. Remove unneeded camera metadata from web copies while preserving image pixels and orientation. Its explicitly selected YouTube demonstration uses a responsive privacy-enhanced embed with a fallback source link. To add a deliberately selected video to another entry, use:
+Keep reviewed shared assets under `public/`, canonical documents under `src/documents/`, and reviewed entry-specific images beside their article. Project repository links can be displayed when supplied, but photos, reports, and videos from those repositories are not automatically cleared for republication. Selected real prototype, interface, assembly, and experiment photos now accompany the engineering articles. Use a `cover` with `src` and localized `alt` in frontmatter for optimized card images. Keep cover images and article figures distinct where possible; retain captions that explain what a photo or diagnostic actually demonstrates. Remove unneeded camera metadata from web copies while preserving image pixels and orientation. Selected YouTube videos use responsive privacy-enhanced embeds. To add a deliberately selected video to another entry, use:
 
 ```yaml
 video:
   youtubeId: "gud--ybyr-s"
   title: "A descriptive title for the demonstration"
-  caption: "Optional context describing what the demonstration shows."
 ```
 
-The schema validates the video ID. The shared player is lazy-loaded and does not autoplay. Set optional `video.heading` for event footage or another section label; otherwise the localized Demonstration heading is used. Its optional caption appears below the player alongside a YouTube fallback link. Use `<figure>` and `<figcaption>` around Markdown images (with blank lines around the Markdown image) for a caption that stays grouped with the photo. External video links remain the default when embedding has not been selected.
+The schema validates the video ID. The shared player is lazy-loaded and does not autoplay. Set optional `video.heading` for event footage or another section label; otherwise the localized Demonstration heading is used. The owner-selected shared layout shows the heading and player without a separate caption/link footer; caption metadata may remain in source references. Use `<figure>` and `<figcaption>` around Markdown images (with blank lines around the Markdown image) for a caption that stays grouped with the photo. External video links remain the default when embedding has not been selected.
 
 The electronics laboratory entry is public at `/coursework/electronics-design-lab/` (and `/ko/coursework/electronics-design-lab/`). Its source folder retains the internal course identifier, but `translationKey` sets the clean public slug and `showCourseCode: false` keeps the number out of rendered metadata. Labs 4–5 lead the article; digital communication, embedded control, and analog work remain supporting sections.
 

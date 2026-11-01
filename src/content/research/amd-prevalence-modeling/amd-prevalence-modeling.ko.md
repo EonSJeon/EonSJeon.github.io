@@ -1,7 +1,7 @@
 ---
 title: "연령관련황반변성의 단계별 유병률 모델링"
 summary: "연령관련황반변성의 질병 단계, 연령, 성별과 지역별 유병률·질병 부담을 다루고, ancestry별 연령 곡선을 함께 살펴보는 통계 모델링 연구입니다."
-categoryLabel: "Meta Analysis"
+categoryLabel: "메타분석"
 status: "게재 완료"
 relatedManuscript: "amd-global-burden"
 links:

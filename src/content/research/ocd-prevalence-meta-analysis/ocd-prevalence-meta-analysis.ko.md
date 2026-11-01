@@ -1,7 +1,7 @@
 ---
 title: "강박장애 유병률의 Bayesian 메타분석"
 summary: "강박장애 유병률 자료를 유병 기간, 진단 기준, 연령군과 지리적 계층의 차이를 반영해 종합하는 통계 모델링 연구입니다."
-categoryLabel: "Meta Analysis"
+categoryLabel: "메타분석"
 status: "게재 완료"
 relatedManuscript: "ocd-related-disorders-prevalence"
 links:

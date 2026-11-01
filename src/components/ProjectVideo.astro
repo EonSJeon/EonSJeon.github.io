@@ -1,8 +1,7 @@
 ---
-import Icon from './Icon.astro';
 import type { Locale } from '../lib/i18n';
 interface Props { youtubeId: string; title: string; heading?: string; caption?: string; lang?: Locale; }
-const { youtubeId, title, heading, caption, lang = 'en' } = Astro.props;
+const { youtubeId, title, heading, lang = 'en' } = Astro.props;
 ---
 <section class="video-section" aria-label={title}>
   <h2>{heading ?? (lang === 'ko' ? '시연 영상' : 'Demonstration')}</h2>

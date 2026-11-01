@@ -19,7 +19,7 @@ const researchEntries = collection === 'publications' ? await getPublicEntries('
 const underReview = researchEntries.filter((entry) => isUnderReview(entry) && !linkedResearch.has(slugForEntry(entry)));
 const researchGroups = [
   { key: 'communications', title: ko ? '무선통신과 신호처리' : 'Wireless communications & signal processing', description: ko ? '동기화와 수신기 추정을 위한 모델 기반 연구입니다.' : 'Model-based research on synchronization and receiver estimation.', entries: entries.filter((entry) => entry.collection === 'research' && entry.data.researchArea !== 'meta-analysis') },
-  { key: 'meta-analysis', title: 'Meta Analysis', description: ko ? '질환별 유병률 자료를 종합하고 인구 구조와 자원 격차를 탐구합니다.' : 'Synthesizing disease-prevalence evidence and examining population structure and resource gaps.', entries: entries.filter((entry) => entry.collection === 'research' && entry.data.researchArea === 'meta-analysis') },
+  { key: 'meta-analysis', title: ko ? '메타분석' : 'Meta Analysis', description: ko ? '질환별 유병률 자료를 종합하고 인구 구조와 자원 격차를 탐구합니다.' : 'Synthesizing disease-prevalence evidence and examining population structure and resource gaps.', entries: entries.filter((entry) => entry.collection === 'research' && entry.data.researchArea === 'meta-analysis') },
 ];
 ---
 <SiteLayout title={copy.label} description={copy.description} lang={lang}>

@@ -1,7 +1,7 @@
 ---
 title: "혈우병 유병률과 치료 자원 격차 모델링"
 summary: "혈우병 A/B 유병률과 치료제 조달을 통계적으로 분석하고, 인구 추정치를 치료 필요량과 자원 격차 시나리오로 연결하는 연구입니다."
-categoryLabel: "Meta Analysis"
+categoryLabel: "메타분석"
 status: "연구 프로젝트"
 researchArea: "meta-analysis"
 language: ko

@@ -3,7 +3,7 @@ export const site = {
   koreanName: '전상언',
   hanjaName: '全商彥',
   title: 'Sangeon Jeon — Wireless Communications & Signal Processing',
-  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, synchronization, and statistical signal estimation.',
+  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, and Bayesian inference.',
   role: 'Ph.D. student, Electrical & Computer Engineering',
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',
@@ -13,7 +13,7 @@ export const site = {
   orcid: 'https://orcid.org/0009-0001-5883-0774',
   linkedin: 'https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/',
   advisor: { name: 'Xiaoli Ma', url: 'https://xma-ultra-signals.github.io/' },
-  interests: ['Wireless communications', 'Synchronization', 'Statistical signal estimation', 'Bayesian inference'],
+  interests: ['Wireless communications', 'Waveform design', 'Synchronization', 'Bayesian inference'],
 };
 
 export const sections = {
@@ -23,11 +23,11 @@ export const sections = {
   },
   projects: {
     label: 'Projects', eyebrow: 'Ideas made tangible',
-    description: 'Independent engineering work that brings software, hardware, and everyday interactions together.',
+    description: 'Engineering projects connecting software and hardware to address everyday problems.',
   },
   coursework: {
     label: 'Coursework', eyebrow: 'Learning through making',
-    description: 'Selected course projects in bioelectronics, mechatronics, digital communications, and embedded control.',
+    description: 'Selected course projects completed at KAIST and the Georgia Institute of Technology.',
   },
   publications: {
     label: 'Publications', eyebrow: 'Manuscripts & publications',

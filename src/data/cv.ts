@@ -31,7 +31,7 @@ const en: CVCopy = {
   skills: [
     { label: 'Programming', items: ['MATLAB', 'Python · PyMC, NumPy, SciPy, pandas, PyTorch', 'C# · WPF / UWP', 'C / C++', 'Java', 'Excel VBA'] },
     { label: 'Design & laboratory', items: ['SolidWorks', 'HFSS', 'NI Multisim', '3D printing', 'Laser cutting', 'Oscilloscopes, function generators, multimeters'] },
-    { label: 'Languages', items: ['Korean · native', 'English · full professional proficiency', 'Japanese · conversational'] },
+    { label: 'Languages', items: ['Korean · native', 'English · full professional proficiency', 'Japanese · conversational', 'Chinese · beginner'] },
   ],
 };
 const ko: CVCopy = {
@@ -40,7 +40,7 @@ const ko: CVCopy = {
     { title: '학부 연구원', organization: 'NICA Lab, KAIST', period: '2020년 여름', description: '현미경 영상에서 뉴런을 분할하는 방법을 개발하고 합성곱 신경망을 공부했습니다.' },
   ],
   employment: [
-    { title: 'Software Engineer Intern', organization: 'Dong Il Vision · Anyang, South Korea', period: '2023.06–08', description: '컴퓨터 비전 학습 자료를 위한 이미지 내 객체 위치 라벨링 프로그램을 C# WPF로 개발했습니다.' },
+    { title: '소프트웨어 엔지니어 인턴', organization: 'Dong Il Vision · Anyang, South Korea', period: '2023.06–08', description: '컴퓨터 비전 학습 자료를 위한 이미지 내 객체 위치 라벨링 프로그램을 C# WPF로 개발했습니다.' },
     { title: '인사 부문 인턴', organization: 'Dong Il Technology LTD · Hwaseong, South Korea', period: '2018.06–08', description: '직원 평가서를 생성하고 배포하는 업무를 Excel VBA로 자동화했습니다.' },
   ],
   teaching: [
@@ -52,13 +52,13 @@ const ko: CVCopy = {
   awards: [
     { title: 'Roger Webb Award — ECE Senior Scholar Awards', organization: 'Georgia Institute of Technology', period: '2025년 봄', description: '' },
     { title: '2024 KAIST Makerathon 대상', organization: 'KAIST · When to Eat 팀장', period: '2024년 여름', description: '1위, 팀 상금 2,500,000원.' },
-    { title: 'Dean’s List', organization: 'Georgia Institute of Technology', period: '2023–2024', description: '2023년 봄·가을, 2024년 봄 학기.' },
-    { title: 'Dean’s List', organization: 'KAIST', period: '2018 / 2022', description: '2018년 봄, 2022년 가을 학기.' },
+    { title: 'Dean’s List', organization: 'Georgia Institute of Technology', period: '2023–2024', description: '2023년 봄·가을, 2024년 봄.' },
+    { title: 'Dean’s List', organization: 'KAIST', period: '2018 / 2022', description: '2018년 봄, 2022년 가을.' },
   ],
   skills: [
     { label: '프로그래밍', items: ['MATLAB', 'Python · PyMC, NumPy, SciPy, pandas, PyTorch', 'C# · WPF / UWP', 'C / C++', 'Java', 'Excel VBA'] },
     { label: '설계·실험', items: ['SolidWorks', 'HFSS', 'NI Multisim', '3D 프린팅', '레이저 커팅', '오실로스코프·함수발생기·멀티미터'] },
-    { label: '언어', items: ['한국어 · 모국어', '영어 · 전문 업무 가능', '일본어 · 일상 회화'] },
+    { label: '언어', items: ['한국어 · 모국어', '영어 · 전문 업무 가능', '일본어 · 일상 회화', '중국어 · 초급'] },
   ],
 };
 export const getCVCopy = (lang: Locale): CVCopy => lang === 'ko' ? ko : en;

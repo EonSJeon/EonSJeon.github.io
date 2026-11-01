@@ -1,7 +1,7 @@
 ---
 title: "척수성 근위축증 유병률의 Bayesian 메타분석"
 summary: "척수성 근위축증 유병률 문헌을 신생아·소아·전체 연령으로 구분하고, 국가·지역·전 세계 수준의 추정으로 연결하는 공동 연구입니다."
-categoryLabel: "Meta Analysis"
+categoryLabel: "메타분석"
 status: "게재 완료"
 relatedManuscript: "sma-global-prevalence"
 links:
