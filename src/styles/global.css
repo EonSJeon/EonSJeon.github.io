@@ -271,9 +271,9 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .flow-diagram span { font-size: 11px; padding: 7px 10px; background: var(--surface-soft); border-radius: 3px; }
 .flow-diagram b { font-weight: 400; color: var(--subtle); }
 @media screen and (min-width: 741px) {
-  :root { --sticky-header-height: calc(var(--desktop-header-icon-size) + 9px); }
+  :root { --sticky-header-height: calc(var(--desktop-header-icon-size) + 13px); }
   .site-header { position: sticky; top: 0; z-index: 40; background: var(--bg); }
-  .header-inner { min-height: 0; padding-block: 4px; }
+  .header-inner { min-height: 0; padding-block: 6px; }
   .site-navigation { max-height: calc(100dvh - var(--sticky-header-height)); }
 }
 @media (max-width: 960px) {
