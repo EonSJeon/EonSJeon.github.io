@@ -27,9 +27,9 @@ const shortDocument = downloads.find((document) => document.id === 'industrial')
 const fullDocument = downloads.find((document) => document.id === 'full')!;
 const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.resolve('src/documents', document.source)).size / 1024);
 const c = ko ? {
-  title: 'CV & Resume', description: '전상언의 학력, 논문, 연구·근무·교육 경험과 수상 이력입니다.',
+  title: 'CV & Resume', description: '전상언의 학력, 출판 및 연구·근무·교육 경험과 수상 이력입니다.',
   role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
-  publications: '논문', published: '게재 논문', submitted: '심사 중', manuscripts: '원고', research: '연구 경험',
+  publications: '출판', published: '출판물', submitted: '심사 중', manuscripts: '원고', research: '연구 경험',
   employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
   skills: '기술 및 언어', downloads: 'PDF 다운로드', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
   downloadIntro: 'PDF는 각 문서에 표시된 날짜 기준의 별도 버전입니다.',

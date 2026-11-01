@@ -6,8 +6,8 @@ import type { Locale } from '../lib/i18n';
 interface Props { entries: CollectionEntry<'publications'>[]; lang: Locale; }
 const { entries, lang } = Astro.props;
 const groups = [
-  { type: 'conference', title: '[Conference]', label: lang === 'ko' ? '학술대회 논문' : 'Conference papers' },
-  { type: 'journal', title: '[Journal]', label: lang === 'ko' ? '학술지 논문' : 'Journal papers' },
+  { type: 'conference', title: lang === 'ko' ? '[학회]' : '[Conference]', label: lang === 'ko' ? '학회 출판물' : 'Conference papers' },
+  { type: 'journal', title: lang === 'ko' ? '[저널]' : '[Journal]', label: lang === 'ko' ? '저널 출판물' : 'Journal papers' },
 ];
 ---
 <div class="publication-list">
