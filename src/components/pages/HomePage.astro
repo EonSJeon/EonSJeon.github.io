@@ -50,7 +50,7 @@ const c = ko ? {
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
     </div>
     <div class="hero-aside">
-      <figure class="hero-portrait"><div class="portrait-frame"><img src="/images/sangeon-jeon.jpeg" alt={ko ? '전상언' : 'Sangeon Jeon'} width="246" height="246" fetchpriority="high" /></div></figure>
+      <figure class="hero-portrait"><div class="portrait-frame"><img src="/images/sangeon-jeon.jpeg" alt='Sangeon Jeon' width="246" height="246" fetchpriority="high" /></div></figure>
       <section class="portrait-contact" id="contact" aria-label={c.contact}>
         <button class="contact-value contact-email" type="button" data-copy-email={site.email} data-copy-success={c.success} data-copy-fallback={c.fallback} aria-label={`${c.copy}: ${site.email}`} title={c.copy}>{site.email}</button>
         <address class="contact-address"><span class="contact-building">{site.address}</span><a class="contact-map" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.maps}: ${site.mapAddress}`} title={c.maps}>{site.mapAddress}</a></address>

@@ -10,7 +10,7 @@ The portfolio contains **six paper records (three published journal articles, tw
 
 Maintain the existing Astro implementation with the eleven portfolio entries, three confirmed journal publication records, and a bilingual HTML CV. Keep Blog and Ideas empty until individual finished articles receive explicit approval. Treat this document as the durable implementation brief. Development progress, remaining tasks, validation records, preview commands, and execution-environment details belong in the ignored English handoff at `development-status.md`. Public release follows the owner's publication instructions and the content boundaries below.
 
-Implement in this existing repository. Keep withdrawn CV/Resume originals and recovery history only in ignored private archives; never reintroduce the documents into public Git history. Do not create another repository or move the build to a hosted website-builder service.
+Maintain this local checkout and the canonical `EonSJeon/EonSJeon.github.io` repository path. The owner requested recreating that same remote repository while preserving the separate development commits in the cleaned history. Exclude CV/Resume documents and their document changes from every published commit; retain unrelated changes from mixed commits. Keep the original document-containing graph and withdrawn originals only in ignored private recovery archives; never merge or push them into the recreated repository. Do not replace the cleaned development history with a single snapshot commit or move the build to a hosted website-builder service.
 
 ## 2. Sources and authority
 

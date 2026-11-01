@@ -169,6 +169,8 @@ The electronics laboratory entry is public at `/coursework/electronics-design-la
 
 The site uses the repository root URL, with no `/EonSJeon.github.io/` base path. Only `dist/` is uploaded to GitHub Pages; repository history and ignored references are not deployment artifacts.
 
+The owner requested recreating the canonical remote while preserving separate development commits in the cleaned history. CV/Resume document changes are excluded throughout that history; document-only commits are omitted and unrelated changes in mixed commits are retained. Continue from the recreated `main`; the original document-containing recovery references and bundles are private archives and must never be merged or pushed. Do not squash the development history into one snapshot. Use explicit `main` pushes, never `--all` or `--mirror`.
+
 The workflow at `.github/workflows/deploy.yml` is **manual-only** (`workflow_dispatch`). A commit or push by itself does not run this workflow or publish the site.
 
 For an authorized release:
