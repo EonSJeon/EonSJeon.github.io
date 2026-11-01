@@ -96,8 +96,8 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .hero-portrait { margin: 0; }
 .portrait-frame { position: relative; padding: 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; }
 .hero-portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; filter: saturate(.8); }
-.interest-line { display: flex; align-items: center; gap: 19px; padding: 19px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-.interest-line > span { flex-shrink: 0; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; font-size: 11px; color: var(--subtle); }
+.interest-line { display: flex; align-items: center; gap: 19px; padding: 19px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 16px; color: var(--muted); }
+.interest-line > span { flex-shrink: 0; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; font-size: 13px; color: var(--subtle); }
 .interest-line ul { display: flex; flex: 1; min-width: 0; gap: 12px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
 .interest-line li + li::before { content: '/'; padding-right: 12px; color: var(--subtle); opacity: .5; }
 .home-section { margin-top: 58px; }
@@ -166,12 +166,10 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .page-intro { max-width: 700px; font-size: 17px; line-height: 1.8; color: var(--muted); margin-bottom: 0; }
 .page-section { margin-top: 40px; }
 .page-note { margin-top: 28px; font-size: 12px; color: var(--muted); }
-.site-footer { margin-top: 89px; padding: 27px 0 34px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 25px; }
-.footer-name { color: var(--text); text-decoration: none; font-family: var(--serif); font-size: 19px; }
-.site-footer p { font-size: 10px; margin: 3px 0 0; color: var(--subtle); }
-.site-footer nav { display: flex; gap: 24px; flex-wrap: wrap; font-size: 11px; }
-.site-footer nav a { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); text-decoration: none; }
-.site-footer nav a:hover { color: var(--text); text-decoration: underline; }
+.site-footer { margin-top: 89px; padding: 27px 0 34px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.footer-copyright { margin: 0; color: var(--subtle); font-size: 12px; line-height: 1.8; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 6px 24px; color: var(--muted); font-size: 13px; font-style: normal; line-height: 1.8; }
+.footer-contact span { overflow-wrap: anywhere; }
 .breadcrumbs { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted); padding-top: 38px; }
 .breadcrumbs a { text-decoration: none; }
 .article-header { margin-top: 35px; padding-bottom: 31px; border-bottom: 1px solid var(--line); }
@@ -292,7 +290,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .hero-description { font-size: 16px; margin-bottom: 0; }
   .profile-links { gap: 10px 17px; }
   .profile-links a { min-height: 30px; }
-  .interest-line { align-items: start; gap: 9px; flex-direction: column; font-size: 13px; padding: 16px 0; }
+  .interest-line { align-items: start; gap: 9px; flex-direction: column; font-size: 15px; padding: 16px 0; }
   .interest-line li + li::before { padding-right: 8px; }
   .interest-line ul { gap: 8px; }
   .home-section { margin-top: 39px; }
@@ -322,8 +320,9 @@ html[lang='ko'] .prose { line-height: 1.9; }
   .page-heading { padding: 42px 0 30px; }
   .page-heading h1 { font-size: 39px; margin-bottom: 17px; }
   .page-intro { font-size: 16px; }
-  .site-footer { margin-top: 58px; align-items: start; flex-direction: column; gap: 23px; padding: 24px 0 30px; }
-  .site-footer nav { gap: 22px; }
+  .site-footer { margin-top: 58px; gap: 10px; padding: 24px 0 30px; }
+  .footer-copyright span { display: block; }
+  .footer-contact { flex-direction: column; gap: 4px; }
   .breadcrumbs { padding-top: 27px; font-size: 11px; }
   .article-header { margin-top: 28px; padding-bottom: 25px; }
   .article-header h1 { font-size: 35px; }

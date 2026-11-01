@@ -11,8 +11,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
 const collections = ['publications', 'projects', 'coursework', 'blog', 'proposals'];
-const documentDownloads = JSON.parse(await readFile(path.join(root, 'src/documents/downloads.json'), 'utf8'));
-const approvedDownloads = new Set(documentDownloads.map((document) => `documents/${document.filename}`));
 const englishRoutes = [
   '/', '/about/', '/research/', '/publications/', '/projects/', '/coursework/', '/blog/', '/proposals/', '/cv/',
   '/research/ocdm-cfo-estimation/', '/research/tiadc-ofdm-estimation/',
@@ -93,18 +91,11 @@ async function validateOutput({ absentMarker } = {}) {
   for (const home of ['index.html', 'ko/index.html']) {
     assert(decodeAttribute(await readFile(path.join(output, home), 'utf8')).includes('全商彥'), `Missing owner-supplied Hanja name in ${home}`);
   }
-  for (const document of approvedDownloads) assert(existsSync(path.join(output, document)), `Missing selected download: ${document}`);
-  for (const document of documentDownloads) {
-    const source = await readFile(path.join(root, 'src/documents', document.source));
-    const built = await readFile(path.join(output, 'documents', document.filename));
-    assert(source.equals(built), `Download differs from its canonical source: ${document.filename}`);
-  }
-
   for (const file of files) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
     assert(!/(?:^|\/)(?:reference-private|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
-    assert(!/source-inventory|아이디어|\.(?:md|mdx|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
-    if (/\.pdf$/i.test(relative)) assert(approvedDownloads.has(relative), `Unselected PDF in output: ${relative}`);
+    assert(!/source-inventory|아이디어|\.(?:md|mdx|pdf|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
+    assert(!/^documents\//i.test(relative), `Withdrawn document route in output: ${relative}`);
     if (/\.(?:html|xml|json|txt|js|css)$/i.test(relative)) {
       const text = await readFile(file, 'utf8');
       assert(!/reference-private\/|source-inventory\.json|아이디어\.docx/.test(text), `Source reference leaked into ${relative}`);

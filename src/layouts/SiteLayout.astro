@@ -64,8 +64,8 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     </header>
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
-      <div><a class="footer-name" href={home}>{site.name}</a><p>© {new Date().getFullYear()} · {site.location}</p></div>
-      <nav aria-label={lang === 'ko' ? '하단 메뉴' : 'Footer navigation'}><a href={localizePath('/#contact', lang)}>{lang === 'ko' ? '연락처' : 'Contact'}</a><a href={`mailto:${site.email}`}>{lang === 'ko' ? '이메일' : 'Email'}<Icon name="arrow-up-right" size={14} /></a><a href={site.github}>GitHub<Icon name="arrow-up-right" size={14} /></a><a href={localizePath('/rss.xml', lang)}>RSS</a></nav>
+      <p class="footer-copyright">© Copyright 2026 Sangeon Jeon. <span>{lang === 'ko' ? '최종 수정: ' : 'Last updated: '}<time datetime="2026-11-01">{lang === 'ko' ? '2026년 11월 1일' : 'November 1, 2026'}</time>.</span></p>
+      <address class="footer-contact"><span>Rm 5263, 75 5th St NW, Atlanta, GA 30308</span><span>{site.email}</span></address>
     </footer>
     <script>
       const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');

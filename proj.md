@@ -1,6 +1,6 @@
 # Personal Academic Website Implementation Brief
 
-Updated: 2026-10-31. Repository: `EonSJeon/EonSJeon.github.io`.
+Updated: 2026-11-01. Repository: `EonSJeon/EonSJeon.github.io`.
 
 ## 1. Objective and next task
 
@@ -10,7 +10,7 @@ The portfolio contains **six paper records (three published journal articles, tw
 
 Maintain the existing Astro implementation with the eleven portfolio entries, three confirmed journal publication records, and a bilingual HTML CV. Keep Blog and Ideas empty until individual finished articles receive explicit approval. Treat this document as the durable implementation brief. Development progress, remaining tasks, validation records, preview commands, and execution-environment details belong in the ignored English handoff at `development-status.md`. Public release follows the owner's publication instructions and the content boundaries below.
 
-Implement in this existing repository. Preserve the CV/Resume history already integrated into it. Do not create another repository or move the build to a hosted website-builder service.
+Implement in this existing repository. Keep withdrawn CV/Resume originals and recovery history only in ignored private archives; never reintroduce the documents into public Git history. Do not create another repository or move the build to a hosted website-builder service.
 
 ## 2. Sources and authority
 
@@ -26,8 +26,8 @@ Read the relevant references before writing each entry. These are local editoria
 | RoBACHtic Symphony | `reference-private/ECE3011/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` and the final document package in that folder | ECE 3011 Junior Design, mechanical contribution, limitations, demonstration and lesson-plan details |
 | Electronics Design Lab | `reference-private/EE305/KAIST_EE305_Coursework_Website_Reference.md` | One consolidated EE305 entry with selected internal highlights |
 | Robotic Tic-Tac-Toe | `reference-private/EE405_Coursework_Website_Reference.md` | One EE405 implementation entry, supporting labs and unknown metadata |
-| CV/Resume documents | `src/documents/cv-resume/` | Biography and dated document downloads; see Section 7 |
-| Version provenance | `src/documents/cv-resume/README.md` and `source-inventory.json` | Source dates, pairing decisions and original recovery |
+| Withdrawn CV/Resume documents | `reference-private/cv-resume-withdrawal/2026-11-01/` | Private biography provenance and recovery only; no tracked documents/downloads |
+| Version provenance | Ignored withdrawn-document archive | Source dates, pairing decisions and private recovery |
 | Portrait candidate | `reference-private/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
 | Ideas sources and owner selection | `reference-private/아이디어-생각할 거리.md`, `아이디어-연구.md`, `아이디어-연구프로젝트.md`, `아이디어-프로젝트.md`; local `아이디어-선택목록.csv` | Owner replaced DOCX with four Markdown sources; source material and the -1/0/1/2 decision CSV remain private and Git-ignored |
 | Disease-modeling research source collection | `reference-private/Meta_Research_Website_Reference.md` | Owner-requested October 29 local collection from HEM-meta, OCD-meta, SMA-meta, and AMD-meta: bilingual description candidates, original saved figures, evidence and provenance; selected high-level Research descriptions for the current overhaul; no unsupported publication records or numeric medical claims |
@@ -36,7 +36,7 @@ Read the relevant references before writing each entry. These are local editoria
 
 Resolve conflicts in this order: the owner's latest explicit instructions; project-specific curated references and their disclosure limits; the newer industrial CV for current biography; older CVs for historical context. A broad CV claim does not override a project's narrower public-description limits.
 
-`story.md` is a temporary instruction pad, not a reference article or permanent specification. Read its saved contents when the owner requests it, apply the instructions, and reconcile the durable requirements into the relevant sections of **this file**. The owner may erase or replace `story.md` at any time; site content, builds, and future maintenance must not depend on it. Keep it Git-ignored and out of deployment output. Do not clear or rewrite it on the owner's behalf unless asked.
+`story.md` and `instructions.md` are temporary instruction pads, not reference articles or permanent specifications. Read the requested pad's saved contents, apply its instructions, and reconcile the durable requirements into the relevant sections of **this file**. The owner may erase or replace either pad at any time; site content, builds, and future maintenance must not depend on either pad. Keep both Git-ignored and out of deployment output. Do not clear or rewrite either pad on the owner's behalf unless asked.
 
 Examples requiring this rule:
 
@@ -136,9 +136,9 @@ Display compact venue/year citations and title DOI links, with newest records fi
 | `/coursework` and `/coursework/[slug]` | Course list board, initially only the electronics laboratory course; old project paths redirect |
 | `/blog` and `/blog/[slug]` | Released writing |
 | `/proposals` and `/proposals/[slug]` | Ideas; retain these existing URLs |
-| `/cv` | Full bilingual HTML CV, with dated PDF downloads retained below |
+| `/cv` | Full bilingual HTML CV; no file downloads |
 
-Navigation uses the **top-right menu button at every viewport width**. Keep all section links and CV inside its initially closed panel; the wide-screen banner should show only the owner's name, visible language selector and menu button. Retain the existing full-width narrow-screen panel, with a compact right-aligned panel on wider screens. Publications, Projects, Coursework, Ideas and Blog remain reachable after opening it; there is no Research menu item. Support keyboard activation, Escape and outside-click dismissal. Label the writing section **Blog** in English and **블로그** in Korean, including navigation, collection headings, and RSS titles; retain `/blog/` URLs. Contact belongs on Home, reachable from the footer or its `#contact` anchor. The hero instead links to the localized HTML CV using the exact text **Curriculum Vitae** in both languages.
+Navigation uses the **top-right menu button at every viewport width**. Keep all section links and CV inside its initially closed panel; the wide-screen banner should show only the owner's name, visible language selector and menu button. Retain the existing full-width narrow-screen panel, with a compact right-aligned panel on wider screens. Publications, Projects, Coursework, Ideas and Blog remain reachable after opening it; there is no Research menu item. Support keyboard activation, Escape and outside-click dismissal. Label the writing section **Blog** in English and **블로그** in Korean, including navigation, collection headings, and RSS titles; retain `/blog/` URLs. Contact belongs on Home with its `#contact` anchor. Footer has no Contact/Email/GitHub/RSS navigation; show only copyright with Sangeon Jeon, an explicit last-updated date, the public address Rm 5263, 75 5th St NW, Atlanta, GA 30308, and school email as plain text. The hero instead links to the localized HTML CV using the exact text **Curriculum Vitae** in both languages.
 
 After merging Home and About, use this menu order in both languages: **Home → Publications → Projects → Coursework → Ideas → Blog → CV**. The first Korean label is **홈**. Preserve existing section routes and the legacy About redirects.
 
@@ -151,9 +151,9 @@ Home should open with Sangeon Jeon's name, a concise academic identity, research
 | ORCID | `https://orcid.org/0009-0001-5883-0774` |
 | LinkedIn | `https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/` |
 
-Keep these destinations in the shared profile configuration. Omit email from the Home profile-link row; its click-to-copy value remains below the portrait. Keep the CV email link. Use the school email for all website contact links; do not copy an older Gmail address from a CV. Remove the former **Get in touch** hero action. Below the portrait, retain the `#contact` region without a visible Contact heading or institution caption, and remove the old bottom Contact block. Show the copyable email **sjeon84@gatech.edu** with hyperlink color/underlining at 16px; use 14px address text. Format the address as two lines: plain **Rm 5263, Centergy One**, then linked **75 5th St NW, Atlanta, GA 30308**. The email itself is an accessible copy button with localized success feedback or manual-selection fallback. The address text opens Google Maps in a new tab. Keep the first address line in `site.address`, the linked street line in `site.mapAddress`, and the search destination separately in `site.mapPlaceName` (**Centergy One**) and `site.mapAddress` (**75 5th St NW, Atlanta, GA 30308**), without Rm 5263. Use Google's supported place-name-plus-address search URL; do not guess a place ID. Style the email copy control and the street as identifiable hyperlinks, while preserving the semantic email button and copy behavior. Do not add a Contact/ADDRESS label, a mail-composer action or separate Write/Copy/CV buttons to this region. Keep keyboard focus visible; no contact-form backend is required.
+Keep these destinations in the shared profile configuration. Omit email from the Home profile-link row; its click-to-copy value remains below the portrait. Keep the CV email link. Use the school email for all website contact links; do not copy an older Gmail address from a CV. Remove the former **Get in touch** hero action. Below the portrait, retain the `#contact` region without a visible Contact heading or institution caption, and remove the old bottom Contact block. Show the copyable email **sjeon84@gatech.edu** with hyperlink color/underlining at 16px; use 14px address text. Format the address as two lines: plain **Rm 5263, Centergy One**, then linked **75 5th St NW, Atlanta, GA 30308**. The email itself is an accessible copy button with localized success feedback or manual-selection fallback; clear either message after three seconds and restart that timer after each copy attempt. The address text opens Google Maps in a new tab. Keep the first address line in `site.address`, the linked street line in `site.mapAddress`, and the search destination separately in `site.mapPlaceName` (**Centergy One**) and `site.mapAddress` (**75 5th St NW, Atlanta, GA 30308**), without Rm 5263. Use Google's supported place-name-plus-address search URL; do not guess a place ID. Style the email copy control and the street as identifiable hyperlinks, while preserving the semantic email button and copy behavior. Do not add a Contact/ADDRESS label, a mail-composer action or separate Write/Copy/CV buttons to this region. Keep keyboard focus visible; no contact-form backend is required.
 
-Keep Home's established name/portrait hero and interest line. Use a readable 11px interest label and 14px topics (13px topics on mobile), with wrapping that fits intermediate widths. Align the portrait with the start of the continuous biography on desktop, with a compact gap and no unused text-width cap between them. On mobile, pair the name and portrait above the full-width biography. Use the larger responsive portrait, with a 270px desktop frame and smaller tablet/mobile sizes that do not overlap the name. End the biography with a full localized sentence containing an inline **Curriculum Vitae** hyperlink to the localized HTML CV (English: “For further information, please refer to my Curriculum Vitae.”). Use the body text size; do not place CV as a separate action beneath the profile row. The four profile links follow the complete biography. Keep the communications-research and engineering narrative together, followed by one combined M.S./bachelor academic-background paragraph in the same biography block, in both languages. Include the confirmed Georgia Tech ECE M.S. (2025, advisor Xiaoli Ma) and explicitly state that the owner earned bachelor's degrees from KAIST and Georgia Tech through the **KAIST–Georgia Tech Dual B.S. Degree Program**. Link the program name to KAIST's official language-matched pages (`https://ee.kaist.ac.kr/en/education-cooperation-01/` and `https://ee.kaist.ac.kr/education-cooperation-01/`). Link the KAIST undergraduate advisor name **Prof. Jinseok Choi** (Korean: **Jinseok Choi 교수님**) to `https://sic-x.kaist.ac.kr/`; omit the parenthetical SIC-X Lab label while retaining its URL on the advisor name. English Home mentions of Xiaoli Ma use **Prof. Xiaoli Ma**, including the first-paragraph link and M.S. sentence; Korean retains 교수님. This latest owner instruction supersedes the former no-education-on-Home rule; keep the full education table/GPAs in CV. Keep the biography uninterrupted by profile links, the interest line or an About me heading. Contact belongs under the photo in the hero, with no separate bottom block. On mobile, let those contact values span the width directly below the name/portrait pair, before the biography. Follow the hero and interests with the News list board. Do not retain Selected research or Engineering projects previews. News currently contains only the January 2026 Ph.D. start, as explicitly requested by the owner. Do not add publication announcements automatically. Store bilingual news in `src/data/news.ts`, newest first, using only supported date precision. Avoid a full CV pasted into Home, an oversized hero, redundant cards across sections, and empty publication statistics.
+Keep Home's established name/portrait hero and interest line. Use a readable 13px interest label and 16px topics (15px topics on mobile), with wrapping that fits intermediate widths. Align the portrait with the start of the continuous biography on desktop, with a compact gap and no unused text-width cap between them. On mobile, pair the name and portrait above the full-width biography. Use the larger responsive portrait, with a 270px desktop frame and smaller tablet/mobile sizes that do not overlap the name. End the biography with a full localized sentence containing an inline **Curriculum Vitae** hyperlink to the localized HTML CV (English: “For further information, please refer to my Curriculum Vitae.”). Use the body text size; do not place CV as a separate action beneath the profile row. The four profile links follow the complete biography. Keep the communications-research and engineering narrative together, followed by one combined M.S./bachelor academic-background paragraph in the same biography block, in both languages. Include the confirmed Georgia Tech ECE M.S. (2025, advisor Xiaoli Ma) and explicitly state that the owner earned bachelor's degrees from KAIST and Georgia Tech through the **KAIST–Georgia Tech Dual B.S. Degree Program**. Link the program name to KAIST's official language-matched pages (`https://ee.kaist.ac.kr/en/education-cooperation-01/` and `https://ee.kaist.ac.kr/education-cooperation-01/`). Link the KAIST undergraduate advisor name **Prof. Jinseok Choi** (Korean: **Jinseok Choi 교수님**) to `https://sic-x.kaist.ac.kr/`; omit the parenthetical SIC-X Lab label while retaining its URL on the advisor name. English Home mentions of Xiaoli Ma use **Prof. Xiaoli Ma**, including the first-paragraph link and M.S. sentence; Korean retains 교수님. This latest owner instruction supersedes the former no-education-on-Home rule; keep the full education table/GPAs in CV. Keep the biography uninterrupted by profile links, the interest line or an About me heading. Contact belongs under the photo in the hero, with no separate bottom block. On mobile, let those contact values span the width directly below the name/portrait pair, before the biography. Follow the hero and interests with the News list board. Do not retain Selected research or Engineering projects previews. News currently contains only the January 2026 Ph.D. start, as explicitly requested by the owner. Do not add publication announcements automatically. Store bilingual news in `src/data/news.ts`, newest first, using only supported date precision. Avoid a full CV pasted into Home, an oversized hero, redundant cards across sections, and empty publication statistics.
 
 ## 6. Design and implementation stack
 
@@ -174,34 +174,15 @@ Keep Home's established name/portrait hero and interest line. Use a readable 11p
 - Review the existing portrait's suitability and use it as the initial portrait candidate. If it is unsuitable or its use is unresolved, use a clean text-led layout without a broken image box or generated identity.
 - Add project photos, waveforms, screenshots, and diagrams only with project-specific evidence and reuse clearance; do not fabricate experimental data or demo images. RoBACHtic's two owner-supplied images and embedded video are explicitly selected above. Other videos remain external links unless selected for embedding. Embed players must be responsive, keyboard accessible, titled, lazy-loaded, and free of autoplay. Preserve the owner’s shared player-only layout without a separate caption/link footer.
 
-## 7. Biography and CV/Resume handling
+## 7. Biography and HTML CV
 
-The documents are intentionally named using the owner's convention: `Resume-Full` for the comprehensive document and `CV-1Page-*` for targeted one-page versions. Preserve those names and their Git history.
+On November 1, the owner withdrew **all CV/Resume PDF and DOCX documents and their committed history** because the originals contain private contact information. This explicitly supersedes the former requirement to retain source pairs in public Git. Preserve originals, SHA-256 manifests and recovery bundles only under ignored `reference-private/cv-resume-withdrawal/2026-11-01/`. Remove the historic document directories from main history (`reference-private/CV-Resume/`, `src/documents/cv-resume/`, `public/documents/`); do not mirror-push local recovery/checkpoint refs. Do not add document downloads, their old route/manifest, or originals back to the site. The output checker rejects PDF/DOCX files and the withdrawn document directory. Remote history replacement and deployment require the owner's explicit release authorization.
 
-| Document | Current source | Source version |
-| --- | --- | --- |
-| Full resume | `src/documents/cv-resume/Sangeon-Jeon-Resume-Full.pdf` and `.docx` | 2025-09-08; three-page PDF |
-| Industrial/general one-page CV | `src/documents/cv-resume/Sangeon-Jeon-CV-1Page-Industrial.pdf` | Filename dated 2026-04-11; internal creation date unavailable |
-| ML one-page CV | `src/documents/cv-resume/Sangeon-Jeon-CV-1Page-ML.pdf` and `.docx` | 2025-09-09 |
-| Software one-page CV | `src/documents/cv-resume/Sangeon-Jeon-CV-1Page-Software.pdf` and `.docx` | 2025-09-09 |
-| Telecom one-page CV | `src/documents/cv-resume/Sangeon-Jeon-CV-1Page-Telecom.pdf` and `.docx` | 2025-09-09 |
-| Neuroscience one-page CV | `src/documents/cv-resume/Sangeon-Jeon-CV-1Page-Neuroscience.pdf` | Filename dated 2024-01-05; PDF exported 2024-01-10 |
+Previously reviewed sources and owner confirmations support this biography: Georgia Tech ECE Ph.D. study beginning January 2026 with Prof. Xiaoli Ma; Georgia Tech ECE M.S. in 2025 with Prof. Xiaoli Ma; B.S. degrees at Georgia Tech (2023–2024) and KAIST Electrical Engineering (2018–February 2025), through the confirmed Dual Degree Program; KAIST advisor Prof. Jinseok Choi. Use the existing shared website facts; do not re-import private phone/contact details from the withdrawn documents.
 
-The newer industrial CV supports this biography baseline: Georgia Tech ECE Ph.D. study beginning January 2026 with Xiaoli Ma; Georgia Tech ECE M.S. in 2025 and B.S. in 2023–2024; KAIST Electrical Engineering B.S. in 2018–February 2025. Do not describe the owner as still awaiting the M.S. solely because older documents use expected-graduation wording. Recheck time-sensitive current-role wording before public release.
+Confirmed website GPAs remain **KAIST 3.95/4.3** and **all Georgia Tech entries 4.00/4.0**. Keep education, GPAs and advisors in HTML CV. Do not describe the completed M.S. as expected solely because an older source did so.
 
-The owner explicitly confirmed the GPAs for the website: **KAIST 3.95/4.3** and **all Georgia Tech education entries 4.00/4.0**. Show these on About alongside the corresponding degrees. These values override older CV GPA values for the website; do not rewrite the dated source documents.
-
-The owner confirmed on October 29 that **Jinseok Choi (최진석)** was their advisor at KAIST. Show `Advisor: Jinseok Choi` with the KAIST education entry on About.
-
-The owner also confirmed that **Xiaoli Ma** was their Georgia Tech M.S. advisor. Show `Advisor: Xiaoli Ma` with the M.S. education entry as well as the existing Ph.D. entry on About.
-
-Use the industrial one-page PDF as the most recent available document candidate and the full resume as a separately dated comprehensive document. Do not call the 2025 full resume current as of 2026, silently merge incompatible claims, or rewrite source documents as part of the website build. Targeted older CVs need not all be prominent site downloads; the CV page should offer a clear primary choice and dates, with additional versions only where useful.
-
-Repository tracking and website presentation are separate decisions. **PDF and DOCX files are both intentionally committed to the main website repository**, including recoverable old versions. Do not ignore, untrack, delete, or move DOCX files to a separate repository. For a future document revision, review matching DOCX/PDF together and commit the matching pair when both exist.
-
-Select website downloads only through `src/documents/downloads.json`, using canonical source files in `src/documents/cv-resume/` and prerendered PDF endpoints. Do not maintain duplicate download binaries in `public/`. Git tracking alone does not select a document as a site download. DOCX website-download buttons are optional and should follow the owner's preference; retaining DOCX in Git is required. Do not automatically expose addresses or phone numbers from the documents on Home or About. Use only selected public contact details and links.
-
-**HTML CV:** `/cv/` and `/ko/cv/` must be readable CV pages, not download-only landing pages. Include identity/contact links, education with confirmed GPAs/advisors, published papers and separately labeled under-review research, research experience, employment, teaching/mentoring, awards, selected engineering projects, and skills/languages. Use `src/data/cv.ts` for bilingual experience copy, shared education/profile data and approved collections for current project/publication facts. The dated one-page and full-resume PDFs remain downloadable at the bottom with their actual version dates. Preserve all source DOCX/PDF bytes and history. Apply the narrower project disclosure rules even when an older CV makes broader claims; do not copy private phone/address/pay details or stale publication statuses into the HTML CV. Build Selected engineering / 주요 프로젝트 from Projects only. Exclude ordinary course subjects and Electronics Design Laboratory (`electronics-design-lab`); retain its Coursework detail.
+**HTML CV:** `/cv/` and `/ko/cv/` remain full readable CV pages with identity/profiles, education, publications (including clearly labeled under-review/manuscript records), research experience, employment, teaching/mentoring, awards, selected engineering and skills/languages. Use `src/data/cv.ts`, shared data and approved collections. There is no PDF-download section or download TOC item. Enlarge desktop CV typography across entry text, headings, citations, metadata and navigation while retaining responsive mobile and print layouts. Author names remain English and unlinked. Build Selected engineering from Projects only; exclude ordinary courses and Electronics Design Laboratory. Apply project disclosure limits even where an old document made broader claims.
 
 ## 8. Content model and release boundaries
 
@@ -225,12 +206,15 @@ If only a collaborator, image, link, or optional field is unresolved, omit that 
 
 ## 9. Repository and asset boundaries
 
-All of `reference-private/` is ignored. It contains curated editorial inputs and raw source material, not site-owned downloadable documents. Canonical CV/Resume sources live in tracked `src/documents/cv-resume/`, and `src/documents/downloads.json` selects the files emitted at stable `/documents/*.pdf` URLs. Preserve source pairs and historical provenance when moving them; prior Git paths remain valid for historical recovery. Do not force-add private reference packages.
+All of `reference-private/` is ignored, including withdrawn CV/Resume originals and recovery history. There are no tracked document sources or downloadable CV/Resume endpoints. Ignore `src/documents/` and `public/documents/` to prevent accidental restoration. Never force-add these private materials.
 
 ```gitignore
 /reference-private/
 /story.md
+/instructions.md
 /development-status.md
+/src/documents/
+/public/documents/
 .DS_Store
 ```
 
@@ -238,7 +222,7 @@ Suggested implementation layout:
 
 ```text
 proj.md
-story.md                       # ignored, replaceable owner instructions
+story.md / instructions.md     # ignored, replaceable owner instructions
 reference-private/
   *.md                         # ignored editorial inputs
   profile_photo.jpeg           # ignored portrait source
@@ -246,9 +230,6 @@ reference-private/
 public/
   images/                      # reviewed website image copies
 src/
-  documents/
-    cv-resume/                 # canonical tracked document pairs and provenance
-    downloads.json             # selected public download allowlist
   content/
     publications/
       ocdm-cfo-estimation/
@@ -273,13 +254,13 @@ Do not mirror instructor handouts, raw solutions, student IDs, private contact d
 
 For continued implementation and maintenance:
 
-1. Inspect repository status and this brief, then read the selected source summaries. Preserve unrelated work and existing CV/Resume commits. Do not make another planning-only response a prerequisite.
+1. Inspect repository status and this brief, then read the selected source summaries. Preserve unrelated work; withdrawn CV/Resume history belongs only in private recovery archives. Do not make another planning-only response a prerequisite.
    Read and maintain `development-status.md`, the Git-ignored **English** development handoff. Keep enough detail for a new LLM to resume immediately: current objective, completed/pending work, exact live preview URLs, how to start or find the server, a working Node path/commands when the shell lacks node/npm, tests and results, and local commit hashes. Update progress there rather than adding running status reports to this tracked brief. Keep it out of Git and deployment output.
 2. Maintain the existing Astro project, shared layout/design, profile configuration, content schemas, routes, eleven portfolio entries and three published paper records within the authorized scope; keep unreviewed Blog/Ideas articles private.
-3. Maintain the intentional empty Blog/Ideas indexes, the full bilingual HTML CV and its dated PDF downloads, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
+3. Maintain the intentional empty Blog/Ideas indexes, the full bilingual HTML CV without document downloads, responsive navigation, white-background styling, profile/contact links, accessibility, metadata, and release filtering. Keep source archives and the temporary instruction pad out of site output.
 4. Start a local preview and inspect Home News, the compact Publications list and legacy redirects, When to Eat, moved engineering projects, Coursework subjects/laboratory detail, CV, and mobile navigation. Resolve layout and route problems before reporting completion.
 5. Run the production build, applicable type/schema checks, and focused checks that unapproved content and assets are absent from every release surface. Check stable routes after folder moves, local images/links, document targets, mobile navigation, contact navigation/copy behavior, the inline video, white-background rendering, and root-path hosting. Test behavior that can fail; avoid tests that merely restate static copy.
-6. Expand the root README with setup, preview/build commands, adding/editing entries, publication states, changing display order, maintaining DOCX/PDF pairs, asset selection, and the GitHub Pages release procedure.
+6. Expand the root README with setup, preview/build commands, adding/editing entries, publication states, changing display order, document privacy, asset selection, and the GitHub Pages release procedure.
 7. Report what is implemented, validation results, and the few unresolved content/asset choices. The owner's October 28 instruction authorizes periodic local commits of completed work. Commit useful, validated increments as work proceeds. Do not push, configure Pages, or publish yet; the owner plans to publish after the site is complete and will authorize that stage separately.
 
-The build is ready for review when the selected sections work end to end, the eleven portfolio entries retain their correct categories/statuses, Blog/Ideas contain only individually approved finished articles (currently none), the CV is readable as a page, document links are clear and dated, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.
+The build is ready for review when the selected sections work end to end, the eleven portfolio entries retain their correct categories/statuses, Blog/Ideas contain only individually approved finished articles (currently none), the CV is readable as a page, withdrawn documents are absent, no unsupported achievements or manuscript claims have been introduced, and release output contains only approved material.

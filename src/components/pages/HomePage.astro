@@ -65,12 +65,22 @@ const c = ko ? {
 <script>
   const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
   const copyStatus = document.querySelector<HTMLElement>('.copy-status');
+  let feedbackTimeout: ReturnType<typeof setTimeout> | undefined;
+  const showCopyFeedback = (message: string) => {
+    if (!copyStatus) return;
+    if (feedbackTimeout !== undefined) clearTimeout(feedbackTimeout);
+    copyStatus.textContent = message;
+    feedbackTimeout = setTimeout(() => {
+      copyStatus.textContent = '';
+      feedbackTimeout = undefined;
+    }, 3000);
+  };
   copyButton?.addEventListener('click', async () => {
     const email = copyButton.dataset.copyEmail;
     if (!email || !copyStatus) return;
     try {
       await navigator.clipboard.writeText(email);
-      copyStatus.textContent = copyButton.dataset.copySuccess ?? '';
+      showCopyFeedback(copyButton.dataset.copySuccess ?? '');
     } catch {
       const address = document.querySelector('.contact-email');
       if (address) {
@@ -80,7 +90,7 @@ const c = ko ? {
         selection?.removeAllRanges();
         selection?.addRange(range);
       }
-      copyStatus.textContent = copyButton.dataset.copyFallback ?? '';
+      showCopyFeedback(copyButton.dataset.copyFallback ?? '');
     }
   });
 </script>

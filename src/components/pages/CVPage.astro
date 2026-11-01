@@ -1,14 +1,10 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Icon from '../Icon.astro';
 import ProfileLinks from '../ProfileLinks.astro';
 import PublicationCitation from '../PublicationCitation.astro';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
 import { getPublicEntries, hrefForEntry, isPublished, isUnderReview } from '../../lib/content';
 import { getCVCopy } from '../../data/cv';
-import { statSync } from 'node:fs';
-import path from 'node:path';
-import downloads from '../../documents/downloads.json';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
@@ -23,32 +19,23 @@ const published = papers.filter(isPublished);
 const submitted = papers.filter(isUnderReview);
 const manuscripts = papers.filter((entry) => !isPublished(entry) && !isUnderReview(entry));
 const engineering = projects;
-const shortDocument = downloads.find((document) => document.id === 'industrial')!;
-const fullDocument = downloads.find((document) => document.id === 'full')!;
-const sizeKB = (document: typeof shortDocument) => Math.round(statSync(path.resolve('src/documents', document.source)).size / 1024);
 const c = ko ? {
   title: 'CV & Resume', description: '전상언의 학력, 출판 및 연구·근무·교육 경험과 수상 이력입니다.',
   role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
   publications: '출판', published: '출판물', submitted: '심사 중', manuscripts: '원고', research: '연구 경험',
   employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
-  skills: '기술 및 언어', downloads: 'PDF 다운로드', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
-  downloadIntro: 'PDF는 각 문서에 표시된 날짜 기준의 별도 버전입니다.',
-  shortTitle: 'One-page CV', shortDescription: '학력·연구·프로젝트·기술 요약', shortDownload: 'CV 다운로드', shortDate: '2026년 4월', shortPages: '1쪽',
-  fullTitle: 'Full resume', fullDescription: '연구·프로젝트·교육·수업 이력', fullDownload: 'Resume 다운로드', fullDate: '2025년 9월', fullPages: '3쪽',
+  skills: '기술 및 언어', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
 } : {
   title: 'CV & Resume', description: 'Sangeon Jeon’s education, publications, research, employment, teaching, awards, and skills.',
   role: 'Ph.D. student, Electrical & Computer Engineering', education: 'Education', interests: 'Research interests',
   publications: 'Publications', published: 'Published papers', submitted: 'Under review', manuscripts: 'Manuscripts', research: 'Research experience',
   employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', projects: 'Selected engineering',
-  skills: 'Skills & languages', downloads: 'PDF downloads', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
-  downloadIntro: 'The PDFs are separate versions reflecting the dates shown below.',
-  shortTitle: 'One-page CV', shortDescription: 'Education, research, engineering work, and skills', shortDownload: 'Download CV', shortDate: 'April 2026', shortPages: '1 page',
-  fullTitle: 'Full resume', fullDescription: 'Research, projects, teaching, and coursework', fullDownload: 'Download resume', fullDate: 'September 2025', fullPages: '3 pages',
+  skills: 'Skills & languages', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
 };
 const sections = [
   ['education', c.education], ['publications', c.publications], ['research', c.research],
   ['employment', c.employment], ['teaching', c.teaching], ['awards', c.awards],
-  ['projects', c.projects], ['skills', c.skills], ['downloads', c.downloads],
+  ['projects', c.projects], ['skills', c.skills],
 ];
 const recordSections = [
   { id: 'employment', label: c.employment, entries: records.employment },
@@ -91,13 +78,6 @@ const recordSections = [
       <section class="cv-section" id="cv-skills" aria-labelledby="cv-skills-heading">
         <h2 id="cv-skills-heading">{c.skills}</h2><dl class="cv-skills">{records.skills.map((group) => <div><dt>{group.label}</dt><dd><ul>{group.items.map((item) => <li>{item}</li>)}</ul></dd></div>)}</dl>
       </section>
-      <section class="cv-section" id="cv-downloads" aria-labelledby="cv-downloads-heading">
-        <h2 id="cv-downloads-heading">{c.downloads}</h2><p class="cv-download-intro">{c.downloadIntro}</p>
-        <div class="document-grid">
-          <article class="document-card"><h3>{c.shortTitle}</h3><p>{c.shortDescription}</p><a class="button button-primary" href={`/documents/${shortDocument.filename}`} download>{c.shortDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.shortDate}</span><span>{c.shortPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(shortDocument)} KB</span></div></article>
-          <article class="document-card"><h3>{c.fullTitle}</h3><p>{c.fullDescription}</p><a class="button" href={`/documents/${fullDocument.filename}`} download>{c.fullDownload}<Icon name="download" size={16} /></a><div class="document-meta"><span>{c.fullDate}</span><span>{c.fullPages}</span><span>{ko ? '영문 PDF' : 'PDF'} · {sizeKB(fullDocument)} KB</span></div></article>
-        </div>
-      </section>
     </div>
   </div>
 </SiteLayout>
@@ -116,7 +96,7 @@ const recordSections = [
   .cv-section h2 { font-size: 27px; padding-bottom: 15px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
   .cv-entry { margin-bottom: 25px; }
   .cv-entry-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
-  .cv-entry h3, .document-card h3 { font-size: 17px; line-height: 1.5; letter-spacing: -.012em; margin-bottom: 5px; }
+  .cv-entry h3 { font-size: 17px; line-height: 1.5; letter-spacing: -.012em; margin-bottom: 5px; }
   .cv-entry h3 a { color: var(--text); text-decoration: none; }
   .cv-entry h3 a:hover { color: var(--accent-strong); text-decoration: underline; }
   .cv-entry p { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 4px; }
@@ -130,14 +110,27 @@ const recordSections = [
   .cv-skills dt { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
   .cv-skills dd { margin: 0; }
   .cv-skills ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 7px 18px; font-size: 13px; color: var(--muted); }
-  .cv-download-intro { font-size: 13px; color: var(--muted); }
-  .cv-section .document-card { padding: 24px; }
-  .cv-section .document-grid { margin-top: 22px; }
+  @media screen and (min-width: 741px) {
+    .cv-heading .eyebrow { font-size: 12px; }
+    .cv-names { font-size: 18px; }
+    .cv-role { font-size: 17px; }
+    .cv-heading :global(.profile-links a) { font-size: 14px; }
+    .cv-contents a { font-size: 14px; }
+    .cv-section h2 { font-size: 30px; }
+    .cv-entry h3 { font-size: 20px; }
+    .cv-entry p { font-size: 16px; }
+    .cv-entry .cv-organization { font-size: 14px; }
+    .cv-period { font-size: 13px; }
+    .cv-subheading { font-size: 15px; }
+    .cv-entry :global(.publication-citation) { font-size: 15px; }
+    .publication-legend { font-size: 13px; }
+    .cv-section .tags li { font-size: 12px; }
+    .cv-skills dt, .cv-skills ul { font-size: 16px; }
+  }
   @media (max-width: 960px) {
     .cv-layout { grid-template-columns: 130px minmax(0, 1fr); gap: 32px; }
     .cv-entry-heading { flex-wrap: wrap; gap: 0 14px; }
     .cv-period { margin-bottom: 5px; }
-    .cv-section .document-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 740px) {
     .cv-heading { padding: 42px 0 30px; }
@@ -152,7 +145,7 @@ const recordSections = [
   }
   @media print {
     .cv-layout { display: block; }
-    .cv-contents, #cv-downloads { display: none; }
+    .cv-contents { display: none; }
     .cv-heading { padding-top: 0; }
     .cv-entry { break-inside: avoid; }
   }

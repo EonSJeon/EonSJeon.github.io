@@ -1,8 +1,11 @@
-# Private editorial inputs. Site-owned CV/Resume sources live in src/documents/.
+# Private editorial inputs and withdrawn CV/Resume source documents.
 /reference-private/
+/src/documents/
+/public/documents/
 
 # Temporary owner instructions; durable decisions belong in proj.md.
 /story.md
+/instructions.md
 
 # Local development progress; never part of the public repository or site.
 /development-status.md
