@@ -33,7 +33,7 @@ Content lives in six distinct collections under `src/content/`:
 
 The portfolio contains six research projects (wireless communications and Meta Analysis), three published journal articles, When to Eat, four coursework entries, and a full bilingual HTML CV. Blog and Ideas remain empty while the owner reviews each article privately. Publications separates published articles from the two communications manuscripts under review. Home features communications research, independent engineering and selected coursework; Meta Analysis, Ideas and Blog have no Home preview and remain accessible through navigation. Research projects are not automatically published papers.
 
-Home combines the profile introduction, research interests, engineering narrative and contact information using the existing hero design. Education remains in CV. The former `/about/` and `/ko/about/` routes redirect to their localized Home, preserving query strings and contact fragments.
+Home combines the profile introduction, research interests, engineering narrative and contact information using the existing hero design. Keep the full introduction in one continuous hero paragraph in both languages, before the profile links and research-interest line. Education remains in CV. The former `/about/` and `/ko/about/` routes redirect to their localized Home, preserving query strings and contact fragments.
 
 The header keeps the language selector visible and opens navigation through the top-right menu button at every screen width. Menu order is Home, Research, Publications, Projects, Coursework, Ideas, Blog, CV, with corresponding Korean labels.
 

@@ -19,9 +19,8 @@ const selectedCoursework = coursework.filter((entry) => entry.data.featured).sli
 const project = projects.find((entry) => entry.data.featured);
 const c = ko ? {
   eyebrow: 'Georgia Tech · Electrical & Computer Engineering', role: '박사과정 · Atlanta, Georgia',
-  intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ', advisorEnd: ' 교수님입니다.',
-  currentResearch: '현재는 처프 기반 다중반송파 파형의 주파수 오프셋 추정과 OFDM 수신기의 채널·하드웨어 불일치 공동 추정을 다루고 있습니다.',
-  engineering: '수학적 모델, 소프트웨어, 물리적 하드웨어를 연결하는 시스템을 만드는 일도 즐깁니다. RFID 알림 장치부터 생체전기 신호 기록과 메카트로닉스 시제품까지 다양한 프로젝트를 진행했습니다.',
+  intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
+  introAfterAdvisor: ' 교수님입니다. 현재는 처프 기반 다중반송파 파형의 주파수 오프셋 추정과 OFDM 수신기의 채널·하드웨어 불일치 공동 추정을 다루고 있습니다. 수학적 모델, 소프트웨어, 물리적 하드웨어를 연결하는 시스템을 만드는 일도 즐깁니다. RFID 알림 장치부터 생체전기 신호 기록과 메카트로닉스 시제품까지 다양한 프로젝트를 진행했습니다.',
   institution: 'Georgia Institute of Technology', interests: '연구 관심 분야',
   research: '주요 연구', researchLabel: '무선 통신과 신호 처리', allResearch: '전체 연구',
   independent: '독립 프로젝트', outside: '연구실 밖에서', allProjects: '전체 프로젝트',
@@ -33,9 +32,8 @@ const c = ko ? {
   success: '이메일 주소를 복사했습니다.', fallback: '위 이메일 주소를 선택하여 복사해주세요.',
 } : {
   eyebrow: 'Georgia Tech · Electrical & Computer Engineering', role: 'Ph.D. student · Atlanta, Georgia',
-  intro: 'I study waveform design and synchronization for wireless communication systems. I am a Ph.D. student at Georgia Tech, advised by ', advisorEnd: '.',
-  currentResearch: 'My current work considers frequency-offset estimation for chirp-based multicarrier waveforms and joint channel and hardware-impairment estimation in OFDM receivers.',
-  engineering: 'I also enjoy building systems that connect mathematical models, software, and physical hardware. My engineering work has ranged from RFID-based reminders to bioelectrical recording and mechatronic prototypes.',
+  intro: 'I study waveform design and synchronization for wireless communication systems. I am a Ph.D. student at Georgia Tech, advised by ',
+  introAfterAdvisor: '. My current work considers frequency-offset estimation for chirp-based multicarrier waveforms and joint channel and hardware-impairment estimation in OFDM receivers. I also enjoy building systems that connect mathematical models, software, and physical hardware. My engineering work has ranged from RFID-based reminders to bioelectrical recording and mechatronic prototypes.',
   institution: 'Georgia Institute of Technology', interests: 'Research interests',
   research: 'Selected research', researchLabel: 'Wireless communications & signal processing', allResearch: 'All research',
   independent: 'Independent engineering', outside: 'Outside the lab', allProjects: 'All projects',
@@ -53,17 +51,13 @@ const c = ko ? {
       <p class="eyebrow">{c.eyebrow}</p>
       <h1 id="intro-title">{ko ? site.koreanName : 'Sangeon Jeon'}<span class="hero-korean" lang={ko ? 'en' : 'ko'}>{ko ? 'Sangeon Jeon' : site.koreanName}</span><span class="hero-hanja" lang="zh-Hant">{site.hanjaName}</span></h1>
       <p class="hero-role">{c.role}</p>
-      <p class="hero-description">{c.intro}<a href={site.advisor.url}>Xiaoli Ma</a>{c.advisorEnd}</p>
+      <p class="hero-description">{c.intro}<a href={site.advisor.url}>{site.advisor.name}</a>{c.introAfterAdvisor}</p>
       <ProfileLinks lang={lang} />
       <a class="text-link hero-contact" href="#contact">{c.getInTouch}<Icon name="arrow-right" size={16} /></a>
     </div>
     <figure class="hero-portrait"><div class="portrait-frame"><img src="/images/sangeon-jeon.jpeg" alt={ko ? '전상언' : 'Sangeon Jeon'} width="246" height="246" fetchpriority="high" /></div><figcaption>{c.institution}</figcaption></figure>
   </section>
   <div class="interest-line"><span>{c.interests}</span><ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul></div>
-  <div class="home-overview">
-    <p>{c.currentResearch}</p>
-    <p>{c.engineering}</p>
-  </div>
   <section class="home-section" aria-labelledby="research-heading">
     <SectionHeading title={c.research} label={c.researchLabel} href={localizePath('/research/', lang)} linkText={c.allResearch} id="research-heading" />
     <div class="work-grid">{selectedResearch.map((entry) => <WorkCard entry={entry} lang={lang} />)}</div>
