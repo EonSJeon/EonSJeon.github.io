@@ -5,6 +5,13 @@
   font-weight: 45 920;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('/fonts/CormorantGaramond-Semibold-name.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
 :root {
   color-scheme: light;
   --bg: #ffffff;
@@ -45,8 +52,9 @@ p { margin-bottom: 1.15em; }
 .skip-link:focus { transform: none; }
 .site-header { border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; min-height: 88px; gap: 22px; position: relative; }
-.site-brand { display: flex; align-items: center; gap: 8px; color: var(--text); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
-.site-brand-icon { flex: none; width: 36px; height: 36px; object-fit: contain; }
+.site-brand { --brand-icon-size: 64.8px; --brand-font-size: 25.2px; display: flex; align-items: center; gap: 12px; color: var(--text); font-family: 'Cormorant Garamond', var(--serif); font-size: var(--brand-font-size); line-height: 1; font-weight: 600; letter-spacing: -.015em; text-decoration: none; white-space: nowrap; }
+.site-brand-icon { flex: none; width: var(--brand-icon-size); height: var(--brand-icon-size); object-fit: contain; }
+.site-brand-name { display: grid; line-height: 1; }
 .site-navigation { display: none; position: absolute; top: 100%; right: 0; z-index: 30; width: 280px; margin: 0; padding: 16px 24px 24px; max-height: calc(100dvh - 88px); overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 0 0 6px 6px; box-shadow: 0 10px 24px #14251a0d; font-size: 13px; }
 .site-navigation.is-open { display: grid; gap: 0; }
 .site-navigation > a { padding: 11px 0; color: var(--muted); text-decoration: none; }
@@ -272,11 +280,10 @@ html[lang='ko'] .prose { line-height: 1.9; }
 }
 @media (max-width: 740px) {
   .container { width: calc(100% - 40px); }
-  .header-inner { min-height: 74px; gap: 14px; position: relative; }
-  .site-brand { font-size: 13px; }
-  .site-brand-icon { width: 28px; height: 28px; }
+  .header-inner { min-height: 88px; gap: 14px; padding-block: 16px; flex-wrap: wrap; position: relative; }
+  .site-brand { --brand-icon-size: clamp(40.8px, 12.6vw, 50.4px); --brand-font-size: clamp(18.9px, 5.85vw, 21.6px); }
   .header-controls { margin-left: auto; gap: 8px; }
-  .site-navigation { left: -20px; right: -20px; width: auto; max-height: calc(100dvh - 74px); border-inline: 0; border-radius: 0; box-shadow: 0 10px 15px #14251a06; }
+  .site-navigation { left: -20px; right: -20px; width: auto; max-height: calc(100dvh - 142px); border-inline: 0; border-radius: 0; box-shadow: 0 10px 15px #14251a06; }
   .hero { padding: 45px 0 35px; grid-template-columns: minmax(0, 1fr) clamp(112px, 32vw, 136px); grid-template-areas: 'heading portrait' 'contact contact' 'description description'; grid-template-rows: none; gap: 22px 18px; }
   .hero h1 { font-size: 37px; margin-bottom: 17px; }
   .hero-korean { font-size: 11px; margin-top: 12px; }
