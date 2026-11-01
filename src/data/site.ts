@@ -16,6 +16,7 @@ export const site = {
   orcid: 'https://orcid.org/0009-0001-5883-0774',
   linkedin: 'https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/',
   advisor: { name: 'Xiaoli Ma', url: 'https://xma-ultra-signals.github.io/' },
+  kaistAdvisor: { name: 'Jinseok Choi', lab: 'SIC-X Lab', url: 'https://sic-x.kaist.ac.kr/' },
   dualDegreeProgram: {
     en: 'https://ee.kaist.ac.kr/en/education-cooperation-01/',
     ko: 'https://ee.kaist.ac.kr/education-cooperation-01/',
