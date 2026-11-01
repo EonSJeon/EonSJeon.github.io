@@ -5,6 +5,7 @@ import { slugForEntry } from '../lib/content';
 import type { Locale } from '../lib/i18n';
 interface Props { entries: CollectionEntry<'publications'>[]; lang: Locale; }
 const { entries, lang } = Astro.props;
+// 번역 금지: entry.data.title은 모든 언어에서 영문 논문 원제다. 분류 제목만 현지화한다.
 const groups = [
   { type: 'conference', title: lang === 'ko' ? '[학회]' : '[Conference]', label: lang === 'ko' ? '학회 출판물' : 'Conference papers' },
   { type: 'journal', title: lang === 'ko' ? '[저널]' : '[Journal]', label: lang === 'ko' ? '저널 출판물' : 'Journal papers' },

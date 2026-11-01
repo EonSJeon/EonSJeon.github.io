@@ -9,6 +9,8 @@ const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 const site = getSiteCopy(lang);
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.mapPlaceName}, ${site.mapAddress}`)}`;
+// 번역 금지: 학교 고유명(Georgia Tech / Georgia Institute of Technology), 기관 표기의
+// Electrical & Computer Engineering, Atlanta, Georgia는 영어를 유지한다. 주변 소개 문장은 번역한다.
 const c = ko ? {
   role: '박사과정 · Atlanta, Georgia',
   intro: '무선통신 시스템의 파형 설계와 동기화를 연구합니다. Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
@@ -44,6 +46,7 @@ const c = ko ? {
     <div class="hero-description">
       <p>{c.intro}<a class="hero-advisor" href={site.advisor.url}>{ko ? site.advisor.name : `Prof. ${site.advisor.name}`}</a>{c.introAfterAdvisor}</p>
       <p>{c.masters}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]}>{c.dualLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url}>{ko ? `${site.kaistAdvisor.name} 교수님` : `Prof. ${site.kaistAdvisor.name}`}</a>{c.kaistAfterName}</p>
+      {/* 번역 금지: Curriculum Vitae 링크 문구는 고정하고, 앞뒤 안내 문장만 현지화한다. */}
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
     </div>
     <div class="hero-aside">

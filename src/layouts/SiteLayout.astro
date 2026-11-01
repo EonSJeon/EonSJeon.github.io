@@ -1,11 +1,14 @@
 ---
 import { getSiteCopy, getSectionsCopy, localizePath, type Locale, type LanguageLinks } from '../lib/i18n';
+import { site as siteIdentity } from '../data/site';
 import Icon from '../components/Icon.astro';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
 const { title, lang = 'en', noindex = false, article = false, languageLinks, languageFallback = '/' } = Astro.props;
 const site = getSiteCopy(lang);
+// 번역 금지: 상단 브랜드명은 모든 언어에서 Sangeon Jeon. 본문 이름/메타데이터는 별도로 현지화한다.
+const headerName = siteIdentity.name;
 const sections = getSectionsCopy(lang);
 const description = Astro.props.description ?? site.description;
 const fullTitle = title ? `${title} — ${site.name}` : site.title;
@@ -17,6 +20,7 @@ const cv = localizePath('/cv/', lang);
 const navigation = [
   { label: lang === 'ko' ? '홈' : 'Home', href: '/' },
   ...(['publications', 'projects', 'coursework', 'proposals', 'blog'] as const).map((key) => ({ label: sections[key].label, href: `/${key}/` })),
+  // 번역 금지: 메뉴의 CV 표기는 한국어에서도 그대로 유지한다.
   { label: 'CV', href: '/cv/' },
 ].map((item) => ({ ...item, href: localizePath(item.href, lang) }));
 const available = languageLinks ?? { en: localizePath(current, 'en'), ko: localizePath(current, 'ko') };
@@ -50,9 +54,10 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <a href="#main-content" class="skip-link">{lang === 'ko' ? '본문으로 바로가기' : 'Skip to content'}</a>
     <header class="site-header">
       <div class="header-inner container">
-        <a class="site-brand" href={home} aria-label={lang === 'ko' ? '전상언 홈' : 'Sangeon Jeon, home'}>{site.name}</a>
+        <a class="site-brand" href={home} lang="en" aria-label={`${headerName}, home`}>{headerName}</a>
         <div class="header-controls">
           <nav class="language-switcher" aria-label={lang === 'ko' ? '언어 선택' : 'Language selection'}>
+            {/* 번역 금지: 언어 선택 표시는 En → 한 순서와 축약형을 양쪽 페이지에서 동일하게 유지한다. */}
             {(['en', 'ko'] as const).map((locale) => <a data-language={locale} lang={locale} aria-label={locale === 'ko' ? '한국어' : 'English'} href={available[locale] ?? localizePath(languageFallback, locale)} aria-current={lang === locale ? 'page' : undefined} title={available[locale] ? undefined : (locale === 'en' ? 'English translation pending; view the English collection' : '한국어 번역 준비 중 — 한국어 목록 보기')}>{locale === 'ko' ? '한' : 'En'}</a>)}
           </nav>
           <button class="icon-button menu-toggle" type="button" aria-label={menuOpen} data-menu-open={menuOpen} data-menu-close={menuClose} aria-controls="site-navigation" aria-expanded="false"><span class="menu-open-icon"><Icon name="menu" /></span><span class="menu-close-icon"><Icon name="close" /></span></button>
@@ -64,6 +69,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     </header>
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
+      {/* 번역 금지: 저작권·Powered by Astro·Last updated 문장 전체를 한국어 페이지에서도 영어로 유지한다. */}
       <p class="footer-copyright" lang="en">© Copyright 2026 Sangeon Jeon. Powered by Astro. Last updated: <time datetime="2026-11-01">November 1, 2026</time>.</p>
     </footer>
     <script>

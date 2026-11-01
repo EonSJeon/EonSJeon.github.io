@@ -1,10 +1,12 @@
 export const site = {
+  // 번역 금지: 영문 고유명은 고정값이다. 한국어 본문용 이름은 koreanName을 별도로 사용한다.
   name: 'Sangeon Jeon',
   koreanName: '전상언',
   hanjaName: '全商彥',
   title: 'Sangeon Jeon — Wireless Communications & Signal Processing',
-  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, and Bayesian statistics.',
+  description: 'Ph.D. student in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, TI-ADC, and Bayesian statistics.',
   role: 'Ph.D. student, Electrical & Computer Engineering',
+  // 번역 금지: 기관명·Atlanta, Georgia·우편주소·이메일은 한국어 화면에서도 원문을 유지한다.
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',
   address: 'Rm 5263, Centergy One',
@@ -21,7 +23,8 @@ export const site = {
     en: 'https://ee.kaist.ac.kr/en/education-cooperation-01/',
     ko: 'https://ee.kaist.ac.kr/education-cooperation-01/',
   },
-  interests: ['Wireless communications', 'Waveform design', 'Synchronization', 'Bayesian statistics'],
+  // 번역 금지: TI-ADC 약어는 모든 언어에서 동일하게 유지한다.
+  interests: ['Wireless communications', 'Waveform design', 'Synchronization', 'TI-ADC', 'Bayesian statistics'],
 };
 
 export const sections = {

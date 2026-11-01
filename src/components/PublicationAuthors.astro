@@ -12,6 +12,7 @@ interface Props {
 }
 const { authors, profiles, coFirstAuthors = [], equalContributionAuthors = [], lang = 'en', showLegend = true, linkProfiles = true } = Astro.props;
 const ko = lang === 'ko';
+// 번역 금지: 저자명은 한국어 페이지에서도 영문 원문 그대로 표시한다. 기여도 안내만 현지화한다.
 const otherEqualAuthors = equalContributionAuthors.filter((author) => !coFirstAuthors.includes(author));
 ---
 <p class="publication-authors">{authors.map((author, index) => {

@@ -4,6 +4,7 @@ import { type Locale, getSiteCopy } from '../lib/i18n';
 interface Props { lang?: Locale; includeEmail?: boolean; }
 const { lang = 'en', includeEmail = true } = Astro.props;
 const site = getSiteCopy(lang);
+// 번역 금지: GitHub, Google Scholar, ORCID, LinkedIn 고유명과 이메일/URL 표기는 원문을 유지한다.
 const profiles = [
   ...(includeEmail ? [{ icon: 'mail', label: site.email, href: `mailto:${site.email}` }] : []),
   { icon: 'github', label: 'github.com/EonSJeon', href: site.github },
