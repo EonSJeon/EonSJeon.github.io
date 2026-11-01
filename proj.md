@@ -74,6 +74,7 @@ Keep research prominent on Home. Do not label coursework or the makerathon as re
 Create one initial entry: **When to Eat — RFID Food Storage Reminder**, at `/projects/when-to-eat`.
 
 - Display `2024 KAIST Makerathon`, `Summer 2024`, `Grand Prize (1st Place)`, and the confirmed team-leader role.
+- Embed the owner-selected official Idea Factory KAIST video `https://www.youtube.com/watch?v=qc1B9trBHxY` on both project-language pages. Label it as the official Makerathon video, retain a direct YouTube link and responsive privacy-enhanced player, and keep autoplay off. YouTube oEmbed confirms the title `2024 KAIST 메이커톤 Make-A-Thon` and uploader `Idea Factory KAIST`. The shared video's optional `heading` field distinguishes event coverage from a project demonstration.
 - Describe a completed team prototype using detachable RFID tokens, a token station, and a Windows desktop reminder interface.
 - Use the supported stack: ATID ATD100, UHF RFID, C#, XAML, Windows UWP, and USB VCP integration through the manufacturer's SDK. The specific ATD100N variant is unconfirmed.
 - Link the supplied project repository. Display the four team members and only the supplied professional-profile links; do not invent a profile for Yujin Park.

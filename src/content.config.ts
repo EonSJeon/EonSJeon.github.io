@@ -35,6 +35,7 @@ const common = ({ image }: SchemaContext) => z.object({
   links: z.array(link).default([]),
   video: z.object({
     youtubeId: z.string().regex(/^[\w-]{11}$/),
+    heading: z.string().min(1).optional(),
     title: z.string().min(1),
     caption: z.string().min(1).optional(),
   }).optional(),

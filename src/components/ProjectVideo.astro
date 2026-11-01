@@ -1,13 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import type { Locale } from '../lib/i18n';
-interface Props { youtubeId: string; title: string; caption?: string; lang?: Locale; }
-const { youtubeId, title, caption, lang = 'en' } = Astro.props;
+interface Props { youtubeId: string; title: string; heading?: string; caption?: string; lang?: Locale; }
+const { youtubeId, title, heading, caption, lang = 'en' } = Astro.props;
 ---
 <section class="video-section" aria-label={title}>
-  <h2>{lang === 'ko' ? '시연 영상' : 'Demonstration'}</h2>
+  <h2>{heading ?? (lang === 'ko' ? '시연 영상' : 'Demonstration')}</h2>
   <figure class="video-figure">
     <div class="video-container"><iframe class="video-frame" src={`https://www.youtube-nocookie.com/embed/${youtubeId}`} title={title} width="720" height="405" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-    <figcaption>{caption && <p>{caption}</p>}<a href={`https://www.youtube.com/watch?v=${youtubeId}`}>{lang === 'ko' ? 'YouTube에서 보기' : 'Watch on YouTube'}<Icon name="arrow-up-right" size={13} /></a></figcaption>
   </figure>
 </section>

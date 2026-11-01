@@ -10,6 +10,10 @@ translationKey: "when-to-eat"
 displayOrder: 10
 featured: true
 approvedForPublication: true
+video:
+  youtubeId: "qc1B9trBHxY"
+  heading: "메이커톤 공식 영상"
+  title: "2024 KAIST 메이커톤 — Idea Factory KAIST 공식 영상"
 cover:
   src: "./prototype-overview.jpg"
   alt: "냉장고 모형, RFID 토큰 보관함과 Windows 화면을 함께 배치한 When to Eat 시제품."

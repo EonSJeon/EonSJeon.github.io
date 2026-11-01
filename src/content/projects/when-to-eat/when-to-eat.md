@@ -8,6 +8,11 @@ institution: "KAIST"
 displayOrder: 10
 featured: true
 approvedForPublication: true
+video:
+  youtubeId: "qc1B9trBHxY"
+  heading: "Official Makerathon video"
+  title: "2024 KAIST Make-A-Thon — Idea Factory KAIST"
+  caption: "Official 2024 KAIST Make-A-Thon video, uploaded by Idea Factory KAIST."
 cover:
   src: "./prototype-overview.jpg"
   alt: "When to Eat prototype with a wooden refrigerator mockup, RFID token station, and Windows interface."
