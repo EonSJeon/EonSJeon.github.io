@@ -1,5 +1,7 @@
 # Private editorial inputs and withdrawn CV/Resume source documents.
 /reference-private/
+# Independent private Overleaf workspace; never part of the website repository.
+/CV-Resume/
 /src/documents/
 /public/documents/
 

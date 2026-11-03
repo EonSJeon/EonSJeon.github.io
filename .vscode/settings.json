@@ -7,17 +7,22 @@
     "editor.wordWrap": "on"
   },
   "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/CV-Resume/build",
   "latex-workshop.latex.recipes": [
     {
-      "name": "Tectonic",
-      "tools": ["tectonic"]
+      "name": "Build all CV/Resume documents (Tectonic)",
+      "tools": [
+        "cv-documents"
+      ]
     }
   ],
   "latex-workshop.latex.tools": [
     {
-      "name": "tectonic",
-      "command": "/opt/homebrew/bin/tectonic",
-      "args": ["--synctex", "--keep-logs", "--outdir", "%DIR%", "%DOC_EXT%"]
+      "name": "cv-documents",
+      "command": "/bin/sh",
+      "args": [
+        "%WORKSPACE_FOLDER%/CV-Resume/build.sh"
+      ]
     }
   ],
   "latex-workshop.view.pdf.viewer": "tab"
