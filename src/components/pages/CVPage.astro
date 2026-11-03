@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import ProfileLinks from '../ProfileLinks.astro';
+import Icon from '../Icon.astro';
 import PublicationCitation from '../PublicationCitation.astro';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
 import { getPublicEntries, hrefForEntry } from '../../lib/content';
@@ -52,6 +53,11 @@ const recordSections = [
     <p class="cv-names">{ko ? 'Sangeon Jeon' : site.koreanName} <span lang="zh-Hant">· {site.hanjaName}</span></p>
     <p class="cv-role">{c.role}<br />Georgia Institute of Technology · Atlanta, Georgia</p>
     <ProfileLinks lang={lang} />
+    <p class="cv-document">
+      {/* 번역 금지: CV (PDF) 표기는 양 언어에서 동일하게 유지한다. */}
+      <a href={site.cvPdf} type="application/pdf" target="_blank" rel="noopener noreferrer" aria-label={ko ? 'CV PDF 보기, 3쪽, 새 탭에서 열림' : 'View CV PDF, 3 pages, opens in a new tab'}>CV (PDF)<Icon name="arrow-up-right" size={16} /></a>
+      <span>{ko ? '3쪽' : '3 pages'}</span>
+    </p>
   </header>
   <div class="cv-layout">
     <nav class="cv-contents" aria-label={c.contents}><ul>{sections.map(([id, label]) => <li><a href={`#cv-${id}`}>{label}</a></li>)}</ul></nav>
@@ -89,6 +95,9 @@ const recordSections = [
   .cv-heading h1 { margin-bottom: 12px; }
   .cv-names { font-size: 16px; color: var(--muted); margin-bottom: 20px; }
   .cv-role { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+  .cv-document { margin: 22px 0 0; }
+  .cv-document a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; text-underline-offset: 4px; }
+  .cv-document span { margin-left: 10px; font-size: 12px; color: var(--muted); }
   .cv-layout { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 58px; align-items: start; padding-top: 42px; }
   .cv-contents { position: sticky; top: calc(var(--sticky-header-height) + 28px); }
   .cv-contents ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 13px; }
@@ -147,6 +156,7 @@ const recordSections = [
     .cv-section { margin-bottom: 38px; }
   }
   @media print {
+    .cv-document { display: none; }
     .cv-layout { display: block; }
     .cv-contents { display: none; }
     .cv-heading { padding-top: 0; }

@@ -17,6 +17,8 @@ export const site = {
   scholar: 'https://scholar.google.com/citations?user=vwwPFNMAAAAJ',
   orcid: 'https://orcid.org/0009-0001-5883-0774',
   linkedin: 'https://www.linkedin.com/in/sangeon-jeon-b8bb7b239/',
+  // Owner-approved three-page CV; editable sources remain in the private Overleaf workspace.
+  cvPdf: '/files/sangeon-jeon-cv.pdf',
   advisor: { name: 'Xiaoli Ma', url: 'https://xma-ultra-signals.github.io/' },
   kaistAdvisor: { name: 'Jinseok Choi', url: 'https://sic-x.kaist.ac.kr/' },
   dualDegreeProgram: {

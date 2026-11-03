@@ -11,6 +11,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const origin = 'https://eonsjeon.github.io';
 const collections = ['publications', 'projects', 'coursework', 'blog', 'proposals'];
+// The owner approved only this newly authored three-page CV for public download.
+const publicCVPDF = 'files/sangeon-jeon-cv.pdf';
 const englishRoutes = [
   '/', '/about/', '/research/', '/publications/', '/projects/', '/coursework/', '/blog/', '/proposals/', '/cv/',
   '/research/ocdm-cfo-estimation/', '/research/tiadc-ofdm-estimation/',
@@ -88,13 +90,20 @@ async function validateOutput({ absentMarker } = {}) {
   for (const route of requiredRoutes) assert(routeFile(route), `Missing expected route: ${route}`);
   assert(existsSync(path.join(output, '404.html')), 'Missing 404 page.');
   for (const feed of ['rss.xml', 'ko/rss.xml']) assert(existsSync(path.join(output, feed)), `Missing locale feed: ${feed}`);
+  const cvPDF = await readFile(path.join(output, publicCVPDF));
+  assert(cvPDF.subarray(0, 5).toString() === '%PDF-', 'Published CV is not a PDF.');
+  assert(cvPDF.equals(await readFile(path.join(root, 'public', publicCVPDF))), 'Published CV differs from the approved public source.');
+  for (const cvPage of ['cv/index.html', 'ko/cv/index.html']) {
+    const html = await readFile(path.join(output, cvPage), 'utf8');
+    assert(html.includes(`href="/${publicCVPDF}"`), `Missing approved CV PDF link in ${cvPage}`);
+  }
   for (const home of ['index.html', 'ko/index.html']) {
     assert(decodeAttribute(await readFile(path.join(output, home), 'utf8')).includes('全商彥'), `Missing owner-supplied Hanja name in ${home}`);
   }
   for (const file of files) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
     assert(!/(?:^|\/)(?:reference-private|CV-Resume|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
-    assert(!/source-inventory|아이디어|\.(?:md|mdx|pdf|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
+    assert(relative === publicCVPDF || !/source-inventory|아이디어|\.(?:md|mdx|tex|sty|pdf|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
     assert(!/^documents\//i.test(relative), `Withdrawn document route in output: ${relative}`);
     if (/\.(?:html|xml|json|txt|js|css)$/i.test(relative)) {
       const text = await readFile(file, 'utf8');
