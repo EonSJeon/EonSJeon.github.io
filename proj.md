@@ -1,6 +1,6 @@
 # Personal Academic Website Implementation Brief
 
-Updated: 2026-11-01. Repository: `EonSJeon/EonSJeon.github.io`.
+Updated: 2026-11-04. Repository: `EonSJeon/EonSJeon.github.io`.
 
 ## 1. Objective and next task
 
@@ -16,21 +16,23 @@ Maintain this local checkout and the canonical `EonSJeon/EonSJeon.github.io` rep
 
 Read the relevant references before writing each entry. These are local editorial inputs, not files to copy wholesale into website content.
 
+Start at the local `reference-private/README.md` library index. Sources are grouped under `research/`, `projects/`, `coursework/`, `ideas/`, `profile/`, and `site-history/`. Keep the established `writing-review/`, `cv-resume-withdrawal/`, and `transcripts/` roots. Organization must preserve originals, empty directories, symlinks, and owner edits; keep a private old-to-new path map and SHA-256 inventory when moving materials. Historical provenance/recovery captures retain their original paths. Transcripts and extracted course CSVs stay private and do not authorize adding courses to the public site or disclosing grades.
+
 | Material | Local source | Use |
 | --- | --- | --- |
-| OCDM research | `reference-private/icassp_2027_ocdm_research_project_summary.md` | High-level research description and disclosure limits |
-| TI-ADC / OFDM research | `reference-private/tiadc_ofdm_project_website_reference.md` | Project summary, period, manuscript status, collaborator order and supplied links |
-| When to Eat | `reference-private/KAIST-Makerathon2024/website-reference.md` | Independent project, Grand Prize, implementation, team and repository |
-| Venus Flytrap | `reference-private/Gatech-ECE4723-PROJ/website-reference.md` | ECE 4723 capstone, final digital system, demonstrated outcomes and contribution |
-| Detailed coursework refresh | `reference-private/Gatech-ECE3011-PROJ/refresh-2026-10-29/`, `reference-private/Gatech-ECE4723-PROJ/refresh-2026-10-29/`, `reference-private/KAIST-EE405-PROJ/refresh-2026-10-29/` | Renewed source snapshots, full technical guides, document extraction, selected code/media evidence and provenance for the README-depth article expansion |
-| RoBACHtic Symphony | `reference-private/ECE3011/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` and the final document package in that folder | ECE 3011 Junior Design, mechanical contribution, limitations, demonstration and lesson-plan details |
-| Electronics Design Lab | `reference-private/EE305/KAIST_EE305_Coursework_Website_Reference.md` | One consolidated EE305 entry with selected internal highlights |
-| Robotic Tic-Tac-Toe | `reference-private/EE405_Coursework_Website_Reference.md` | One EE405 implementation entry, supporting labs and unknown metadata |
+| OCDM research | `reference-private/research/communications/icassp_2027_ocdm_research_project_summary.md` | High-level research description and disclosure limits |
+| TI-ADC / OFDM research | `reference-private/research/communications/tiadc_ofdm_project_website_reference.md` | Project summary, period, manuscript status, collaborator order and supplied links |
+| When to Eat | `reference-private/projects/KAIST-Makerathon2024/website-reference.md` | Independent project, Grand Prize, implementation, team and repository |
+| Venus Flytrap | `reference-private/projects/Gatech-ECE4723-PROJ/website-reference.md` | ECE 4723 capstone, final digital system, demonstrated outcomes and contribution |
+| Detailed coursework refresh | `reference-private/projects/Gatech-ECE3011-PROJ/refresh-2026-10-29/`, `reference-private/projects/Gatech-ECE4723-PROJ/refresh-2026-10-29/`, `reference-private/projects/KAIST-EE405-PROJ/refresh-2026-10-29/` | Renewed source snapshots, full technical guides, document extraction, selected code/media evidence and provenance for the README-depth article expansion |
+| RoBACHtic Symphony | `reference-private/projects/ECE3011/ECE3011_RoBACHtic_Symphony_Coursework_Website_Reference.md` and the final document package in that folder | ECE 3011 Junior Design, mechanical contribution, limitations, demonstration and lesson-plan details |
+| Electronics Design Lab | `reference-private/coursework/EE305/KAIST_EE305_Coursework_Website_Reference.md` | One consolidated EE305 entry with selected internal highlights |
+| Robotic Tic-Tac-Toe | `reference-private/projects/EE405_Coursework_Website_Reference.md` | One EE405 implementation entry, supporting labs and unknown metadata |
 | Withdrawn CV/Resume documents | `reference-private/cv-resume-withdrawal/2026-11-01/` | Private biography provenance and recovery only; no tracked documents/downloads |
 | Version provenance | Ignored withdrawn-document archive | Source dates, pairing decisions and private recovery |
-| Portrait candidate | `reference-private/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
-| Ideas sources and owner selection | `reference-private/아이디어-생각할 거리.md`, `아이디어-연구.md`, `아이디어-연구프로젝트.md`, `아이디어-프로젝트.md`; local `아이디어-선택목록.csv` | Owner replaced DOCX with four Markdown sources; source material and the -1/0/1/2 decision CSV remain private and Git-ignored |
-| Disease-modeling research source collection | `reference-private/Meta_Research_Website_Reference.md` | Owner-requested October 29 local collection from HEM-meta, OCD-meta, SMA-meta, and AMD-meta: bilingual description candidates, original saved figures, evidence and provenance; selected high-level Research descriptions for the current overhaul; no unsupported publication records or numeric medical claims |
+| Portrait candidate | `reference-private/profile/profile_photo.jpeg` | Existing owner-supplied portrait candidate |
+| Ideas sources and owner selection | `reference-private/ideas/아이디어-생각할 거리.md`, `아이디어-연구.md`, `아이디어-연구프로젝트.md`, `아이디어-프로젝트.md`; local `아이디어-선택목록.csv` | Owner replaced DOCX with four Markdown sources; source material and the -1/0/1/2 decision CSV remain private and Git-ignored |
+| Disease-modeling research source collection | `reference-private/research/meta-analysis/Meta_Research_Website_Reference.md` | Owner-requested October 29 local collection from HEM-meta, OCD-meta, SMA-meta, and AMD-meta: bilingual description candidates, original saved figures, evidence and provenance; selected high-level Research descriptions for the current overhaul; no unsupported publication records or numeric medical claims |
 
 `reference-private/CV.pdf`, `personal-info.md`, and `research.md` are not currently present. Do not depend on these obsolete paths or invent substitutes.
 
@@ -51,7 +53,7 @@ Never invent dates, affiliations, author contributions, publications, repositori
 
 ### Paper records and retired Research section
 
-There is no Research navigation, index or explanatory article surface. Keep paper facts only in `src/content/publications/`, using metadata-only paired records. The previous full Research narratives and model-diagnostic image are archived in ignored `reference-private/research-page-retirement/2026-10-31/`. Keep existing Research URLs as redirects to Publications or the corresponding paper anchor, excluded from sitemap. Do not reintroduce independent publication-detail pages.
+There is no Research navigation, index or explanatory article surface. Keep paper facts only in `src/content/publications/`, using metadata-only paired records. The previous full Research narratives and model-diagnostic image are archived in ignored `reference-private/site-history/research-page-retirement/2026-10-31/`. Keep existing Research URLs as redirects to Publications or the corresponding paper anchor, excluded from sitemap. Do not reintroduce independent publication-detail pages.
 
 Use these exact English titles in both languages:
 
@@ -98,7 +100,7 @@ Projects must be reverse chronological in both languages and on Projects and CV.
 
 The owner supplied and selected two PNGs now in `src/content/projects/ece3011-robachtic-symphony/`: front views of the final build and the labeled CAD/build comparison. Display both with meaningful alt text and captions. Embed the supplied demonstration, `https://youtu.be/gud--ybyr-s`, directly on the page using a responsive, click-to-play YouTube privacy-enhanced player with the owner’s current player-only layout. Link the original team's final design-document/lesson-plan/BOM package. The temporary project `README.md` has been incorporated into `ece3011-robachtic-symphony.md` and removed as instructed; retain the root repository README. Describe the lesson plan's fifth-grade Music/Computer Science curriculum alignment as a design goal, not a measured educational result.
 
-The owner's October 28 ECE3011 update adds local report, photo, README, and video references under `reference-private/ECE3011/`. Supplement the article with the report's final demonstration (12 keys in two octave ranges), mechanical fit and mounting-hole checks, labeled actuation mechanisms, and proposed lesson activities. Present photos and the video with semantic figure captions. Keep the two distinct existing visuals; the additional front-view PNG is near-duplicate imagery. Continue using the selected YouTube embed rather than copying the 250 MB source video into the site. Keep the raw report and original README as local references; the report's contribution section remains authoritative over the README's first-person software attribution.
+The owner's October 28 ECE3011 update adds local report, photo, README, and video references under `reference-private/projects/ECE3011/`. Supplement the article with the report's final demonstration (12 keys in two octave ranges), mechanical fit and mounting-hole checks, labeled actuation mechanisms, and proposed lesson activities. Present photos and the video with semantic figure captions. Keep the two distinct existing visuals; the additional front-view PNG is near-duplicate imagery. Continue using the selected YouTube embed rather than copying the 250 MB source video into the site. Keep the raw report and original README as local references; the report's contribution section remains authoritative over the README's first-person software attribution.
 
 **Electronics laboratory (internal EE305 source):** Publish one broad electronics laboratory entry at `/coursework/electronics-design-lab/`, with the same clean Korean route. Do not expose the course number in the public title, body, metadata, alt text, navigation, or URL. Keep the source folder/internal code for maintainability, set `showCourseCode: false`, and pair both languages through `translationKey: electronics-design-lab`. Lead with the Lab 4–5 three-bit OR/XOR calculator, its input conditioning, registers, ALU, wiring/debugging, and selected breadboard/schematic/test photos. Keep the course overview and meaningful supporting sections for Labs 7–8 MATLAB communication simulation, ATmega128A stopwatch, analog audio filtering, and foundational measurements. The latest instruction is emphasis on Lab 4–5, not exclusion of the other labs or renaming the whole course as only a calculator. Distinguish simulated communication from physical hardware. Do not claim a general-purpose decoder, CPU architecture, sole authorship, or unconfirmed collaborator identities.
 
