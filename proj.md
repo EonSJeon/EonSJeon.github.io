@@ -135,7 +135,7 @@ Display compact venue/year citations and title DOI links, with newest records fi
 | `/research` and `/research/[slug]` | Retired; redirect to Publications or the corresponding paper anchor |
 | `/publications` | Accurate bibliographic records with clear publication-status groupings |
 | `/projects` and `/projects/[slug]` | When to Eat, Senior Design, Junior Design and Robotic Tic-Tac-Toe |
-| `/coursework` and `/coursework/[slug]` | Course list board, initially only the electronics laboratory course; old project paths redirect |
+| `/coursework` and `/coursework/[slug]` | Course list board with the electronics laboratory and fourteen related-course placeholders; old project paths redirect |
 | `/blog` and `/blog/[slug]` | Released writing |
 | `/proposals` and `/proposals/[slug]` | Ideas; retain these existing URLs |
 | `/cv` | Full bilingual HTML CV with the approved three-page CV PDF link |
@@ -207,7 +207,7 @@ Shared fields as applicable: `title`, `summary`, `slug`, `status`, `period`, `ta
 
 - Publications: metadata-only paper records with `publicationType`, truthful status, ordered authors, verified title and optional venue/year/DOI/links. No independent detail routes or body explanations; list anchors are the public destinations.
 - Projects: context/event, implementation status, supported stack, optional verified contribution/award, and evidence links. Course-origin projects retain institution/course/type metadata, with owner-confirmed terms.
-- Coursework: released course entries in the coursework collection, shown as a list board with course/institution/term metadata. Initially only the electronics laboratory is included; it retains its hidden internal `courseCode`. Senior/Junior Design and the robotics final project belong in Projects. Future course additions require owner selection; unknown fields remain omitted.
+- Coursework: released course entries in the coursework collection, shown as a list board with course/institution/term metadata. The electronics laboratory retains its hidden internal `courseCode`; fourteen owner-requested related-course placeholders are now included with empty bodies for authoring. Senior/Junior Design and the robotics final project belong in Projects. Future course additions require owner selection; unknown fields remain omitted.
 - Blog: language, release date, draft state, tags, optional revision date, and author-written body.
 - Proposals: tentative status, owner-controlled priority, optional milestones/related work, and unresolved questions.
 
