@@ -41,7 +41,7 @@ Content lives in five distinct collections under `src/content/`:
 
 - `publications/`: metadata-only paper records, grouped as Conference then Journal. No individual paper-description pages are generated.
 - `projects/`: engineering projects, including When to Eat, Senior Design, Junior Design and Robotic Tic-Tac-Toe. Course context remains in each project's metadata.
-- `coursework/`: courses studied, with study notes and laboratory records. The index is a list board; initially only Electronics Design Laboratory is included.
+- `coursework/`: courses studied, with study notes and laboratory records. The index is a list board; Electronics Design Laboratory is the completed entry, with fourteen owner-requested blank course-note pages for related completed/current subjects. The paired Markdown bodies are empty for authoring; no transcript grades are published.
 - `blog/`: released English or Korean posts, displayed as **Blog / 블로그**.
 - `proposals/`: selected, clearly tentative future work, displayed as **Ideas / 아이디어**. Existing URLs are preserved.
 
