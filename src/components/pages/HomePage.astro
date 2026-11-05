@@ -3,11 +3,16 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import SectionHeading from '../SectionHeading.astro';
 import NewsList from '../NewsList.astro';
 import ProfileLinks from '../ProfileLinks.astro';
+import PublicationCitation from '../PublicationCitation.astro';
 import { type Locale, getSiteCopy, localizePath } from '../../lib/i18n';
+import { getPublicEntries, hrefForEntry, slugForEntry } from '../../lib/content';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 const site = getSiteCopy(lang);
+const selectedPaperSlugs = ['ocdm-cfo-estimation', 'tiadc-ofdm-estimation'];
+const papers = await getPublicEntries('publications', lang);
+const selectedPapers = selectedPaperSlugs.flatMap((slug) => papers.filter((entry) => slugForEntry(entry) === slug));
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.mapPlaceName}, ${site.mapAddress}`)}`;
 // 번역 금지: 학교 고유명(Georgia Tech / Georgia Institute of Technology), 기관 표기의
 // Electrical & Computer Engineering, Atlanta, Georgia는 영어를 유지한다. 주변 소개 문장은 번역한다.
@@ -68,6 +73,14 @@ const c = ko ? {
     </div>
   </section>
   <div class="interest-line"><span>{c.interests}</span><ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul></div>
+  <section class="home-section selected-publications" aria-labelledby="selected-publications-heading">
+    {/* 번역 금지: Selected Publications 섹션명과 논문 원제·저자명·학회명은 영어로 유지한다. */}
+    <SectionHeading title="Selected Publications" id="selected-publications-heading" />
+    {selectedPapers.map((entry) => <article class="publication-entry">
+      <h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3>
+      <PublicationCitation entry={entry} linkAuthors={false} />
+    </article>)}
+  </section>
   <section class="home-section" aria-labelledby="news-heading">
     <SectionHeading title="News" id="news-heading" />
     <NewsList lang={lang} />
