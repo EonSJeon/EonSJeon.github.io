@@ -10,7 +10,7 @@ interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 const site = getSiteCopy(lang);
-const education = getEducationCopy(lang);
+const education = getEducationCopy(lang).map((item) => ({ ...item, institution: item.institution === 'KAIST' ? 'Korea Advanced Institute of Science and Technology' : item.institution }));
 const records = getCVCopy(lang);
 const [papers, projects] = await Promise.all([
   getPublicEntries('publications', lang),
@@ -27,31 +27,32 @@ const c = ko ? {
   title: 'CV & Resume', description: '전상언의 학력, 출판 및 연구·근무·교육 경험과 수상 이력입니다.',
   role: '전기·컴퓨터공학 박사과정', education: '학력', interests: '연구 관심 분야',
   publications: '출판', research: '연구 경험',
-  employment: '근무 경험', teaching: '교육·지도', awards: '수상', projects: '주요 프로젝트',
+  employment: '근무 경험', teaching: '교육·지도', awards: '수상', military: '병역', projects: '주요 프로젝트',
   skills: '기술 및 언어', contents: 'CV 목차', earlier: '이전 연구', gpa: '학점',
 } : {
   title: 'CV & Resume', description: 'Sangeon Jeon’s education, publications, research, employment, teaching, awards, and skills.',
   role: 'Ph.D. student, Electrical & Computer Engineering', education: 'Education', interests: 'Research interests',
   publications: 'Publications', research: 'Research experience',
-  employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', projects: 'Selected engineering',
+  employment: 'Employment', teaching: 'Teaching & mentoring', awards: 'Awards', military: 'Military service', projects: 'Selected engineering',
   skills: 'Skills & languages', contents: 'CV contents', earlier: 'Earlier research', gpa: 'GPA',
 };
 const sections = [
   ['education', c.education], ['publications', c.publications], ['research', c.research],
-  ['employment', c.employment], ['teaching', c.teaching], ['awards', c.awards],
+  ['employment', c.employment], ['teaching', c.teaching], ['awards', c.awards], ['military', c.military],
   ['projects', c.projects], ['skills', c.skills],
 ];
 const recordSections = [
   { id: 'employment', label: c.employment, entries: records.employment },
   { id: 'teaching', label: c.teaching, entries: records.teaching },
   { id: 'awards', label: c.awards, entries: records.awards },
+  { id: 'military', label: c.military, entries: records.military },
 ];
 ---
 <SiteLayout title={c.title} description={c.description} lang={lang}>
   <header class="cv-heading">
     <p class="eyebrow">{c.title}</p><h1>{site.name}</h1>
     <p class="cv-names">{ko ? 'Sangeon Jeon' : site.koreanName} <span lang="zh-Hant">· {site.hanjaName}</span></p>
-    <p class="cv-role">{c.role}<br />Georgia Institute of Technology · Atlanta, Georgia</p>
+    <p class="cv-role">{c.role}<br />Georgia Tech · Atlanta, Georgia</p>
     <ProfileLinks lang={lang} />
     <p class="cv-document">
       {/* 번역 금지: CV (PDF) 표기는 양 언어에서 동일하게 유지한다. */}
@@ -77,7 +78,7 @@ const recordSections = [
       </section>
       <section class="cv-section" id="cv-research" aria-labelledby="cv-research-heading">
         <h2 id="cv-research-heading">{c.research}</h2>
-        {records.earlierResearch.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p><p>{entry.description}</p></article>)}
+        {records.research.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p><p>{entry.description}</p></article>)}
       </section>
       {recordSections.map((section) => <section class="cv-section" id={`cv-${section.id}`} aria-labelledby={`cv-${section.id}-heading`}><h2 id={`cv-${section.id}-heading`}>{section.label}</h2>{section.entries.map((entry) => <article class="cv-entry"><div class="cv-entry-heading"><h3>{entry.title}</h3><span class="cv-period">{entry.period}</span></div><p class="cv-organization">{entry.organization}</p>{entry.description && <p>{entry.description}</p>}</article>)}</section>)}
       <section class="cv-section" id="cv-projects" aria-labelledby="cv-projects-heading">
