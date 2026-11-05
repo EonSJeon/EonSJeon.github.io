@@ -1,6 +1,7 @@
 import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { isVisibleData } from './lib/content-policy.mjs';
 
 const collaborator = z.object({
   name: z.string().min(1),
@@ -28,6 +29,7 @@ const common = ({ image }: SchemaContext) => z.object({
   featured: z.boolean().default(false),
   approvedForPublication: z.boolean().default(false),
   draft: z.boolean().default(false),
+  visibility: z.enum(['public', 'private']).optional(),
   tags: z.array(z.string()).default([]),
   contribution: z.string().optional(),
   cover: z.object({ src: image(), alt: z.string().min(1), position: z.string().optional() }).optional(),
@@ -87,10 +89,10 @@ const loaderFor = (collection: string) => {
           // well as its page queries. Retain metadata for the release predicate.
           get: <TData extends Record<string, unknown> = Record<string, unknown>>(id: string) => {
             const entry = context.store.get<TData>(id);
-            return entry && entry.data.approvedForPublication === true && entry.data.draft !== true ? entry : undefined;
+            return entry && isVisibleData(entry.data, collection) ? entry : undefined;
           },
           set: (entry) => {
-            if (entry.data.approvedForPublication === true && entry.data.draft !== true) return context.store.set(entry);
+            if (isVisibleData(entry.data, collection)) return context.store.set(entry);
             const data = { ...entry.data };
             delete data.cover;
             context.store.delete(entry.id);
@@ -113,14 +115,14 @@ export const collections = {
   }),
   coursework: defineCollection({
     loader: loaderFor('coursework'),
-    schema: (context) => common(context).extend({ courseCode: z.string().min(1) }),
+    schema: (context) => common(context).extend({ courseCode: z.string().min(1), visibility: z.enum(['public', 'private']).default('private') }),
   }),
   blog: defineCollection({
     loader: loaderFor('blog'),
-    schema: common,
+    schema: (context) => common(context).extend({ visibility: z.enum(['public', 'private']).default('private') }),
   }),
   proposals: defineCollection({
     loader: loaderFor('proposals'),
-    schema: common,
+    schema: (context) => common(context).extend({ visibility: z.enum(['public', 'private']).default('private') }),
   }),
 };

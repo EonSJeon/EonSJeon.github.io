@@ -11,6 +11,7 @@ displayOrder: 160
 language: "ko"
 translationKey: "statistical-machine-learning"
 featured: false
-approvedForPublication: true
+# 공개 설정: public = 두 저장소, private = private 저장소만
+visibility: public
 ---
 

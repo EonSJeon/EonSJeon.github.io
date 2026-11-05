@@ -15,8 +15,9 @@ featured: false
 cover:
   src: "./lab45-calculator-breadboard.png"
   alt: "Lab 4–5 calculator breadboard with the input switches, registers, and ALU labeled."
-approvedForPublication: true
 tags: ["Digital logic", "Breadboard prototyping", "74LS181 ALU", "Sequential circuits", "Input conditioning"]
+# 공개 설정: public = 두 저장소, private = private 저장소만
+visibility: public
 ---
 
 ## From circuit models to physical systems

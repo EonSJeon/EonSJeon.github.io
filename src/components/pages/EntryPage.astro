@@ -4,6 +4,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../Icon.astro';
 import ProjectVideo from '../ProjectVideo.astro';
 import ProjectClips from '../ProjectClips.astro';
+import VisibilityBadge from '../VisibilityBadge.astro';
 import { slugForEntry, translationLinksForEntry, type PublicEntry } from '../../lib/content';
 import { localizePath, getSectionsCopy, formatDate } from '../../lib/i18n';
 interface Props { entry: PublicEntry; }
@@ -26,6 +27,7 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
 <SiteLayout title={d.title} description={d.summary} lang={lang} article={editorial} languageLinks={languageLinks} languageFallback={collectionPath}>
   <nav class="breadcrumbs" aria-label={ko ? '현재 위치' : 'Breadcrumb'}><a href={localizePath('/', lang)}>{ko ? '홈' : 'Home'}</a><span aria-hidden="true">/</span><a href={localizePath(collectionPath, lang)}>{section.label}</a></nav>
   <header class="article-header">
+    <VisibilityBadge entry={entry} />
     <h1>{d.title}</h1><p class="article-summary">{d.summary}</p>
     <div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode && d.showCourseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && d.showCourseCode && <span>{d.courseCode}</span>}{editorial && <span>{ko ? `읽는 데 약 ${minutes}분` : `${minutes} min read`}</span>}{d.pubDate && entry.collection !== 'publications' && <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate, lang)}</time>}</div>
   </header>

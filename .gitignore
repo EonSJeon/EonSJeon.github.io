@@ -1,24 +1,17 @@
-# Private editorial inputs and withdrawn CV/Resume source documents.
+# Generated public source mirror. Private originals must never be added here.
 /reference-private/
-# Independent private Overleaf workspace; never part of the website repository.
 /CV-Resume/
-/src/documents/
-/public/documents/
-
-# Temporary owner instructions; durable decisions belong in proj.md.
+/private-workspace/
+/publishing/
+/WORKSPACE.md
+/development-status.md
 /story.md
 /instructions.md
-
-# Local development progress; never part of the public repository or site.
-/development-status.md
-
-# macOS metadata
-.DS_Store
-
-# Site dependencies, generated output, and local settings
-node_modules/
+node_modules
 .astro/
+.astro-private/
 dist/
+.DS_Store
 .env
 .env.*
 !.env.example

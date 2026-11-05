@@ -16,8 +16,9 @@ featured: false
 cover:
   src: "./lab45-calculator-breadboard.png"
   alt: "입력 스위치와 레지스터, ALU의 위치를 표시한 Lab 4–5 계산기 브레드보드."
-approvedForPublication: true
 tags: ["디지털 논리", "브레드보드 제작", "74LS181 ALU", "순차논리회로", "입력 신호 처리"]
+# 공개 설정: public = 두 저장소, private = private 저장소만
+visibility: public
 ---
 
 ## 회로 모델에서 실제 시스템까지

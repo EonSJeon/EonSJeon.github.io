@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { localizePath, type Locale, type LanguageLinks } from './i18n';
+import { isVisibleData } from './content-policy.mjs';
 
 export const PUBLIC_COLLECTIONS = [
   'publications',
@@ -13,9 +14,10 @@ export type PublicCollection = (typeof PUBLIC_COLLECTIONS)[number];
 export type PublicEntry = CollectionEntry<PublicCollection>;
 
 export function isPublicEntry(entry: {
-  data: { approvedForPublication?: boolean; draft?: boolean };
+  collection?: string;
+  data: { visibility?: string; approvedForPublication?: boolean; draft?: boolean };
 }): boolean {
-  return entry.data.approvedForPublication === true && entry.data.draft !== true;
+  return isVisibleData(entry.data, entry.collection);
 }
 
 export async function getPublicEntries<C extends PublicCollection>(collection: C, lang: Locale = 'en'): Promise<CollectionEntry<C>[]> {

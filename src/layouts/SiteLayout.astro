@@ -3,6 +3,7 @@ import { getSiteCopy, getSectionsCopy, localizePath, type Locale, type LanguageL
 import { site as siteIdentity } from '../data/site';
 import Icon from '../components/Icon.astro';
 import SiteIcons from '../components/SiteIcons.astro';
+import { isPrivatePreview } from '../lib/content-policy.mjs';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
@@ -39,7 +40,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <SiteIcons />
     <link rel="preload" href="/fonts/CormorantGaramond-Semibold-name.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin />
-    {noindex && <meta name="robots" content="noindex" />}
+    {(noindex || isPrivatePreview()) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" title={lang === 'ko' ? '전상언 — 블로그' : 'Sangeon Jeon — Blog'} href={localizePath('/rss.xml', lang)} />
     {Object.entries(available).map(([locale, path]) => <link rel="alternate" hreflang={locale} href={new URL(path!, Astro.site)} />)}
@@ -70,6 +71,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
         </nav>
       </div>
     </header>
+    {isPrivatePreview() && <div class="private-preview-banner container" role="note">{lang === 'ko' ? '비공개 글을 포함한 로컬 미리보기' : 'Local preview including private content'}</div>}
     <main id="main-content" class="container"><slot /></main>
     <footer class="site-footer container">
       {/* 번역 금지: 저작권·Powered by Astro·Last updated 문장 전체를 한국어 페이지에서도 영어로 유지한다. */}
@@ -98,3 +100,6 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     </script>
   </body>
 </html>
+<style>
+  .private-preview-banner { padding-top: 12px; padding-bottom: 12px; color: #7d491c; font-size: 13px; border-bottom: 1px solid var(--line); }
+</style>

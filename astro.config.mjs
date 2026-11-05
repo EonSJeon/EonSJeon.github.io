@@ -6,7 +6,13 @@ import rehypeKatex from 'rehype-katex';
 import { unified } from '@astrojs/markdown-remark';
 import { legacyRedirects } from './src/lib/redirects';
 
+const privatePreview = process.env.SITE_PREVIEW_MODE === 'private';
+if (privatePreview && !process.argv.includes('dev')) {
+  throw new Error('Private preview is local dev only. Unset SITE_PREVIEW_MODE before a build or export.');
+}
+
 export default defineConfig({
+  cacheDir: privatePreview ? './.astro-private' : './.astro',
   site: 'https://eonsjeon.github.io',
   output: 'static',
   trailingSlash: 'always',

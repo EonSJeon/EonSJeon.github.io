@@ -1,5 +1,5 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "node_modules", "reference-private"]
+  "exclude": ["dist", "node_modules", "reference-private", "CV-Resume", ".publishing", ".astro-private"]
 }

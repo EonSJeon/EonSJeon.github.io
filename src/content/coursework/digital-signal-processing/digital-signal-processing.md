@@ -11,6 +11,7 @@ displayOrder: 170
 language: "en"
 translationKey: "digital-signal-processing"
 featured: false
-approvedForPublication: true
+# 공개 설정: public = 두 저장소, private = private 저장소만
+visibility: public
 ---
 

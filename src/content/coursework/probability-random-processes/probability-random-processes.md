@@ -11,6 +11,7 @@ displayOrder: 200
 language: "en"
 translationKey: "probability-random-processes"
 featured: false
-approvedForPublication: true
+# 공개 설정: public = 두 저장소, private = private 저장소만
+visibility: public
 ---
 

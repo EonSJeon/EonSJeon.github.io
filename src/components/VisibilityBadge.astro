@@ -1,0 +1,13 @@
+---
+import { isPrivatePreview, visibilityFor } from '../lib/content-policy.mjs';
+import type { PublicEntry } from '../lib/content';
+interface Props { entry: PublicEntry; }
+const { entry } = Astro.props;
+const visibility = visibilityFor(entry.data, entry.collection);
+---
+{isPrivatePreview() && <span class:list={['visibility-badge', `visibility-${visibility}`]}>{visibility === 'public' ? 'Public · 공개' : 'Private · 비공개'}</span>}
+<style>
+  .visibility-badge { display: inline-block; font: 500 11px/1.5 var(--sans); border: 1px solid var(--line); border-radius: 4px; padding: 2px 7px; vertical-align: middle; margin: 4px 8px 4px 0; }
+  .visibility-private { color: #7d491c; background: #fff5e9; }
+  .visibility-public { color: var(--accent-strong); background: var(--surface); }
+</style>

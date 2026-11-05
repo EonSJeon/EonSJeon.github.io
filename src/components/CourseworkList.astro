@@ -2,6 +2,7 @@
 import { hrefForEntry, type PublicEntry } from '../lib/content';
 import type { Locale } from '../lib/i18n';
 import Icon from './Icon.astro';
+import VisibilityBadge from './VisibilityBadge.astro';
 interface Props { entries: PublicEntry[]; lang: Locale; }
 const { entries, lang } = Astro.props;
 const ko = lang === 'ko';
@@ -12,7 +13,7 @@ const c = ko ? { course: '과목', institution: '학교', term: '학기', captio
   <caption class="sr-only">{c.caption}</caption>
   <thead><tr><th scope="col">{c.course}</th><th scope="col">{c.institution}</th><th scope="col">{c.term}</th></tr></thead>
   <tbody>{entries.map((entry) => <tr>
-    <th scope="row"><a href={hrefForEntry(entry)}>{entry.data.title}<Icon name="arrow-up-right" size={17} /></a></th>
+    <th scope="row"><a href={hrefForEntry(entry)}>{entry.data.title}<Icon name="arrow-up-right" size={17} /></a><VisibilityBadge entry={entry} /></th>
     <td data-label={c.institution}>{entry.data.institution}</td>
     <td data-label={c.term}>{entry.data.period}</td>
   </tr>)}</tbody>

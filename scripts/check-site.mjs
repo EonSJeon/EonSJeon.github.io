@@ -219,7 +219,8 @@ async function testPublicationGate() {
         await writeFile(path.join(folder, imageName), Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jT1sAAAAASUVORK5CYII=', 'base64'));
         for (const language of ['en', 'ko']) {
           const filename = `${slug}${language === 'ko' ? '.ko' : ''}.md`;
-          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\ncover:\n  src: ./${imageName}\n  alt: ${token}\nclips:\n  - src: ${videoName}\n    poster: ${posterName}\n    title: ${token}\n    caption: ${token}\n    width: 720\n    height: 1280\napprovedForPublication: ${approval}\ndraft: ${draft}\nlanguage: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
+          const visibility = ['coursework', 'blog', 'proposals'].includes(collection) ? 'visibility: private\n' : '';
+          await writeFile(path.join(folder, filename), `---\ntitle: ${token}-${suffix}\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Fixture\ncourseCode: TEST\ncover:\n  src: ./${imageName}\n  alt: ${token}\nclips:\n  - src: ${videoName}\n    poster: ${posterName}\n    title: ${token}\n    caption: ${token}\n    width: 720\n    height: 1280\napprovedForPublication: ${approval}\ndraft: ${draft}\n${visibility}language: ${language}\ntranslationKey: ${slug}\n---\n\n${token}\n`);
         }
       }
     }
@@ -239,6 +240,7 @@ async function testPublicationGate() {
       'status: Published',
       'approvedForPublication: true',
       'draft: false',
+      'visibility: public',
       'pubDate: 2026-01-01',
       'language: ko',
       `translationKey: ${rendererSlug}`,

@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.repository == 'EonSJeon/EonSJeon.github.io'
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
@@ -36,6 +37,7 @@ jobs:
         with:
           path: dist
   deploy:
+    if: github.repository == 'EonSJeon/EonSJeon.github.io'
     needs: build
     runs-on: ubuntu-latest
     permissions:
