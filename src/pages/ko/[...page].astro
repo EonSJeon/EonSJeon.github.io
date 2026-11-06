@@ -1,0 +1,13 @@
+---
+import HomePage from '../../components/pages/HomePage.astro';
+import NotFoundPage from '../../components/pages/NotFoundPage.astro';
+import { isPrivatePreview } from '../../lib/content-policy.mjs';
+export function getStaticPaths() {
+  return isPrivatePreview() ? [
+    { params: { page: undefined }, props: { page: 'home' } },
+    { params: { page: '404' }, props: { page: '404' } },
+  ] : [];
+}
+const { page } = Astro.props;
+---
+{page === 'home' ? <HomePage lang="ko" /> : <NotFoundPage lang="ko" />}

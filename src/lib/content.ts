@@ -45,8 +45,27 @@ export function slugForEntry(entry: Pick<PublicEntry, 'id' | 'data'>): string {
 
 export function hrefForEntry(entry: Pick<PublicEntry, 'collection' | 'id' | 'data'>): string {
   const slug = slugForEntry(entry).split('/').map(encodeURIComponent).join('/');
-  if (entry.collection === 'publications') return localizePath(`/publications/#${slug}`, entry.data.language);
+  if (entry.collection === 'publications') return localizePath(`/#${slug}`, entry.data.language);
+  if (entry.collection === 'proposals') return localizePath(`/blog/ideas/${slug}/`, entry.data.language);
   return localizePath(`/${entry.collection}/${slug}/`, entry.data.language);
+}
+
+/** One visible Blog, without moving paired editorial sources or changing flags. */
+export async function getBlogEntries(lang: Locale = 'en'): Promise<PublicEntry[]> {
+  const [posts, ideas] = await Promise.all([getPublicEntries('blog', lang), getPublicEntries('proposals', lang)]);
+  const entries: PublicEntry[] = [...posts, ...ideas];
+  const paths = new Set<string>();
+  for (const entry of entries) {
+    const href = hrefForEntry(entry);
+    if (paths.has(href)) throw new Error(`Duplicate ${lang} Blog URL: ${href}`);
+    paths.add(href);
+  }
+  return entries.sort((a, b) => (b.data.pubDate?.getTime() ?? 0) - (a.data.pubDate?.getTime() ?? 0)
+    || a.data.displayOrder - b.data.displayOrder || hrefForEntry(a).localeCompare(hrefForEntry(b)));
+}
+
+export function editorialTags(entry: PublicEntry): string[] {
+  return [...new Set([...(entry.collection === 'proposals' ? ['idea'] : []), ...entry.data.tags])];
 }
 
 export async function translationLinksForEntry(entry: PublicEntry): Promise<LanguageLinks> {

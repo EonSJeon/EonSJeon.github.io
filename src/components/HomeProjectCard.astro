@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { hrefForEntry, slugForEntry, type PublicEntry } from '../lib/content';
+import type { Locale } from '../lib/i18n';
+interface Props { entry: PublicEntry; lang: Locale; }
+const { entry, lang } = Astro.props;
+const ko = lang === 'ko';
+const d = entry.data;
+const summaries: Record<string, { title: string; context: string; en: string; ko: string }> = {
+  'ee405-robotic-tic-tac-toe': { title: 'Robotic Tic-Tac-Toe', context: 'Course final project', en: 'A C++ application connects game logic, robot kinematics, and physical moves on a tic-tac-toe board.', ko: 'C++ 게임 로직과 로봇 기구학을 연결해 실제 틱택토 보드에 수를 표시하는 프로젝트입니다.' },
+  'when-to-eat': { title: 'When to Eat', context: 'KAIST Makerathon', en: 'Led a four-person team building an RFID food-storage reminder. Grand Prize at the KAIST Makerathon.', ko: 'RFID 식품 보관 알림 시제품을 만든 4인 팀의 팀장을 맡았습니다. KAIST Makerathon 대상 수상작입니다.' },
+  'venus-flytrap-bioelectrical-playback': { title: 'Venus Flytrap', context: 'Senior Design / Capstone', en: 'Designed the digital system: embedded firmware, MATLAB application, communication, recording, and playback.', ko: '펌웨어, MATLAB 앱, 통신, 기록과 재생을 포함한 디지털 시스템 전체를 설계·프로그래밍했습니다.' },
+  'ece3011-robachtic-symphony': { title: 'RoBACHtic Symphony', context: 'Junior Design', en: 'Led mechanical design and fabrication for an educational robotic violin prototype.', ko: '교육용 로봇 바이올린 시제품의 기계 설계와 제작을 이끌었습니다.' },
+};
+const copy = summaries[slugForEntry(entry)];
+---
+<article class="home-project-card">
+  {d.cover && <a class="home-project-image" href={hrefForEntry(entry)} tabindex="-1" aria-hidden="true"><Image src={d.cover.src} alt="" width={560} widths={[280, 400, 560]} sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1039px) calc((100vw - 88px) / 2), 280px" format="webp" loading="lazy" style={d.cover.position ? `object-position: ${d.cover.position}` : undefined} /></a>}
+  <div class="home-project-body">
+    <p class="home-project-period">{d.period}</p>
+    {/* 번역 금지: 프로젝트 고유명과 수업 프로젝트 구분명은 양쪽에서 같은 영문 표기를 유지한다. */}
+    <h3 lang="en"><a href={hrefForEntry(entry)}>{copy?.title ?? d.title}</a></h3>
+    <p class="home-project-context" lang="en">{copy?.context ?? d.categoryLabel}</p>
+    <p class="home-project-summary">{copy ? copy[lang] : d.summary}</p>
+    <a class="home-project-link" href={hrefForEntry(entry)} aria-label={`${ko ? '프로젝트 보기' : 'View project'}: ${copy?.title ?? d.title}`}>{ko ? '프로젝트 보기' : 'View project'}<Icon name="arrow-up-right" size={16} /></a>
+  </div>
+</article>

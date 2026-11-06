@@ -5,7 +5,6 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { legacyRedirects, movedProjectSlugs } from '../src/lib/redirects.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
@@ -13,22 +12,15 @@ const origin = 'https://eonsjeon.github.io';
 const collections = ['publications', 'projects', 'coursework', 'blog', 'proposals'];
 // The owner approved only this newly authored three-page CV for public download.
 const publicCVPDF = 'files/sangeon-jeon-cv.pdf';
-const englishRoutes = [
-  '/', '/about/', '/research/', '/publications/', '/projects/', '/coursework/', '/blog/', '/proposals/', '/cv/',
-  '/research/ocdm-cfo-estimation/', '/research/tiadc-ofdm-estimation/',
+const requiredRoutes = [
+  '/', '/coursework/', '/blog/',
   '/projects/when-to-eat/',
-  '/coursework/venus-flytrap-bioelectrical-playback/',
-  '/coursework/ece3011-robachtic-symphony/',
+  '/projects/venus-flytrap-bioelectrical-playback/',
+  '/projects/ece3011-robachtic-symphony/',
+  '/projects/ee405-robotic-tic-tac-toe/',
   '/coursework/electronics-design-lab/',
-  '/research/hemophilia-resource-modeling/', '/research/ocd-prevalence-meta-analysis/',
-  '/research/sma-prevalence-modeling/', '/research/amd-prevalence-modeling/',
-  '/publications/ocd-related-disorders-prevalence/',
-  '/publications/sma-global-prevalence/',
-  '/publications/amd-global-burden/',
-  '/coursework/ee405-robotic-tic-tac-toe/',
-  ...movedProjectSlugs.map((slug) => `/projects/${slug}/`),
 ];
-const requiredRoutes = [...englishRoutes, ...englishRoutes.map((route) => `/ko${route}`), '/ko/404/'];
+const absentRoutes = ['/about/', '/research/', '/publications/', '/projects/', '/proposals/', '/cv/', '/ko/'];
 
 async function filesIn(directory) {
   const result = [];
@@ -71,17 +63,6 @@ function alternateLanguages(html) {
     .filter((attributes) => attributes.rel === 'alternate' && attributes.hreflang);
 }
 
-function counterpartPath(documentPath, language) {
-  if (documentPath === '/404.html') return '/ko/404/';
-  if (documentPath === '/ko/404/') return '/404.html';
-  return language === 'ko' ? documentPath.slice(3) : `/ko${documentPath}`;
-}
-
-function sectionIndex(documentPath, language) {
-  const section = documentPath.replace(/^\/ko(?=\/)/, '').split('/')[1];
-  return `${language === 'ko' ? '/ko' : ''}/${section}/`;
-}
-
 async function validateOutput({ absentMarker } = {}) {
   assert(existsSync(output), 'No dist directory. Run npm run build first.');
   const files = await filesIn(output);
@@ -89,25 +70,32 @@ async function validateOutput({ absentMarker } = {}) {
   assert(htmlFiles.length > 0, 'The build contains no HTML pages.');
   for (const route of requiredRoutes) assert(routeFile(route), `Missing expected route: ${route}`);
   assert(existsSync(path.join(output, '404.html')), 'Missing 404 page.');
-  for (const feed of ['rss.xml', 'ko/rss.xml']) assert(existsSync(path.join(output, feed)), `Missing locale feed: ${feed}`);
+  for (const route of absentRoutes) assert(!routeFile(route), `Obsolete route remains: ${route}`);
+  assert(!existsSync(path.join(output, 'ko')), 'Public output must not contain Korean routes or feeds');
+  for (const feed of ['rss.xml']) {
+    const xml = await readFile(path.join(output, feed), 'utf8');
+    assert(xml.includes('<language>en-US</language>'), `Public feed must contain English only: ${feed}`);
+  }
   const cvPDF = await readFile(path.join(output, publicCVPDF));
   assert(cvPDF.subarray(0, 5).toString() === '%PDF-', 'Published CV is not a PDF.');
   assert(cvPDF.equals(await readFile(path.join(root, 'public', publicCVPDF))), 'Published CV differs from the approved public source.');
-  for (const cvPage of ['cv/index.html', 'ko/cv/index.html']) {
-    const html = await readFile(path.join(output, cvPage), 'utf8');
-    assert(html.includes(`href="/${publicCVPDF}"`), `Missing approved CV PDF link in ${cvPage}`);
+  const homeHTML = await readFile(path.join(output, 'index.html'), 'utf8');
+  assert(homeHTML.includes(`href="/${publicCVPDF}"`), 'Home must link directly to the approved CV PDF');
+  for (const id of ['publications','projects','ocdm-cfo-estimation','tiadc-ofdm-estimation','amd-global-burden','ocd-related-disorders-prevalence','sma-global-prevalence','hemophilia-resource-modeling']) {
+    assert(new RegExp(`id=["']${id}["']`).test(homeHTML), `Canonical Home anchor missing: ${id}`);
   }
-  for (const home of ['index.html', 'ko/index.html']) {
+  for (const home of ['index.html']) {
     assert(decodeAttribute(await readFile(path.join(output, home), 'utf8')).includes('全商彥'), `Missing owner-supplied Hanja name in ${home}`);
   }
   for (const file of files) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
-    assert(!/(?:^|\/)(?:reference-private|CV-Resume|job applications|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
+    assert(!/(?:^|\/)(?:reference-private|CV-Resume|job applications|instructions|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
     assert(relative === publicCVPDF || !/source-inventory|아이디어|\.(?:md|mdx|tex|sty|pdf|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
     assert(!/^documents\//i.test(relative), `Withdrawn document route in output: ${relative}`);
+    assert(!/^(?:ko|about|research|publications|proposals|cv)(?:\/|$)/.test(relative), `Obsolete route directory remains: ${relative}`);
     if (/\.(?:html|xml|json|txt|js|css)$/i.test(relative)) {
       const text = await readFile(file, 'utf8');
-      assert(!/reference-private\/|CV-Resume\/|job(?: |%20)applications\/|source-inventory\.json|아이디어\.docx/.test(text), `Source reference leaked into ${relative}`);
+      assert(!/reference-private\/|CV-Resume\/|job(?: |%20)applications\/|instructions\/|source-inventory\.json|아이디어\.docx/.test(text), `Source reference leaked into ${relative}`);
       if (absentMarker) assert(!text.includes(absentMarker), `Unreleased fixture leaked into ${relative}`);
     }
   }
@@ -120,50 +108,17 @@ async function validateOutput({ absentMarker } = {}) {
     const documentPath = '/' + relative.replace(/index\.html$/, '');
     assert(!/EE305/i.test(html), `Hidden course number exposed in ${relative}`);
     const base = new URL(documentPath, origin);
-    const language = documentPath.startsWith('/ko/') ? 'ko' : 'en';
-    const otherLanguage = language === 'ko' ? 'en' : 'ko';
     const htmlAttributes = attributesFor(html.match(/<html\b[^>]*>/i)?.[0] ?? '');
-    assert.equal(htmlAttributes.lang, language, `Wrong document language for ${relative}`);
+    assert.equal(htmlAttributes.lang, 'en', `Public output must use English: ${relative}`);
     const canonicals = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => attributesFor(match[0]))
       .filter((attributes) => attributes.rel === 'canonical');
     assert.equal(canonicals.length, 1, `Expected one canonical URL in ${relative}`);
-    const redirectTarget = legacyRedirects[documentPath];
-    const expectedCanonical = new URL(redirectTarget ?? documentPath, origin);
-    expectedCanonical.hash = '';
+    const metadata = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
+    assert(!metadata.some((attributes) => attributes['http-equiv']?.toLowerCase() === 'refresh'), `Compatibility redirect remains in ${relative}`);
+    const expectedCanonical = new URL(documentPath, origin);
     assert.equal(canonicals[0].href, expectedCanonical.href, `Wrong canonical URL in ${relative}`);
-    if (redirectTarget) {
-      const metadata = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
-      assert(metadata.some((attributes) => attributes.name === 'robots' && attributes.content === 'noindex'), `Legacy redirect must be noindex in ${relative}`);
-      assert(metadata.some((attributes) => attributes['http-equiv']?.toLowerCase() === 'refresh' && attributes.content === `0;url=${redirectTarget}`), `Wrong legacy refresh destination in ${relative}`);
-      const anchors = [...html.matchAll(/<a\b[^>]*>/gi)].map((match) => attributesFor(match[0]));
-      assert(anchors.some((attributes) => attributes.href === redirectTarget), `Missing legacy fallback link in ${relative}`);
-    } else {
-      assert(new RegExp(`<nav\\b[^>]*aria-label=["']${language === 'ko' ? '언어 선택' : 'Language selection'}["']`, 'i').test(html), `Missing accessible language selection in ${relative}`);
-      const currentLink = languageLink(html, language);
-      const otherLink = languageLink(html, otherLanguage);
-      assert(currentLink && otherLink, `Missing language choices in ${relative}`);
-      assert.equal(currentLink['aria-current'], 'page', `Selected language is not marked in ${relative}`);
-      assert(!otherLink['aria-current'], `Both languages are marked selected in ${relative}`);
-      assert.equal(new URL(currentLink.href, base).pathname, documentPath, `Current language link changes the page in ${relative}`);
-      const counterpart = counterpartPath(documentPath, language);
-      const hasCounterpart = Boolean(routeFile(counterpart));
-      const otherDestination = new URL(otherLink.href, base).pathname;
-      assert.equal(otherDestination, hasCounterpart ? counterpart : sectionIndex(documentPath, otherLanguage), `Language selection does not preserve the page or use its section fallback in ${relative}`);
-      const alternateLinks = alternateLanguages(html);
-      const ownAlternate = alternateLinks.find((link) => link.hreflang === language);
-      assert(ownAlternate && new URL(ownAlternate.href, base).href === base.href, `Missing self-language alternate in ${relative}`);
-      const otherAlternate = alternateLinks.find((link) => link.hreflang === otherLanguage);
-      if (hasCounterpart) {
-        assert(otherAlternate && new URL(otherAlternate.href, base).pathname === counterpart, `Missing translated alternate in ${relative}`);
-      } else {
-        assert(!otherAlternate, `Unavailable translation advertised through hreflang in ${relative}`);
-      }
-      for (const alternate of alternateLinks) {
-        const alternateURL = new URL(alternate.href, base);
-        assert.equal(alternateURL.origin, origin, `Unexpected alternate origin in ${relative}`);
-        assert(routeFile(alternateURL.pathname), `Unavailable alternate route in ${relative}: ${alternate.href}`);
-      }
-    }
+    assert(!languageLink(html, 'ko') && !languageLink(html, 'en'), `Public language switch leaked into ${relative}`);
+    assert(!alternateLanguages(html).some((link) => link.hreflang === 'ko' || new URL(link.href, base).pathname.startsWith('/ko/')), `Korean alternate advertised in ${relative}`);
     for (const match of html.matchAll(/\b(?:href|src|poster)\s*=\s*["']([^"']+)["']/gi)) {
       const value = decodeAttribute(match[1]).trim();
       if (!value || /^(?:mailto:|tel:|data:|blob:)/i.test(value)) continue;
@@ -181,6 +136,10 @@ async function validateOutput({ absentMarker } = {}) {
       }
     }
   }
+  for (const filename of files.filter((file) => /sitemap[^/]*\.xml$/.test(file))) {
+    const xml = await readFile(filename, 'utf8');
+    assert(!xml.includes(`${origin}/ko/`) && !xml.includes(`${origin}/proposals/`), 'Removed route URLs leaked into sitemap');
+  }
   return { pages: htmlFiles.length, files: files.length, checkedLinks };
 }
 
@@ -190,6 +149,8 @@ async function testPublicationGate() {
   const fixtureSuffix = `${Date.now()}-${process.pid}`;
   const token = `unreleased-canary-${fixtureSuffix}`;
   const rendererSlug = `approved-renderer-${fixtureSuffix}`;
+  const koreanOnlySlug = `korean-only-${fixtureSuffix}`;
+  const ideaSlug = `approved-idea-${fixtureSuffix}`;
   const fixtures = [];
   const require = createRequire(import.meta.url);
   const packagePath = require.resolve('astro/package.json');
@@ -231,7 +192,7 @@ async function testPublicationGate() {
     assert(!existsSync(rendererFolder), 'Renderer fixture folder already exists.');
     fixtures.push(rendererFolder);
     await mkdir(rendererFolder);
-    const rendererFixture = path.join(rendererFolder, 'index.ko.mdx');
+    const rendererFixture = path.join(rendererFolder, 'index.mdx');
     await writeFile(rendererFixture, [
       '---',
       `title: Approved renderer fixture ${fixtureSuffix}`,
@@ -242,13 +203,13 @@ async function testPublicationGate() {
       'draft: false',
       'visibility: public',
       'pubDate: 2026-01-01',
-      'language: ko',
+      'language: en',
       `translationKey: ${rendererSlug}`,
       '---',
       '',
       '## Rendering check',
       '',
-      '한국어 본문 렌더링을 확인합니다.',
+      'The approved English MDX body is rendered.',
       '',
       'Inline mathematics: $E = mc^2$.',
       '',
@@ -263,9 +224,17 @@ async function testPublicationGate() {
       '<p data-renderer-expression="true">{"MDX expression evaluated: " + (2 + 3)}</p>',
       '',
     ].join('\n'));
-    // An English draft of a released Korean article must not create an English
-    // route, contaminate English indexes/feeds, or become an advertised alternate.
-    await writeFile(path.join(rendererFolder, 'index.md'), `---\ntitle: ${token}-translated-draft\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Published\napprovedForPublication: true\ndraft: true\nlanguage: en\ntranslationKey: ${rendererSlug}\npubDate: 2026-01-01\n---\n\n${token}\n`);
+    // Korean text and Korean-only releases stay out of public HTML, feeds,
+    // routes and assets even if the owner has marked that language public.
+    await writeFile(path.join(rendererFolder, 'index.ko.md'), `---\ntitle: ${token}-translated-draft\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Published\nvisibility: private\nlanguage: ko\ntranslationKey: ${rendererSlug}\n---\n\n${token}\n`);
+    const koreanFolder = path.join(root, 'src/content/blog', koreanOnlySlug);
+    fixtures.push(koreanFolder);
+    await mkdir(koreanFolder);
+    await writeFile(path.join(koreanFolder, 'index.ko.md'), `---\ntitle: ${token}-korean-public\nsummary: ${token}\ncategoryLabel: Fixture\nstatus: Published\nvisibility: public\nlanguage: ko\ntranslationKey: ${koreanOnlySlug}\npubDate: 2026-01-01\n---\n\n${token}\n`);
+    const ideaFolder = path.join(root, 'src/content/proposals', ideaSlug);
+    fixtures.push(ideaFolder);
+    await mkdir(ideaFolder);
+    await writeFile(path.join(ideaFolder, 'index.md'), `---\ntitle: Approved idea fixture ${fixtureSuffix}\nsummary: A public idea in the unified Blog.\ncategoryLabel: Idea\nstatus: Early concept\nvisibility: public\nlanguage: en\ntranslationKey: ${ideaSlug}\npubDate: 2026-01-01\n---\n\nAn explicitly public idea body.\n`);
     // Colocated source notes must never become articles or trigger schema errors.
     await writeFile(path.join(rendererFolder, 'README.md'), `# Source only\n\n${token}\n`);
     await mkdir(path.join(rendererFolder, 'raw'));
@@ -276,14 +245,13 @@ async function testPublicationGate() {
     const builtFiles = await filesIn(output);
     assert(!builtFiles.some((file) => file.includes(token)), 'Unreleased entry or media leaked into the build output.');
 
-    const rendererPath = routeFile(`/ko/blog/${rendererSlug}/`);
-    assert(rendererPath, 'Folder-based index.ko.mdx did not generate its stable Korean detail route.');
-    assert(!routeFile(`/ko/blog/${rendererSlug}/index/`), 'The index filename leaked into the public URL.');
-    assert(!routeFile(`/blog/${rendererSlug}/`), 'A Korean-only released entry generated an English detail route.');
-    assert(!routeFile(`/blog/${rendererSlug}.ko/`) && !routeFile(`/ko/blog/${rendererSlug}.ko/`), 'The translation suffix leaked into a public URL.');
+    const rendererPath = routeFile(`/blog/${rendererSlug}/`);
+    assert(rendererPath, 'Folder-based index.mdx did not generate its stable English detail route.');
+    assert(!routeFile(`/blog/${rendererSlug}/index/`), 'The index filename leaked into the public URL.');
+    assert(!routeFile(`/blog/${koreanOnlySlug}/`) && !routeFile(`/ko/blog/${koreanOnlySlug}/`), 'A Korean-only release generated a public route.');
     const rendered = await readFile(rendererPath, 'utf8');
-    assert(/<html\b[^>]*\blang=["']ko["']/i.test(rendered), 'Korean MDX entry did not set the document language.');
-    assert(rendered.includes('한국어 본문 렌더링을 확인합니다.'), 'Korean MDX body text was not preserved.');
+    assert(/<html\b[^>]*\blang=["']en["']/i.test(rendered), 'English MDX entry did not set the document language.');
+    assert(rendered.includes('The approved English MDX body is rendered.'), 'Approved English MDX body text was not preserved.');
     assert(rendered.includes('MDX expression evaluated: 5'), 'The MDX expression was not evaluated.');
     assert(/<span\b[^>]*class=["']katex["']/i.test(rendered), 'Inline mathematics was not rendered with KaTeX.');
     const codeBlocks = rendered.match(/<pre\b[\s\S]*?<\/pre>/gi) ?? [];
@@ -291,19 +259,22 @@ async function testPublicationGate() {
       && block.replace(/<[^>]*>/g, '').includes('const rendererApproved = true;')), 'The fenced code block was not syntax-highlighted.');
     assert(rendered.includes('data-footnote-ref') && rendered.includes('data-footnote-backref')
       && rendered.includes('Renderer footnote support is working.'), 'Footnote references/backlinks were not rendered.');
-    // validateOutput() above checks the actual footnote href/id targets, too.
-    assert((await readFile(path.join(output, 'ko/blog/index.html'), 'utf8')).includes(rendererSlug), 'Approved Korean post is absent from its index.');
-    assert((await readFile(path.join(output, 'ko/rss.xml'), 'utf8')).includes(rendererSlug), 'Approved Korean post is absent from Korean RSS.');
-    for (const englishSurface of ['index.html', 'blog/index.html', 'rss.xml']) {
-      assert(!(await readFile(path.join(output, englishSurface), 'utf8')).includes(rendererSlug), `Korean-only post leaked into English ${englishSurface}`);
+    for (const surface of ['blog/index.html', 'rss.xml']) {
+      const body = await readFile(path.join(output, surface), 'utf8');
+      assert(body.includes(rendererSlug), `Approved English post is absent from ${surface}`);
+      assert(body.includes(`blog/ideas/${ideaSlug}/`), `Approved idea is absent from unified Blog ${surface}`);
+      assert(!body.includes(koreanOnlySlug), `Korean-only post leaked into ${surface}`);
     }
-    assert.equal(new URL(languageLink(rendered, 'en').href, origin).pathname, '/blog/', 'A draft counterpart should switch to the English section index.');
-    assert(!alternateLanguages(rendered).some((link) => link.hreflang === 'en'), 'The draft English translation was advertised as an available alternate.');
+    const ideaPath = routeFile(`/blog/ideas/${ideaSlug}/`);
+    assert(ideaPath, 'Public idea canonical Blog route is missing.');
+    assert((await readFile(ideaPath, 'utf8')).includes('#idea'), 'Public idea lacks its idea tag.');
+    assert(!routeFile(`/proposals/${ideaSlug}/`), 'Removed Ideas route was generated');
+    assert(!routeFile(`/ko/blog/${rendererSlug}/`), 'Public Korean route was generated');
     const sitemaps = builtFiles.filter((file) => /sitemap[^/]*\.xml$/.test(file));
     const sitemapBodies = await Promise.all(sitemaps.map((file) => readFile(file, 'utf8')));
     assert(sitemapBodies.some((body) => body.includes(rendererSlug)), 'Approved post is absent from the sitemap.');
-    console.log('Approved Korean folder-based MDX passed: stable locale URL, excluded README/raw sources, Korean document language, evaluated expression, KaTeX, highlighted code, footnotes, Korean index/RSS, sitemap, and unpublished-translation fallback.');
-    console.log(`Publication gate passed: unapproved and draft translations stayed absent across both languages and all ${collections.length} collections (${report.pages} pages).`);
+    console.log('English MDX, canonical Blog ideas/tags/feed, Korean/obsolete route absence, KaTeX, highlighted code and footnotes passed.');
+    console.log(`Publication gate passed: unapproved and draft translations stayed absent across all ${collections.length} collections (${report.pages} pages).`);
   } finally {
     for (const fixture of fixtures) await rm(fixture, { recursive: true, force: true });
     build();

@@ -8,6 +8,7 @@
 /development-status.md
 /story.md
 /instructions.md
+/instructions/
 node_modules
 .astro/
 .astro-private/

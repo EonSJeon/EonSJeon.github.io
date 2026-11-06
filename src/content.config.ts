@@ -1,7 +1,7 @@
 import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { isVisibleData } from './lib/content-policy.mjs';
+import { isVisibleData, languageForSource } from './lib/content-policy.mjs';
 
 const collaborator = z.object({
   name: z.string().min(1),
@@ -89,11 +89,13 @@ const loaderFor = (collection: string) => {
           // well as its page queries. Retain metadata for the release predicate.
           get: <TData extends Record<string, unknown> = Record<string, unknown>>(id: string) => {
             const entry = context.store.get<TData>(id);
-            return entry && isVisibleData(entry.data, collection) ? entry : undefined;
+            if (!entry) return undefined;
+            const normalized = { ...entry, data: { ...entry.data, language: languageForSource({ language: entry.data.language }, entry.filePath ?? id) } };
+            return isVisibleData(normalized.data, collection) ? normalized : undefined;
           },
           set: (entry) => {
-            if (isVisibleData(entry.data, collection)) return context.store.set(entry);
-            const data = { ...entry.data };
+            const data = { ...entry.data, language: languageForSource(entry.data, entry.filePath ?? entry.id) };
+            if (isVisibleData(data, collection)) return context.store.set({ ...entry, data });
             delete data.cover;
             context.store.delete(entry.id);
             return context.store.set({ id: entry.id, data, filePath: entry.filePath, digest: entry.digest });

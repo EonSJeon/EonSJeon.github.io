@@ -5,7 +5,7 @@ import Icon from '../Icon.astro';
 import ProjectVideo from '../ProjectVideo.astro';
 import ProjectClips from '../ProjectClips.astro';
 import VisibilityBadge from '../VisibilityBadge.astro';
-import { slugForEntry, translationLinksForEntry, type PublicEntry } from '../../lib/content';
+import { editorialTags, slugForEntry, translationLinksForEntry, type PublicEntry } from '../../lib/content';
 import { localizePath, getSectionsCopy, formatDate } from '../../lib/i18n';
 interface Props { entry: PublicEntry; }
 const { entry } = Astro.props;
@@ -13,10 +13,11 @@ const { Content, headings } = await render(entry);
 const d = entry.data;
 const lang = d.language;
 const ko = lang === 'ko';
-const section = getSectionsCopy(lang)[entry.collection];
 const slug = slugForEntry(entry);
-const collectionPath = `/${entry.collection}/`;
 const editorial = entry.collection === 'blog' || entry.collection === 'proposals';
+const section = getSectionsCopy(lang)[editorial ? 'blog' : entry.collection];
+const collectionPath = editorial ? '/blog/' : entry.collection === 'projects' ? '/#projects' : `/${entry.collection}/`;
+const tags = editorial ? editorialTags(entry) : d.tags;
 const words = entry.body?.split(/\s+/).length ?? 0;
 const minutes = Math.max(1, Math.ceil(words / (ko ? 130 : 220)));
 const languageLinks = await translationLinksForEntry(entry);
@@ -28,6 +29,7 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
   <nav class="breadcrumbs" aria-label={ko ? '현재 위치' : 'Breadcrumb'}><a href={localizePath('/', lang)}>{ko ? '홈' : 'Home'}</a><span aria-hidden="true">/</span><a href={localizePath(collectionPath, lang)}>{section.label}</a></nav>
   <header class="article-header">
     <VisibilityBadge entry={entry} />
+    {entry.collection === 'proposals' && <p class="editorial-meta"><span class="status">{ko ? '아이디어 · 구상 단계' : 'Idea · Draft concept'}</span></p>}
     <h1>{d.title}</h1><p class="article-summary">{d.summary}</p>
     <div class="article-meta"><span class="status">{d.status}</span>{d.period && <span>{d.period}</span>}{d.institution && <span>{d.institution}{d.courseCode && d.showCourseCode ? ` · ${d.courseCode}` : ''}</span>}{!d.institution && d.courseCode && d.showCourseCode && <span>{d.courseCode}</span>}{editorial && <span>{ko ? `읽는 데 약 ${minutes}분` : `${minutes} min read`}</span>}{d.pubDate && entry.collection !== 'publications' && <time datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate, lang)}</time>}</div>
   </header>
@@ -42,7 +44,7 @@ if (d.clips.length > 0) contents.push({ slug: 'project-videos', text: ko ? '실�
       {d.contribution && <section class="sidebar-section"><h2>{ko ? '담당 역할' : 'My contribution'}</h2><p>{d.contribution}</p></section>}
       {contents.length > 1 && <nav class="sidebar-section article-toc" aria-label={ko ? '본문 목차' : 'On this page'}><h2>{ko ? '이 페이지에서' : 'On this page'}</h2><ul>{contents.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
       {collaborators.length > 0 && <section class="sidebar-section"><h2>{ko ? '팀' : 'Team'}</h2><ul>{collaborators.map((person) => <li>{person.url ? <a href={person.url}>{person.name}<Icon name="arrow-up-right" size={12} /></a> : person.name}{person.role && <small>{person.role}</small>}</li>)}</ul></section>}
-      {d.tags.length > 0 && <section class="sidebar-section"><h2>{ko ? '기술 및 주제' : 'Technologies & topics'}</h2><ul class="tags">{d.tags.map((tag) => <li>{tag}</li>)}</ul></section>}
+      {tags.length > 0 && <section class="sidebar-section"><h2>{ko ? '기술 및 주제' : 'Technologies & topics'}</h2><ul class="tags">{tags.map((tag) => <li>{entry.collection === 'proposals' && tag === 'idea' ? '#idea' : tag}</li>)}</ul></section>}
       {d.links.length > 0 && <section class="sidebar-section"><h2>{ko ? '관련 링크' : 'Links'}</h2><ul>{d.links.map((link) => <li><a href={link.url}>{link.label}<Icon name="arrow-up-right" size={12} /></a></li>)}</ul></section>}
     </aside>
   </div>

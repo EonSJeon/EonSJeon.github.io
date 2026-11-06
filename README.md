@@ -1,8 +1,15 @@
-# Sangeon Jeon — public website
+# Sangeon Jeon — personal website
 
-Public Astro source for https://eonsjeon.github.io/ . This repository receives
-only the approved public snapshot from the owner's private editing workspace.
-Do not merge private workspace commits into this history.
+English academic/research portfolio built with Astro and deployed to GitHub Pages:
+https://eonsjeon.github.io/ . Home unifies profile, News, Education, Publications
+and project summaries. Detailed engineering projects, Coursework, Blog and the
+approved three-page CV PDF remain available.
+
+This repository is an exported public-safe source snapshot. The private editing
+workspace, raw references, unreviewed drafts, CV sources and recruiting materials
+are maintained separately. Public editorial entries require visibility:public.
+Public output contains English content only, without Korean routes/feeds or
+retired URL compatibility pages.
 
 ```sh
 npm ci
@@ -10,13 +17,5 @@ npm run dev
 npm run check
 ```
 
-Korean preview: http://127.0.0.1:4321/ko/ . Use the port printed by Astro.
-Coursework, Ideas (`proposals`) and Blog Markdown use `visibility: public` or
-`visibility: private` per language; only public files and their referenced media
-are exported to this repository. A missing setting defaults to private.
-Original private drafts, source documents, reference materials and editable
-CV/Resume files are never included here. The sole public document download is
-the owner-approved three-page CV PDF at public/files/sangeon-jeon-cv.pdf.
-
-Publication remains an explicit manual GitHub Pages workflow. Source pushes do
-not automatically deploy. Existing English URLs and paired Korean slugs remain.
+Use Node24. Run local preview with the actual port Astro reports. GitHub Pages
+deployment is a manual workflow and requires the owner's explicit authorization.

@@ -1,9 +1,0 @@
----
-import Icon from './Icon.astro';
-interface Props { title: string; label?: string; href?: string; linkText?: string; id?: string; }
-const { title, label, href, linkText = 'View all', id } = Astro.props;
----
-<div class="section-heading">
-  <div>{label && <p class="eyebrow">{label}</p>}<h2 id={id}>{title}</h2></div>
-  {href && <a class="text-link section-link" href={href}>{linkText}<Icon name="arrow-right" size={17} /></a>}
-</div>

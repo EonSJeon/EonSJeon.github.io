@@ -1,127 +1,103 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import SectionHeading from '../SectionHeading.astro';
 import NewsList from '../NewsList.astro';
 import ProfileLinks from '../ProfileLinks.astro';
-import PublicationCitation from '../PublicationCitation.astro';
-import { type Locale, getSiteCopy, localizePath } from '../../lib/i18n';
-import { getPublicEntries, hrefForEntry, slugForEntry } from '../../lib/content';
+import PublicationList from '../PublicationList.astro';
+import HomeProjectCard from '../HomeProjectCard.astro';
+import { education } from '../../data/site';
+import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
+import { getPublicEntries } from '../../lib/content';
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const ko = lang === 'ko';
 const site = getSiteCopy(lang);
-const selectedPaperSlugs = ['ocdm-cfo-estimation', 'tiadc-ofdm-estimation'];
-const papers = await getPublicEntries('publications', lang);
-const selectedPapers = selectedPaperSlugs.flatMap((slug) => papers.filter((entry) => slugForEntry(entry) === slug));
-const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.mapPlaceName}, ${site.mapAddress}`)}`;
-// 번역 금지: 학교 고유명(Georgia Tech / Georgia Institute of Technology), 기관 표기의
-// Electrical & Computer Engineering, Atlanta, Georgia는 영어를 유지한다. 주변 소개 문장은 번역한다.
-// 번역 금지: 한·영 모두 Prof.와 영문 성명을 하나의 링크로 표시하고, 학위 프로그램의 전체 영문 명칭을 유지한다.
+const [papers, projects] = await Promise.all([getPublicEntries('publications', lang), getPublicEntries('projects', lang)]);
+const localizedEducation = getEducationCopy(lang);
+const educationEntries = education.map((item, index) => ({ ...item, localizedDegree: localizedEducation[index].degree }));
+const schoolGroups = [
+  { name: 'Georgia Institute of Technology', entries: educationEntries.filter((item) => item.institution !== 'KAIST') },
+  { name: 'Korea Advanced Institute of Science and Technology', entries: educationEntries.filter((item) => item.institution === 'KAIST') },
+];
+// 번역 금지: Prof.와 영문명 전체를 하나의 링크로 표시하고, 기관·프로그램 고유명을 유지한다.
 const advisorLabel = `Prof. ${site.advisor.name}`;
 const kaistAdvisorLabel = `Prof. ${site.kaistAdvisor.name}`;
-const dualDegreeProgramLabel = 'KAIST–Georgia Tech Dual B.S. Degree Program';
-// 번역 금지: MATLAB 제품명은 한·영 소개 모두 같은 영문 표기를 유지한다.
+const programLabel = 'KAIST–Georgia Tech Dual B.S. Degree Program';
+// 번역 금지: MATLAB, Python, C++, PyMC 및 CV 개정 표기는 한·영에서 같은 영문 값을 사용한다.
+const cvLabel = 'CV (as of November 2026)';
 const c = ko ? {
-  role: '박사과정 · Atlanta, Georgia',
-  intro: '제 웹사이트에 오신 것을 환영합니다! Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
-  introAfterAdvisor: '입니다.',
-  research: '현재는 무선통신을 위한 차세대 파형의 설계와 동기화를 연구하며, 특히 OCDM(orthogonal chirp division multiplexing)에 집중하고 있습니다. TI-ADC 불일치 보정, 베이지안 통계에 관련한 연구 경험도 있습니다.',
-  strengths: '모델 기반 추정 알고리즘 설계, 식별가능성 분석, MATLAB 기반 시뮬레이션에 강점이 있습니다.',
-  mastersBeforeAdvisor: '이전에는 Georgia Institute of Technology에서 ',
-  mastersAfterAdvisor: '의 지도로 전기컴퓨터공학 석사학위를 취득했습니다(2025).',
-  dualBefore: '학부에서는 ',
-  dualAfter: '을 이수하여 KAIST와 Georgia Institute of Technology에서 각각 학사학위를 취득했습니다.',
-  kaistBefore: ' KAIST 학부과정의 지도교수는 ', kaistAfterName: '이었습니다.',
-  cvBefore: '더 자세한 내용은 ', cvAfter: '를 참고해주세요.',
-  interests: '연구 관심 분야',
-  contact: '연락처', maps: 'Google Maps에서 주소 보기',
-  success: '이메일 주소를 복사했습니다.', fallback: '선택된 이메일 주소를 직접 복사해주세요.',
+  role: '전기컴퓨터공학 박사과정', about: 'About me',
+  intro: '제 웹사이트에 오신 것을 환영합니다! Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ', afterAdvisor: '입니다.',
+  research: '무선통신을 위한 차세대 파형의 설계와 동기화를 연구하며, 현재는 OCDM(orthogonal chirp division multiplexing)에 집중하고 있습니다. 추정 대상 파라미터가 식별가능하도록 시스템 설계를 모색하고, 모델 기반 파라미터 추정 알고리즘을 개발하며, MATLAB 시뮬레이션으로 동작을 검증합니다.',
+  previous: '과거 연구 주제는 다음과 같습니다.', topics: ['OFDM 시스템의 TI-ADC 불일치 보정', '계층 베이지안 프레임워크를 이용한 의료 메타분석'],
+  cvBefore: '더 자세한 이력은 ', cvAfter: '를 참고해주세요.',
+  interests: '연구 관심 분야', methods: '연구 방법', implementation: '구현',
+  methodItems: ['추정 알고리즘 설계', '식별가능성 분석', '베이지안 통계', '계층 베이지안 모델링'], implementationItems: ['MATLAB 시뮬레이션', 'Python', 'C++', 'PyMC'],
+  education: '학력', publications: '출판', projects: '프로젝트', news: 'Recent News', contents: '대문 목차', advisor: '지도교수: ',
+  programBefore: '두 학사학위는 ', programAfter: '을 통해 취득했습니다.', backTop: '맨 위로',
 } : {
-  role: 'Ph.D. student · Atlanta, Georgia',
-  intro: 'Welcome to my website! I am a Ph.D. student in Electrical and Computer Engineering at Georgia Institute of Technology, advised by ',
-  introAfterAdvisor: '.',
-  research: 'My current research focuses on the design and synchronization of next-generation waveforms for wireless communications, especially orthogonal chirp division multiplexing (OCDM). I also have research experience in TI-ADC mismatch calibration, and Bayesian statistics.',
-  strengths: 'My strengths lie in model-based estimation algorithm design, identifiability analysis, and MATLAB-based simulation.',
-  mastersBeforeAdvisor: 'Previously, I received my M.S. in Electrical and Computer Engineering from Georgia Tech in 2025, advised by ',
-  mastersAfterAdvisor: '.',
-  dualBefore: "I earned my bachelor's degrees from KAIST and Georgia Institute of Technology through the ",
-  dualAfter: '.',
-  kaistBefore: ' My undergraduate advisor at KAIST was ', kaistAfterName: '.',
-  cvBefore: 'For further information, please refer to my ', cvAfter: '.',
-  interests: 'Research interests',
-  contact: 'Contact', maps: 'View address in Google Maps',
-  success: 'Email address copied.', fallback: 'Copy the selected email address manually.',
+  role: 'Ph.D. Student, Electrical and Computer Engineering', about: 'About me',
+  intro: 'Welcome to my website! I am a Ph.D. student in Electrical and Computer Engineering at Georgia Institute of Technology, advised by ', afterAdvisor: '.',
+  research: 'My research focuses on the design and synchronization of next-generation waveforms for wireless communications, especially orthogonal chirp division multiplexing (OCDM). I explore system designs that make the parameters of interest identifiable, develop model-based parameter estimation algorithms, and verify their behavior through MATLAB simulations.',
+  previous: 'My previous research topics include:', topics: ['TI-ADC mismatch calibration in OFDM systems', 'Medical meta-analysis using a hierarchical Bayesian framework'],
+  cvBefore: 'For further details, please see my ', cvAfter: '.',
+  interests: 'Research Interests', methods: 'Research Methods', implementation: 'Implementation',
+  methodItems: ['Estimation Algorithm Design', 'Identifiability Analysis', 'Bayesian Statistics', 'Hierarchical Bayesian Modeling'], implementationItems: ['MATLAB Simulation', 'Python', 'C++', 'PyMC'],
+  education: 'Education', publications: 'Publications', projects: 'Projects', news: 'Recent News', contents: 'On this page', advisor: 'Advisor: ',
+  programBefore: 'Completed the ', programAfter: ", earning bachelor's degrees from both institutions.", backTop: 'Back to top',
 };
+const interests = ko ? site.interests : ['Wireless Communications', 'Waveform Design', 'Synchronization', 'TI-ADC', 'Bayesian Statistics'];
+const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.education }, { id: 'publications', label: c.publications }, { id: 'projects', label: c.projects }];
 ---
 <SiteLayout lang={lang}>
-  <section class="hero" aria-labelledby="intro-title">
-    <header class="hero-heading">
-      <h1 id="intro-title">{ko ? site.koreanName : 'Sangeon Jeon'}<span class="hero-korean" lang={ko ? 'en' : 'ko'}>{ko ? 'Sangeon Jeon' : site.koreanName}</span><span class="hero-hanja" lang="zh-Hant">{site.hanjaName}</span></h1>
-      <p class="hero-role">{c.role}</p>
-    </header>
-    <div class="hero-description">
-      <p>{c.intro}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.introAfterAdvisor}</p>
-      <p>{c.research}{' '}<span class="hero-strengths">{c.strengths}</span></p>
-      <p>{c.mastersBeforeAdvisor}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.mastersAfterAdvisor}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]} lang="en">{dualDegreeProgramLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url} lang="en">{kaistAdvisorLabel}</a>{c.kaistAfterName}</p>
-      {/* 번역 금지: Curriculum Vitae 링크 문구는 고정하고, 앞뒤 안내 문장만 현지화한다. */}
-      <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
-    </div>
-    <div class="hero-aside">
-      <figure class="hero-portrait"><div class="portrait-frame"><img src="/images/sangeon-jeon.jpeg" alt='Sangeon Jeon' width="246" height="246" fetchpriority="high" /></div></figure>
-      <section class="portrait-contact" id="contact" aria-label={c.contact} data-copy-success={c.success} data-copy-fallback={c.fallback}>
-        <address class="contact-address"><span class="contact-building">{site.address}</span><a class="contact-map" href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${c.maps}: ${site.mapAddress}`} title={c.maps}>{site.mapAddress}</a></address>
-        <ProfileLinks lang={lang} iconsOnly copyEmail />
-        <p class="copy-status" role="status" aria-live="polite"></p>
+  <div class="home-layout" id="top">
+    <aside class="home-profile" aria-labelledby="profile-name">
+      <figure class="home-portrait"><img src="/images/sangeon-jeon-portrait.webp" width="640" height="800" alt="Sangeon Jeon" fetchpriority="high" /></figure>
+      {/* 번역 금지: 프로필 주 이름과 한자 표기는 고정하고 직함만 현지화한다. */}
+      <h1 class="home-profile-name" id="profile-name" lang="en">Sangeon Jeon</h1>
+      <p class="home-profile-names"><span lang="ko">전상언</span><span aria-hidden="true">·</span><span lang="zh-Hant">全商彥</span></p>
+      <p class="home-profile-role">{c.role}</p>
+      <ProfileLinks lang={lang} vertical includeLocation copyEmail />
+    </aside>
+    <div class="home-content">
+      <section class="home-about" aria-labelledby="about-heading">
+        <h2 id="about-heading">{c.about}</h2>
+        <div class="home-introduction">
+          <p>{c.intro}<a href={site.advisor.url} lang="en">{advisorLabel}</a>{c.afterAdvisor}</p>
+          <p>{c.research}</p>
+          <p class="home-previous-label">{c.previous}</p>
+          <ul class="home-previous-topics">{c.topics.map((topic) => <li>{topic}</li>)}</ul>
+          <p class="home-cv-link">{c.cvBefore}<a href={site.cvPdf} type="application/pdf" target="_blank" rel="noopener noreferrer" lang="en" aria-label={ko ? 'CV, 2026년 11월 개정, PDF 3쪽, 새 탭에서 열림' : 'CV, November 2026, PDF, 3 pages, opens in a new tab'}>{cvLabel}</a>{c.cvAfter}</p>
+        </div>
+        <div class="home-capabilities">
+          <section class="home-interests" aria-labelledby="interests-heading"><h3 id="interests-heading">{c.interests}</h3><ul>{interests.map((interest) => <li>{interest}</li>)}</ul></section>
+          <section class="home-tech-stack" aria-labelledby="stack-heading">
+            {/* 번역 금지: Tech Stack 섹션명은 내부 한국어 화면에서도 동일하다. */}
+            <h3 id="stack-heading">Tech Stack</h3>
+            <dl><div><dt>{c.methods}</dt><dd><ul>{c.methodItems.map((item) => <li>{item}</li>)}</ul></dd></div><div><dt>{c.implementation}</dt><dd><ul>{c.implementationItems.map((item) => <li>{item}</li>)}</ul></dd></div></dl>
+          </section>
+        </div>
       </section>
+      <nav class="home-contents" aria-label={c.contents}>{contents.map((item) => <a href={`#${item.id}`}>{item.label}</a>)}</nav>
+      <section class="home-main-section" id="news" aria-labelledby="news-heading"><h2 id="news-heading">{c.news}</h2><NewsList lang={lang} /></section>
+      <section class="home-main-section" id="education" aria-labelledby="education-heading">
+        <h2 id="education-heading">{c.education}</h2>
+        <div class="home-education">
+          {schoolGroups.map((school) => <article class="home-school">
+            <h3 lang="en">{school.name}</h3>
+            <dl>{school.entries.map((item) => {
+              const advisor = item.institution === 'KAIST' ? site.kaistAdvisor : /^(Ph\.D\.|M\.S\.)/.test(item.degree) ? site.advisor : undefined;
+              return <div class="home-degree"><dt>{item.localizedDegree}</dt><dd class="home-degree-period">{item.cvPeriod[lang]}</dd>{advisor && <dd class="home-degree-advisor">{c.advisor}<a href={advisor.url} lang="en">{advisor === site.kaistAdvisor ? kaistAdvisorLabel : advisorLabel}</a></dd>}</div>;
+            })}</dl>
+          </article>)}
+          <p class="home-degree-program">{c.programBefore}<a href={site.dualDegreeProgram[lang]} lang="en">{programLabel}</a>{c.programAfter}</p>
+        </div>
+      </section>
+      <section class="home-main-section home-publications" id="publications" aria-labelledby="publications-heading"><h2 id="publications-heading">{c.publications}</h2><PublicationList entries={papers} lang={lang} /></section>
     </div>
-  </section>
-  <div class="interest-line"><span>{c.interests}</span><ul>{site.interests.map((interest) => <li>{interest}</li>)}</ul></div>
-  <section class="home-section selected-publications" aria-labelledby="selected-publications-heading">
-    {/* 번역 금지: Selected Publications 섹션명과 논문 원제·저자명·학회명은 영어로 유지한다. */}
-    <SectionHeading title="Selected Publications" id="selected-publications-heading" />
-    {selectedPapers.map((entry) => <article class="publication-entry">
-      <h3><a href={hrefForEntry(entry)}>{entry.data.title}</a></h3>
-      <PublicationCitation entry={entry} linkAuthors={false} />
-    </article>)}
-  </section>
-  <section class="home-section" aria-labelledby="news-heading">
-    <SectionHeading title="News" id="news-heading" />
-    <NewsList lang={lang} />
-  </section>
+    <section class="home-projects" id="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">{c.projects}</h2>
+      <div class="home-project-grid">{projects.map((entry) => <HomeProjectCard entry={entry} lang={lang} />)}</div>
+      <a class="home-back-top" href="#top">{c.backTop}<span aria-hidden="true">↑</span></a>
+    </section>
+  </div>
 </SiteLayout>
-<script>
-  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
-  const contact = copyButton?.closest<HTMLElement>('.portrait-contact');
-  const copyStatus = document.querySelector<HTMLElement>('.copy-status');
-  let feedbackTimeout: ReturnType<typeof setTimeout> | undefined;
-  const showCopyFeedback = (message: string, email?: string) => {
-    if (!copyStatus) return;
-    if (feedbackTimeout !== undefined) clearTimeout(feedbackTimeout);
-    copyStatus.textContent = message;
-    if (email) {
-      const address = document.createElement('span');
-      address.textContent = email;
-      address.dataset.emailFallback = '';
-      copyStatus.append(' ', address);
-      const range = document.createRange();
-      range.selectNodeContents(address);
-      const selection = window.getSelection();
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-    }
-    feedbackTimeout = setTimeout(() => {
-      copyStatus.textContent = '';
-      feedbackTimeout = undefined;
-    }, 3000);
-  };
-  copyButton?.addEventListener('click', async () => {
-    const email = copyButton.dataset.copyEmail;
-    if (!email || !copyStatus) return;
-    try {
-      await navigator.clipboard.writeText(email);
-      showCopyFeedback(contact?.dataset.copySuccess ?? '');
-    } catch {
-      showCopyFeedback(contact?.dataset.copyFallback ?? '', email);
-    }
-  });
-</script>

@@ -1,17 +1,44 @@
 # Public website requirements
 
-Maintain the bilingual Astro academic website, its existing URLs, responsive
-header, Home, Publications, Projects, Coursework, Ideas, Blog and HTML CV.
-Paper titles/authors stay English, and statuses retain verified wording.
-Home highlights model-based estimation algorithm design, identifiability
-analysis, and MATLAB-based simulation at the end of the research overview in
-both languages, before the academic background. Use normal body text without
-added bold or italics for this capability sentence.
+Updated: November 6, 2026. Public user-site: https://eonsjeon.github.io/ .
+This repository is the English-only source export, not the editing workspace.
 
-This repository is a public-only export. Coursework/Blog/Ideas files require
-visibility:public; absent/private entries and their unreferenced assets must not
-be present in this Git tree. Legacy project/publication approval flags remain.
-The approved three-page public CV PDF is the sole document-download exception.
-Never copy private references, archived originals, editable CV/Resume files or
-private Git histories into this repository. Preserve existing public commits.
+Maintain the existing Astro/TypeScript/Markdown site. Home order is About me,
+Recent News, Education, Publications, Projects. About contains the current OCDM
+focus, identifiable system-design/model-based estimation/MATLAB verification,
+two past-topic bullets, direct3pageCVPDF, Research Interests and8TechStack items.
+Copy is plain body text without added bold/italics. Header is not sticky and has
+Sangeon Jeon/portrait mark plus Coursework and Blog; no language UI or Korean
+translation pages. Profile has the smile portrait, names, role, Atlanta city link
+and five vertical icon-labelled contacts; Email copies and shows Copied for1s.
+
+Education groups three Georgia Tech degrees and separately KAIST, retaining
+individual periods/advisors and the linked KAIST–Georgia Tech Dual B.S. Degree
+Program. Home has no GPA or repeated academic-background paragraph. Publications
+lists all6records with full authors, English titles and truthful statuses:
+Conference before Journal,2underreviewcommunications/3publishedjournals/1hemophilia
+manuscript. No independent Research/paper explanation pages or Selected
+Publications duplication. Use publication records and stable Home anchors.
+
+News is Oct2026TIADCsubmission, Sep2026OCDMsubmission, Sep2026AMDpublication,
+Jul2026OCDpublication; no invented submission days. Project cards use4/2/1columns
+and link to preserved README-depth details/media, newest first: robotic tic-tac-toe,
+When to Eat, Venus Flytrap, RoBACHtic Symphony. Coursework remains the course-list
+board; do not expose the electronics lab course number or raw grades/transcripts.
+Blog combines released writing/ideas with idea tags. Preserve canonical URLs and
+canonical routes, absence of retired aliases, accessibility and320/390/1440px layouts.
+
+Use only public English editorial entries (visibility:public; missing/private
+excluded) and existing project/paper approval flags. The sole document exception
+is files/sangeon-jeon-cv.pdf, the approved3pagePDF linked as CV(as ofNovember2026).
+Retain only the used profileWebP; do not add unused portrait/source candidates.
+Do not generate old About/Research/CV/section-index/proposals aliases or public
+Korean routes/feeds.
+No private references, unreviewed drafts, editable CV/Resume, jobs, instruction
+pads, original source media or recovery histories may enter this repository.
+Keep original public development history. Do not infer results/contributions,
+unpublished methods, exact dates or acceptance from vague source language.
+
+Use the existing self-hosted fonts/licenses, portrait/favicons and light design.
+Footer remains English and truthfully credits Astro and the last update date.
 Run npm run check. Deployment remains a separately authorized manual workflow.

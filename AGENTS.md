@@ -1,10 +1,16 @@
-# Public mirror workflow
+# Public export workflow
 
-This is the sanitized public website snapshot, generated from a private workspace.
-Read README.md and proj.md. Do not add private source materials, unpublished full
-text, CV/Resume source documents, credentials or local handoffs here. Preserve
-the existing public history; never merge the private branch or force-push it.
+Read proj.md before editing. This is an English-only, public-safe exported source
+repository. The canonical editing workspace is separate. Do not import private
+references, instruction pads, CV sources, jobs, unapproved drafts, raw source
+photos or private Git history. Preserve public development commits and URLs.
 
-Editorial Markdown uses visibility:public/private per language. Private files
-must be omitted from this Git tree, not merely hidden from navigation. Test with
-npm run check before committing. Deploy only with the owner's authorization.
+Home contains About, News, Education, Publications and project summaries. Reuse
+source records; maintain exact authors/titles/statuses and responsive details.
+Generate only canonical pages; remove old section aliases and compatibility
+redirects. No public Korean routes/feeds, language switcher, independent HTML CV
+or Research explanations.
+The sole document download is the approved current files/sangeon-jeon-cv.pdf.
+
+Run npm run check for applicable changes. Do not push, deploy or trigger a release
+workflow until the owner explicitly authorizes that stage.
