@@ -3,7 +3,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import NewsList from '../NewsList.astro';
 import ProfileLinks from '../ProfileLinks.astro';
 import PublicationList from '../PublicationList.astro';
-import HomeProjectCard from '../HomeProjectCard.astro';
+import HomeProjectRow from '../HomeProjectRow.astro';
 import { education } from '../../data/site';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
 import { getPublicEntries } from '../../lib/content';
@@ -48,7 +48,7 @@ const c = ko ? {
 const interests = ko ? site.interests : ['Wireless Communications', 'Waveform Design', 'Synchronization', 'TI-ADC', 'Bayesian Statistics'];
 const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.education }, { id: 'publications', label: c.publications }, { id: 'projects', label: c.projects }];
 ---
-<SiteLayout lang={lang}>
+<SiteLayout lang={lang} homePage>
   <div class="home-layout" id="top">
     <aside class="home-profile" aria-labelledby="profile-name">
       <figure class="home-portrait"><img src="/images/sangeon-jeon-portrait.webp" width="640" height="800" alt="Sangeon Jeon" fetchpriority="high" /></figure>
@@ -63,8 +63,7 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
         <h2 id="about-heading">{c.about}</h2>
         <div class="home-introduction">
           <p>{c.intro}<a href={site.advisor.url} lang="en">{advisorLabel}</a>{c.afterAdvisor}</p>
-          <p>{c.research}</p>
-          <p class="home-previous-label">{c.previous}</p>
+          <p class="home-research-summary">{c.research} {c.previous}</p>
           <ul class="home-previous-topics">{c.topics.map((topic) => <li>{topic}</li>)}</ul>
           <p class="home-cv-link">{c.cvBefore}<a href={site.cvPdf} type="application/pdf" target="_blank" rel="noopener noreferrer" lang="en" aria-label={ko ? 'CV, 2026년 11월 개정, PDF 3쪽, 새 탭에서 열림' : 'CV, November 2026, PDF, 3 pages, opens in a new tab'}>{cvLabel}</a>{c.cvAfter}</p>
         </div>
@@ -96,7 +95,7 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
     </div>
     <section class="home-projects" id="projects" aria-labelledby="projects-heading">
       <h2 id="projects-heading">{c.projects}</h2>
-      <div class="home-project-grid">{projects.map((entry) => <HomeProjectCard entry={entry} lang={lang} />)}</div>
+      <div class="home-project-list">{projects.map((entry) => <HomeProjectRow entry={entry} lang={lang} />)}</div>
       <a class="home-back-top" href="#top">{c.backTop}<span aria-hidden="true">↑</span></a>
     </section>
   </div>

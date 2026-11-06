@@ -276,7 +276,7 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .home-about > h2, .home-main-section > h2, .home-projects > h2 { margin-bottom: 23px; font-size: 34px; line-height: 1.2; }
 .home-introduction { font-size: 16.5px; line-height: 1.85; letter-spacing: -.006em; }
 .home-introduction p { margin-bottom: 21px; }
-.home-introduction .home-previous-label { margin-bottom: 7px; }
+.home-introduction .home-research-summary { margin-bottom: 7px; }
 .home-previous-topics { padding-left: 21px; margin: 0 0 21px; }
 .home-previous-topics li { padding-left: 3px; margin-bottom: 2px; }
 .home-introduction .home-cv-link { margin-top: 24px; margin-bottom: 0; }
@@ -321,29 +321,39 @@ html[lang='ko'] .prose { line-height: 1.9; }
 .home-publications .publication-status { font-size: 11px; }
 .home-publications .publication-legend { margin-bottom: 0; font-size: 11px; }
 .home-projects { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 37px; scroll-margin-top: 24px; }
-.home-project-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; }
-.home-project-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; background: var(--surface); }
-.home-project-image { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--surface-soft); border-bottom: 1px solid var(--line); }
-.home-project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s; }
-.home-project-card:hover .home-project-image img { transform: scale(1.025); }
-.home-project-body { display: flex; flex-direction: column; flex: 1; padding: 20px 19px; }
-.home-project-period { color: var(--subtle); font-size: 10px; margin-bottom: 8px; }
-.home-project-card h3 { font-family: var(--sans); font-size: 18px; font-weight: 600; line-height: 1.35; letter-spacing: -.02em; margin-bottom: 7px; }
-.home-project-card h3 a { color: var(--text); text-decoration: none; }
-.home-project-card h3 a:hover { color: var(--accent); text-decoration: underline; }
-.home-project-context { font-size: 10px; color: var(--subtle); margin-bottom: 13px; }
-.home-project-summary { color: var(--muted); font-size: 12px; line-height: 1.8; margin-bottom: 22px; }
-.home-project-link { display: inline-flex; align-items: center; align-self: start; gap: 6px; margin-top: auto; font-size: 11px; text-decoration: none; }
-.home-project-link:hover { text-decoration: underline; }
+.home-project-list { border-top: 1px solid var(--line); }
+.home-project-row { display: grid; grid-template-columns: minmax(0,1fr) 128px; align-items: center; gap: 28px; padding-block: 25px; border-bottom: 1px solid var(--line); }
+.home-project-body { min-width: 0; }
+.home-project-image { width: 128px; aspect-ratio: 4 / 3; background: var(--surface-soft); border-radius: 3px; overflow: hidden; }
+.home-project-image img { width: 100%; height: 100%; object-fit: contain; }
+.home-project-row h3 { font-family: var(--sans); font-size: 19px; font-weight: 600; line-height: 1.4; letter-spacing: -.02em; margin-bottom: 6px; }
+.home-project-row h3 a { color: var(--text); text-decoration: none; }
+.home-project-row h3 a:hover { color: var(--accent); text-decoration: underline; }
+.home-project-meta { color: var(--subtle); font-size: 12px; line-height: 1.7; margin-bottom: 7px; }
+.home-project-summary { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 0; }
 .home-back-top { display: flex; justify-content: end; align-items: center; gap: 9px; margin-top: 23px; color: var(--muted); font-size: 12px; text-decoration: none; }
 .home-back-top:hover { color: var(--accent); }
 html[lang='ko'] .home-profile-name { font-family: 'Cormorant Garamond', var(--serif); font-weight: 600; letter-spacing: -.018em; }
+/* Only the Home section TOC sticks. Its grid area extends through Projects. */
+@media (min-width: 1440px) {
+  main.home-page { width: min(1328px, calc(100% - 96px)); }
+  .home-layout { grid-template-columns: 244px minmax(0,1fr) 120px; grid-template-rows: repeat(5,auto); column-gap: 32px; row-gap: 0; }
+  .home-content { display: contents; }
+  .home-profile { grid-column: 1; grid-row: 1 / 5; }
+  .home-about { grid-column: 2; grid-row: 1; min-width: 0; }
+  .home-main-section { grid-column: 2; min-width: 0; }
+  .home-main-section#news { grid-row: 2; }
+  .home-main-section#education { grid-row: 3; }
+  .home-main-section#publications { grid-row: 4; }
+  .home-contents { grid-column: 3; grid-row: 1 / 6; position: sticky; top: 24px; align-self: start; display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 9px 0 9px 18px; border: 0; border-left: 1px solid var(--line); }
+  .home-contents a { line-height: 1.5; }
+  .home-projects { grid-column: 1 / 3; grid-row: 5; margin-top: 60px; }
+}
 @media (max-width: 1039px) {
   .home-layout { grid-template-columns: 210px minmax(0,1fr); column-gap: 35px; }
   .home-profile-name { font-size: 31px; }
   .home-introduction { font-size: 16px; }
   .home-tech-stack dl > div { grid-template-columns: 1fr; gap: 5px; margin-top: 12px; }
-  .home-project-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; }
   .home-degree { grid-template-columns: 1fr; gap: 0; }
   .home-degree-advisor { grid-column: auto; }
 }
@@ -384,15 +394,16 @@ html[lang='ko'] .home-profile-name { font-family: 'Cormorant Garamond', var(--se
   .home-school h3 { font-size: 15px; }
   .home-degree dt { font-size: 13px; }
   .home-projects { margin-top: 42px; padding-top: 29px; }
-}
-@media (max-width: 640px) {
-  .home-project-grid { grid-template-columns: 1fr; }
-  .home-project-body { padding: 22px; }
-  .home-project-card h3 { font-size: 20px; }
+  .home-project-row { grid-template-columns: minmax(0,1fr) 80px; gap: 18px; padding-block: 22px; }
+  .home-project-image { width: 80px; }
+  .home-project-row h3 { font-size: 18px; }
+  .home-project-meta { font-size: 11px; }
   .home-project-summary { font-size: 13px; }
 }
 @media (max-width: 359px) {
   .site-brand { --brand-icon-size: 29px; --brand-font-size: 20px; gap: 7px; }
   .header-controls { gap: 6px; }
   .language-switcher a { padding-inline: 5px; }
+  .home-project-row { grid-template-columns: minmax(0,1fr); gap: 13px; }
+  .home-project-image { width: 88px; }
 }

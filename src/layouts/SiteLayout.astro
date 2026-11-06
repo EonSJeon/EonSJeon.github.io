@@ -6,8 +6,8 @@ import SiteIcons from '../components/SiteIcons.astro';
 import { isPrivatePreview } from '../lib/content-policy.mjs';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
-interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
-const { title, lang = 'en', noindex = false, article = false, languageLinks, languageFallback = '/' } = Astro.props;
+interface Props { title?: string; description?: string; lang?: Locale; noindex?: boolean; article?: boolean; homePage?: boolean; languageLinks?: LanguageLinks; languageFallback?: string; }
+const { title, lang = 'en', noindex = false, article = false, homePage = false, languageLinks, languageFallback = '/' } = Astro.props;
 const site = getSiteCopy(lang);
 // 번역 금지: 상단 브랜드명은 모든 언어에서 Sangeon Jeon. 본문 이름/메타데이터는 별도로 현지화한다.
 const headerName = siteIdentity.name;
@@ -19,7 +19,10 @@ const current = Astro.url.pathname;
 const home = localizePath('/', lang);
 const active = (path: string) => path === home ? current === home : current.startsWith(path);
 const privatePreview = isPrivatePreview();
-const navigation = (['coursework', 'blog'] as const).map((key) => ({ label: sections[key].label, href: localizePath(`/${key}/`, lang) }));
+const navigation = [
+  { label: lang === 'ko' ? '홈' : 'Home', href: home },
+  ...(['coursework', 'blog'] as const).map((key) => ({ label: sections[key].label, href: localizePath(`/${key}/`, lang) })),
+];
 const available = languageLinks ?? { en: localizePath(current, 'en'), ko: localizePath(current, 'ko') };
 const menuOpen = lang === 'ko' ? '메뉴 열기' : 'Open navigation';
 const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
@@ -66,7 +69,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
       </div>
     </header>
     {isPrivatePreview() && <div class="private-preview-banner container" role="note">{lang === 'ko' ? '비공개 글을 포함한 로컬 미리보기' : 'Local preview including private content'}</div>}
-    <main id="main-content" class="container"><slot /></main>
+    <main id="main-content" class:list={['container', { 'home-page': homePage }]}><slot /></main>
     <footer class="site-footer container">
       {/* 번역 금지: 저작권·Powered by Astro·Last updated 문장 전체를 한국어 페이지에서도 영어로 유지한다. */}
       <p class="footer-copyright" lang="en">© Copyright 2026 Sangeon Jeon. Powered by Astro. Last updated: <time datetime="2026-11-06">November 6, 2026</time>.</p>
