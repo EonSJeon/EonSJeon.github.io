@@ -10,10 +10,14 @@ two past-topic bullets, direct3pageCVPDF, Research Interests and8TechStack items
 The sentence introducing past topics ends the research paragraph before the bullets.
 Copy is plain body text without added bold/italics. Header has Sangeon Jeon/portrait
 mark plus Home, Coursework, Blog; no language UI or Korean translation pages.
-Home title is Ph.D. Candidate @ Georgia Tech in both profile and related copy/meta
-(candidate wording in prose). Profile has the smile portrait, names, Atlanta city
-link and five vertical icon-labelled contacts; Email copies and shows Copied for1s.
-Korean/Hanja secondary names share the same computed font-size and baseline.
+Home profile title is Ph.D. Candidate @ Georgia Tech, with Electrical and Computer
+Engineering on a separate line beneath it; both stay English. Related copy/meta
+uses candidate wording and retains the major. Profile has the smile portrait,
+names, Atlanta city link and five vertical icon-labelled contacts; Email copies
+and shows Copied for1s.
+Korean/Hanja secondary names must visually match glyph height, size and baseline
+in actual desktop/narrow screenshots after fonts load. Allow per-script optical
+font-size/baseline correction; equal computed font-size alone is insufficient.
 
 Education groups three Georgia Tech degrees and separately KAIST, retaining
 individual periods/advisors and the linked KAIST–Georgia Tech Dual B.S. Degree
@@ -28,13 +32,18 @@ Jul2026OCDpublication; no invented submission days. Preserve Home's existing
 large-screen left profile / central body / right four-link TOC positions. Home PC
 header and side panels stick below the actual header height plus 16–24px, through
 Projects. Unstick any panel that exceeds available viewport height, so a too-tall
-left panel scrolls with the central body on small laptops. No clipped contact
-labels, hidden items or independent panel scrollers. Other-page headers unchanged.
+left panel scrolls with the central body on small laptops. Measure its full height
+including the major line. No clipped contact labels, hidden items or independent
+panel scrollers. Other-page headers unchanged.
 Profile display starts around 195px (80% of 244px), same left edge and image bytes.
 Keep right TOC at >=1440px; hide it when its rail cannot fit. No alternate TOC below
 Tech Stack or contacts, and no new About anchor is required.
 Projects uses four vertical rows in central-column width only, with existing
-left text/right 128px, 4:3, contain photos. No new crop/enlargement/image swap.
+left text/right photos. Home-list thumbnails fill 4:3 boxes using CSS object-fit:
+cover, with the main subject preserved through per-photo positioning. Keep widths
+about 128px desktop, 80px or 88px narrow mobile. Original photo files and detail-page
+media/display remain unchanged; no image-file crop, swap or enlargement. Profile
+photo crop/file rules remain unchanged.
 Preserve README-depth details/media, newest first: robotic tic-tac-toe,
 When to Eat, Venus Flytrap, RoBACHtic Symphony. Coursework remains the course-list
 board; do not expose the electronics lab course number or raw grades/transcripts.

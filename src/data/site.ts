@@ -7,6 +7,8 @@ export const site = {
   description: 'Ph.D. candidate in Electrical and Computer Engineering at Georgia Tech. Research in wireless communications, waveform design, synchronization, TI-ADC, and Bayesian statistics.',
   // 번역 금지: 왼쪽 프로필 직함은 모든 언어에서 학위 단계와 소속을 이 영문 문구로 표시한다.
   role: 'Ph.D. Candidate @ Georgia Tech',
+  // 번역 금지: 왼쪽 프로필의 전공은 직함 아래에 영문으로 함께 표시한다.
+  field: 'Electrical and Computer Engineering',
   // 번역 금지: 기관명·Atlanta, Georgia·우편주소·이메일은 한국어 화면에서도 원문을 유지한다.
   institution: 'Georgia Institute of Technology',
   location: 'Atlanta, Georgia',

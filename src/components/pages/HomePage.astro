@@ -56,7 +56,7 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
       {/* 번역 금지: 프로필 주 이름·한자 표기와 Ph.D. Candidate @ Georgia Tech 직함은 모든 언어에서 고정한다. */}
       <h1 class="home-profile-name" id="profile-name" lang="en">Sangeon Jeon</h1>
       <p class="home-profile-names"><span lang="ko">전상언</span><span aria-hidden="true">·</span><span lang="zh-Hant">全商彥</span></p>
-      <p class="home-profile-role" lang="en">{site.role}</p>
+      <p class="home-profile-role" lang="en"><span>{site.role}</span><span class="home-profile-field">{site.field}</span></p>
       <ProfileLinks lang={lang} vertical includeLocation copyEmail />
     </aside>
     <div class="home-content">
