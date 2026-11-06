@@ -5,7 +5,8 @@ header, Home, Publications, Projects, Coursework, Ideas, Blog and HTML CV.
 Paper titles/authors stay English, and statuses retain verified wording.
 Home highlights model-based estimation algorithm design, identifiability
 analysis, and MATLAB-based simulation at the end of the research overview in
-both languages, before the academic background.
+both languages, before the academic background. Use normal body text without
+added bold or italics for this capability sentence.
 
 This repository is a public-only export. Coursework/Blog/Ideas files require
 visibility:public; absent/private entries and their unreferenced assets must not

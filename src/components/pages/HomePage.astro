@@ -61,7 +61,7 @@ const c = ko ? {
     </header>
     <div class="hero-description">
       <p>{c.intro}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.introAfterAdvisor}</p>
-      <p>{c.research}{' '}<strong class="hero-strengths">{c.strengths}</strong></p>
+      <p>{c.research}{' '}<span class="hero-strengths">{c.strengths}</span></p>
       <p>{c.mastersBeforeAdvisor}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.mastersAfterAdvisor}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]} lang="en">{dualDegreeProgramLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url} lang="en">{kaistAdvisorLabel}</a>{c.kaistAfterName}</p>
       {/* 번역 금지: Curriculum Vitae 링크 문구는 고정하고, 앞뒤 안내 문장만 현지화한다. */}
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>
