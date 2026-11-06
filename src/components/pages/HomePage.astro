@@ -20,11 +20,13 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 const advisorLabel = `Prof. ${site.advisor.name}`;
 const kaistAdvisorLabel = `Prof. ${site.kaistAdvisor.name}`;
 const dualDegreeProgramLabel = 'KAIST–Georgia Tech Dual B.S. Degree Program';
+// 번역 금지: MATLAB 제품명은 한·영 소개 모두 같은 영문 표기를 유지한다.
 const c = ko ? {
   role: '박사과정 · Atlanta, Georgia',
   intro: '제 웹사이트에 오신 것을 환영합니다! Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ',
   introAfterAdvisor: '입니다.',
   research: '현재는 무선통신을 위한 차세대 파형의 설계와 동기화를 연구하며, 특히 OCDM(orthogonal chirp division multiplexing)에 집중하고 있습니다. TI-ADC 불일치 보정, 베이지안 통계에 관련한 연구 경험도 있습니다.',
+  strengths: '모델 기반 추정 알고리즘 설계, 식별가능성 분석, MATLAB 기반 시뮬레이션에 강점이 있습니다.',
   mastersBeforeAdvisor: '이전에는 Georgia Institute of Technology에서 ',
   mastersAfterAdvisor: '의 지도로 전기컴퓨터공학 석사학위를 취득했습니다(2025).',
   dualBefore: '학부에서는 ',
@@ -39,6 +41,7 @@ const c = ko ? {
   intro: 'Welcome to my website! I am a Ph.D. student in Electrical and Computer Engineering at Georgia Institute of Technology, advised by ',
   introAfterAdvisor: '.',
   research: 'My current research focuses on the design and synchronization of next-generation waveforms for wireless communications, especially orthogonal chirp division multiplexing (OCDM). I also have research experience in TI-ADC mismatch calibration, and Bayesian statistics.',
+  strengths: 'My strengths lie in model-based estimation algorithm design, identifiability analysis, and MATLAB-based simulation.',
   mastersBeforeAdvisor: 'Previously, I received my M.S. in Electrical and Computer Engineering from Georgia Tech in 2025, advised by ',
   mastersAfterAdvisor: '.',
   dualBefore: "I earned my bachelor's degrees from KAIST and Georgia Institute of Technology through the ",
@@ -58,7 +61,7 @@ const c = ko ? {
     </header>
     <div class="hero-description">
       <p>{c.intro}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.introAfterAdvisor}</p>
-      <p>{c.research}</p>
+      <p>{c.research}{' '}<strong class="hero-strengths">{c.strengths}</strong></p>
       <p>{c.mastersBeforeAdvisor}<a class="hero-advisor" href={site.advisor.url} lang="en">{advisorLabel}</a>{c.mastersAfterAdvisor}{' '}{c.dualBefore}<a href={site.dualDegreeProgram[lang]} lang="en">{dualDegreeProgramLabel}</a>{c.dualAfter}{c.kaistBefore}<a class="hero-advisor" href={site.kaistAdvisor.url} lang="en">{kaistAdvisorLabel}</a>{c.kaistAfterName}</p>
       {/* 번역 금지: Curriculum Vitae 링크 문구는 고정하고, 앞뒤 안내 문장만 현지화한다. */}
       <p>{c.cvBefore}<a class="hero-cv" href={localizePath('/cv/', lang)}>Curriculum Vitae</a>{c.cvAfter}</p>

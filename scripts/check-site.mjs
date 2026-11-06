@@ -102,12 +102,12 @@ async function validateOutput({ absentMarker } = {}) {
   }
   for (const file of files) {
     const relative = path.relative(output, file).replaceAll(path.sep, '/');
-    assert(!/(?:^|\/)(?:reference-private|CV-Resume|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
+    assert(!/(?:^|\/)(?:reference-private|CV-Resume|job applications|\.git)(?:\/|$)/i.test(relative), `Raw source directory in output: ${relative}`);
     assert(relative === publicCVPDF || !/source-inventory|아이디어|\.(?:md|mdx|tex|sty|pdf|docx|zip|mbox|bundle)$/i.test(relative), `Private/source artifact in output: ${relative}`);
     assert(!/^documents\//i.test(relative), `Withdrawn document route in output: ${relative}`);
     if (/\.(?:html|xml|json|txt|js|css)$/i.test(relative)) {
       const text = await readFile(file, 'utf8');
-      assert(!/reference-private\/|CV-Resume\/|source-inventory\.json|아이디어\.docx/.test(text), `Source reference leaked into ${relative}`);
+      assert(!/reference-private\/|CV-Resume\/|job(?: |%20)applications\/|source-inventory\.json|아이디어\.docx/.test(text), `Source reference leaked into ${relative}`);
       if (absentMarker) assert(!text.includes(absentMarker), `Unreleased fixture leaked into ${relative}`);
     }
   }
