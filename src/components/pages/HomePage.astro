@@ -4,6 +4,7 @@ import NewsList from '../NewsList.astro';
 import ProfileLinks from '../ProfileLinks.astro';
 import PublicationList from '../PublicationList.astro';
 import HomeProjectRow from '../HomeProjectRow.astro';
+import HomeStickyPanels from '../HomeStickyPanels.astro';
 import { education } from '../../data/site';
 import { type Locale, getSiteCopy, getEducationCopy } from '../../lib/i18n';
 import { getPublicEntries } from '../../lib/content';
@@ -25,8 +26,8 @@ const programLabel = 'KAIST–Georgia Tech Dual B.S. Degree Program';
 // 번역 금지: MATLAB, Python, C++, PyMC 및 CV 개정 표기는 한·영에서 같은 영문 값을 사용한다.
 const cvLabel = 'CV (as of November 2026)';
 const c = ko ? {
-  role: '전기컴퓨터공학 박사과정', about: 'About me',
-  intro: '제 웹사이트에 오신 것을 환영합니다! Georgia Institute of Technology 전기컴퓨터공학 박사과정에 재학 중이며, 지도교수는 ', afterAdvisor: '입니다.',
+  about: 'About me',
+  intro: '제 웹사이트에 오신 것을 환영합니다! Georgia Institute of Technology 전기컴퓨터공학 Ph.D. candidate이며, 지도교수는 ', afterAdvisor: '입니다.',
   research: '무선통신을 위한 차세대 파형의 설계와 동기화를 연구하며, 현재는 OCDM(orthogonal chirp division multiplexing)에 집중하고 있습니다. 추정 대상 파라미터가 식별가능하도록 시스템 설계를 모색하고, 모델 기반 파라미터 추정 알고리즘을 개발하며, MATLAB 시뮬레이션으로 동작을 검증합니다.',
   previous: '과거 연구 주제는 다음과 같습니다.', topics: ['OFDM 시스템의 TI-ADC 불일치 보정', '계층 베이지안 프레임워크를 이용한 의료 메타분석'],
   cvBefore: '더 자세한 이력은 ', cvAfter: '를 참고해주세요.',
@@ -35,8 +36,8 @@ const c = ko ? {
   education: '학력', publications: '출판', projects: '프로젝트', news: 'Recent News', contents: '대문 목차', advisor: '지도교수: ',
   programBefore: '두 학사학위는 ', programAfter: '을 통해 취득했습니다.', backTop: '맨 위로',
 } : {
-  role: 'Ph.D. Student, Electrical and Computer Engineering', about: 'About me',
-  intro: 'Welcome to my website! I am a Ph.D. student in Electrical and Computer Engineering at Georgia Institute of Technology, advised by ', afterAdvisor: '.',
+  about: 'About me',
+  intro: 'Welcome to my website! I am a Ph.D. candidate in Electrical and Computer Engineering at Georgia Institute of Technology, advised by ', afterAdvisor: '.',
   research: 'My research focuses on the design and synchronization of next-generation waveforms for wireless communications, especially orthogonal chirp division multiplexing (OCDM). I explore system designs that make the parameters of interest identifiable, develop model-based parameter estimation algorithms, and verify their behavior through MATLAB simulations.',
   previous: 'My previous research topics include:', topics: ['TI-ADC mismatch calibration in OFDM systems', 'Medical meta-analysis using a hierarchical Bayesian framework'],
   cvBefore: 'For further details, please see my ', cvAfter: '.',
@@ -52,10 +53,10 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
   <div class="home-layout" id="top">
     <aside class="home-profile" aria-labelledby="profile-name">
       <figure class="home-portrait"><img src="/images/sangeon-jeon-portrait.webp" width="640" height="800" alt="Sangeon Jeon" fetchpriority="high" /></figure>
-      {/* 번역 금지: 프로필 주 이름과 한자 표기는 고정하고 직함만 현지화한다. */}
+      {/* 번역 금지: 프로필 주 이름·한자 표기와 Ph.D. Candidate @ Georgia Tech 직함은 모든 언어에서 고정한다. */}
       <h1 class="home-profile-name" id="profile-name" lang="en">Sangeon Jeon</h1>
       <p class="home-profile-names"><span lang="ko">전상언</span><span aria-hidden="true">·</span><span lang="zh-Hant">全商彥</span></p>
-      <p class="home-profile-role">{c.role}</p>
+      <p class="home-profile-role" lang="en">{site.role}</p>
       <ProfileLinks lang={lang} vertical includeLocation copyEmail />
     </aside>
     <div class="home-content">
@@ -99,4 +100,5 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
       <a class="home-back-top" href="#top">{c.backTop}<span aria-hidden="true">↑</span></a>
     </section>
   </div>
+  <HomeStickyPanels />
 </SiteLayout>

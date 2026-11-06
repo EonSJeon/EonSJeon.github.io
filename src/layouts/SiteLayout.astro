@@ -51,7 +51,7 @@ const menuClose = lang === 'ko' ? '메뉴 닫기' : 'Close navigation';
     <meta name="twitter:card" content="summary" />
     <title>{fullTitle}</title>
   </head>
-  <body>
+  <body class:list={{ 'home-page-view': homePage }}>
     <a href="#main-content" class="skip-link">{lang === 'ko' ? '본문으로 바로가기' : 'Skip to content'}</a>
     <header class="site-header">
       <div class="header-inner container">

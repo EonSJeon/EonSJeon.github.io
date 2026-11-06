@@ -25,9 +25,9 @@ export function getSiteCopy(lang: Locale) {
     // 본문 이름은 현지화한다. 번역 금지인 헤더 브랜드는 원본 site.name을 직접 사용한다.
     ...site, name: site.koreanName,
     title: '전상언 — 무선통신 및 신호처리',
-    description: 'Georgia Institute of Technology 전기·컴퓨터공학 박사과정 전상언입니다. 무선통신, 파형 설계, 동기화, TI-ADC와 베이지안 통계를 연구합니다.',
+    description: 'Georgia Institute of Technology 전기·컴퓨터공학 Ph.D. candidate 전상언입니다. 무선통신, 파형 설계, 동기화, TI-ADC와 베이지안 통계를 연구합니다.',
     // 번역 금지: 학교 고유명과 미국 지명은 owner preference에 따라 영어를 유지한다.
-    role: '전기·컴퓨터공학 박사과정', institution: 'Georgia Institute of Technology', location: 'Atlanta, Georgia',
+    role: site.role, institution: 'Georgia Institute of Technology', location: 'Atlanta, Georgia',
     interests: site.interests.map((interest) => koreanInterests[interest] ?? interest),
   };
 }

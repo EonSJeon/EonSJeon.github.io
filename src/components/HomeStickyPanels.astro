@@ -1,0 +1,38 @@
+<script>
+  // Fit each Home panel independently. A tall panel stays in normal document flow
+  // so every contact/link can be reached on a short laptop or enlarged text.
+  const homeBody = document.querySelector<HTMLElement>('body.home-page-view');
+  const homeHeader = homeBody?.querySelector<HTMLElement>('.site-header');
+  const homePanels = Array.from(homeBody?.querySelectorAll<HTMLElement>('.home-profile, .home-contents') ?? []);
+
+  if (homeBody && homeHeader) {
+    let frame: number | undefined;
+    const updatePanels = () => {
+      frame = undefined;
+      const desktop = window.matchMedia('(min-width: 741px)').matches;
+      const stickyHeader = desktop && getComputedStyle(homeHeader).position === 'sticky';
+      const headerHeight = stickyHeader ? Math.ceil(homeHeader.getBoundingClientRect().height) : 0;
+      homeBody.style.setProperty('--home-header-height', `${headerHeight}px`);
+      document.documentElement.style.setProperty('--sticky-header-height', `${headerHeight}px`);
+      const viewportHeight = Math.min(window.innerHeight, window.visualViewport?.height ?? window.innerHeight);
+      const availableHeight = viewportHeight - headerHeight - 40;
+
+      for (const panel of homePanels) {
+        const visible = panel.getClientRects().length > 0;
+        const height = Math.max(panel.getBoundingClientRect().height, panel.scrollHeight);
+        panel.dataset.stickyFit = String(desktop && visible && height <= availableHeight);
+      }
+    };
+    const schedulePanels = () => {
+      if (frame === undefined) frame = requestAnimationFrame(updatePanels);
+    };
+
+    const observer = new ResizeObserver(schedulePanels);
+    observer.observe(homeHeader);
+    homePanels.forEach((panel) => observer.observe(panel));
+    window.addEventListener('resize', schedulePanels, { passive: true });
+    window.visualViewport?.addEventListener('resize', schedulePanels, { passive: true });
+    document.fonts.ready.then(schedulePanels);
+    updatePanels();
+  }
+</script>
