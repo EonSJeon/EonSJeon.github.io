@@ -1,6 +1,6 @@
 # Public website requirements
 
-Updated: November 6, 2026. Public user-site: https://eonsjeon.github.io/ .
+Updated: November 9, 2026. Public user-site: https://eonsjeon.github.io/ .
 This repository is the English-only source export, not the editing workspace.
 
 Maintain the existing Astro/TypeScript/Markdown site. Home order is About me,
@@ -31,7 +31,7 @@ Publications duplication. Use publication records and stable Home anchors.
 
 News is Oct2026TIADCsubmission, Sep2026OCDMsubmission, Sep2026AMDpublication,
 Jul2026OCDpublication; no invented submission days. Preserve Home's existing
-large-screen left profile / central body / right four-link TOC positions. Home PC
+large-screen left profile / central body / right five-link TOC positions. Home PC
 header and side panels stick below the actual header height plus 16–24px, through
 Projects. Unstick any panel that exceeds available viewport height, so a too-tall
 left panel scrolls with the central body on small laptops. Measure its full height
@@ -39,7 +39,8 @@ including the major line. No clipped contact labels, hidden items or independent
 panel scrollers. Other-page headers unchanged.
 Profile display starts around 195px (80% of 244px), same left edge and image bytes.
 Keep right TOC at >=1440px; hide it when its rail cannot fit. No alternate TOC below
-Tech Stack or contacts, and no new About anchor is required.
+Tech Stack or contacts. TOC order is About me, Recent News, Education, Publications,
+Projects; About me links to the introduction section at #about.
 Projects uses four vertical rows in central-column width only, with existing
 left text/right photos. Home-list thumbnails fill 4:3 boxes using CSS object-fit:
 cover, with the main subject preserved through per-photo positioning. Keep widths

@@ -47,7 +47,7 @@ const c = ko ? {
   programBefore: 'Completed the ', programAfter: ", earning bachelor's degrees from both institutions.", backTop: 'Back to top',
 };
 const interests = ko ? site.interests : ['Wireless Communications', 'Waveform Design', 'Synchronization', 'TI-ADC', 'Bayesian Statistics'];
-const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.education }, { id: 'publications', label: c.publications }, { id: 'projects', label: c.projects }];
+const contents = [{ id: 'about', label: c.about }, { id: 'news', label: c.news }, { id: 'education', label: c.education }, { id: 'publications', label: c.publications }, { id: 'projects', label: c.projects }];
 ---
 <SiteLayout lang={lang} homePage>
   <div class="home-layout" id="top">
@@ -60,7 +60,7 @@ const contents = [{ id: 'news', label: c.news }, { id: 'education', label: c.edu
       <ProfileLinks lang={lang} vertical includeLocation copyEmail />
     </aside>
     <div class="home-content">
-      <section class="home-about" aria-labelledby="about-heading">
+      <section class="home-about" id="about" aria-labelledby="about-heading">
         <h2 id="about-heading">{c.about}</h2>
         <div class="home-introduction">
           <p>{c.intro}<a href={site.advisor.url} lang="en">{advisorLabel}</a>{c.afterAdvisor}</p>
