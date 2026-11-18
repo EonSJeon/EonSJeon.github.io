@@ -8,6 +8,7 @@ const news = [
   // BRIC registration: 2026-07-09. This is not the November announcement date.
   { date: '2026-07', url: 'https://www.ibric.org/bric/hanbitsa/treatise.do?mode=treatise-view&id=102421&authorId=53054#!/list', en: "Featured in BRIC’s Hanbitsa for our study on obsessive-compulsive and related disorders.", ko: '강박장애 및 관련 장애 연구로 BRIC 한빛사(한국을 빛내는 사람들)에 선정되었습니다.' },
   { date: '2026-07', url: 'https://psychiatryonline.org/doi/10.1176/appi.ajp.20250944', en: 'Our study on obsessive-compulsive and related disorders was published in the American Journal of Psychiatry.', ko: '강박장애 및 관련 장애 연구가 American Journal of Psychiatry에 출판되었습니다.' },
+  { date: '2026-04', url: 'https://www.sciencedirect.com/science/article/pii/S0887899426001207', en: 'Our study on spinal muscular atrophy was published in Pediatric Neurology.', ko: '척수성 근위축증 연구가 Pediatric Neurology에 출판되었습니다.' },
 ];
 
 export function getNews(lang: Locale) {

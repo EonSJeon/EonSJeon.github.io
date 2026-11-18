@@ -29,8 +29,8 @@ Conference before Journal,2underreviewcommunications/3publishedjournals/1hemophi
 manuscript. No independent Research/paper explanation pages or Selected
 Publications duplication. Use publication records and stable Home anchors.
 
-News displays at most seven registered events (currently five). Submission items
-have no hyperlink; published items link directly to the publisher article. Keep
+News displays at most seven registered events (currently six, including the
+April2026 SMA publication). Submission items have no hyperlink; published items link directly to the publisher article. Keep
 the official BRIC feature link and its verified July registration month. Every
 news link opens a new tab with noopener/noreferrer and an accessible new-tab notice.
 Do not invent extra events or submission days. Preserve Home's existing
