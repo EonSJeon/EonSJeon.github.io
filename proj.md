@@ -29,10 +29,11 @@ Conference before Journal,2underreviewcommunications/3publishedjournals/1hemophi
 manuscript. No independent Research/paper explanation pages or Selected
 Publications duplication. Use publication records and stable Home anchors.
 
-News is Oct2026TIADCsubmission, Sep2026OCDMsubmission, Sep2026AMDpublication,
-Jul2026BRICHanbitsa recognition, linking directly to the BRIC OCD-study feature.
-Use its verified July9 registration month, not the November announcement date.
-The older OCD publication event stays in data; no invented submission days. Preserve Home's existing
+News displays at most seven registered events (currently five). Submission items
+have no hyperlink; published items link directly to the publisher article. Keep
+the official BRIC feature link and its verified July registration month. Every
+news link opens a new tab with noopener/noreferrer and an accessible new-tab notice.
+Do not invent extra events or submission days. Preserve Home's existing
 large-screen left profile / central body / right five-link TOC positions. Home PC
 header and side panels stick below the actual header height plus 16–24px, through
 Projects. Unstick any panel that exceeds available viewport height, so a too-tall
@@ -72,3 +73,7 @@ unpublished methods, exact dates or acceptance from vague source language.
 Use the existing self-hosted fonts/licenses, portrait/favicons and light design.
 Footer remains English and truthfully credits Astro and the last update date.
 Run npm run check. Deployment remains a separately authorized manual workflow.
+
+The approved three-page public CV includes BRIC Hanbitsa Recognition (Jul 2026)
+in Awards and Honors, with the official OCD-study feature link. Editable CV/Resume
+sources remain private and only the validated CV PDF is published.

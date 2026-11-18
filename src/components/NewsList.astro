@@ -1,10 +1,10 @@
 ---
 import { getNews } from '../data/news';
-import { localizePath, type Locale } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
 interface Props { lang: Locale; }
 const { lang } = Astro.props;
 const news = getNews(lang);
 ---
 <div class="news-board">
-  <ul>{news.map((item) => <li><time datetime={item.date}>{item.date.replaceAll('-', '.')}</time><p><a href={item.url ?? localizePath(`/#${item.paper}`, lang)}>{item.text}</a></p></li>)}</ul>
+  <ul>{news.map((item) => <li><time datetime={item.date}>{item.date.replaceAll('-', '.')}</time><p><>{item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`${item.text} (${lang === 'ko' ? '새 탭에서 열림' : 'opens in a new tab'})`}>{item.text}</a> : item.text}</></p></li>)}</ul>
 </div>
