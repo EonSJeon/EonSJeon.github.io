@@ -1,6 +1,6 @@
 # Public website requirements
 
-Updated: November 9, 2026. Public user-site: https://eonsjeon.github.io/ .
+Updated: November 18, 2026. Public user-site: https://eonsjeon.github.io/ .
 This repository is the English-only source export, not the editing workspace.
 
 Maintain the existing Astro/TypeScript/Markdown site. Home order is About me,
@@ -30,7 +30,9 @@ manuscript. No independent Research/paper explanation pages or Selected
 Publications duplication. Use publication records and stable Home anchors.
 
 News is Oct2026TIADCsubmission, Sep2026OCDMsubmission, Sep2026AMDpublication,
-Jul2026OCDpublication; no invented submission days. Preserve Home's existing
+Jul2026BRICHanbitsa recognition, linking directly to the BRIC OCD-study feature.
+Use its verified July9 registration month, not the November announcement date.
+The older OCD publication event stays in data; no invented submission days. Preserve Home's existing
 large-screen left profile / central body / right five-link TOC positions. Home PC
 header and side panels stick below the actual header height plus 16–24px, through
 Projects. Unstick any panel that exceeds available viewport height, so a too-tall

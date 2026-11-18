@@ -6,5 +6,5 @@ const { lang } = Astro.props;
 const news = getNews(lang);
 ---
 <div class="news-board">
-  <ul>{news.map((item) => <li><time datetime={item.date}>{item.date.replaceAll('-', '.')}</time><p><a href={localizePath(`/#${item.paper}`, lang)}>{item.text}</a></p></li>)}</ul>
+  <ul>{news.map((item) => <li><time datetime={item.date}>{item.date.replaceAll('-', '.')}</time><p><a href={item.url ?? localizePath(`/#${item.paper}`, lang)}>{item.text}</a></p></li>)}</ul>
 </div>
