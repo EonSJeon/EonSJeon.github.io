@@ -29,8 +29,9 @@ Conference before Journal,1acceptedDCC/2underreviewcommunications/3publishedjour
 manuscript. No independent Research/paper explanation pages or Selected
 Publications duplication. Use publication records and stable Home anchors.
 
-News displays at most seven registered events (currently seven, including DCC acceptance
-in November2026 and the April2026 SMA publication). Submission items have no hyperlink; published items link directly to the publisher article. Keep
+News displays only the latest five registered events: DCC acceptance, TI-ADC and
+OCDM submissions, AMD publication, and BRIC recognition. Retain older OCD/SMA
+news in source data outside the visible window. Submission items have no hyperlink; published items link directly to the publisher article. Keep
 the official BRIC feature link and its verified July registration month. Every
 news link opens a new tab with noopener/noreferrer and an accessible new-tab notice.
 Do not invent extra events or submission days. Preserve Home's existing

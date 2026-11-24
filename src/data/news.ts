@@ -14,5 +14,5 @@ const news = [
 ];
 
 export function getNews(lang: Locale) {
-  return news.slice(0, 7).map((item) => ({ date: item.date, url: item.url, text: item[lang] }));
+  return news.slice(0, 5).map((item) => ({ date: item.date, url: item.url, text: item[lang] }));
 }
