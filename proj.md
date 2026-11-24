@@ -1,6 +1,6 @@
 # Public website requirements
 
-Updated: November 18, 2026. Public user-site: https://eonsjeon.github.io/ .
+Updated: November 24, 2026. Public user-site: https://eonsjeon.github.io/ .
 This repository is the English-only source export, not the editing workspace.
 
 Maintain the existing Astro/TypeScript/Markdown site. Home order is About me,
@@ -24,13 +24,13 @@ font-size/baseline correction; equal computed font-size alone is insufficient.
 Education groups three Georgia Tech degrees and separately KAIST, retaining
 individual periods/advisors and the linked KAIST–Georgia Tech Dual B.S. Degree
 Program. Home has no GPA or repeated academic-background paragraph. Publications
-lists all6records with full authors, English titles and truthful statuses:
-Conference before Journal,2underreviewcommunications/3publishedjournals/1hemophilia
+lists all7records with full authors, English titles and truthful statuses:
+Conference before Journal,1acceptedDCC/2underreviewcommunications/3publishedjournals/1hemophilia
 manuscript. No independent Research/paper explanation pages or Selected
 Publications duplication. Use publication records and stable Home anchors.
 
-News displays at most seven registered events (currently six, including the
-April2026 SMA publication). Submission items have no hyperlink; published items link directly to the publisher article. Keep
+News displays at most seven registered events (currently seven, including DCC acceptance
+in November2026 and the April2026 SMA publication). Submission items have no hyperlink; published items link directly to the publisher article. Keep
 the official BRIC feature link and its verified July registration month. Every
 news link opens a new tab with noopener/noreferrer and an accessible new-tab notice.
 Do not invent extra events or submission days. Preserve Home's existing
@@ -77,3 +77,9 @@ Run npm run check. Deployment remains a separately authorized manual workflow.
 The approved three-page public CV includes BRIC Hanbitsa Recognition (Jul 2026)
 in Awards and Honors, with the official OCD-study feature link. Editable CV/Resume
 sources remain private and only the validated CV PDF is published.
+
+DCC 2027 accepted full paper: gjxl: A GPU-Accelerated JPEG XL Encoder. Authors
+Yunho Cho, Sangeon Jeon in that order; no co-first mark or author links. Acceptance
+decision November23,2026. Keep Accepted visible separately from Published and
+Under review. No DOI or paper URL supplied; its title and news are plain text.
+The approved CV lists this paper under Conference Papers and Submissions.

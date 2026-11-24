@@ -2,6 +2,8 @@ import type { Locale } from '../lib/i18n';
 
 // Event months do not imply an invented first-of-month date. September's tie is editorial.
 const news = [
+  // Acceptance decision email: 2026-11-23; DCC 2027 is the conference year.
+  { date: '2026-11', en: 'Our paper "gjxl: A GPU-Accelerated JPEG XL Encoder" was accepted at DCC 2027.', ko: '논문 "gjxl: A GPU-Accelerated JPEG XL Encoder"가 DCC 2027에 게재 승인되었습니다.' },
   { date: '2026-10', en: 'Submitted our work on joint channel and TI-ADC mismatch estimation to ICC 2027.', ko: '채널과 TI-ADC 불일치 공동 추정 연구를 ICC 2027에 투고했습니다.' },
   { date: '2026-09', en: 'Submitted our work on single-pilot OCDM frequency-offset estimation to ICASSP 2027.', ko: '단일 파일럿을 이용한 OCDM 주파수 오프셋 추정 연구를 ICASSP 2027에 투고했습니다.' },
   { date: '2026-09', url: 'https://www.sciencedirect.com/science/article/pii/S2468653026004914', en: 'Our study on age-related macular degeneration was published in Ophthalmology Retina.', ko: '연령관련황반변성 연구가 Ophthalmology Retina에 출판되었습니다.' },

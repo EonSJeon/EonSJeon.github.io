@@ -81,7 +81,7 @@ async function validateOutput({ absentMarker } = {}) {
   assert(cvPDF.equals(await readFile(path.join(root, 'public', publicCVPDF))), 'Published CV differs from the approved public source.');
   const homeHTML = await readFile(path.join(output, 'index.html'), 'utf8');
   assert(homeHTML.includes(`href="/${publicCVPDF}"`), 'Home must link directly to the approved CV PDF');
-  for (const id of ['publications','projects','ocdm-cfo-estimation','tiadc-ofdm-estimation','amd-global-burden','ocd-related-disorders-prevalence','sma-global-prevalence','hemophilia-resource-modeling']) {
+  for (const id of ['publications','projects','gjxl-gpu-jpeg-xl','ocdm-cfo-estimation','tiadc-ofdm-estimation','amd-global-burden','ocd-related-disorders-prevalence','sma-global-prevalence','hemophilia-resource-modeling']) {
     assert(new RegExp(`id=["']${id}["']`).test(homeHTML), `Canonical Home anchor missing: ${id}`);
   }
   for (const home of ['index.html']) {
