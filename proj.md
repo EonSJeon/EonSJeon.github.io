@@ -13,7 +13,7 @@ mark plus Home, Coursework, Blog; no language UI or Korean translation pages.
 Home profile title is Ph.D. Candidate @ Georgia Tech, with Electrical and Computer
 Engineering on a separate line beneath it; both stay English. Related copy/meta
 uses candidate wording and retains the major. Profile has the smile portrait,
-names, Atlanta city link and five vertical icon-labelled contacts; Email copies
+names, Atlanta label linking to Centergy One in Google Maps and five vertical icon-labelled contacts; Email copies
 and shows Copied for1s.
 Use compact, consistent location/contact row spacing without changing font/icon
 sizes, order or visible labels; measure the full panel for sticky-height fallback.
