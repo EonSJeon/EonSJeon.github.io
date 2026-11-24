@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { opensInNewTab } from '../src/lib/new-tab-links.mjs';
 import { existsSync, statSync } from 'node:fs';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -119,6 +120,13 @@ async function validateOutput({ absentMarker } = {}) {
     assert.equal(canonicals[0].href, expectedCanonical.href, `Wrong canonical URL in ${relative}`);
     assert(!languageLink(html, 'ko') && !languageLink(html, 'en'), `Public language switch leaked into ${relative}`);
     assert(!alternateLanguages(html).some((link) => link.hreflang === 'ko' || new URL(link.href, base).pathname.startsWith('/ko/')), `Korean alternate advertised in ${relative}`);
+    for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
+      const attributes = attributesFor(match[0]);
+      if (!opensInNewTab(attributes.href)) continue;
+      assert.equal(attributes.target, '_blank', `Link must open a new tab in ${relative}: ${attributes.href}`);
+      const rel = new Set((attributes.rel ?? '').split(/\s+/));
+      assert(rel.has('noopener') && rel.has('noreferrer') && !rel.has('opener'), `Unsafe new-tab link in ${relative}: ${attributes.href}`);
+    }
     for (const match of html.matchAll(/\b(?:href|src|poster)\s*=\s*["']([^"']+)["']/gi)) {
       const value = decodeAttribute(match[1]).trim();
       if (!value || /^(?:mailto:|tel:|data:|blob:)/i.test(value)) continue;
