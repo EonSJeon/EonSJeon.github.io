@@ -122,6 +122,10 @@ async function validateOutput({ absentMarker } = {}) {
     assert(!alternateLanguages(html).some((link) => link.hreflang === 'ko' || new URL(link.href, base).pathname.startsWith('/ko/')), `Korean alternate advertised in ${relative}`);
     for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
       const attributes = attributesFor(match[0]);
+      const linkURL = new URL(attributes.href || '#', base);
+      if (['http:', 'https:'].includes(linkURL.protocol) && linkURL.origin === origin) {
+        assert.notEqual(attributes.target, '_blank', `Internal link must stay in the current tab in ${relative}: ${attributes.href}`);
+      }
       if (!opensInNewTab(attributes.href)) continue;
       assert.equal(attributes.target, '_blank', `Link must open a new tab in ${relative}: ${attributes.href}`);
       const rel = new Set((attributes.rel ?? '').split(/\s+/));

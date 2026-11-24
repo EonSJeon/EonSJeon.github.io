@@ -66,7 +66,7 @@ const contents = [{ id: 'about', label: c.about }, { id: 'news', label: c.news }
           <p>{c.intro}<a href={site.advisor.url} lang="en">{advisorLabel}</a>{c.afterAdvisor}</p>
           <p class="home-research-summary">{c.research} {c.previous}</p>
           <ul class="home-previous-topics">{c.topics.map((topic) => <li>{topic}</li>)}</ul>
-          <p class="home-cv-link">{c.cvBefore}<a href={site.cvPdf} type="application/pdf" target="_blank" rel="noopener noreferrer" lang="en" aria-label={ko ? 'CV, 2026년 11월 개정, PDF 3쪽, 새 탭에서 열림' : 'CV, November 2026, PDF, 3 pages, opens in a new tab'}>{cvLabel}</a>{c.cvAfter}</p>
+          <p class="home-cv-link">{c.cvBefore}<a href={site.cvPdf} type="application/pdf" lang="en" aria-label={ko ? 'CV, 2026년 11월 개정, PDF 3쪽' : 'CV, November 2026, PDF, 3 pages'}>{cvLabel}</a>{c.cvAfter}</p>
         </div>
         <div class="home-capabilities">
           <section class="home-interests" aria-labelledby="interests-heading"><h3 id="interests-heading">{c.interests}</h3><ul>{interests.map((interest) => <li>{interest}</li>)}</ul></section>

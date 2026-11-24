@@ -85,10 +85,9 @@ decision November23,2026. Keep Accepted visible separately from Published and
 Under review. No DOI or paper URL supplied; its title and news are plain text.
 The approved CV lists this paper under Conference Papers and Submissions.
 
-All document/website hyperlinks open a new tab with target=_blank and
-rel=noopener noreferrer, including external URLs, internal page navigation and
-CV/PDF links in components or Markdown. Fragment-only links (#section) retain
-in-page navigation for TOCs/skip links; mailto/tel actions retain their handlers.
-Enforce this in the rendered HTML via shared middleware for both private preview
+Only external HTTP(S) hyperlinks open a new tab with target=_blank and
+rel=noopener noreferrer, in components and Markdown. Internal pages, same-origin
+absolute URLs, CV/PDF links, fragments and mailto/tel retain their normal behavior.
+Enforce the external-only rule in rendered HTML middleware for private preview
 and public static builds, without browser JavaScript. Preserve existing rel tokens
 except opener; validate every built HTML page.

@@ -1,7 +1,7 @@
 import { defineMiddleware } from 'astro:middleware';
 import { newTabLinks } from './lib/new-tab-links.mjs';
 
-// Apply the owner's link policy to components and Markdown, in preview and static builds.
+// Apply the owner's external-link policy to components and Markdown, in preview and static builds.
 export const onRequest = defineMiddleware(async (_context, next) => {
   const response = await next();
   if (!response.body || !response.headers.get('content-type')?.includes('text/html')) return response;

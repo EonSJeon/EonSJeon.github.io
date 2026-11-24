@@ -1,11 +1,12 @@
 import { parse, serializeOuter } from 'parse5';
 
-/** Document/website links open a tab; fragment navigation and protocol actions do not. */
+/** Only external HTTP(S) URLs open a tab; site pages, files and fragments do not. */
 export function opensInNewTab(href) {
   const value = href?.trim();
   if (!value || value.startsWith('#')) return false;
   try {
-    return ['http:', 'https:'].includes(new URL(value, 'https://eonsjeon.github.io/').protocol);
+    const url = new URL(value, 'https://eonsjeon.github.io/');
+    return ['http:', 'https:'].includes(url.protocol) && url.origin !== 'https://eonsjeon.github.io';
   } catch {
     return false;
   }
