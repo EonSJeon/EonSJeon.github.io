@@ -1,12 +1,14 @@
 import { parse, serializeOuter } from 'parse5';
 
-/** Only external HTTP(S) URLs open a tab; site pages, files and fragments do not. */
+/** External HTTP(S) URLs and the owner-approved CV PDF open a new tab. */
 export function opensInNewTab(href) {
   const value = href?.trim();
   if (!value || value.startsWith('#')) return false;
   try {
     const url = new URL(value, 'https://eonsjeon.github.io/');
-    return ['http:', 'https:'].includes(url.protocol) && url.origin !== 'https://eonsjeon.github.io';
+    return ['http:', 'https:'].includes(url.protocol) && (
+      url.origin !== 'https://eonsjeon.github.io' || url.pathname === '/files/sangeon-jeon-cv.pdf'
+    );
   } catch {
     return false;
   }

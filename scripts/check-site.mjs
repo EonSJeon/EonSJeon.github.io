@@ -123,7 +123,7 @@ async function validateOutput({ absentMarker } = {}) {
     for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
       const attributes = attributesFor(match[0]);
       const linkURL = new URL(attributes.href || '#', base);
-      if (['http:', 'https:'].includes(linkURL.protocol) && linkURL.origin === origin) {
+      if (['http:', 'https:'].includes(linkURL.protocol) && linkURL.origin === origin && !opensInNewTab(attributes.href)) {
         assert.notEqual(attributes.target, '_blank', `Internal link must stay in the current tab in ${relative}: ${attributes.href}`);
       }
       if (!opensInNewTab(attributes.href)) continue;

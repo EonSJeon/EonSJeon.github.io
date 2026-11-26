@@ -1,6 +1,6 @@
 # Public website requirements
 
-Updated: November 24, 2026. Public user-site: https://eonsjeon.github.io/ .
+Updated: November 25, 2026. Public user-site: https://eonsjeon.github.io/ .
 This repository is the English-only source export, not the editing workspace.
 
 Maintain the existing Astro/TypeScript/Markdown site. Home order is About me,
@@ -85,9 +85,10 @@ decision November23,2026. Keep Accepted visible separately from Published and
 Under review. No DOI or paper URL supplied; its title and news are plain text.
 The approved CV lists this paper under Conference Papers and Submissions.
 
-Only external HTTP(S) hyperlinks open a new tab with target=_blank and
-rel=noopener noreferrer, in components and Markdown. Internal pages, same-origin
-absolute URLs, CV/PDF links, fragments and mailto/tel retain their normal behavior.
-Enforce the external-only rule in rendered HTML middleware for private preview
+External HTTP(S) hyperlinks and the approved /files/sangeon-jeon-cv.pdf open a new
+tab with target=_blank and rel=noopener noreferrer, in components and Markdown.
+The CV is an explicit owner-approved exception. Other internal pages, same-origin
+absolute URLs, files, fragments and mailto/tel retain their normal behavior.
+Enforce this rule in rendered HTML middleware for private preview
 and public static builds, without browser JavaScript. Preserve existing rel tokens
 except opener; validate every built HTML page.
